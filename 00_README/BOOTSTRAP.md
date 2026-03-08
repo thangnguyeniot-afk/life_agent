@@ -6,10 +6,8 @@
 
 ## Table of Contents
 
-- [1. Start with INDEX.md (this folder)](#1-start-with-indexmd-this-folder)
-  - [Execution System](#execution-system)
-  - [Knowledge System](#knowledge-system)
-  - [Safety Layer](#safety-layer)
+- [1. Start with LIFE_AGENT_ARCHITECTURE.md](#1-start-with-life_agent_architecturemd)
+- [1b. INDEX.md – Repo Structure](#1b-indexmd--repo-structure)
 - [2. Read the main OS manual](#2-read-the-main-os-manual)
 - [3. Check relevant planning files](#3-check-relevant-planning-files)
 - [4. If task involves research / design / architecture](#4-if-task-involves-research--design--architecture)
@@ -26,7 +24,20 @@
 
 ---
 
-## 1. Start with INDEX.md (this folder)
+## 1. Start with LIFE_AGENT_ARCHITECTURE.md
+
+Understand:
+- System layers and how they connect
+- Big picture of Planning → Execution → Projects
+- Where each document fits
+
+**Takes 2 minutes.**
+
+Then read [INDEX.md](INDEX.md) for file map.
+
+---
+
+## 1b. INDEX.md – Repo Structure
 
 Understand:
 - Folder structure

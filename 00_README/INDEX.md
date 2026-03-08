@@ -7,6 +7,7 @@
 
 ## Table of Contents
 
+- [0) Architecture Map (High-Level)](#0-architecture-map-high-level)
 - [1) OS Architecture (§1–14)](#1-os-architecture-114)
 - [2) Canonical Templates](#2-canonical-templates)
 - [3) Reading Order (for agents)](#3-reading-order-for-agents)
@@ -20,6 +21,21 @@
 - [11) Daily Archival (keep hot 15 days)](#11-daily-archival-keep-hot-15-days)
 - [12) System Health Checklist](#12-system-health-checklist)
 - [13) Starting Out](#13-starting-out)
+
+---
+
+## 0) Architecture Map (High-Level)
+
+**File:** `LIFE_AGENT_ARCHITECTURE.md`
+
+Start here for a 30-second overview.
+
+Includes:
+- System layers (Philosophy → System → Workflows → Execution → Projects)
+- High-level diagram
+- Operating flow
+- Document role map
+- Navigation guide
 
 ---
 
