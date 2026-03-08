@@ -109,10 +109,12 @@ Build reliable, well-tested delivery systems across Zephyr/Signee/RobotOS. Achie
 
 | Domain | Phase 1 (→30/4) | Phase 2 (May) | Notes |
 |---|---|---|---|
-| Signee Demo | 60% | 40% | Front-loaded to Feature Freeze |
-| RobotOS Dev | 25% | 45% | Co-delivery in May |
-| Zephyr KTLO | 15% | 15% | Stable on mainline |
-| Buffer / Unplanned | N/A | N/A | Managed via capacity rules |
+| Signee Demo | 55% | 40% | Front-loaded to Feature Freeze |
+| RobotOS Dev | 25% | 40% | Co-delivery in May |
+| Zephyr KTLO | 10% | 10% | Stable mainline maintenance |
+| Buffer / Unplanned | 10% | 10% | Debugging, coordination, unexpected issues |
+
+Buffer capacity represents real operational overhead (debugging, interrupts, coordination). This prevents planning drift caused by unrealistic 100% utilization assumptions.
 
 ### Capacity assumptions
 
@@ -131,6 +133,21 @@ Build reliable, well-tested delivery systems across Zephyr/Signee/RobotOS. Achie
 ---
 
 **Important:** Allocation reflects real sustainable capacity. If actual allocation drifts >15% from target in any phase → rebalance immediately within 3 days.
+
+---
+
+## 2.1) Quarter Scorecard
+
+Purpose: summarize the measurable outcomes of the quarter.
+
+| Metric | Target | Result | Status |
+|---|---|---|---|
+| Signee Demo Delivery | Demo executed by 30/5 | Demo flows validated, stakeholder review scheduled | In Progress |
+| RobotOS Prototype | Board boot + CNC demo | Hardware ready, integration progressing | In Progress |
+| Zephyr Stability | CI pass rate 100% | CI stable, regression framework complete | Achieved |
+| Execution Capacity | 4 blocks/day sustainable | 3–4 blocks stable, 5 blocks occasional | Achieved |
+
+This scorecard summarizes objective-level outcomes and feeds directly into the next quarter's planning baseline.
 
 ---
 
@@ -165,6 +182,8 @@ Build reliable, well-tested delivery systems across Zephyr/Signee/RobotOS. Achie
 
 ## 5.5) Early Quarter Signals
 
+### Qualitative Warning Signs
+
 **Warning signs indicating quarter is off-track or exceeding real capacity:**
 
 - [ ] One objective consuming >50–60% of effort (indicates imbalance)
@@ -173,7 +192,16 @@ Build reliable, well-tested delivery systems across Zephyr/Signee/RobotOS. Achie
 - [ ] Actual capacity metrics drop noticeably from start-of-quarter baseline
 - [ ] One project stream becoming dominant unexpectedly
 
+### Quantitative Warning Signals
+
+- [ ] Actual deep work capacity drops below **3 blocks/day for 5 consecutive days**
+- [ ] Unplanned work exceeds **25% of weekly capacity**
+- [ ] One objective consumes **>65% of total effort for more than 1 week**
+- [ ] Critical dependency delayed **>5 days beyond expected timeline**
+
 **Rule:** If any of these signals appear strongly → activate **Strategic Drift Check** immediately. Do not wait for monthly review.
+
+**Critical escalation rule:** If two or more signals appear simultaneously → trigger Strategic Drift Check immediately.
 
 ---
 
@@ -481,7 +509,22 @@ Quarter Review is **DONE** when:
 
 ---
 
-# APPENDIX — Gate Closure Summary
+# APPENDIX — Gates and Objectives
+
+### Objective → Gate Mapping
+
+| Objective | Gate |
+|---|---|
+| Signee Series A Demo | Gate C (Demo Ready – 30/5) |
+| RobotOS Prototype | Gate D (Prototype Ready – 31/5) |
+| Zephyr Stable Release | Continuous validation (no single gate) |
+| Execution Capacity Expansion | Quarter-level outcome |
+
+Gates represent milestone validation points for strategic objectives.
+
+---
+
+### Gate Closure Summary
 
 | Gate | Status | Evidence |
 |---|---|---|
