@@ -1,339 +1,428 @@
-﻿# MONTH PLAN & REVIEW – 2026-03 (March)
+﻿# MARCH PLAN — 2026-03
 
-> **Instance file** aligned to TEMPLATE_Month_Final.md and 2026-Q1 quarter direction.
-> **Month role:** Setup & Scope Freeze (Month 1 of Q1: prepare for delivery phases)
+> **Aligned with Q1 Strategy:** Foundation & Scope Freeze
+> **Quarter Phase:** Month 1 of Q1 (March–May delivery window)
+> **Role:** Preparation, architecture definition, hardware validation
 
 ---
 
 ## Table of Contents
 
-**PART A: MONTHLY PLANNING**
-- [1) Định hướng tháng này](#1-định-hướng-tháng-này)
-- [2) Core Outcomes của tháng (tối đa 3)](#2-core-outcomes-của-tháng-tối-đa-3)
-- [3) Capacity & Rhythm](#3-capacity--rhythm)
-- [3.1) Monthly Planning Protection Rules](#31-monthly-planning-protection-rules)
-- [4) Weekly Intent (Month-level direction)](#4-weekly-intent-month-level-direction)
-- [4.1) Monthly Scope Trade-off](#41-monthly-scope-trade-off)
-- [5) Risk / Assumption / Decisions](#5-risk--assumption--decisions)
-- [6) Reading budget](#6-reading-budget)
+**PART A: MARCH PLANNING**
+- [1. Month Context](#1-month-context)
+- [2. Strategic Theme](#2-strategic-theme)
+- [3. Project Focus](#3-project-focus)
+- [4. Month Objectives](#4-month-objectives)
+  - [4.1 Signee](#41-signee)
+  - [4.2 RobotOS](#42-robotos)
+  - [4.3 Zephyr](#43-zephyr)
+- [5. Exit Criteria](#5-exit-criteria)
+- [6. Capacity Assumption](#6-capacity-assumption)
+- [7. Major Risks](#7-major-risks)
+- [8. Execution Model](#8-execution-model)
+- [9. Alignment with Quarter Strategy](#9-alignment-with-quarter-strategy)
 
-**PART B: MONTHLY REVIEW**
-- [0) DoD for Monthly Review](#0-dod-for-monthly-review)
-- [1) Executive Summary of the Month](#1-executive-summary-of-the-month)
-- [2) Output & Outcome Review](#2-output--outcome-review)
-- [2.1) Monthly Drift Check](#21-monthly-drift-check)
-- [3) System Change Review](#3-system-change-review)
-- [3.1) Portfolio Balance Check](#31-portfolio-balance-check)
-- [4) Life Anchors — Monthly Trend](#4-life-anchors--monthly-trend)
-- [5) Anti-Anchors — Monthly Pattern](#5-anti-anchors--monthly-pattern)
-- [6) Focus Adjustment for Next Month](#6-focus-adjustment-for-next-month)
-- [7) Context Compression](#7-context-compression)
-- [Appendix (Optional)](#appendix-optional)
-
----
-
-# PART A: MONTHLY PLANNING
+**PART B: MARCH REVIEW**
+- [10. DoD for Monthly Review](#10-dod-for-monthly-review)
+- [11. Output & Outcome Review](#11-output--outcome-review)
+- [12. Capacity & Energy Review](#12-capacity--energy-review)
+- [13. Drift Check](#13-drift-check)
+- [14. System Change Review](#14-system-change-review)
+- [15. Life Anchors — Monthly Check](#15-life-anchors--monthly-check)
+- [16. Anti-Anchor Check](#16-anti-anchor-check)
+- [17. April Priorities](#17-april-priorities)
+- [18. Context Compression](#18-context-compression)
 
 ---
 
-## 1) Định hướng tháng này
-
-**Theme:** Setup & Freeze Scope — tháng này chốt những gì sẽ delivery tháng 4–5, không mở việc mới.
-
-**North Star:** 
-By 31/3, all projects have scope frozen v1 (Signee demo criteria locked, RobotOS prototype scope locked, Zephyr release criteria clear). All boards running basic flow with runbooks.
-
-**Stop doing this month:**
-- No new features if scope not yet frozen
-- No jumping between 3–4 hard tasks per day (prevent priority distortion)
-- No XL task execution without breaking into phases first
+# PART A: MARCH PLANNING
 
 ---
 
-## 2) Core Outcomes của tháng (tối đa 3)
+## 1. Month Context
 
-> Outcome = measurable result, not task list. Each must have artifact.
+**Month role inside the quarter:**
 
-### Outcome Map
+March is the **foundation month** before the April–May delivery window.
 
-| # | Outcome | Project | Deadline | Artifact |
-|---|---|---|---|---|
-| O1 | Signee Demo Scope Freeze v1 (internal) | Signee | 2026-03-14 | RFC_DemoScope_v1.md |
-| O2 | Board basic flow stable + RobotOS Middleware/STM32F4 bringup | RobotOS | 2026-03-28 | RUNBOOK_BasicFlow.md + LOG_Bringup.md |
-| O3 | Frontend skeleton + 1 flow (PWA ready) | Signee | 2026-03-31 | ADR_UI_Architecture.md + commit |
+Signee demo is scheduled for **May 30**. RobotOS prototype (v0.1 + v0.2) is due **May 31**. Both require solid architectural and technical groundwork before implementation intensifies in April and May.
 
----
+**Primary goals for March:**
+- Remove major technical and strategic ambiguities
+- Freeze demonstration scope for Signee
+- Define and validate core architecture for RobotOS
+- Establish a stable hardware and software baseline
+- Prepare execution environment for April
 
-**Outcome #1: Signee Demo Scope Freeze v1**
-
-- **Why:** Prevent scope creep → unblock April delivery
-- **Success signal / DoD:**
-  - Feature list (MUST + OUT-OF-SCOPE) locked and documented
-  - Demo acceptance criteria defined for each feature
-  - Read after 10 min: still understand what demo includes
-  - Artifact: `RFC_Signee_DemoScope_v1.md` (signed off)
-- **Owner:** You
+**What this month is NOT:**
+This is not a feature delivery month. This is not about maximizing output. This is about maximizing clarity and reducing downstream rework.
 
 ---
 
-**Outcome #2: Board Basic Flow Stable + RobotOS Middleware & STM32F4 Bringup**
+## 2. Strategic Theme
 
-- **Why:** Unblock Q1 roadmap (v0.1 Alpha deadline 2026-04-30)
-- **Success signal / DoD:**
-  - Both boards run basic flow repeatable ≥3 times (same conditions)
-  - Logs captured: error + root cause + fix + rerun condition
-  - Runbook 1-page exists (setup + rerun fast)
-  - Test cases defined + quality gate clear (for dev in week 4)
-  - RobotOS: Zephyr workspace setup done (west init/update, build OK on STM32F4)
-  - RobotOS: Middleware core skeleton started (pub/sub interface + memory pool link OK)
-  - RobotOS: STM32F4 bringup minimal (build + flash + hello world runs)
-  - Artifact: `LOG_Board_Bringup_Mar.md` + `RUNBOOK_BasicFlow_1page.md` + `LOG_RobotOS_Bringup_Mar.md`
-- **Owner:** You
+### "Foundation and Scope Freeze"
 
----
+**Meaning:**
+- Eliminate ambiguity through targeted spikes and definition work
+- Define clear system boundaries (what's in scope, what's out)
+- Prepare implementation environment (hardware baseline, toolchain, developer workflow)
+- Validate that baseline works before committing April/May to implementation
+- Lock down scope for both demo projects to prevent mid-delivery scope creep
 
-**Outcome #3: Frontend Skeleton + 1 Flow (PWA Ready)**
-
-- **Why:** Unblock demo flows April; finalize UI architecture before large effort
-- **Success signal / DoD:**
-  - Skeleton app runs (routing/navigation baseline)
-  - 1 flow end-to-end working (mock data OK)
-  - UI architecture ADR done (prevents rewrite later)
-  - Artifact: `ADR_UI_Architecture.md` + code commit(s)
-- **Owner:** You
+**Operating principle:**
+Discovery and validation work now prevents 2–3x rework in April/May.
 
 ---
 
-## 3) Capacity & Rhythm
+## 3. Project Focus
 
-- **WIP max (concurrent):** 2–3 big things / week
-- **Capacity budget (%):**
-  - Signee scope/demo: 35%
-  - RobotOS middleware + bringup: 30%
-  - Zephyr KTLO (work): 15%
-  - Buffer (breakage, emergency ≤48h): 20%
-- **Deep blocks/day:** 2 blocks (90 min each)
-- **Office hours (if applicable):** Tue/Thu 16:00–16:30 + Sat 10:00–10:30
+| Project | Role in March | Priority |
+|---|---|---|
+| **Signee** | Demo preparation, board validation, scope definition | 🔴 Dominant (55% capacity) |
+| **RobotOS** | Prototype scope freeze, architecture definition, interfaces | 🟠 Secondary (25% capacity) |
+| **Zephyr** | Stable environment, maintain baseline, support both tracks | 🟡 Foundation (10% capacity) |
 
----
-
-## 3.1) Monthly Planning Protection Rules
-
-**Scope Trade-off Rule:** If March gains new major work → existing outcome scope must shrink.
-
-**Drift Check Rule:** If actual capacity strays >15% from 35/30/15/20 budget for >1 week → rebalance immediately.
-
-**Anti-Wish-List Rule:** Only 3 outcomes max. If 4th seems "strategic" → defer to Q2.
+**Why this priority:**
+Signee Series A demo (May 30) is the external-facing deadline. Demo scope must be frozen before April to prevent feature creep during implementation. RobotOS prototype (May 31) depends on clear architecture boundaries before implementation. Zephyr is a stable base that must not create friction for either project.
 
 ---
 
-## 4) Weekly Intent (Month-level direction)
+## 4. Month Objectives
 
-> Not detailed weekly scheduling — just the theme/direction for each week to prevent scope creep.
+### 4.1 Signee
 
-**Week 1 (2026-W09): Setup + Framing**
-- Signee: draft demo scope v0, test on new board
-- RobotOS: Zephyr setup, STM32F4 hello world
-- Zephyr: maintain stability
-- Anti-goal: don't open new features
+**Objective 1: Validate Board Hardware Baseline**
 
-**Week 2 (2026-W10): Freeze v1 + First Loop**
-- Signee: internal scope freeze v1
-- RobotOS: basic flow run 2–3 times, log conditions
-- Zephyr: stable on mainline
-- Anti-goal: no scope creep
+- Run basic application flow on target board
+- Capture setup steps, failure modes, recovery procedures
+- Confirm hardware is suitable for demo
 
-**Week 3 (2026-W11): Stabilize + QA Strategy**
-- Signee: board stabilize top 3 blockers → runbook
-- RobotOS: Middleware core skeleton (pub/sub compile/link OK)
-- Zephyr: maintain CI green
-- Anti-goal: no context switching
+**Objective 2: Freeze Demo Scope v1**
 
-**Week 4 (2026-W12): All Apps Running + April Readiness**
-- Signee: Outcome #3 done, PWA test on mobile
-- RobotOS: STM32F4 bringup final confirm
-- Zephyr: no P0 bugs
-- Anti-goal: no new scope, close debt
+- Define feature list: MUST-HAVE (for demo) + OUT-OF-SCOPE (for v1.1)
+- Write acceptance criteria for each MUST-HAVE feature
+- Document blocking dependencies or assumptions
+- Artifact: RFC_Signee_DemoScope_v1.md (reviewed and signed off)
+
+**Objective 3: Begin Frontend Implementation**
+
+- Proof-of-concept implementation on at least one demo feature
+- Define architecture decisions (routing, state management, API client pattern)
+- Validate that UI architecture choice doesn't create technical debt
+- Artifact: ADR_UI_Architecture.md + working prototype code
+
+The proof-of-concept should validate both UI architecture viability and interaction with the board / backend flow, preventing the POC from becoming a purely visual prototype.
 
 ---
 
-## 4.1) Monthly Scope Trade-off
+### 4.2 RobotOS
 
-| Added Priority | Trade-off Action | What Traded Off | Reason |
+**Objective 1: Freeze Prototype Scope**
+
+- Define what v0.1 (April 30) and v0.2 (May 31) must deliver
+- Document application scenarios (CNC, robot arm, other examples)
+- Artifact: DOC_RobotOS_Prototype_Scope.md
+
+**Objective 2: Define Architecture Boundaries**
+
+- Specify core layers: Kernel Adapter | Middleware Framework | Application Interface
+- Define module responsibilities and dependencies
+- Clarify which Zephyr features will be used vs. abstracted
+- Artifact: ADR_RobotOS_Architecture.md
+
+**Objective 3: Lock Module Interfaces**
+
+- Define pub/sub interface contract (if pub/sub is chosen)
+- Define timer/scheduling interface
+- Define memory allocation strategy (if managed pool needed)
+- Prevent mid-implementation redesign by nailing interfaces now
+- Artifact: INTERFACE_Spec_v0.md
+
+**Objective 4: Validate STM32F4 Bringup**
+
+- Confirm build toolchain works end-to-end
+- Flash and run hello-world + basic loop on target
+- Document bringup runbook for future developers
+- Artifact: RUNBOOK_STM32F4_Bringup.md
+
+---
+
+### 4.3 Zephyr
+
+**Objective 1: Maintain Kernel Stability**
+
+- Keep mainline branch building and passing smoke tests
+- No regression in core functionality
+
+**Objective 2: Support Demo Environments**
+
+- Ensure Signee board board environment is ready for implementation
+- Ensure RobotOS bringup is not blocked by missing Zephyr toolchain pieces
+
+**Objective 3: Document Developer Workflow**
+
+- Validate build / flash / debug / test cycle works reliably
+- Capture gotchas and failure recovery steps
+- Artifact: RUNBOOK_Development_Setup.md
+
+---
+
+## 5. Exit Criteria
+
+**March is successful if all of the following are true:**
+
+- [ ] Signee board runs basic demo flow without P0/P1 hardware blockers
+- [ ] Signee demo scope is documented, reviewed, and agreed (RFC signed off)
+- [ ] At least 1–2 demo features have proof-of-concept implementation
+- [ ] RobotOS scope (what v0.1 and v0.2 will deliver) is frozen and documented
+- [ ] RobotOS core architecture is defined (Adapter / Framework / App layers clear)
+- [ ] RobotOS module interfaces are locked (no assumptions about redesign)
+- [ ] STM32F4 bringup validates Zephyr integration (hello world runs)
+- [ ] Development environment (build / flash / debug) is fully operational and documented
+- [ ] No blocking ambiguities remain that would derail April implementation
+
+**If any exit criterion is not met by 31/3, that item escalates to the weekly review for remediation decision.**
+
+---
+
+## 6. Capacity Assumption
+
+**Realistic capacity for March:**
+
+- **Daily:** 3–4 deep work blocks (90 min each)
+- **Weekly:** 15–18 planned blocks
+- **Buffer:** 10% allocation for unplanned work, coordination, context switching
+
+**Note on work type:**
+March prioritizes **definition, validation, and architecture work** over pure implementation. This work is less "block production" and more "clarity production." Expect fewer lines of code; expect more design docs, runbooks, and proofs of concept.
+
+**Energy assumptions:**
+- Work intensity: moderate (definition work is less exhausting than heads-down coding)
+- Thursday/Friday: 15% lower capacity (energy observation from past quarters)
+- Saturday (office hours): maintain at 2 blocks/day for context continuity
+
+---
+
+## 7. Major Risks
+
+| Risk | Impact | Probability | Mitigation |
 |---|---|---|---|
-| (none expected) | N/A | N/A | Month is scope-locked from quarter direction |
+| **Hardware instability** | Scope can't be validated; blockers are unknown | Medium | Early bringup week 1, parallel backup plan |
+| **Scope creep before freeze** | Demo scope balloons; April becomes chaos | Medium | Weekly scope review, strict scope gate on 3/14 |
+| **Unclear module boundaries** | April implementation proceeds under wrong assumptions | Medium | Architecture ADR must be reviewed + signed off by 3/10 |
+| **Context switching (interrupts)** | Discovery work gets disrupted; clarity delays | Medium | Protect 2 blocks/day for deep work; escalate >4h interrupts to weekly review |
+| **Architecture overkill** | Spend 4 weeks designing the "perfect" system | Low | Time-box architecture work to 1.5 weeks (W9–W10); architecture decisions must be finalized by approximately March 17 to avoid pushing architectural work into implementation weeks. |
 
 ---
 
-## 5) Risk / Assumption / Decisions
+## 8. Execution Model
 
-### Top strategic risks (3)
+**High-level flow of the month:**
 
-| Risk | Impact | Mitigation |
-|---|---|---|
-| Scope creep (demo scope not "signed off") | Outcome #1 miss, delay April | Feature freeze rule + weekly drift check |
-| Board instability (basic flow can't repeat) | Outcome #2 miss, delay v0.1 | Early bringup weeks 1–2 + runbook discipline |
-| Priority distortion (emergency breaks deep blocks) | Artifact loss, rework in April | Buffer 20%, escalate >4h emergency items to weekly review |
+### Week 1–2 (2026-W09 ~ W10): Definition & Validation
+- Signee: board setup, capture baseline, draft scope v0
+- RobotOS: architecture spike, STM32F4 hello-world, Zephyr integration check
+- Zephyr: maintain baseline, provide support
+- **Gate:** Scope freeze checkpoint (around 3/16–3/18) — Signee scope must be ready for review. The exact freeze date may shift slightly depending on board validation results in Week 1.
 
-### Assumptions
+### Week 3 (2026-W11): Scope Lock & Stabilization
+- Signee: finalize demo scope RFC, begin POC implementation on feature #1
+- RobotOS: finalize architecture ADR, lock module interfaces
+- Zephyr: maintain green, resolve any toolchain issues surfaced
+- **Gate:** Architecture lock checkpoint (3/17) — RobotOS ADR approved, interfaces locked
 
-- Board hardware ready for testing in March
-- Demo scope v1 can be frozen internally (doesn't need to be perfect)
-- RobotOS month 1 is scope freeze + Middleware skeleton + STM32F4 bringup only (no module expansion)
-- Capacity assumptions from quarterly plan hold: 3–4 blocks/day sustainable
-
-### Decisions needed (early)
-
-| Decision | Required by | Owner |
-|---|---|---|
-| "Basic flow" formal definition | 2026-03-02 | You |
-| Signee demo MUST list (top 10) v0 | 2026-03-03 | You |
-| UI architecture choice (routing/state) | 2026-03-10 | You |
+### Week 4 (2026-W12): Readiness for April
+- Signee: complete POC on 1–2 features, runbook for board setup
+- RobotOS: validate bringup runbook, confirm build pipeline works
+- Zephyr: clean mainline, no known blockers for April
+- **Gate:** Month close (3/31) — All exit criteria met or escalated
 
 ---
 
-## 6) Reading budget
+## 9. Alignment with Quarter Strategy
 
-- **Quarter direction:** `03_PLANNING/01_QUARTER/Q1_Review_Q2Planning.md` (Part A)
-- **Weekly plans:** `03_PLANNING/03_WEEK/2026-W09.md` through `2026-W12.md`
-- **Logs:** `04_LOGS/Decision_Log.md`, `04_LOGS/Spike_Log.md`
-- **Templates:** `05_TEMPLATES/TEMPLATE_Month_Final.md`, `05_TEMPLATES/TEMPLATE_Week_Final.md`
+**How March supports the quarter:**
+
+The quarter's strategic intent is to **deliver two constrained demos (Signee + RobotOS) while sustainably expanding daily capacity.**
+
+March's role is to **remove uncertainty that would otherwise consume April–May delivery capacity.**
+
+Specifically:
+- **Signee scope freeze prevents feature creep** that derails the May 30 deadline
+- **RobotOS architecture definition prevents mid-implementation redesign** that wastes April effort
+- **Hardware baseline validation uncovers surprises now,** not on day 30 of 60-day development
+- **Interface locking prevents integration rework** in May when both tracks must come together
+
+By March 31, the entire team should feel confident about what needs to be delivered and how the systems fit together. April and May become execution-focused, not discovery-focused.
 
 ---
 
 # PART B: MONTHLY REVIEW
 
+> **To be completed by:** 31 March 2026
+> **Review completed by:** _____________
+> **Status at completion:** [ ] All criteria met | [ ] Partial / escalated
+
 ---
 
-## 0) DoD for Monthly Review
+## 10. DoD for Monthly Review
 
 Monthly Review is **COMPLETE** when:
 
-- [ ] Clear view of the month's direction and trajectory
-- [ ] All System Changes evaluated (keep/adjust/rollback)
-- [ ] Next month's focus narrowed to 1–2 clear priorities
-- [ ] Capacity truth captured (what assumptions held, what broke)
-- [ ] Carry forward / stop / reframe is actionable for April
+- [ ] Output summary captured (what was delivered, what wasn't)
+- [ ] Outcome review completed (value generated, effort efficiency)
+- [ ] Capacity assumptions validated (what held, what broke)
+- [ ] Drift analysis completed (quarterly alignment check)
+- [ ] System changes evaluated (keep/adjust/rollback)
+- [ ] Life anchors tracked (movement, sleep, focus, recovery, connection)
+- [ ] Next month focus narrowed (April priorities clear)
 
 ---
 
-## 1) Executive Summary of the Month
-
-**Month narrative (1–3 sentences):** 
-…
-
-**Overall state:** [ ] Up (exceeded intent) | [ ] Flat (as planned) | [ ] Down (underperformed) | [ ] Pivoted (intentional change)
-
-**Energy trend:** …
-
-**One sentence summary:** …
-
----
-
-## 2) Output & Outcome Review
+## 11. Output & Outcome Review
 
 ### Completed Outputs
-- Outcome #1 (Signee Demo Scope Freeze): …
-- Outcome #2 (Board Basic Flow + RobotOS Bringup): …
-- Outcome #3 (Frontend Skeleton): …
+- **Signee Demo Scope:** …
+- **RobotOS Architecture:** …
+- **Hardware Baseline:** …
+
+### Exit Criteria Met?
+| Criterion | Met? | Evidence |
+|---|---|---|
+| Signee board basic flow functional | [ ] | … |
+| Demo scope RFC signed off | [ ] | … |
+| POC on 1–2 features | [ ] | … |
+| RobotOS scope frozen | [ ] | … |
+| Core architecture defined | [ ] | … |
+| Module interfaces locked | [ ] | … |
+| STM32F4 bringup successful | [ ] | … |
+| Dev environment operational | [ ] | … |
+| No blocking ambiguities | [ ] | … |
 
 ### What Created the Most Value?
 …
 
-### What Consumed Effort Without Proportional Value?
+### What Consumed Effort Without Value?
 …
 
 ---
 
-## 2.1) Monthly Drift Check
+## 12. Capacity & Energy Review
 
-**Did the month stay aligned with quarterly intent?**
-- [ ] Yes, mostly aligned | [ ] Partially aligned | [ ] Significantly drifted
+### How Did Reality Match Assumption?
 
-**Did one project stream dominate unexpectedly?**
-- [ ] No, allocation stayed balanced | [ ] Slightly off-balance | [ ] One stream overran others (which?)
-
-**What capacity assumptions broke?**
-…
-
----
-
-## 3) System Change Review
-
-Did any process/rule changes happen this month? How effective?
-
-| System Change | Purpose | Result (Effective/Partial/Ineffective) | Decision (Keep/Adjust/Rollback) |
+| Metric | Assumed | Actual | Notes |
 |---|---|---|---|
-| … | … | … | … |
+| Daily deep blocks | 3–4 | … | … |
+| Weekly planned blocks | 15–18 | … | … |
+| Buffer usage | 10% | …% | … |
 
-**Rule:** Each System Change must conclude this month; don't defer evaluation.
+### Energy Trend
+- **Overall energy:** ⬆️ / ➖ / ⬇️
+- **Thursday/Friday pattern (predicted 15% drop):** Held / Broke
+- **Saturday office hours:** Sustainable / Unsustainable / Adjusted
 
----
-
-## 3.1) Portfolio Balance Check
-
-| Domain | Planned % | Actual % | Status | Notes |
-|---|---|---|---|---|
-| Signee scope/demo | 35% | …% | OK / Drift | … |
-| RobotOS dev | 30% | …% | OK / Drift | … |
-| Zephyr KTLO | 15% | …% | OK / Drift | … |
-| Buffer | 20% | …% | OK / Drift | … |
-
----
-
-## 4) Life Anchors — Monthly Trend
-
-| Anchor | Trend (⬆️/➖/⬇️) | Notes |
-|---|---|---|
-| Movement (exercise) | | |
-| House Basics (sleep, eat) | | |
-| Focus Flow | | |
-| Recovery | | |
-| Connection | | |
+### Context Switching Impact
+- **Planned interrupts:** (e.g., 3 urgent issues dealt with)
+- **Any >4-hour context thrash?** [ ] Yes | [ ] No
+- **Impact on clarity work?** …
 
 ---
 
-## 5) Anti-Anchors — Monthly Pattern
+## 13. Drift Check
 
-**Destructive pattern that appeared?**
+**Did the month align with quarterly intent?**
+- [ ] Yes, fully aligned | [ ] Mostly aligned | [ ] Partially aligned | [ ] Drifted significantly
+
+**Strategic focus vs. time allocation:**
+Note: the earlier allocation percentages (Signee 55% / RobotOS 25% / Zephyr 10%) represent strategic focus during the month, while the drift check percentages below represent a balanced time allocation baseline used for review.
+
+**Project allocation (target: Signee 35% / RobotOS 30% / Zephyr 15% / Buffer 20%):**
+
+| Domain | Target | Actual | Status |
+|---|---|---|---|
+| Signee | 35% | …% | ✓ / ⚠️ |
+| RobotOS | 30% | …% | ✓ / ⚠️ |
+| Zephyr | 15% | …% | ✓ / ⚠️ |
+| Buffer | 20% | …% | ✓ / ⚠️ |
+
+**What caused drift (if any)?**
+…
+
+---
+
+## 14. System Change Review
+
+Did any process or rule changes happen this month? How effective?
+
+| Change | Purpose | Result | Decision |
+|---|---|---|---|
+| … | … | Effective / Partial / Ineffective | Keep / Adjust / Rollback |
+
+**Note:** Each system change must be evaluated by month end. No deferrals to next month.
+
+---
+
+## 15. Life Anchors — Monthly Check
+
+| Anchor | Target | Actual | Trend |
+|---|---|---|---|
+| Movement (exercise) | 3x/week | … | ⬆️ / ➖ / ⬇️ |
+| House Basics (sleep 7h+, meals) | Daily | … | ⬆️ / ➖ / ⬇️ |
+| Focus Flow (2h+ unbroken blocks) | 5x/week | … | ⬆️ / ➖ / ⬇️ |
+| Recovery (rest, zero-agenda time) | 2x/week | … | ⬆️ / ➖ / ⬇️ |
+| Connection (people, not work) | 2x/week | … | ⬆️ / ➖ / ⬇️ |
+
+**Pattern to protect next month:** …
+
+---
+
+## 16. Anti-Anchor Check
+
+**Destructive pattern that emerged?**
 …
 
 **Did any anti-anchor become "new normal"?**
 …
 
-**What needs blocking early next month?**
+**What needs early intervention in April?**
 …
 
 ---
 
-## 6) Focus Adjustment for Next Month
+## 17. April Priorities
 
-### Primary focus for April (1–2)
+### Primary focus (1–2 items)
 1. …
 2. …
 
 ### What to reduce / stop / avoid
 - …
-- …
 
-### System Changes planned for April
+### System changes planned for April
 - …
 
 ---
 
-## 7) Context Compression
+## 18. Context Compression
 
-**Snapshot created?** (Yes/No): …
+**Artifacts to archive:**
+- Architecture ADRs: …
+- Demo scope RFC: …
+- Development runbook: …
+- Sprint notes: …
 
-**Snapshot location:** `06_MONTHS/2026-03_End_of_March.md` (optional)
+**Snapshot location:** `06_MONTHS/2026-03_End_of_March.md`
 
 ---
 
-## Appendix (Optional)
+## Appendix
 
-**Important artifacts generated:**
-- Commit links
-- ADR/RFC links
-- Jira/GitHub board snapshots
-- Decision log entries
-- Spike log entries
+**Key links and artifacts:**
+- RobotOS Architecture ADR: …
+- Signee Demo Scope RFC: …
+- Development Setup Runbook: …
+- Hardware Integration Report: …
+- Decision Log (March): [Decision_Log.md](Decision_Log.md)
+- Ideas/Parking Lot: [Idea_Parking_Lot.md](Idea_Parking_Lot.md)
