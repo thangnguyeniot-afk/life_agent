@@ -1,43 +1,101 @@
 ﻿# Daily Plan – YYYY-MM-DD
 
-> **Nguồn:** Weekly commitment → Daily execution. Không tạo commitment mới ở cấp ngày.
-> Nếu ngày bị vỡ mạnh, giữ tối thiểu: 1 việc quan trọng nhất · artifact chính · first step ngày mai.
-> Không bắt buộc formalize đầy đủ với việc nhỏ, rõ, ít rủi ro.
+---
 
-## Morning Setup (5')
-- Deep blocks hôm nay: …
-- Highest-value item: …
-- Buffer check: còn slot không?
+## Context
 
-## Deep Work (2 blocks)
+**Date:** YYYY-MM-DD
 
-### Deep #1 (90')
+**Week:** YYYY-Www
+
+**Energy level:** [ ] Low [ ] Normal [ ] High
+
+**Focus theme:** (optional; 1–2 words if needed)
+
+---
+
+## Source
+
+> Weekly commitments → Daily execution.  
+> Daily does NOT create new commitments without explicit escalation.  
+> If day collapses: capture only main artifact + unfinished + next step.
+
+---
+
+## Morning Setup (5 min)
+
+- **1 Most Important Outcome today:** …
+- **Key artifact expected:** …
+- **First execution step:** …
+
+---
+
+## Deep Work Blocks (prioritized)
+
+### Block 1 (90 min)
 - **Goal:** …
 - **Size (S / M / L):** …
 - **Ambiguity (0–5):** …
 - **Expected Artifact:** …
-- **First step:** …
+- **First Step:** …
 
-### Deep #2 (90')
+### Block 2 (90 min)
 - **Goal:** …
 - **Size (S / M / L):** …
 - **Ambiguity (0–5):** …
 - **Expected Artifact:** …
-- **First step:** …
+- **First Step:** …
 
-## Builder list (max 3–4 items, Size S)
-1) Goal: … | Artifact: …
-2) Goal: … | Artifact: …
-3) Goal: … | Artifact: …
+### Block 3 (optional)
+- **Goal:** …
+- **Size:** … | **Artifact:** …
+
+---
+
+## Builder / Support Work (max 3–4 items, Size S)
+
+1. **Task:** … | **Artifact:** …
+2. **Task:** … | **Artifact:** …
+3. **Task:** … | **Artifact:** …
+
+---
+
+## Signals (check if occurred)
+
+- [ ] Task ambiguity unexpectedly high
+- [ ] Execution blocked by dependency
+- [ ] Energy collapse mid-day
+- [ ] Scope creep detected
+- [ ] System friction encountered
+
+> If any signal persists → escalate to Weekly Review.
+
+---
 
 ## Delegations / Handoffs
+
 - Owner | What | By when
 
-## Decisions due (24/48/72h)
-- 
+---
 
-## Shutdown (10')
-- **Main artifact today:** …
-- **Unfinished → continue tomorrow:** …
-- **First step tomorrow:** …
-- **Signals to escalate to Weekly Review:** …
+## Shutdown (10 min)
+
+**Main artifact today:**  
+…
+
+**Unfinished work:**  
+…
+
+**First step tomorrow:**  
+…
+
+**Signals to escalate to Weekly Review:**  
+…
+
+---
+
+## DoD (Daily closure)
+- [ ] Main artifact captured
+- [ ] Unfinished work documented
+- [ ] Tomorrow's first step clear
+- [ ] Any escalation signals noted
