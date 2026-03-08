@@ -14,6 +14,7 @@
 - [4) Context & Logs](#4-context--logs)
 - [5) Planning Cadence](#5-planning-cadence)
 - [6) Knowledge System](#6-knowledge-system)
+- [6b) Metrics Engine](#6b-metrics-engine)
 - [7) Reviews & Monthly Journal](#7-reviews--monthly-journal)
 - [8) Writing Rules](#8-writing-rules)
 - [9) Cadence](#9-cadence)
@@ -110,6 +111,18 @@ Includes:
 - `knowledge/adr/` — Architecture Decision Records
 - `knowledge/summaries/` — Knowledge Summaries (reusable models)
 - `knowledge/design/` — Design Documents (system architectures)
+
+---
+
+## 6b) Metrics Engine
+
+**Location:** `metrics/`
+
+- `metrics/METRICS_ENGINE.md` — Canonical spec: 8 core metrics, warning signals, adjustment rules
+- `metrics/TEMPLATE_Weekly_Metrics.md` — Weekly capture + drift signal checklist
+- `metrics/TEMPLATE_Monthly_Metrics.md` — Monthly trend summary + capacity truth
+
+**Purpose:** Lightweight, decision-oriented metrics that feed into weekly/monthly/quarterly reviews. Overhead target: <5 min/day, <15 min/week.
 
 ---
 

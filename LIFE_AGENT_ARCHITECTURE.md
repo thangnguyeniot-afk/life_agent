@@ -37,7 +37,7 @@ This file is the **high-level orientation map** for LIFE_AGENT.
 
 ## 2. System Layers
 
-LIFE_AGENT has 5 conceptual layers, each with a different role:
+LIFE_AGENT has 6 conceptual layers, each with a different role:
 
 | Layer | Role | Contents |
 |---|---|---|
@@ -45,6 +45,7 @@ LIFE_AGENT has 5 conceptual layers, each with a different role:
 | **System** | Formal execution engines that enforce discipline | §9–12: Task/Backlog/Priority/Scheduler + §13–14: Knowledge/Safeguards |
 | **Workflows** | Repeating decision loops at different cadences | Quarter/Month/Week/Day templates + review patterns |
 | **Execution** | Daily work blocks, signals, and context | Daily plan artifacts, KTLO tasks, deep work blocks |
+| **Metrics** | Measure execution reality and feed adjustment signals into reviews | METRICS_ENGINE.md, TEMPLATE_Weekly/Monthly_Metrics.md |
 | **Projects** | Concrete delivery tracks (Signee/RobotOS/Zephyr) | Project context docs, quarterly objectives, specific deliverables |
 
 ---
@@ -70,6 +71,11 @@ LIFE_AGENT has 5 conceptual layers, each with a different role:
 ┌─────────────────────────────────────────────────────────────┐
 │                   EXECUTION LAYER                           │
 │              (Deep Work Blocks + KTLO + Signals)           │
+└──────────────────────┬──────────────────────────────────────┘
+                       ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    METRICS LAYER                            │
+│       (Measure execution reality → feed adjustment signals) │
 └──────────────────────┬──────────────────────────────────────┘
                        ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -115,6 +121,7 @@ Repeat
 | **Context Rules** | Governance for project/context management | CONTEXT_rule.md |
 | **Planning Cadence** | Templates for each time horizon | TEMPLATE_Quarter/Month/Week/Daily.md |
 | **Plan Instances** | Actual quarterly/monthly/daily plans | Q1_Review_Q2Planning.md, 2026-03_March_Planning.md |
+| **Metrics** | Execution reality tracking + adjustment signals | METRICS_ENGINE.md, TEMPLATE_Weekly/Monthly_Metrics.md |
 | **Project Context** | Snapshot of each project's state | Signee/RobotOS/Zephyr_CONTEXT.md |
 | **Review Docs** | Analysis + learning at month/quarter end | Part B of plan instances |
 | **Logs** | Decision/Spike/Idea records | Decision_Log.md, Spike_Log.md |
