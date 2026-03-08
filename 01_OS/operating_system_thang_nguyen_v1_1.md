@@ -460,3 +460,193 @@ Một ngày bình thường:
 - Không tạo commitment lớn mới ở cấp ngày
 - Daily scheduling = **chọn item để execute**, không phải expand thêm scope
 - Nếu something mới khẩn cấp → apply swap rule (Midweek Commitment Swap)
+
+---
+
+## 13) Knowledge Engine v1
+
+> Knowledge Engine chịu trách nhiệm cho nghiên cứu, học tập kỹ thuật, lưu trữ quyết định kiến trúc, nén kiến thức quan trọng, và hỗ trợ thiết kế hệ thống.
+
+Knowledge Engine **không phải** hệ ghi chú tự do.
+
+Mọi knowledge item phải tạo ra **knowledge artifact** cụ thể.
+
+---
+
+### 13.1 Knowledge Artifact Types
+
+#### Research Note
+**Dùng khi:** đọc tài liệu, khảo sát framework, so sánh giải pháp.
+
+**Output:** `RESEARCH_NOTE`
+
+| Field | Nội dung |
+|---|---|
+| **Question** | Câu hỏi khởi đầu research |
+| **Sources** | Tài liệu / link tham khảo |
+| **Key findings** | Những gì đã học được |
+| **Insight** | Hiểu biết mới quan trọng |
+| **Possible directions** | Hướng tiếp theo |
+
+---
+
+#### ADR (Architecture Decision Record)
+**Dùng khi** có quyết định thiết kế quan trọng cần lưu lại lý do.
+
+**Output:** `ADR`
+
+| Field | Nội dung |
+|---|---|
+| **Context** | Bối cảnh khi đưa ra quyết định |
+| **Problem** | Vấn đề cần giải quyết |
+| **Options considered** | Các lựa chọn đã xem xét |
+| **Decision** | Quyết định được chọn |
+| **Consequences** | Hệ quả / trade-off |
+
+Ví dụ: `ADR-001_adapter_boundary.md`, `ADR-002_priority_model.md`
+
+---
+
+#### Knowledge Summary
+**Dùng khi** đã hiểu một chủ đề và cần nén kiến thức để reuse sau.
+
+**Output:** `KNOWLEDGE_SUMMARY`
+
+| Field | Nội dung |
+|---|---|
+| **Topic** | Chủ đề |
+| **Core model** | Model / mental model cốt lõi |
+| **Key rules** | Quy tắc quan trọng cần nhớ |
+| **Pitfalls** | Lỗi phổ biến cần tránh |
+| **Reusable patterns** | Pattern có thể áp dụng lại |
+
+**Mục đích:** giúp reuse kiến thức nhanh mà không phải đọc lại toàn bộ.
+
+---
+
+#### Design Document
+**Dùng khi** thiết kế hệ thống hoặc component phức tạp.
+
+**Output:** `DESIGN_DOC`
+
+| Field | Nội dung |
+|---|---|
+| **Problem** | Bài toán cần giải |
+| **Requirements** | Yêu cầu / constraints |
+| **Architecture** | Kiến trúc tổng thể |
+| **Key components** | Các thành phần chính |
+| **Trade-offs** | Đánh đổi đã chấp nhận |
+
+Ví dụ: `robotos_architecture.md`
+
+---
+
+### 13.2 Knowledge Flow
+
+```
+Question
+    ↓
+Research
+    ↓
+Research Notes
+    ↓
+Insight
+    ↓
+Decision
+    ↓
+ADR
+    ↓
+Design Document
+```
+
+**Research → Decision → Design.**
+
+Flow này đảm bảo knowledge trở thành system understanding, không phải ghi chú rời rạc.
+
+---
+
+### 13.3 Knowledge Tasks
+
+Một số task trong Task Engine tạo ra knowledge artifact.
+
+| Task Type | Expected Artifact |
+|---|---|
+| Spike / Research | `RESEARCH_NOTE` hoặc `KNOWLEDGE_SUMMARY` |
+| Architecture Design | `ADR` hoặc `DESIGN_DOC` |
+| System Analysis | `RESEARCH_NOTE` → `ADR` |
+
+**Rule:** Ambiguity ≥ 4 → không execute thẳng → convert thành Spike/Research task trước.
+
+Mọi learning task phải có artifact output — không tạo "tôi đã học" mà không có gì để lại.
+
+---
+
+### 13.4 Knowledge Repository Structure
+
+```
+knowledge/
+├── research/          ← Research Notes
+├── adr/               ← Architecture Decision Records
+├── summaries/         ← Knowledge Summaries
+└── design/            ← Design Documents
+```
+
+Ví dụ:
+
+```
+knowledge/research/
+    zephyr_thread_model.md
+    rtos_priority_scheduling.md
+
+knowledge/adr/
+    ADR-001_adapter_boundary.md
+    ADR-002_priority_model.md
+
+knowledge/summaries/
+    rtos_scheduling_patterns.md
+
+knowledge/design/
+    robotos_architecture.md
+```
+
+---
+
+### 13.5 Knowledge Governance
+
+- Không tạo ghi chú dài mà không có artifact rõ ràng
+- Research phải kết thúc bằng **insight** hoặc **decision** — không để research "trôi"
+- ADR dùng cho quyết định kiến trúc quan trọng (không phải mọi quyết định nhỏ)
+- Knowledge Summary dùng để nén kiến thức reusable (không phải tóm tắt thô)
+- Design Document dùng cho thiết kế hệ thống — cần đủ để người khác hiểu được
+
+**Knowledge Engine phải nhẹ.**
+
+Chỉ lưu: insight, decisions, reusable knowledge, system design.
+
+Không biến thành hệ ghi chú phức tạp — nếu không reusable và không dẫn đến decision thì không cần lưu.
+
+**Goal:** Knowledge Engine giúp tăng năng lực kỹ thuật theo thời gian bằng cách tích lũy hiểu biết có cấu trúc, không phải số lượng ghi chú.
+
+---
+
+## Kiến trúc Personal OS v1 — Tổng quan
+
+```
+EXECUTION SYSTEM
+├── Task Engine (§9)         — schema, types, readiness
+├── Backlog Structure (§10)  — flow Inbox → Today
+├── Priority Score (§11)     — Strategic + Impact + Urgency − Effort
+└── Scheduler Engine (§12)   — daily/weekly scheduling logic
+
+KNOWLEDGE SYSTEM
+├── Research Notes           — Question → Findings → Insight
+├── ADR                      — Context → Decision → Consequences
+├── Knowledge Summaries      — Topic → Core model → Reusable patterns
+└── Design Documents         — Problem → Architecture → Trade-offs
+
+PLANNING CADENCE
+├── Quarter Review / Planning
+├── Monthly Review / Planning
+├── Weekly Review / Planning
+└── Daily Plan / Shutdown
+```
