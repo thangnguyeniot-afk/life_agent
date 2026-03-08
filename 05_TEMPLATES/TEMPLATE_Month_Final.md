@@ -43,6 +43,13 @@
 - **Deep blocks/day:** 2 blocks (90’)
 - **Office hours (techlead):** slot 1 … ; slot 2 …
 
+## 3.1 Monthly Planning Protection Rules
+- Tháng là cấp quản lý scope, không phải cấp breakdown chi tiết từng task
+- Không commit quá nhiều stream cạnh tranh trong cùng 1 tháng
+- Nếu capacity thực tế thấp hơn giả định, ưu tiên giảm scope trước khi cố tối ưu cá nhân
+- Ưu tiên ít outcome hơn nhưng rõ DoD / metric / owner
+- Weekly plan phải được sinh ra từ monthly scope đã được bảo vệ, không tự ý mở rộng lại
+
 ## 4) Weekly Intent (4 tuần) — 5–10 phút
 > Mỗi tuần 1 “intent” rõ ràng để giảm mơ hồ và tránh scope phình.
 
@@ -62,6 +69,20 @@
   - Big: …
   - Small: …
   - KTLO focus: …
+
+## 4.1 Monthly Scope Trade-off
+> Không được tăng tổng scope của tháng mà không có trade-off rõ ràng.
+
+| Added priority (nếu có) | Trade-off action | What is traded off | Reason |
+|---|---|---|---|
+| … | Drop / Defer / Reduce / Downgrade | … | … |
+
+**Rules:**
+- Nếu thêm 1 ưu tiên lớn vào tháng, phải bỏ / dời / giảm ít nhất 1 ưu tiên khác
+- Không được "cộng dồn" thêm việc mà vẫn giữ nguyên toàn bộ cam kết cũ
+- Trade-off phải được quyết định ở cấp tháng, không đẩy âm thầm xuống tuần
+
+---
 
 ## 5) Risk / Assumption / Decisions (P0) — 5 phút
 ### Top risks (3)
@@ -90,9 +111,12 @@
 
 ## 0) DoD (Definition of Done) cho Monthly Review
 Monthly Review được coi là **HOÀN THÀNH** khi:
-- Có cái nhìn rõ ràng về **xu hướng tháng**
+- Có cái nhìn rõ ràng về **xu hướng tháng** (signal + output + outcome)
 - Tất cả **System Change** trong tháng được đánh giá (giữ/điều chỉnh/rollback)
-- Trọng tâm tháng tới được **thu gọn & rõ ràng** (1–2 điểm)
+- **Monthly Drift Check** đã thực hiện → planner phản ánh thực tế vận hành
+- **Portfolio Balance** đã được kiểm tra → không có bị lệch quá mức một vùng
+- Bất kỳ **scope expansion** nào trong tháng đều có visible trade-off
+- Trọng tâm tháng tới được **thu gọn & rõ ràng** (1–2 điểm), dựa trên thực tế năng lực thật
 - Không mang cảm giác “phải làm nhiều hơn”, mà là “làm đúng hơn”
 
 ---
@@ -124,6 +148,21 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 
 ---
 
+## 2.1 Monthly Drift Check
+> Kiểm tra xem kế hoạch tháng có còn phản ánh đúng thực tế vận hành hay không.
+
+### Checklist
+- [ ] Phân bổ thời gian / năng lượng thực tế có lệch rõ so với kế hoạch tháng không?
+- [ ] KTLO / support / việc phát sinh có lớn hơn giả định ban đầu không?
+- [ ] Mức deep work thực tế có thấp hơn giả định của tháng không?
+- [ ] Các mục tiêu tháng có đang dựa trên năng lực thật hay chỉ dựa trên kỳ vọng?
+
+### Quyết định
+- Nếu có lệch rõ → cân nhắc tạo **System Change** hoặc điều chỉnh scope / allocation của tháng tiếp theo
+- Planner phải phản ánh **thực tế vận hành**, không phản ánh phiên bản lý tưởng
+
+---
+
 ## 3) System Change Review (10–15 phút)
 > Đánh giá các “System Change” đã triển khai trong tháng (thói quen/cơ chế/công cụ/quy tắc).
 
@@ -136,6 +175,22 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 **Rule (cứng):**
 - Mỗi System Change **phải có kết luận** trong tháng.
 - Không để System Change trôi sang tháng sau mà **không đánh giá**.
+
+---
+
+## 3.1 Portfolio Balance Check
+> Kiểm tra xem tháng này có bị lệch quá mức về một vùng công việc hay không.
+
+| Vùng | Planned | Actual | Đánh giá | Ghi chú |
+|---|---|---|---|---|
+| Work impact |  |  | OK / Lệch |  |
+| KTLO / support |  |  | OK / Lệch |  |
+| Personal strategic work |  |  | OK / Lệch |  |
+| System / hardening / maintenance |  |  | OK / Lệch |  |
+
+**Rule:**
+- Nếu một vùng "nuốt" phần lớn capacity của tháng, phải ghi rõ điều chỉnh cho tháng sau
+- Không chỉ nhìn output; phải nhìn cả mix / allocation
 
 ---
 
