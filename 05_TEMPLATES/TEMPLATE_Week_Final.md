@@ -58,6 +58,23 @@
 
 ---
 
+## 2.3 Planner Drift Check
+> Kiểm tra xem planner hiện tại có còn phản ánh đúng cách làm việc thực tế hay không.
+
+### Checklist
+- [ ] Weekly plan tuần này có phản ánh đúng loại công việc thực tế không?
+- [ ] Có sự lệch rõ giữa **plan vs reality** không? (ví dụ: plan deep work nhưng thực tế toàn interruption)
+- [ ] Có task lặp lại nhiều tuần nhưng chưa được đưa vào planner structure không?
+- [ ] Weekly plan thường xuyên overcommit so với năng lực thực tế không?
+
+### Quyết định
+Nếu trả lời **YES** cho bất kỳ câu hỏi nào ở trên:
+→ **Nâng cấp thành System Change** (mục 5) để điều chỉnh capacity / deep work blocks / support budget / planning rules.
+
+**Rule cứng:** Planner phải mô tả **thực tế vận hành**, không phải lý tưởng mong muốn.
+
+---
+
 # 3) Life Maintenance Check (5 phút)
 > Đánh giá nhịp sống tổng thể — **không truy ngược từng ngày**.
 
@@ -153,28 +170,28 @@ Nếu **Có**, ghi:
 
 ### Big Bet (1)
 - **Goal:** …
-- **Size:** …
+- **Size (S / M / L):** …
 - **Ambiguity:** 0–5
 - **Expected Artifact:** …
 - **DoD:** …
 
 ### Small Bet #1
 - **Goal:** …
-- **Size:** …
+- **Size (S / M / L):** …
 - **Ambiguity:** 0–5
 - **Expected Artifact:** …
 - **DoD:** …
 
 ### Small Bet #2
 - **Goal:** …
-- **Size:** …
+- **Size (S / M / L):** …
 - **Ambiguity:** 0–5
 - **Expected Artifact:** …
 - **DoD:** …
 
 ### KTLO focus (Zephyr / vận hành)
 - **Goal:** …
-- **Size budget:** … (% hoặc hours)
+- **Size budget (S / M / L):** … (% hoặc hours)
 - **Expected Artifact / trace:** …
 
 ## 6.2 Capacity & WIP (anti-overload)
@@ -197,6 +214,7 @@ Nếu **Có**, ghi:
 - Nếu Ambiguity ≥ 3, không xếp quá nhiều item kiểu này trong cùng 1 tuần
 - Mỗi committed item phải có artifact kỳ vọng
 - Weekly plan là commitment level, không phải breakdown toàn bộ step
+- **Midweek Commitment Swap:** Nếu xuất hiện commitment mới trong tuần (urgent task, bug, request), phải **swap** với một commitment hiện có. Không được tăng tổng scope của tuần nếu không có swap (defer / drop / replace). Ngoại lệ duy nhất: production incident hoặc system change bắt buộc.
 
 ## 6.4 Office Hours & Anti-SPOF
 - **Techlead Office Hours (2 slots):**
