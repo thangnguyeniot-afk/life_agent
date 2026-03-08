@@ -7,6 +7,30 @@
 
 ---
 
+## Table of Contents
+
+- [Nguyên tắc cốt lõi](#nguyên-tắc-cốt-lõi-giữ-đúng-như-notion)
+- [1) Facts of the Week](#1-facts-of-the-week-5-phút)
+- [2) Task Signals Review](#2-task-signals-review-710-phút)
+  - [2.1 Signal checklist](#21-signal-checklist-yesno)
+  - [2.2 Xử lý từng tín hiệu](#22-xử-lý-từng-tín-hiệu-cho-mỗi-yes)
+  - [2.3 Planner Drift Check](#23-planner-drift-check)
+- [3) Life Maintenance Check](#3-life-maintenance-check-5-phút)
+- [4) Anti-Anchors Check](#4-anti-anchors-check-5-phút)
+- [5) System Change Decision](#5-system-change-decision-57-phút--trái-tim-của-weekly-review)
+  - [5.6 Backlog Selection for Next Week](#56-backlog-selection-for-next-week-35-phút)
+- [6) Weekly Planning — Commitment Level](#6-weekly-planning--commitment-level-510-phút)
+  - [6.1 Big / Small / KTLO](#61-big--small--ktlo-bắt-buộc-để-đúng-os)
+  - [6.2 Capacity & WIP](#62-capacity--wip-anti-overload)
+  - [6.3 Planning Rules from Task Engine](#63-planning-rules-from-task-engine)
+  - [6.4 Office Hours & Anti-SPOF](#64-office-hours--anti-spof)
+  - [6.5 Ưu tiên lớn của tuần tới](#65-ưu-tiên-lớn-của-tuần-tới-13)
+  - [6.6 System Change sẽ thực hiện / theo dõi](#66-system-change-sẽ-thực-hiện--theo-dõi)
+  - [6.7 Risks / Constraints / Protection](#67-risks--constraints--protection-13)
+- [7) Definition of Done (DoD)](#7-definition-of-done-dod--weekly-review-hoàn-thành-khi)
+
+---
+
 ## Nguyên tắc cốt lõi (giữ đúng như Notion)
 - Weekly Review **xử lý tín hiệu**, không đào sâu.
 - Weekly Review **ra quyết định**, không thực thi.

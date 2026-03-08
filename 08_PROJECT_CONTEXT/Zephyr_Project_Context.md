@@ -1,5 +1,20 @@
 # Zephyr Project Context (Maintenance Mode)
 
+---
+
+## Table of Contents
+
+- [1. Project Identity](#1-project-identity)
+- [2. Quarter Objectives (Aligned with Quarter Strategy)](#2-quarter-objectives-aligned-with-quarter-strategy)
+- [3. Scope Definition](#3-scope-definition)
+- [4. Current State Snapshot](#4-current-state-snapshot)
+- [5. Resource & Load Model](#5-resource--load-model)
+- [6. Risk Snapshot](#6-risk-snapshot)
+- [7. Weekly Planning Rules for Zephyr](#7-weekly-planning-rules-for-zephyr)
+- [8. Success Criteria for Quarter](#8-success-criteria-for-quarter)
+- [9. Failure Mode](#9-failure-mode)
+- [10. Operating Principle](#10-operating-principle)
+
 ------------------------------------------------------------------------
 
 # 1. Project Identity

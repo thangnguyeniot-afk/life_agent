@@ -6,12 +6,16 @@
 
 ---
 
-## 1️⃣ Project Identity
+## Table of Contents
 
-| Field | Value |
-|---|---|
-| **Project** | Signee Virtual Fitting Room |
-| **Mục tiêu hiện tại** | Hoàn thiện core Android (Camera, QR display, WebSocket) + khởi động PWA scaffold |
+- [1️⃣ Project Identity](#1%EF%B8%8F%E2%83%A3-project-identity)
+- [2️⃣ Current State](#2%EF%B8%8F%E2%83%A3-current-state)
+- [3️⃣ Resource Model](#3%EF%B8%8F%E2%83%A3-resource-model)
+- [4️⃣ Risk Snapshot](#4%EF%B8%8F%E2%83%A3-risk-snapshot)
+- [🔎 Tài liệu liên quan](#-tài-liệu-liên-quan)
+
+---
+
 | **Mục tiêu gần nhất** | Alpha release – Android capture/QR hoạt động + PWA auth/connect flow |
 | **Phase** | Build (Sprint 1 – Foundation) |
 

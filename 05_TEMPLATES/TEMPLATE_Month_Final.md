@@ -7,6 +7,32 @@
 
 ---
 
+## Table of Contents
+
+**A) Monthly Planning**
+- [1) Định hướng tháng này](#1-định-hướng-tháng-này-5-phút)
+- [2) Core Outcomes của tháng (tối đa 3)](#2-core-outcomes-của-tháng-tối-đa-3--10-phút)
+- [3) Capacity & Rhythm](#3-capacity--rhythm-để-không-overload--510-phút)
+- [3.1 Monthly Planning Protection Rules](#31-monthly-planning-protection-rules)
+- [4) Weekly Intent (4 tuần)](#4-weekly-intent-4-tuần--510-phút)
+- [4.1 Monthly Scope Trade-off](#41-monthly-scope-trade-off)
+- [5) Risk / Assumption / Decisions (P0)](#5-risk--assumption--decisions-p0--5-phút)
+- [6) Reading budget](#6-reading-budget)
+
+**B) Monthly Review**
+- [0) DoD cho Monthly Review](#0-dod-definition-of-done-cho-monthly-review)
+- [1) Executive Summary of the Month](#1-executive-summary-of-the-month-5-phút)
+- [2) Output & Outcome Review](#2-output--outcome-review-1015-phút)
+- [2.1 Monthly Drift Check](#21-monthly-drift-check)
+- [3) System Change Review](#3-system-change-review-1015-phút)
+- [3.1 Portfolio Balance Check](#31-portfolio-balance-check)
+- [4) Life Anchors — Monthly Trend](#4-life-anchors--monthly-trend-510-phút)
+- [5) Anti-Anchors — Monthly Pattern](#5-anti-anchors--monthly-pattern-510-phút)
+- [6) Focus Adjustment for Next Month](#6-focus-adjustment-for-next-month-10-phút)
+- [7) Context Compression](#7-context-compression)
+
+---
+
 # A) Monthly Planning (trước tháng / đầu tháng) — 25–35 phút
 
 ## 1) Định hướng tháng này (5 phút)

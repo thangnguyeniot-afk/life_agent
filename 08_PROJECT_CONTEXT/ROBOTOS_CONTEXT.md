@@ -5,6 +5,16 @@
 
 ---
 
+## Table of Contents
+
+- [1️⃣ Project Identity](#1%EF%B8%8F%E2%83%A3-project-identity)
+- [2️⃣ Current State](#2%EF%B8%8F%E2%83%A3-current-state)
+- [3️⃣ Resource Model](#3%EF%B8%8F%E2%83%A3-resource-model)
+- [4️⃣ Risk Snapshot](#4%EF%B8%8F%E2%83%A3-risk-snapshot)
+- [📝 Notes & Context](#-notes--context)
+
+---
+
 ## 1️⃣ Project Identity
 
 ### Mục tiêu hiện tại

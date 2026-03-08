@@ -4,6 +4,28 @@
 
 ---
 
+## Table of Contents
+
+- [1. Start with INDEX.md (this folder)](#1-start-with-indexmd-this-folder)
+  - [Execution System](#execution-system)
+  - [Knowledge System](#knowledge-system)
+  - [Safety Layer](#safety-layer)
+- [2. Read the main OS manual](#2-read-the-main-os-manual)
+- [3. Check relevant planning files](#3-check-relevant-planning-files)
+- [4. If task involves research / design / architecture](#4-if-task-involves-research--design--architecture)
+- [5. If you need context on specific projects](#5-if-you-need-context-on-specific-projects)
+- [Core Mental Model](#core-mental-model)
+- [Working Rules (don't break these)](#working-rules-dont-break-these)
+- [Canonical Templates](#canonical-templates)
+- [Anti-Gravity Safeguards to Remember](#anti-gravity-safeguards-to-remember)
+- [Common Scenarios](#common-scenarios)
+  - ["I have a task to execute"](#i-have-a-task-to-execute)
+  - ["I need to design or research something"](#i-need-to-design-or-research-something)
+  - ["The system feels heavy"](#the-system-feels-heavy)
+- [Quick Links](#quick-links)
+
+---
+
 ## 1. Start with INDEX.md (this folder)
 
 Understand:

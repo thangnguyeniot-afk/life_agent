@@ -5,6 +5,33 @@
 
 ---
 
+## Table of Contents
+
+**PART A: MONTHLY PLANNING**
+- [1) Định hướng tháng này](#1-định-hướng-tháng-này)
+- [2) Core Outcomes của tháng (tối đa 3)](#2-core-outcomes-của-tháng-tối-đa-3)
+- [3) Capacity & Rhythm](#3-capacity--rhythm)
+- [3.1) Monthly Planning Protection Rules](#31-monthly-planning-protection-rules)
+- [4) Weekly Intent (Month-level direction)](#4-weekly-intent-month-level-direction)
+- [4.1) Monthly Scope Trade-off](#41-monthly-scope-trade-off)
+- [5) Risk / Assumption / Decisions](#5-risk--assumption--decisions)
+- [6) Reading budget](#6-reading-budget)
+
+**PART B: MONTHLY REVIEW**
+- [0) DoD for Monthly Review](#0-dod-for-monthly-review)
+- [1) Executive Summary of the Month](#1-executive-summary-of-the-month)
+- [2) Output & Outcome Review](#2-output--outcome-review)
+- [2.1) Monthly Drift Check](#21-monthly-drift-check)
+- [3) System Change Review](#3-system-change-review)
+- [3.1) Portfolio Balance Check](#31-portfolio-balance-check)
+- [4) Life Anchors — Monthly Trend](#4-life-anchors--monthly-trend)
+- [5) Anti-Anchors — Monthly Pattern](#5-anti-anchors--monthly-pattern)
+- [6) Focus Adjustment for Next Month](#6-focus-adjustment-for-next-month)
+- [7) Context Compression](#7-context-compression)
+- [Appendix (Optional)](#appendix-optional)
+
+---
+
 # PART A: MONTHLY PLANNING
 
 ---

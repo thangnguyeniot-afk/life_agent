@@ -5,6 +5,24 @@
 
 ---
 
+## Table of Contents
+
+- [1) OS Architecture (§1–14)](#1-os-architecture-114)
+- [2) Canonical Templates](#2-canonical-templates)
+- [3) Reading Order (for agents)](#3-reading-order-for-agents)
+- [4) Context & Logs](#4-context--logs)
+- [5) Planning Cadence](#5-planning-cadence)
+- [6) Knowledge System](#6-knowledge-system)
+- [7) Reviews & Monthly Journal](#7-reviews--monthly-journal)
+- [8) Writing Rules](#8-writing-rules)
+- [9) Cadence](#9-cadence)
+- [10) Naming Convention](#10-naming-convention)
+- [11) Daily Archival (keep hot 15 days)](#11-daily-archival-keep-hot-15-days)
+- [12) System Health Checklist](#12-system-health-checklist)
+- [13) Starting Out](#13-starting-out)
+
+---
+
 ## 1) OS Architecture (§1–14)
 
 **Main source of truth:** `01_OS/operating_system_thang_nguyen_v1_1.md`

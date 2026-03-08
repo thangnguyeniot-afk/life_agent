@@ -2,6 +2,20 @@
 
 ---
 
+## Table of Contents
+
+- [Context](#context)
+- [Source](#source)
+- [Morning Setup (5 min)](#morning-setup-5-min)
+- [Deep Work Blocks (prioritized)](#deep-work-blocks-prioritized)
+- [Builder / Support Work](#builder--support-work-max-34-items-size-s)
+- [Signals (check if occurred)](#signals-check-if-occurred)
+- [Optional — Delegations / Handoffs](#optional--delegations--handoffs)
+- [Shutdown (10 min)](#shutdown-10-min)
+- [DoD (Daily closure)](#dod-daily-closure)
+
+---
+
 ## Context
 
 **Date:** YYYY-MM-DD

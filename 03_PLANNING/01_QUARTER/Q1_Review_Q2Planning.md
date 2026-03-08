@@ -4,6 +4,34 @@
 
 ---
 
+## Table of Contents
+
+**PART A: QUARTER PLANNING**
+- [1) Quarter Identity](#1-quarter-identity)
+- [2) North Star & Strategic Objectives](#2-north-star--strategic-objectives)
+- [3) Scope Boundaries / Anti-Goals](#3-scope-boundaries--anti-goals)
+- [4) Strategic Allocation / Capacity Truth](#4-strategic-allocation--capacity-truth)
+- [2.1) Quarter Scorecard](#21-quarter-scorecard) *(placed after §4 — see note in §2.1)*
+- [5) Strategic Risks / Dependencies / Decisions](#5-strategic-risks--dependencies--decisions)
+- [5.5) Early Quarter Signals](#55-early-quarter-signals)
+- [6) Monthly Direction Skeleton](#6-monthly-direction-skeleton)
+- [7) Quarter Protection Rules](#7-quarter-protection-rules)
+
+**PART B: QUARTER REVIEW**
+- [1) Quarter Executive Summary](#1-quarter-executive-summary)
+- [2) Strategic Objective Review](#2-strategic-objective-review)
+- [3) Strategic Drift Review](#3-strategic-drift-review)
+- [4) Capacity Reality Review](#4-capacity-reality-review)
+- [5) System / Structure Review](#5-system--structure-review)
+- [6) Carry Forward / Stop / Reframe](#6-carry-forward--stop--reframe)
+- [7) Quarter Review DoD](#7-quarter-review-dod)
+
+**Appendix**
+- [Objective → Gate Mapping](#objective--gate-mapping)
+- [Gate Closure Summary](#gate-closure-summary)
+
+---
+
 # PART A: QUARTER PLANNING
 
 ---

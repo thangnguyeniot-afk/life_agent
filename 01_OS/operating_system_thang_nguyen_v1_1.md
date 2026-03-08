@@ -5,6 +5,27 @@
 
 ---
 
+## Table of Contents
+
+- [0) Bản đồ vấn đề (đúng cái bạn đang gặp)](#0-bản-đồ-vấn-đề-đúng-cái-bạn-đang-gặp)
+- [1) 5 Luật vận hành (đã đóng gói thành cơ chế)](#1-5-luật-vận-hành-đã-đóng-gói-thành-cơ-chế)
+- [2) 4 “sọột” để tránh lẫn lộn (quản lý hiệu suất vs thiết kế vs ý tưởng)](#2-4-sọột-để-tránh-lẫn-lộn-quản-lý-hiệu-suất-vs-thiết-kế-vs-ý-tưởng)
+- [3) Cadence review: ngày/tuần/tháng/quý (nhẹ nhưng đủ lực)](#3-cadence-review-ngàytuầnthángquý-nhẹ-nhưng-đủ-lực)
+- [4) Lịch block mẫu (chạy sáng + tập tối + ngủ 23:00–05:00)](#4-lịch-block-mẫu-chạy-sáng--tập-tối--ngủ-230005000)
+- [5) Sơ đồ vận hành (tổng quan)](#5-sơ-đồ-vận-hành-tổng-quan)
+- [6) Checklist áp dụng ngay (trong 48 giờ)](#6-checklist-áp-dụng-ngay-trong-48-giờ)
+- [7) Template (copy/paste)](#7-template-copypaste)
+- [8) Kết luận](#8-kết-luận-gia-cát-lượng-làm-trục--lưu-bang-làm-phong-cách-đúng-và-đã-thành-cơ-chế)
+- [9) Task Standard v1](#9-task-standard-v1)
+- [10) Backlog Structure v1](#10-backlog-structure-v1)
+- [11) Priority Score v1](#11-priority-score-v1)
+- [12) Scheduler Engine v1](#12-scheduler-engine-v1)
+- [13) Knowledge Engine v1](#13-knowledge-engine-v1)
+- [14) Anti-Gravity Rules v1](#14-anti-gravity-rules-v1)
+- [Kiến trúc Personal OS v1 — Tổng quan](#kiến-trúc-personal-os-v1--tổng-quan)
+
+---
+
 ## 0) Bản đồ vấn đề (đúng cái bạn đang gặp)
 
 ### Năng lực lõi
