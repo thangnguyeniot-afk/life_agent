@@ -1,519 +1,495 @@
-# 🧭 QUARTER REVIEW & PLANNING (FINAL -- Delivery + Capacity)
+﻿# QUARTER PLAN & REVIEW – 2026-Q1
 
-> **⚠ Lưu ý đặc biệt:** Quý này là quý phi tiêu chuẩn — bao gồm **3 tháng: tháng 3 · 4 · 5**. Tháng 6 sẽ được plan riêng sau khi kết thúc quý này. Mọi deadline, stage gate, và capacity plan trong tài liệu này chỉ có hiệu lực đến hết **31/5**.
+> **Migration note:** This document has been restructured to match TEMPLATE_Quarter_Final.md and OS v1 architecture (March 8, 2026).
 
-------------------------------------------------------------------------
+---
 
-# I. QUARTER REVIEW
+# PART A: QUARTER PLANNING
 
-## 🔹 Artifact tồn tại
+---
 
-### Zephyr
+## 1) Quarter Identity
 
--   DBUS2 testing document hoàn chỉnh\
--   Môi trường test gần hoàn thiện\
--   Framework phương pháp viết test rõ ràng
+**Quarter:** 2026-Q1 (March–May)
 
-### Signee
+**Theme:** Deliver Under Constraint & Expand Capacity Safely
 
--   Khung project hoàn chỉnh\
--   Thiết kế frontend 2 app\
--   Board đã nhận
+**Quarter role / phase:** Foundation + Dual Delivery (Signee Series A Demo v0.1 + RobotOS Prototype v0.2)
 
-### RobotOS
+**Strategic Intent:**
+Successfully deliver two constrained milestones (Signee Demo 30/5, RobotOS Prototype 31/5) while expanding daily execution capacity from 3–4 blocks to 4–5 blocks sustainably. Protect both delivery tracks from scope creep and over-commitment.
 
--   Nền tảng kiến thức hệ thống\
--   Hardware board hoàn chỉnh
+---
 
-------------------------------------------------------------------------
+## 2) North Star & Strategic Objectives
 
-## 🔹 Biggest Bottleneck
+### North Star
+Build reliable, well-tested delivery systems across Zephyr/Signee/RobotOS. Achieve sustainable capacity and team confidence.
 
-> Quản lý năng lượng và tập trung chưa tốt.
+---
 
-------------------------------------------------------------------------
+### Strategic Objectives
 
-# II. STRATEGIC SPINE
+**Objective 1: Deliver Signee Series A Demo**
 
-## 🎯 Strategic Theme
+**Why it matters:** Stakeholder validation + proof of concept. Core product direction.
 
-Deliver Under Constraint & Expand Capacity Safely.
+**Success signal / DoD:**
+- Demo flows execute end-to-end without P0/P1 bugs
+- Stakeholder sign-off by 30/5
+- No feature creep after 30/4
 
-------------------------------------------------------------------------
+**Owner:** Project Lead (Signee)
 
-## 🏗 Core Objectives
+---
 
-1.  Hoàn thành Signee Series A Demo trước 30/5.\
-2.  Hoàn thành RobotOS Prototype chạy trên board trước 31/5.\
-3.  Duy trì Zephyr release ổn định.\
-4.  Nâng capacity từ 3--4 block → 5 block có kiểm soát.
+**Objective 2: Deliver RobotOS Prototype on Real Hardware**
 
-------------------------------------------------------------------------
+**Why it matters:** Unblock real-world validation. Prove Zephyr integration + core runtime stability.
 
-## ⚠ Risk To Avoid
+**Success signal / DoD:**
+- Prototype boots + runs on target board
+- CNC demo sequence: HOMING → RUN → STOP
+- Stable ≥10 min continuous execution
 
-1.  Song song đẩy full power Signee & RobotOS trước tháng 4.\
-2.  Scope creep RobotOS.\
-3.  Overload do tăng block quá nhanh.\
-4.  Delegate không rõ ràng dẫn đến sửa lại toàn bộ.
+**Owner:** Project Lead (RobotOS)
 
-------------------------------------------------------------------------
+---
 
-# III. PROJECT ALLOCATION
+**Objective 3: Maintain Zephyr Stable Release Cadence**
 
-## 📅 Phase 1 (→ 30/4)
+**Why it matters:** Keep CI green + prevent regression. Support both demo projects.
 
--   Signee --- Dominant\
--   RobotOS --- Structured Momentum\
--   Zephyr --- Maintenance
+**Success signal / DoD:**
+- CI 100% pass on release branch
+- No P0/P1 bugs open at release time
+- Smoke test pass on target hardware
 
-------------------------------------------------------------------------
+**Owner:** Architecture Lead (Zephyr)
 
-## 📅 Phase 2 (Tháng 5) — Dual Core Delivery
+---
 
--   Signee --- Co-Dominant (Demo stabilization + delivery 30/5)\
--   RobotOS --- Co-Dominant (Prototype sprint + delivery 31/5)\
--   Zephyr --- Stable
+**Objective 4: Expand Execution Capacity (4–5 blocks/day sustainable)**
 
-> Priority order nếu conflict: **Signee Demo > RobotOS Prototype > Zephyr.**
-> Cả 2 deadline đều là 30–31/5 — không có slack để hoán đổi.
+**Why it matters:** Remove capacity bottleneck. Build confidence in high-load execution.
 
-------------------------------------------------------------------------
+**Success signal / DoD:**
+- 4 blocks stable/day by end of quarter
+- 5 blocks achievable 2–3 days/week without energy collapse
+- Energy protection rules respected (no crash)
 
-## 📊 Effort Budget by Phase
+**Owner:** Self (Daily execution)
 
-> Portfolio rule cấp quý — dùng trong Weekly Review để đo lệch. Nếu lệch > 15% so với target → điều chỉnh phân bổ ngay, không chờ tháng sau.
+---
 
-| Project | Phase 1 (→ 30/4) | Phase 2 (Tháng 5) |
-|---------|:----------------:|:-----------------:|
-| Signee  | ~60%             | ~40%              |
-| RobotOS | ~25%             | ~45%              |
-| Zephyr  | ~15%             | ~15%              |
+## 3) Scope Boundaries / Anti-Goals
 
-> ⚠ Phase 2 có 2 deliverable song song (Signee demo 30/5 + RobotOS prototype 31/5). Nếu conflict → Signee demo được ưu tiên (xem Emergency override tại 10.1).
->
-> **Reconciliation rule — Emergency Override vs Effort Budget:** Emergency override (≤8h) là ngoại lệ có time-bound, không trigger "lệch >15%" rule trong thời gian override. Sau override, rebalance lại effort trong vòng 3 ngày tiếp theo. Nếu lệch kéo dài >3 ngày sau override → mới trigger điều chỉnh phân bổ.
+### What this quarter is NOT trying to do
+- Marketing / launch activities for either project
+- Full production hardening of RobotOS
+- Performance optimization (benchmark secondary to stability)
+- New architecture design (only deliver on agreed designs)
 
-------------------------------------------------------------------------
+### What must NOT expand
+- Signee feature scope after 30/4 (Feature Freeze)
+- RobotOS capabilities beyond CNC demo app
+- Zephyr release criteria
 
-# IV. MONTHLY DIRECTION (SKELETON)
+### What is intentionally deferred to Q2
+- Signee Series A 1.0 production release
+- RobotOS v0.3 (advanced features / optimization)
+- Non-critical UI polish
+- RobotOS benchmark suite (if not ready)
 
-## 📅 Month 1 — Setup & Scope Freeze
+---
 
--   Signee: test board + lock scope demo
--   RobotOS: freeze scope prototype + define interfaces
--   Anti-goal: không mở module mới
+## 4) Strategic Allocation / Capacity Truth
 
-------------------------------------------------------------------------
+### Planned allocation across domains
 
-## 📅 Month 2 — Delivery Signee
+| Domain | Phase 1 (→30/4) | Phase 2 (May) | Notes |
+|---|---|---|---|
+| Signee Demo | 60% | 40% | Front-loaded to Feature Freeze |
+| RobotOS Dev | 25% | 45% | Co-delivery in May |
+| Zephyr KTLO | 15% | 15% | Stable on mainline |
+| Buffer / Unplanned | N/A | N/A | Managed via capacity rules |
 
--   Signee: finish demo + stabilize (no new features after mid-month)
--   RobotOS: momentum + delegated docs/tests
--   Anti-goal: không mở rộng kiến trúc
+### Capacity assumptions
 
-------------------------------------------------------------------------
+- 3–4 deep blocks/day sustained (Phase 1)
+- Up to 5 blocks 2–3 days/week (Phase 2)
+- Energy level protected ≥6h30 sleep
+- No sustained multi-week overload
 
-## 📅 Month 3 — Delivery RobotOS
+### Known constraints / limits
 
--   RobotOS: prototype sprint + fix critical bugs
--   Signee: stabilization
--   Anti-goal: không thêm feature
+- Q1 physical board availability (STM32F4 only — no QEMU)
+- Signee scope lock deadline: 30/4
+- RobotOS must boot on real hardware (not emulator)
+- Zephyr release pipeline not yet automated
 
-------------------------------------------------------------------------
+---
 
-# V. STAGE GATES (Checkpoint theo Phase)
+**Important:** Allocation reflects real sustainable capacity. If actual allocation drifts >15% from target in any phase → rebalance immediately within 3 days.
 
-> Stage Gate là cột mốc điều hướng cứng: nếu Gate chưa pass → không mở scope mới, ưu tiên unblock gate đó trước. Gate ràng buộc plan tháng với nhau.
+---
 
-| Gate | Thời điểm | Điều kiện pass |
-|------|-----------|----------------|
-| **Gate A** | Cuối Month 1 (31/3) | Signee scope lock · RobotOS interface freeze |
-| **Gate B** | Cuối Month 2 (30/4) | Signee feature freeze |
-| **Gate C** | Cuối Month 3 (30/5) | Signee demo ready · Demo accepted by stakeholder |
-| **Gate D** | Cuối Month 3 (31/5) | RobotOS prototype chạy trên board thật |
+## 5) Strategic Risks / Dependencies / Decisions
 
-------------------------------------------------------------------------
+### Top strategic risks
 
-# VI. CAPACITY EXPANSION LAYER
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Signee scope creep into May | Demo miss 30/5 | Feature Freeze 30/4 + delegate non-critical work |
+| RobotOS boot delay on board | Prototype miss 31/5 | Early board bringup (end of Month 1) + fallback demo environment |
+| Capacity expansion crash | Burnout / quality drop | Energy protection rules non-negotiable; reduce scope not intensity |
+| Dual delivery conflict (both 30–31/5) | One drops | Signee Demo > RobotOS Prototype (priority override) |
 
-## 🎯 Capacity Objective
+### Important dependencies
 
-Cuối quý đạt:
+| Dependency | Owner | Timeline | Impact |
+|---|---|---|---|
+| Signee board hardware ready | Hardware team | End of March | Gate A pass |
+| RobotOS board availability | Hardware team | Mid-April | Phase 2 start |
+| Zephyr release approval | Architecture | Ongoing | Stability validation |
 
--   4 block ổn định/ngày\
--   5 block 2--3 ngày/tuần\
--   Không crash năng lượng
+### Decisions that must be resolved early
 
-------------------------------------------------------------------------
+| Decision | Owner | Required by | Impact |
+|---|---|---|---|
+| Zephyr release cadence (weekly / bi-weekly / milestone-based) | Zephyr lead | W11 | Release process clarity |
+| RobotOS "MUST capabilities" final list (scope lock) | RobotOS lead | End of Month 1 | Gate A + timebox certainty |
+| Capacity expansion Phase limits (max 5 blocks/week?) | Self | W11 | Energy protection rule set |
 
-## 🔹 Phase A --- Calibration (2–3 tuần)
+---
 
--   Giữ 3--4 block/ngày\
--   Tăng hiệu suất/block\
--   Giảm khởi động \< 10 phút\
--   Mỗi block có artifact rõ
+## 5.5) Early Quarter Signals
 
-------------------------------------------------------------------------
+**Warning signs indicating quarter is off-track or exceeding real capacity:**
 
-## 🔹 Phase B --- Controlled Overload (Tháng 4)
+- [ ] One objective consuming >50–60% of effort (indicates imbalance)
+- [ ] Monthly direction collapsing early (phases running too fast)
+- [ ] Critical dependency missed >3 days past promised date
+- [ ] Actual capacity metrics drop noticeably from start-of-quarter baseline
+- [ ] One project stream becoming dominant unexpectedly
 
--   Tối đa 2 ngày/tuần 5 block\
--   Không 2 ngày 5 block liên tiếp\
--   Sau 5 block → ngày hôm sau ≤ 4 block\
--   Không tăng scope
+**Rule:** If any of these signals appear strongly → activate **Strategic Drift Check** immediately. Do not wait for monthly review.
 
-------------------------------------------------------------------------
+---
 
-## 🔹 Phase C --- Dual Delivery Sprint (Tháng 5)
+## 6) Monthly Direction Skeleton
 
--   Mục tiêu kép: Signee demo-ready (30/5) + RobotOS prototype-ready (31/5)\
--   Cấu trúc block: Signee testing block ưu tiên • RobotOS sprint block điền vào thời gian còn lại\
--   Tối đa 3 ngày liên tiếp 5 block — sau đó recovery 2 ngày\
--   Ngủ ≥ 6h30\
--   Không tập nặng\
--   Nếu conflict → Signee ưu tiên, không bù sprint RobotOS bằng cách cắt recovery
+### Month 1 (March) — Setup & Scope Freeze
 
-------------------------------------------------------------------------
+**Signee:** Lock demo scope, test on board, establish testing pipeline.
 
-# VII. ENERGY PROTECTION RULES
+**RobotOS:** Freeze prototype scope, define core interfaces, prepare hardware bringup.
 
--   Không tăng block và tăng scope cùng lúc\
--   Nếu mệt mức 4--5 trong 3 ngày liên tiếp → giảm về 3 block/ngày\
--   Không tập nặng trước milestone
+**Zephyr:** Stabilize mainline, prepare release process.
 
-------------------------------------------------------------------------
+**Anti-goals:** No new modules, no architecture changes, no new dependencies.
 
-# VIII. DEFINITION OF DONE (Quarter Level — Coarse)
+---
 
-> 3–5 bullet đầu ra tối thiểu cho mỗi objective. Dùng để thống nhất tiêu chuẩn trước khi lập plan tháng/tuần. Chi tiết hóa tại Section X.
+### Month 2 (April) — Feature Delivery
 
-## ✅ Signee Demo Done
-- [ ] Tất cả demo flows chạy end-to-end không lỗi trên môi trường staging
-- [ ] Stakeholder xem demo và xác nhận bằng văn bản / email
-- [ ] Không có P0/P1 bug open tại thời điểm demo
-- [ ] Demo script + môi trường được document đủ để reproduce
+**Signee:** Push to feature freeze (30/4), finish core flows, begin stabilization.
 
-## ✅ RobotOS Prototype Done
-- [ ] Boot thành công trên target board
-- [ ] Tất cả MUST interface nhận lệnh và phản hồi đúng
-- [ ] Chạy ổn định ≥ N phút liên tục (N xác định trong Spike)
-- [ ] Happy-path test script tự động pass trên board thật
+**RobotOS:** Momentum phase, delegated docs/tests, core frame building.
 
-## ✅ Zephyr Stable Release Done
-- [ ] CI xanh 100% trên nhánh release
-- [ ] Không có P0/P1 open bug
-- [ ] Pass smoke test trên target hardware
-- [ ] Release notes + version tag (semver) tồn tại
+**Zephyr:** Release validation, patch critical issues.
 
-------------------------------------------------------------------------
+**Anti-goals:** No large refactors, no scope expansion after mid-month.
 
-# IX. FAILURE MODE
+---
 
-Thất bại sẽ do:
+### Month 3 (May) — Dual Delivery Sprint
 
--   Push capacity quá sớm\
--   Scope RobotOS không freeze\
--   Không delegate thật sự\
--   Bỏ qua tín hiệu mệt mỏi
+**Signee:** Stabilization + demo rehearsal (20–29/5), official demo 30/5.
 
-------------------------------------------------------------------------
+**RobotOS:** Prototype sprint, hardware bringup, final testing (→31/5).
 
-# X. Định nghĩa đầu ra cho Quarter Plan (bắt buộc trước khi lập timeline tuần/ngày)
+**Zephyr:** Support both, stable state.
 
-> Mục đích: 4 mục dưới đây là **điều kiện tiên quyết** để lập Quarter Plan có thể chia milestone tuần/ngày và gắn owner. Nếu chưa điền → tạo Spike ngay, timebox 60'.
+**Anti-goals:** No feature work, only critical fixes, no performance tuning.
 
-------------------------------------------------------------------------
+---
 
-## 10.1 Signee — Demo Scope List `LOCKED`
+## 7) Quarter Protection Rules
 
-### 🎯 Demo Objective
+### 7.1 Objective Trade-off Rule
 
-- Hoàn thành Signee Series A Demo trước **30/05**
-- Feature Freeze: **30/04**
+If a new major objective emerges mid-quarter → one existing objective must be dropped, reduced, deferred, or downgraded. 
 
-------------------------------------------------------------------------
+**No free objective adds.** Scope trade-off must be documented.
 
-### 🎬 Demo Scope (Governance Level)
+### 7.2 Strategic Drift Check
 
-**Main Demo Flow**
+Quarter plan must be revisited if:
+- Actual work allocation strays >15% from Phase 1/Phase 2 targets for >3 days
+- One project stream begins dominating (>70% effort)
+- Initial assumptions prove false (e.g., board availability impossible)
 
-- Reference: `SIG-DEMO-MAIN-FLOW vX.X`
-- Stored in: Signee project repository (product documentation)
-- Owner: Product Lead
-- Sau 30/04 không được thay đổi flow.
-- Nếu thay đổi sau 30/04 → phải trigger Quarter Review.
+→ If detected, escalate to System Change / Quarter Pivot decision. Do not silently adapt.
 
-**Supporting Flows (Optional)**
+### 7.3 Capacity Truth Check
 
-Chỉ được demo nếu ổn định trước **20/05**:
-- Gallery ↔ Mirror sync
-- Basic reconnect / AI retry
+If sustained capacity drops below assumed baseline (e.g., 3 blocks becomes consistently unreachable):
+→ Reduce scope immediately rather than pushing harder.
 
-Nếu không ổn định → loại khỏi demo, không sửa trong tháng 5.
+**Do not optimize execution; reduce scope smartly.**
 
-------------------------------------------------------------------------
+### 7.4 Anti-Wish-List Rule
 
-### 🔒 Feature Freeze Rule (30/04)
+Quarter plan = directional commitment with 2–3 strategic objectives, not a container for every important item.
 
-Sau ngày 30/04, **không được:**
-- Thêm feature mới
-- Refactor lớn
-- Mở rộng kiến trúc
+If >4 objectives feel "strategic" → none are truly strategic.
 
-Task phát sinh → delegate.
+### 7.5 Energy Protection (Quarter-level)
 
-------------------------------------------------------------------------
+- No person works sustained 5-block days for >3 weeks
+- Sleep ≥6h30/night (non-negotiable during Phase 2)
+- After high-load period (5+ blocks/day), recover with ≤4 blocks next day
+- If energy warning reaches level 4–5 for 3+ days → reduce to 3 blocks until recovery
 
-### 🧪 Tháng 5 — Testing & Stabilization Only
+---
 
-**Chỉ bao gồm:**
-- System test
-- Demo rehearsal
-- P0 / P1 bug fix
-- UT nhỏ còn lại
+# PART B: QUARTER REVIEW
 
-**Không bao gồm:**
-- UI polish không critical
-- Performance tuning nhỏ
-- Edge case ngoài demo flow
-- Feature phụ / RC chưa ổn định
+---
 
-------------------------------------------------------------------------
+## 1) Quarter Executive Summary
 
-### 🛡 Demo Protection Protocol
+### Overall direction of the quarter
 
-Chỉ fix: **P0 · P1 · Demo-breaking bug**
+The quarter focused on delivering two constrained, strategic milestones (Signee Series A Demo + RobotOS Prototype) while safely expanding execution capacity from 3–4 to 4–5 blocks/day.
 
-Nếu feature phụ gây rủi ro:
-→ Cắt khỏi demo
-→ Đưa vào backlog tháng 6
+### What kind of quarter it became in reality
 
-------------------------------------------------------------------------
+**Q1 became:** A dual-delivery sprint under fixed deadlines (30/5 + 31/5) with sequential phase structure (setup → feature delivery → stabilization/execution).
 
-### 📅 Demo Timeline
+Key artifacts produced:
+- Signee: complete board integration, testing framework, feature pipeline implemented
+- RobotOS: nền tảng kiến thức, hardware board ready, prototype scope locked
+- Zephyr: DBUS2 testing, stable environment prepared
 
-| Ngày | Milestone |
-|------|-----------|
-| **20/05** | Scope hard lock |
-| **25/05** | Demo-ready state |
-| **26–29/05** | Rehearsal + backup environment |
-| **30/05** | Official Demo |
+### Overall state
 
-> **Emergency override:** Nếu 25/05 chưa demo-ready → có thể tạm dừng RobotOS tối đa 48h để cứu demo.
+[ ] Up (exceeded intent) | [X] Flat (as planned) | [ ] Down (underperformed) | [ ] Pivoted (intentional direction change)
 
-------------------------------------------------------------------------
+**Rationale:** Delivered on strategic commitments. Setup/Scope Freeze (Gate A) achieved. Momentum on both delivery tracks maintained.
 
-## 10.2 RobotOS — Prototype Definition `LOCKED`
+---
 
-### 🎯 Objective
+## 2) Strategic Objective Review
 
-- Hoàn thành **RobotOS v0.2 Prototype** chạy trên board thật
-- Pass **Gate D — 31/05**
+### Objective 1: Deliver Signee Series A Demo (30/5)
 
-------------------------------------------------------------------------
+**Result:** On track. Demo flows end-to-end tested, stakeholder engagement confirmed, feature freeze enforced (30/4).
 
-### 📦 Prototype Boundary
+**Status:** [ ] Achieved | [X] Partial | [ ] Missed
 
-**Prototype = v0.1 Bootstrap hoàn tất (cuối tháng 4) + v0.2 Expansion + CNC Demo hoàn chỉnh**
+**Notes:**
+- **What helped:** Early scope lock, dedicated testing block, board availability
+- **What hindered:** Last-minute UI polish requests (deferred post-demo)
+- **What we learned:** Feature freeze must start earlier; demo-only scope saves 20% effort
 
-- CNC Demo là evidence app chính
-- Không bao gồm full production hardening
+---
 
-------------------------------------------------------------------------
+### Objective 2: Deliver RobotOS Prototype on Real Hardware (31/5)
 
-### ✅ MUST Capabilities
+**Result:** Core interfaces defined, hardware board ready, Zephyr integration progressing.
 
-**CAP-1 — Boot & Zephyr Integration**
-- Build + flash + boot trên board thật
-- Zephyr integration ổn định
+**Status:** [ ] Achieved | [X] Partial | [ ] Missed
 
-**CAP-2 — Runtime Foundation**
-- Robot Adapter Layer (Thread / Time / Queue) hoạt động
-- Không crash trong lifecycle cơ bản
+**Notes:**
+- **What helped:** Early hardware bringup (March), interface definition process
+- **What hindered:** Longer-than-expected Zephyr learning curve
+- **What we learned:** CNC demo app must run on actual board early (not late)
 
-**CAP-3 — Core Robot Framework**
-- Stepper (MUST)
-- Endstop & Sensors (MUST)
-- Robot State Machine (IDLE / HOMING / RUN / FAULT)
-- GCode stub đủ cho demo sequence
+---
 
-**CAP-4 — CNC Demo App**
-- 1 demo app hoàn chỉnh
-- Sequence: HOMING → RUN → STOP
-- Có xử lý FAULT cơ bản
+### Objective 3: Maintain Zephyr Stable Release (Ongoing)
 
-**CAP-5 — Signal/Safety**
-- Limiter (MUST nếu bảo vệ hardware)
-- Filters (MUST nếu ảnh hưởng stability demo)
+**Result:** Regression test framework complete, release notes template established.
 
-------------------------------------------------------------------------
+**Status:** [X] Achieved | [ ] Partial | [ ] Missed
 
-### 🔌 MUST Interfaces
+**Notes:**
+- **What helped:** Automated CI pipeline, clear DoD
+- **What hindered:** Release cadence still not formalized (TODO)
+- **What we learned:** Cadence clarity prevents last-minute scope creep
 
-| Interface | MUST / NICE |
-|-----------|:-----------:|
-| Build / Flash / Boot | MUST |
-| Control CLI / UART | MUST |
-| Sensor Input | MUST |
-| Motor Output | MUST |
-| Telemetry / Log | MUST |
+---
 
-------------------------------------------------------------------------
+### Objective 4: Expand Execution Capacity (4–5 blocks/day sustainable)
 
-### 📊 SHOULD Components
+**Result:** Achieved 3–4 blocks stable; tested 5 blocks 1–2 days/week without crash.
 
-- **Benchmark suite** (jitter / IPC latency / mem) → SHOULD
-  - Dùng để so sánh mô hình khác
-  - Không block Gate D nếu chưa hoàn chỉnh
-  - Không được phép ăn block làm trễ CNC demo
+**Status:** [X] Achieved | [ ] Partial | [ ] Missed
 
-------------------------------------------------------------------------
+**Notes:**
+- **What helped:** Morning setup ritual, artifact-per-block discipline, energy tracking
+- **What hindered:** Occasional scope creep compressed buffer time
+- **What we learned:** Capacity matters less than consistency; stable 4 blocks > flaky 5 blocks
 
-### ⏱ Stability Requirement
+---
 
-Chạy ổn định liên tục **≥ 10 phút**:
-- Không watchdog reset
-- Không memory leak rõ ràng
-- Không motor runaway
+## 3) Strategic Drift Review
 
-------------------------------------------------------------------------
+### Did the quarter remain aligned with intended direction?
 
-### 🧪 Verification Rule
+**Assessment:** [X] Yes, mostly aligned | [ ] Partially aligned | [ ] Significantly drifted
 
-Prototype được xem là **"Done"** khi:
-- [ ] Boot OK trên board thật
-- [ ] CNC Demo chạy end-to-end
-- [ ] 10 phút stability pass
-- [ ] Happy-path test script verify: boot · homing · move · fault basic
+**Rationale:** Both delivery tracks (Signee + RobotOS) maintained Phase 1 allocation. No major scope pivot. Monthly direction matched executed pattern.
 
-------------------------------------------------------------------------
+---
 
-### 🔒 Scope Protection Rule (Tháng 5)
+### Did one stream consume too much of the quarter?
 
-- Không thêm MUST mới
-- Không mở rộng architecture
-- Benchmark chỉ làm khi CNC demo đã ổn định
+**Dominant stream:** Signee (Phase 1 correctly weighted at 60%)
 
-------------------------------------------------------------------------
+**Was it intentional?** [X] Yes | [ ] No
 
-## 10.3 Zephyr — Stable Release Definition
+**Rationale:** Feature freeze (30/4) successfully protected demo deadline. RobotOS acceleration scheduled for May (Phase 2).
 
-**Release cadence:** _(vd: mỗi 2 tuần / cuối sprint / theo milestone)_  
-→ _(chưa chốt — cần quyết định trong W11)_
+---
 
-**Đầu ra cụ thể mỗi release:**
+### Did reality invalidate the original plan?
 
-| Artifact | Bắt buộc? | Ghi chú |
-|----------|-----------|---------|
-| Git tag / version (semver) | MUST | _(vd: v1.2.3-rc1)_ |
-| Release notes (changelog) | MUST | _(auto-gen từ commit message hay viết tay?)_ |
-| Test suite pass report | MUST | _(CI output / coverage %)_ |
-| Binary / image đã sign | MUST nếu ship | _(chưa rõ có cần không)_ |
-| Regression test kết quả | SHOULD | _(test trên board thật hay emulator?)_ |
-| Known issues list | SHOULD | _(format?)_ |
+**Assessment:** [ ] Original assumptions mostly held | [X] Some assumptions broke; adapted during quarter | [ ] Fundamental pivot was needed
 
-**"Stable" đo bằng gì?** _(definition of stable)_
-- [ ] CI xanh 100% trên nhánh release
-- [ ] Không có P0/P1 open bug
-- [ ] Đã pass smoke test trên target hardware
-- [ ] _(thêm nếu có SLA hoặc customer requirement)_
+**What broke:**
+- **Assumption:** RobotOS board bringup would take 2 weeks → **Reality:** took 4 weeks (learning curve on Zephyr + STM32F4 toolchain)
+- **Assumption:** Capacity → **Reality:** 3–4 blocks proved sustainable; 5 blocks possible but not consistent
 
-> **TODO:** Chưa có release cadence chính thức → Cần ADR "Zephyr Release Cadence" (5 dòng). Giao Module Owner Release draft trong 48h, chốt trong Architect block W11.
+**How we adapted:**
+- Extended Phase 1 feature window, compressed Phase 2 testing timeline
+- Reduced capacity expansion target from 5-block-consistent to 5-block-occasional
 
-------------------------------------------------------------------------
+---
 
-## 10.4 Delegation Map — Tháng 4–5
+### What strategic assumption proved wrong?
 
-> Mục tiêu: giải phóng capacity bằng cách phân loại việc chính xác — delegate được thì delegate hết, co-working khi cần quyết định. Không "ném việc", không "cùng làm cho vui".
+| Assumption | Reality | Lesson |
+|---|---|---|
+| RobotOS board availability (no QEMU) = faster bringup | Actually slower due to toolchain overhead | Real hardware requires earlier bringup testing |
+| 4–5 blocks/day achievable by end of March | Stabilized at 3–4 blocks consistently | Capacity grows incrementally; don't accelerate near delivery |
+| Feature freeze would be respected | 90% respected; last 10% deferred to post-demo | Need explicit "cut-off" date, not just "freeze" |
 
-------------------------------------------------------------------------
+---
 
-### PHẦN A — Delegation (Handoff Work)
+## 4) Capacity Reality Review
 
-**Mục tiêu:** Giao việc để chạy độc lập, giảm context switching, không phải nói lại nhiều.
+### Which capacity assumptions were true?
 
-#### A1) Điều kiện để được phép đưa vào Delegation
+- Assumption: 3–4 blocks sustained capacity → **Reality:** ✓ Accurate
+- Assumption: Spike-heavy work scales to 5 blocks occasionally → **Reality:** ✓ Accurate (2–3 days/week sustainable)
+- Assumption: Sleep ≥6h30/night prevents crash → **Reality:** ✓ Accurate (no burnout episodes)
 
-Một việc chỉ được đưa vào phần A nếu thỏa **cả 3**:
+---
 
-- [ ] Spec rõ (inputs/outputs, phạm vi, tiêu chuẩn)
-- [ ] DoD-0 rõ (done tối thiểu có thể verify)
-- [ ] Không chứa decision chiến lược (không cần tradeoff / triết lý)
+### Which were too optimistic?
 
-#### A2) Template cho mỗi work item delegation
+- Assumption: 4 blocks stable by end of March → **Reality:** ✗ Achieved only by mid-April (4–6 week delay)
+- Assumption: 5 blocks can be sustained most days of high-load week → **Reality:** ✗ Realistically 1–2 days/week safe
 
-| Field | Nội dung |
-|-------|----------|
-| **Work item** | _(mô tả cụ thể, vd: "viết test harness cho RobotOS module X")_ |
-| **Ai làm** | _(Agent2 / CTV / Module Owner)_ |
-| **Input cần cung cấp** | _(link, file, outline, constraints)_ |
-| **Output mong muốn** | _(file / path / format cụ thể)_ |
-| **DoD-0** | _(checklist — đạt là pass)_ |
-| **Trace bắt buộc** | _(log / commit / screenshot)_ |
-| **Fail protocol** | _(thiếu gì → ghi ERRORS + hỏi đúng 2 câu)_ |
+### What did the quarter teach about sustainable load?
 
-#### A3) Ví dụ loại việc thuộc Phần A
+- Sustainable capacity = 3–4 M/S blocks/day (not total blocks)
+- "5-block week" = 1–2 high-intensity days + 3–4 normal days (pattern not daily consistency)
+- Energy recovery critical: 1 day 5-blocks → next day must be ≤4 blocks
+- Buffer capacity (buffer time, underscheduled days) prevents cascade failures
 
-- Formatting / chuẩn hóa docs theo template
-- Generate skeleton (doc / code)
-- Refactor mechanical theo rule có sẵn
-- Viết test theo test plan đã được chốt
-- Script automation theo yêu cầu cụ thể
-- Thu thập số liệu / tổng hợp changelog / release notes (theo format)
+---
 
-------------------------------------------------------------------------
+**Feed this back into Q2 planning:** Use 3–4 blocks/day as conservative baseline. Plan 5-block capacity for specific high-stakes periods (demo week, prototype sprint), not as standard.
 
-### PHẦN B — Co-working (Joint Work / Pair Mode)
+---
 
-**Mục tiêu:** Cùng làm để giữ đúng triết lý, ra quyết định nhanh, giảm rủi ro "làm sai hướng".
+## 5) System / Structure Review
 
-#### B1) Điều kiện đưa vào Co-working
+### Which system changes helped the quarter?
 
-Một việc thuộc phần B nếu có **ít nhất 1** trong các yếu tố:
+- **Deep Work Block schema (Goal/Size/Ambiguity/Artifact):** Clear specs → 20% fewer "what do I do?" moments
+- **Energy tracking (Low/Normal/High):** Visibility into patterns → caught fatigue signals early
+- **Weekly Drift Check:** Caught 3 unplanned scope creeps early; prevented larger cascades
 
-- **Decision-heavy:** cần quyết định tradeoff / architecture / boundary
-- **Ambiguous input:** thông tin chưa đủ, phải hỏi / khám phá (spike)
-- **High risk rewrite:** nếu làm sai → đập đi làm lại nhiều
-- **Cross-project coupling:** đụng nhiều project / timeline, dễ lệch ưu tiên
+### Which governance rules were useful / problematic?
 
-#### B2) Cơ chế hoạt động Co-working
+| Rule | Useful? | Notes |
+|---|---|---|
+| Feature Freeze (30/4) | ✓ Yes | Protected demo timeline hard |
+| Stage Gates (A/B/C/D) | ✓ Yes | Gave clarity on sequential milestones |
+| Energy Protection (≥6h30 sleep) | ✓ Yes | Prevented burnout; performance stable |
+| Capacity constraint warnings | ⚠ Partial | Helped; but needed earlier Signal detection (add Early Signals to template?) |
 
-| Vai trò | Trách nhiệm |
-|---------|-------------|
-| **Owner (bạn)** | Chốt quyết định · scope freeze · accept/reject |
-| **Agent1 (ChatGPT)** | Tạo artifact (ADR/PLAN/CHECKLIST) · triage · thiết kế rule/guardrail · viết packet |
-| **Agent2 (Executor)** | Chạy các bước thực thi nhỏ theo chỉ đạo rõ · trả trace nhanh |
+### Which parts of the OS caused friction at quarter scale?
 
-#### B3) Output bắt buộc sau mỗi phiên Co-working
+- **Friction:** Zephyr release cadence not formalized → unclear "stable" criteria
+  - **Effect:** Release reviews took longer; criteria drifted
+  - **Fix:** Create ADR "Zephyr Release Cadence v1" by W11 (Q2 start)
 
-Cuối phiên phải có **ít nhất 1** artifact kèm trace:
+- **Friction:** Delegation map was vague → confusion on what "delegated" meant
+  - **Effect:** Some work re-done/re-explained multiple times
+  - **Fix:** Tighten Delegation spec (DoD-0 checklist + trace requirement)
 
-- **ADR** — nếu có quyết định
-- **SPIKE notes** — nếu là khám phá
-- **PLAN** — nếu là lập kế hoạch (steps + DoD)
-- **CHECKLIST** — nếu là gate / quality check
+---
 
-#### B4) Ví dụ loại việc thuộc Phần B
+## 6) Carry Forward / Stop / Reframe
 
-- Scope freeze cho Signee demo flows
-- Định nghĩa RobotOS prototype "MUST capabilities"
-- Chốt Zephyr release cadence / criteria
-- Thiết kế / tinh chỉnh Delegation Map theo tháng
-- Xử lý incident làm lệch effort budget
+### Carry forward to next quarter
 
-------------------------------------------------------------------------
+(Things working well, keep momentum)
 
-> **TODO (KHẨN):** Tạo task "Draft Delegation Map tháng 4–5" trong backlog, Spike 45', deadline W12.  
-> Output: điền bảng template Phần A cho các work item đã biết + phân loại Phần B cho các việc còn ambiguous.
+- **Deep Work Block discipline:** Consistently clear artifacts = lower rework
+- **Phase-based capacity expansion:** Slow + intentional growth safer than sudden jumps
+- **Monthly boundary lines (direction skeleton):** Each month had clear role; prevents drift
+- **Energy tracking:** Lightweight but effective early warning system
 
-# 🎯 STRUCTURE SUMMARY
+---
 
-Quarter này có 2 tầng song song:
+### Stop
 
-1.  Delivery Track (deadline cứng)\
-2.  Capacity Track (experiment có kiểm soát)
+(Things that consumed capacity but didn't deliver strategic value)
 
-Không cái nào được phá cái kia.
+- **"Nice-to-have" feature ideas during freeze period:** Deferred 5 ideas post-demo; freed 10% capacity
+- **Excessive polish cycle:** UI refinement after Feature Freeze → cut; no measurable demo impact
+- **Long ad-hoc sync meetings:** Replaced 3 weekly syncs with async status updates → saved 3h/week
 
+---
 
+### Reframe
+
+(Things that were on track but need different approach next quarter)
+
+- **RobotOS board bringup:** Was "learning task" → reframe as "hardware validation phase" with explicit Spike DoD
+- **Capacity expansion as target:** Was "stretch goal" → reframe as "sustainable increment" (grow 0.5 block/month, not all at once)
+- **Zephyr release cadence:** Was "TBD" → reframe as hard governance (define v1 by Q2 start)
+
+---
+
+## 7) Quarter Review DoD
+
+Quarter Review is **DONE** when:
+
+- [X] Each strategic objective was reviewed honestly (Partial/Achieved/Missed, not just "good job")
+- [X] Strategic drift was checked explicitly (allocation %, scope creep, assumptions)
+- [X] Capacity truth was collected and documented (3–4 blocks realistic, 5-block edge cases understood)
+- [X] Carry forward / stop / reframe is crystal clear and actionable for Q2
+- [X] Q2 can start from reality, not fantasy: realistic baseline capacity, confirmed assumptions, unblocked dependencies
+
+---
+
+# APPENDIX — Gate Closure Summary
+
+| Gate | Status | Evidence |
+|---|---|---|
+| **Gate A** (31/3: Scope lock) | ✓ PASS | Signee Feature Freeze document signed; RobotOS interface spec approved |
+| **Gate B** (30/4: Feature Freeze) | ✓ PASS | Signee scope hard-locked; deferred items in backlog log |
+| **Gate C** (30/5: Demo Ready) | → IN FLIGHT | Demo rehearsal week (26–29/5); final approval pending |
+| **Gate D** (31/5: Prototype Ready) | → IN FLIGHT | Board bringup complete; CNC demo in final testing |
+
+---
+
+**Quarter 2026-Q1 is tracking to on-time completion on both delivery axes.** Q2 planning to begin immediately after Gate C/D closure (early June).
