@@ -130,14 +130,52 @@ Nếu **Có**, ghi:
 
 ---
 
+## 5.6 Backlog Selection for Next Week (3–5 phút)
+> Chọn từ backlog những việc thực sự được phép đi vào tuần tới — không kéo tất cả vào Weekly Plan.
+
+| Candidate | Why this week? | Type | Size (S/M/L) | Ambiguity (0–5) | Expected Artifact | Decision |
+|---|---|---|---|---|---|---|
+| … | … | Big / Small / KTLO / Change | … | … | … | Pick / Not now |
+| … | … | Big / Small / KTLO / Change | … | … | … | Pick / Not now |
+
+**Rules:**
+- Chỉ chọn những việc đủ rõ để cam kết tuần này
+- Nếu Ambiguity ≥ 4 → không đưa thẳng vào execution, phải tách thành Spike / framing task
+- Không chọn quá nhiều; ưu tiên **ít nhưng có artifact rõ**
+- Weekly Plan chỉ được lấy từ các mục đã được **Pick**
+
+---
+
 # 6) Weekly Planning — Commitment Level (5–10 phút)
 > Biến quyết định thành cam kết — **KHÔNG nghiên cứu lại**.
 
 ## 6.1 Big / Small / KTLO (bắt buộc để đúng OS)
-- **Big Bet (1):** …
-- **Small Bet #1:** …
-- **Small Bet #2:** …
-- **KTLO focus (Zephyr / vận hành):** …
+
+### Big Bet (1)
+- **Goal:** …
+- **Size:** …
+- **Ambiguity:** 0–5
+- **Expected Artifact:** …
+- **DoD:** …
+
+### Small Bet #1
+- **Goal:** …
+- **Size:** …
+- **Ambiguity:** 0–5
+- **Expected Artifact:** …
+- **DoD:** …
+
+### Small Bet #2
+- **Goal:** …
+- **Size:** …
+- **Ambiguity:** 0–5
+- **Expected Artifact:** …
+- **DoD:** …
+
+### KTLO focus (Zephyr / vận hành)
+- **Goal:** …
+- **Size budget:** … (% hoặc hours)
+- **Expected Artifact / trace:** …
 
 ## 6.2 Capacity & WIP (anti-overload)
 - **Capacity budget (%):**
@@ -148,7 +186,19 @@ Nếu **Có**, ghi:
 - **WIP max (tuần):** 2–3 việc lớn (P0/P1)  
 - **Deep blocks/day:** 2 blocks (90’)
 
-## 6.3 Office Hours & Anti-SPOF
+**Notes:**
+- Tuần chỉ nên có số lượng commitment phù hợp với năng lực thật; ưu tiên **ít nhưng có artifact rõ**
+- Nếu đã có 1 Big Bet ambiguity cao, giảm số Small Bet tương ứng
+- KTLO không được nuốt toàn bộ capacity; phải giữ buffer ≥ 15%
+
+## 6.3 Planning Rules from Task Engine
+- Không commit item XL trực tiếp trong tuần; phải tách phase trước
+- Ưu tiên item M; L chỉ dùng khi đã đủ rõ
+- Nếu Ambiguity ≥ 3, không xếp quá nhiều item kiểu này trong cùng 1 tuần
+- Mỗi committed item phải có artifact kỳ vọng
+- Weekly plan là commitment level, không phải breakdown toàn bộ step
+
+## 6.4 Office Hours & Anti-SPOF
 - **Techlead Office Hours (2 slots):**
   - Slot 1: …
   - Slot 2: …
@@ -156,17 +206,19 @@ Nếu **Có**, ghi:
   - Area/Module | Owner | DoD/Link
   - … | … | …
 
-## 6.4 Ưu tiên lớn của tuần tới (1–3)
+## 6.5 Ưu tiên lớn của tuần tới (1–3)
 1) …
 2) …
 3) …
 
-## 6.5 System Change sẽ thực hiện / theo dõi
+## 6.6 System Change sẽ thực hiện / theo dõi
 - …
 
-## 6.6 Rủi ro / giới hạn tuần tới (1–3)
-- …
-- …
+## 6.7 Risks / Constraints / Protection (1–3)
+- **Risk:** …
+  - **Protection / mitigation:** …
+- **Risk:** …
+  - **Protection / mitigation:** …
 
 ### ❌ Không research  
 ### ❌ Không tối ưu lịch  
@@ -175,10 +227,17 @@ Nếu **Có**, ghi:
 ---
 
 # 7) Definition of Done (DoD) — Weekly Review hoàn thành khi
-- Tất cả **tín hiệu** trong tuần đã được xử lý (giữ / theo dõi / system change).
-- Nhịp sống & hành vi phá hoại được đánh giá tổng thể (anchors + anti-anchors).
-- Có quyết định rõ ràng: **giữ nguyên** hoặc **System Change**.
-- Tuần tới có **1–3 ưu tiên cam kết rõ** (Big/Small/KTLO).
+- Tất cả **tín hiệu** trong tuần đã được xử lý (giữ / theo dõi / system change)
+- Nhịp sống & hành vi phá hoại được đánh giá tổng thể (anchors + anti-anchors)
+- Có quyết định rõ ràng: **giữ nguyên** hoặc **System Change**
+- Backlog items được lọc (Pick / Not now) dựa trên Ambiguity + Capacity
+- Mỗi committed item (Big/Small/KTLO) có đầy đủ:
+  - Goal rõ ràng
+  - Size (S/M/L) và Ambiguity (0–5)
+  - Expected artifact
+  - DoD hoặc success criteria
+- Weekly scope là **realistic** so với capacity + tính chất công việc
+- Không có overcommit (special rule: 1 Big Bet ambiguity cao = giảm Small Bet)
 
 ---
 
