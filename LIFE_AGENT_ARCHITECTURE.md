@@ -122,6 +122,7 @@ Repeat
 | **Planning Cadence** | Templates for each time horizon | TEMPLATE_Quarter/Month/Week/Daily.md |
 | **Plan Instances** | Actual quarterly/monthly/daily plans | Q1_Review_Q2Planning.md, 2026-03_March_Planning.md |
 | **Metrics** | Execution reality tracking + adjustment signals | METRICS_ENGINE.md, TEMPLATE_Weekly/Monthly_Metrics.md |
+| **Automation** | Command interface + readiness spec + command pack | LIFE_AGENT_AUTOMATION_INTERFACE.md, TEMPLATE_Command_Pack.md |
 | **Project Context** | Snapshot of each project's state | Signee/RobotOS/Zephyr_CONTEXT.md |
 | **Review Docs** | Analysis + learning at month/quarter end | Part B of plan instances |
 | **Logs** | Decision/Spike/Idea records | Decision_Log.md, Spike_Log.md |
@@ -160,6 +161,8 @@ Repeat
 - **Philosophy:** [Operating System v1.1](01_OS/operating_system_thang_nguyen_v1_1.md)
 - **Workflows:** [TEMPLATE_Quarter_Final.md](05_TEMPLATES/TEMPLATE_Quarter_Final.md) or current quarter plan
 - **Execution:** [TEMPLATE_Daily.md](05_TEMPLATES/TEMPLATE_Daily.md) or today's plan
+- **Metrics:** [METRICS_ENGINE.md](metrics/METRICS_ENGINE.md)
+- **Automation:** [LIFE_AGENT_AUTOMATION_INTERFACE.md](LIFE_AGENT_AUTOMATION_INTERFACE.md) or [Command Pack](05_TEMPLATES/TEMPLATE_Command_Pack.md)
 - **Projects:** [Project Contexts](08_PROJECT_CONTEXT/) (Signee/RobotOS/Zephyr)
 
 ---

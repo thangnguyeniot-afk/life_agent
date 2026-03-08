@@ -195,6 +195,13 @@ Use these; don't create variants:
 2. If pattern repeats 2+ weeks → create System Change
 3. Common fixes: reduce formalization, add escape hatch, skip non-critical template field
 
+### "I want to run a routine operation without filling templates manually"
+1. Use command-based operation — see `05_TEMPLATES/TEMPLATE_Command_Pack.md`
+2. Send a short command with minimal fields (e.g., `open day`, `close day`, `plan week`)
+3. Agent 2 (Copilot) reads the repo and generates the output
+4. For non-trivial decisions, route to Agent 1 (ChatGPT) first, then Agent 2
+5. Full spec: `LIFE_AGENT_AUTOMATION_INTERFACE.md`
+
 ---
 
 ## Quick Links
@@ -206,6 +213,7 @@ Use these; don't create variants:
 - **Current month plan:** `03_PLANNING/02_MONTH/2026-03_March_Planning.md`
 - **Decision log:** `04_LOGS/Decision_Log.md`
 - **Knowledge base:** `knowledge/`
+- **Command quick reference:** `05_TEMPLATES/TEMPLATE_Command_Pack.md`
 
 ---
 

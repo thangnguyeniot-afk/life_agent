@@ -15,6 +15,7 @@
 - [5) Planning Cadence](#5-planning-cadence)
 - [6) Knowledge System](#6-knowledge-system)
 - [6b) Metrics Engine](#6b-metrics-engine)
+- [6c) Automation Layer](#6c-automation-layer)
 - [7) Reviews & Monthly Journal](#7-reviews--monthly-journal)
 - [8) Writing Rules](#8-writing-rules)
 - [9) Cadence](#9-cadence)
@@ -126,6 +127,18 @@ Includes:
 
 ---
 
+## 6c) Automation Layer
+
+**Location:** repo root + `05_TEMPLATES/`
+
+- `LIFE_AGENT_AUTOMATION_READINESS_REVIEW.md` — Analysis of what is automation-ready vs. still manual. First-cycle targets.
+- `LIFE_AGENT_AUTOMATION_INTERFACE.md` — Canonical spec: command model, team roles, input schemas, output contracts, automation boundaries.
+- `05_TEMPLATES/TEMPLATE_Command_Pack.md` — Practical quick-reference: 12 copy-paste command templates for daily use.
+
+**Model:** Human → minimal input → Agent 2 (repo read + file write), with Agent 1 (reasoning) for non-trivial decisions.
+
+---
+
 ## 7) Reviews & Monthly Journal
 
 **Reviews (keep permanently):**
@@ -211,3 +224,4 @@ Read in this order:
 - Current Week Plan: `03_PLANNING/03_WEEK/2026-W10_WeekPlan.md`
 - Current Month Plan: `03_PLANNING/02_MONTH/2026-03_March_Planning.md`
 - Latest Quarterly Plan: `03_PLANNING/01_QUARTER/Q1_Review_Q2Planning.md`
+- Command Quick Reference: `05_TEMPLATES/TEMPLATE_Command_Pack.md`
