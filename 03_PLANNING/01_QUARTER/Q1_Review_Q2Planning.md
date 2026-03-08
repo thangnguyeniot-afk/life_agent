@@ -146,6 +146,7 @@ Purpose: summarize the measurable outcomes of the quarter.
 | RobotOS Prototype | Board boot + CNC demo | Hardware ready, integration progressing | In Progress |
 | Zephyr Stability | CI pass rate 100% | CI stable, regression framework complete | Achieved |
 | Execution Capacity | 4 blocks/day sustainable | 3–4 blocks stable, 5 blocks occasional | Achieved |
+| Strategic Drift | Allocation within ±15% | Maintained | Achieved |
 
 This scorecard summarizes objective-level outcomes and feeds directly into the next quarter's planning baseline.
 
