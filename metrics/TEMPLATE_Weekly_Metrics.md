@@ -13,6 +13,7 @@
 - [3. Drift Signals](#3-drift-signals)
 - [4. Interpretation](#4-interpretation)
 - [5. Adjustment for Next Week](#5-adjustment-for-next-week)
+- [6. Decision Output](#6-decision-output)
 
 ---
 
@@ -89,6 +90,19 @@ Mark any that occurred this week:
 …
 
 **Strategic concern to escalate to monthly or quarterly review?**
+…
+
+---
+
+## 6. Decision Output
+
+**Capacity reality (summary):**  
+…
+
+**Main drift source:**  
+…
+
+**Adjustment for next week (1–2 things):**  
 …
 
 ---

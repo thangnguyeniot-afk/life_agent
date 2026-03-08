@@ -111,6 +111,16 @@
 
 ---
 
+## Metrics Capture (1 min)
+
+**Actual blocks executed today:** … / planned
+
+**Energy level:** Low / Normal / High
+
+**Unplanned work absorbed:** (rough % or time estimate)
+
+---
+
 ## DoD (Daily closure)
 - [ ] Main artifact captured
 - [ ] Unfinished work documented

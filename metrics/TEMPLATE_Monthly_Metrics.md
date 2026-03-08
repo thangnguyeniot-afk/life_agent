@@ -13,6 +13,7 @@
 - [3. Drift Review](#3-drift-review)
 - [4. System Review](#4-system-review)
 - [5. Feed into Next Month](#5-feed-into-next-month)
+- [6. Decision Output](#6-decision-output)
 
 ---
 
@@ -96,6 +97,19 @@
 …
 
 **Capacity baseline for next month's planning:** … blocks/day (conservative) | … blocks/day (stretch)
+
+---
+
+## 6. Decision Output
+
+**Capacity reality (summary):**  
+Conservative sustained: … blocks/day | With spikes: … blocks/day
+
+**Main drift source:**  
+…
+
+**Adjustment for next month (1–3 things):**  
+…
 
 ---
 

@@ -9,6 +9,7 @@
 
 - [1. Purpose](#1-purpose)
 - [2. Design Principles](#2-design-principles)
+- [2.1 Pilot Mode (First 2–4 Weeks)](#21-pilot-mode-first-24-weeks)
 - [3. Core Metrics](#3-core-metrics)
 - [4. Roll-up Model](#4-roll-up-model)
 - [5. Warning Signals](#5-warning-signals)
@@ -44,6 +45,18 @@ Specifically it:
 - **No vanity metrics.** Total tasks completed is noise. Completion rate against plan is signal.
 - **Trend over signal.** One bad day is noise. Three bad days is a pattern. Act on patterns.
 - **Clarity over completeness.** 5 useful metrics beat 15 partial ones.
+
+---
+
+## 2.1 Pilot Mode (First 2–4 Weeks)
+
+When you start using the Metrics Engine:
+
+- **Establish baseline, not optimize aggressively.** The first 2–4 weeks are for learning your real patterns, not for perfect execution.
+- **Prioritize consistency over precision.** Capture metrics the same way each day/week. Precision adjustments come later.
+- **Do not add new metrics during pilot.** Stick to the 8 core metrics. New ideas go to a backlog.
+- **Adjust thresholds only after you have data.** The warning signal thresholds (e.g., "<70% completion rate") are educated guesses. Update them only after 4–8 weeks of real usage.
+- **If overhead feels high, drop a metric temporarily.** Better to track 6 metrics consistently than 8 haphazardly. Resume later.
 
 ---
 
