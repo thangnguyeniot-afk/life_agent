@@ -150,10 +150,12 @@ Nếu **Có**, ghi:
 ## 5.6 Backlog Selection for Next Week (3–5 phút)
 > Chọn từ backlog những việc thực sự được phép đi vào tuần tới — không kéo tất cả vào Weekly Plan.
 
-| Candidate | Why this week? | Type | Size (S/M/L) | Ambiguity (0–5) | Expected Artifact | Decision |
-|---|---|---|---|---|---|---|
-| … | … | Big / Small / KTLO / Change | … | … | … | Pick / Not now |
-| … | … | Big / Small / KTLO / Change | … | … | … | Pick / Not now |
+| Candidate | Why this week? | Type | Size (S/M/L) | Ambiguity (0–5) | Priority Score | Expected Artifact | Decision |
+|---|---|---|---|---|---|---|---|
+| … | … | Big / Small / KTLO / Change | … | … | … | … | Pick / Not now |
+| … | … | Big / Small / KTLO / Change | … | … | … | … | Pick / Not now |
+
+> **Priority Score** = Strategic Alignment + Impact + Urgency – Effort Cost (mỗi yếu tố 1–3). Score hỗ trợ chọn việc, không thay thế capacity / ambiguity / trade-off.
 
 **Rules:**
 - Chỉ chọn những việc đủ rõ để cam kết tuần này

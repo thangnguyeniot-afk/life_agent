@@ -266,3 +266,197 @@ J --> C
 - **Lưu Bang (Thủy):** non-attachment, quyết sớm, buông đúng lúc, giữ lực đường dài
 
 Bản OS này biến hai thứ đó thành **hệ vận hành cụ thể** để bạn nâng từ 50–60% lên trạng thái **tự duy trì** mà không đốt tinh thần.
+---
+
+## 9) Task Standard v1
+
+> Schema tối thiểu để mọi task/phase có thể đi vào lịch và ra được artifact.
+
+### 9.1 Fields bắt buộc
+
+| Field | Mô tả |
+|---|---|
+| **Goal** | Mục tiêu 1 câu — rõ đủ để biết khi nào xong |
+| **Type** | Loại task (xem 9.2) |
+| **Size** | XS / S / M / L / XL (xem định nghĩa bên dưới) |
+| **Ambiguity** | 0–5 (0 = hoàn toàn rõ, 5 = rất mơ hồ) |
+| **Expected Artifact** | Output cụ thể kỳ vọng (file / commit / doc / decision) |
+| **DoD** | Điều kiện dừng — đọc lại biết mình đã xong chưa |
+| **Status** | Inbox / Backlog / Next / Scheduled / Done / Killed |
+| **Owner** | Ai chịu trách nhiệm (mặc định là bản thân) |
+
+### 9.2 Task Types
+
+| Type | Mục đích |
+|---|---|
+| **Execution** | Thực thi rõ ràng — có output/artifact cụ thể |
+| **Spike / Framing** | Làm rõ mơ hồ — output là hiểu biết / quyết định / scope |
+| **KTLO / Maintenance** | Duy trì hệ thống — không tạo value mới nhưng không làm sẽ đứt |
+| **System Change** | Thay đổi cách vận hành — quyết định ở Weekly/Monthly Review |
+
+### 9.3 Size
+
+| Size | Ý nghĩa |
+|---|---|
+| **XS** | ≤30 phút |
+| **S** | ~1–2h |
+| **M** | ~2–4h (nửa ngày) |
+| **L** | ~1 ngày — chỉ schedule khi đã rõ |
+| **XL** | >1 ngày — **phải tách phase trước khi schedule** |
+
+### 9.4 Readiness Rule
+Task chỉ được đi vào scheduling khi:
+- Goal rõ ràng (biết xong nghĩa là gì)
+- Size ước lượng được
+- Ambiguity đã estimate
+- Expected Artifact xác định
+- DoD đủ nhìn thấy để dừng an toàn
+
+### 9.5 Hard Rules
+- **XL không được schedule trực tiếp** — tách thành phases (M/L) trước
+- **Ambiguity ≥ 4 không được execute trực tiếp** — convert thành Spike/Framing trước
+- Không có task nào không có artifact kỳ vọng
+- Scheduler vận hành trên task/phase, không nhận "goal mờ"
+
+### 9.6 Task Card (example)
+```
+- Goal: Viết spec pub/sub interface cho RobotOS Middleware
+- Type: Execution
+- Size: M
+- Ambiguity: 2
+- Expected Artifact: spec/pubsub_interface_v1.md
+- DoD: Đọc lại 10' sau — hiểu được API surface và constraints
+- Status: Scheduled
+```
+
+---
+
+## 10) Backlog Structure v1
+
+> Mọi việc phải đi đúng tầng. Không kéo Inbox thẳng vào lịch.
+
+### 10.1 Flow
+
+```
+Inbox / Raw Ideas
+      ↓
+   Backlog
+      ↓
+    Next
+      ↓
+ This Month
+      ↓
+  This Week
+      ↓
+    Today
+```
+
+### 10.2 Định nghĩa từng tầng
+
+| Tầng | Mục đích | Thuộc về đây | KHÔNG thuộc về đây |
+|---|---|---|---|
+| **Inbox / Raw Ideas** | Chứa ý tưởng thô chưa đánh giá | Mọi thứ nảy ra trong ngày | Task có scope rõ |
+| **Backlog** | Danh sách "có thể làm" — chưa cam kết | Item đã mô tả ngắn, chưa chắc được chọn | Việc đang làm, việc urgent |
+| **Next** | Đủ rõ, đủ gần để xem xét tháng/tuần tới | Item đã qua tối thiểu Ambiguity check | Item chưa có Goal/Artifact |
+| **This Month** | Outcome/priority được chấp nhận ở cấp tháng | Item đã qua scope/capacity check tháng | Backlog chưa được chọn |
+| **This Week** | Commitment đã chọn từ monthly scope + backlog selection | Item Pick từ section 5.6 Weekly template | Item "tự mở rộng" ngoài selection |
+| **Today** | Task/phase được schedule để thực thi hôm nay | Item từ This Week, đủ readiness | XL task, Ambiguity ≥ 4 chưa qua Spike |
+
+### 10.3 Promotion Rules
+- **Inbox → Backlog:** có Goal tối thiểu + đủ để viết 1 dòng rõ ràng
+- **Backlog → Next:** Ambiguity ≤ 3, có Expected Artifact, có thể estimate Size
+- **Next → This Month / This Week:** đã qua scope check + capacity check
+- **Next → Spike:** Ambiguity ≥ 4 — phải làm rõ trước
+- **Stale quá lâu:** archive / kill / reframe (không để backlog bốc mùi)
+
+### 10.4 Review Cadence
+- **Inbox:** clear nhanh — cùng ngày hoặc trong 24h
+- **Backlog:** review định kỳ (không nhất thiết hàng tuần)
+- **Next:** review trước mỗi vòng weekly/monthly planning
+
+---
+
+## 11) Priority Score v1
+
+> Công cụ hỗ trợ chọn việc. Không thay thế trade-off hay capacity judgment.
+
+### 11.1 Model
+
+Score 4 yếu tố, mỗi yếu tố 1–3:
+
+| Yếu tố | 1 | 2 | 3 |
+|---|---|---|---|
+| **Strategic Alignment** | Ít liên quan North Star / outcome tháng / mục tiêu quý | Có liên quan | Trực tiếp thúc đẩy |
+| **Impact** | Ít giá trị nếu xong | Có giá trị rõ | Tạo ra sự thay đổi đáng kể |
+| **Urgency** | Không cần làm sớm | Có deadline hoặc blocker | Càng chậm càng mất giá trị |
+| **Effort Cost** | Nhanh / nhẹ | Vừa | Nặng / tốn nhiều capacity |
+
+**Công thức:**
+```
+Priority Score = Strategic Alignment + Impact + Urgency - Effort Cost
+```
+
+Range: **0 → 9**
+
+### 11.2 Interpretation
+
+| Score | Ý nghĩa |
+|---|---|
+| 7–9 | Ưu tiên chọn trước |
+| 4–6 | Chọn nếu capacity cho phép |
+| 0–3 | Backlog / defer / kill |
+
+### 11.3 Rules
+- Score là công cụ hỗ trợ, **không phải chân lý tuyệt đối**
+- Quyết định trade-off vẫn thắng raw score
+- Ambiguity cao có thể làm giảm readiness dù score cao
+- KTLO có thể bypass score khi thực sự bắt buộc
+- Không tốn quá 2 phút để score một item
+
+---
+
+## 12) Scheduler Engine v1
+
+> Spec vận hành lịch từ Week xuống Day. Scheduler là execution selection, không phải scope expansion.
+
+### 12.1 Đơn vị scheduling
+- Scheduler vận hành trên **task/phase**, không nhận project mờ
+- Đơn vị ưu tiên: **M** (2–4h, nửa ngày)
+- **S**: support / prep / wrap-up
+- **L**: chỉ dùng khi đã đủ rõ
+- **XL**: bắt buộc tách phase trước
+
+### 12.2 Daily capacity model
+Một ngày bình thường:
+- **2–3 M tasks** (hoặc 1 L + 1–2 S)
+- **1–2 S tasks** support/wrap-up
+- **Max 1 item ambiguity cao** mỗi ngày
+- Luôn giữ buffer — không pack kín ngày
+
+### 12.3 Ordering rules (gợi ý thứ tự trong ngày)
+1. Fixed events (meeting, sync bắt buộc)
+2. Review / prep (Architect block ~30')
+3. **High-value / High-ambiguity work** — khi năng lượng còn cao
+4. Lower-ambiguity execution (Builder blocks)
+5. Wrap-up / close / handoff
+
+### 12.4 Protection rules
+- Không xếp nhiều item ambiguity cao liền nhau trong cùng 1 ngày
+- Nếu task vỡ trong lúc execute → reschedule phần còn lại như 1 phase mới
+- Nếu item urgent mới xuất hiện trong ngày/tuần → **swap**, không cộng dồn
+- Buffer là bắt buộc, không phải tùy chọn
+
+### 12.5 Fallback / Khi ngày vỡ kế hoạch
+1. Không rewrite lại toàn bộ ngày
+2. Giữ **1 item giá trị cao nhất** còn lại
+3. Push phần còn lại về This Week / Next
+4. Kết ngày với:
+   - Artifact đã hoàn thành hôm nay
+   - Item còn dở → tiếp tục ngày mai
+   - First step ngày mai
+
+### 12.6 Weekly-to-Daily bridge
+- Daily plan phải đến từ **weekly commitments**
+- Không tạo commitment lớn mới ở cấp ngày
+- Daily scheduling = **chọn item để execute**, không phải expand thêm scope
+- Nếu something mới khẩn cấp → apply swap rule (Midweek Commitment Swap)
