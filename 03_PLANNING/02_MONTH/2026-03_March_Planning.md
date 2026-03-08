@@ -1,234 +1,312 @@
-# 2026-03 — Monthly Planning & Review (Agent-Ready)
+﻿# MONTH PLAN & REVIEW – 2026-03 (March)
 
-> **Month:** 2026-03 (March)  
-> **Total time:** 45–60 phút  
-> **Vai trò:** Đánh giá xu hướng + điều chỉnh cấp chiến thuật (không phải tổng hợp tuần, quản lý task, hay nghiên cứu sâu).  
-> **Nguyên tắc:** Nhìn **xu hướng**, đánh giá **hệ**, không đánh giá bản thân. Thu hẹp/tinh chỉnh hệ thống, **không mở rộng thêm phức tạp**.
+> **Instance file** aligned to TEMPLATE_Month_Final.md and 2026-Q1 quarter direction.
+> **Month role:** Setup & Scope Freeze (Month 1 of Q1: prepare for delivery phases)
 
 ---
 
-# A) Monthly Planning (đầu tháng) — 25–35 phút
-
-## 1) Định hướng tháng này (5 phút)
-- **Theme (1 câu):** Freeze scope + chạy được basic flow lặp lại; mọi thứ còn lại là "nice-to-have".
-- **North Star (ưu tiên tuyệt đối):** Đến 31/03, Signee có demo scope v1 rõ ràng + board chạy basic flow ổn định có log/runbook.
-- **Stop doing (1–3 mục):**
-  1) Không mở thêm "feature mới" khi scope chưa freeze (bất kỳ dự án nào).
-  2) Không nhảy giữa 3–4 việc khó trong ngày (chặn "priority distortion").
-  3) Không làm XL trực tiếp — task nào >2h phải tách phase.
-
-## 2) Core Outcomes của tháng (tối đa 3) — 10 phút
-> Outcome = đo được (không phải to-do).  
-> Mỗi outcome phải có Artifact để không trôi.
-
-### 🗺 Outcome ↔ Project map
-| # | Outcome | Project | Deadline |
-|---|---|---|---|
-| O1 | Signee Demo Scope Freeze v1 | **Signee** | 2026-03-14 |
-| O2 | Board bringup + RobotOS Middleware & STM32F4 | **RobotOS** | 2026-03-28 |
-| O3 | Frontend skeleton + 1 flow tối thiểu | **Signee** | 2026-03-31 |
+# PART A: MONTHLY PLANNING
 
 ---
 
-1) **Outcome #1 — Signee Demo Scope Freeze v1 (internal sign-off)**
-   - **Project:** Signee
-   - **Impact:** Chặn scope creep + làm nền cho demo tháng 4
-   - **Metric / DoD:**
-     - Có feature list MUST + OUT-OF-SCOPE list + acceptance (demo criteria) cho từng feature.
-     - Đọc lại sau 10 phút vẫn hiểu "demo gồm gì / không gồm gì / đo bằng gì". (DONE = dừng lại không mất ngữ cảnh)
-   - **Deadline:** 2026-03-14
-   - **Owner:** You
-   - **Artifact (bắt buộc):** `RFC_Signee_DemoScope_v1.md` + `CHECKLIST_Signee_DemaCriteria.md`
+## 1) Định hướng tháng này
 
-2) **Outcome #2 — Board basic flow ổn định + RobotOS Middleware & STM32F4 bringup**
-   - **Project:** RobotOS
-   - **Impact:** Unblock v0.1 Alpha (deadline 2026-04-30) — không bringup xong tháng 3 = trễ v0.1
-   - **Metric / DoD:**
-     - Cả 2 board (board cũ + board mới) chạy được basic flow lặp lại ≥3 lần (cùng điều kiện)
-     - Có log: lỗi / nguyên nhân / cách fix / điều kiện chạy lại
-     - Có "runbook 1 trang" để setup và chạy lại nhanh
-     - Có định nghĩa test case + quality gate rõ ràng (cho dev test tuần 4)
-     - RobotOS: Zephyr workspace setup xong (west init/update, build OK trên STM32F4)
-     - RobotOS: Middleware core skeleton khởi động (pub/sub interface + memory pool ở mức compile & link)
-     - RobotOS: STM32F4 bringup tối thiểu (build + flash + hello world chạy được)
-   - **Deadline:** 2026-03-28
-   - **Owner:** You
-   - **Artifact (bắt buộc):** `LOG_Board_Bringup_Mar.md` + `RUNBOOK_Board_BasicFlow_1page.md` + `LOG_RobotOS_Bringup_Mar.md`
+**Theme:** Setup & Freeze Scope — tháng này chốt những gì sẽ delivery tháng 4–5, không mở việc mới.
 
-3) **Outcome #3 — Frontend started (1 app skeleton + 1 flow tối thiểu)**
-   - **Project:** Signee
-   - **Impact:** Mở đường cho demo flow tháng 4; ADR kiến trúc tránh rewrite sau
-   - **Metric / DoD:**
-     - Có skeleton chạy được (routing/navigation baseline)
-     - Có 1 flow end-to-end tối thiểu (mock data ok)
-     - Có 1 ADR chốt quyết định kiến trúc UI
-   - **Deadline:** 2026-03-31
-   - **Owner:** You
-   - **Artifact (bắt buộc):** `ADR_UI_Architecture.md` + commit(s) + link repo
+**North Star:** 
+By 31/3, all projects have scope frozen v1 (Signee demo criteria locked, RobotOS prototype scope locked, Zephyr release criteria clear). All boards running basic flow with runbooks.
 
-## 3) Capacity & Rhythm (để không overload) — 5–10 phút
-- **WIP max (cá nhân):** 2–3 việc lớn / tuần
+**Stop doing this month:**
+- No new features if scope not yet frozen
+- No jumping between 3–4 hard tasks per day (prevent priority distortion)
+- No XL task execution without breaking into phases first
+
+---
+
+## 2) Core Outcomes của tháng (tối đa 3)
+
+> Outcome = measurable result, not task list. Each must have artifact.
+
+### Outcome Map
+
+| # | Outcome | Project | Deadline | Artifact |
+|---|---|---|---|---|
+| O1 | Signee Demo Scope Freeze v1 (internal) | Signee | 2026-03-14 | RFC_DemoScope_v1.md |
+| O2 | Board basic flow stable + RobotOS Middleware/STM32F4 bringup | RobotOS | 2026-03-28 | RUNBOOK_BasicFlow.md + LOG_Bringup.md |
+| O3 | Frontend skeleton + 1 flow (PWA ready) | Signee | 2026-03-31 | ADR_UI_Architecture.md + commit |
+
+---
+
+**Outcome #1: Signee Demo Scope Freeze v1**
+
+- **Why:** Prevent scope creep → unblock April delivery
+- **Success signal / DoD:**
+  - Feature list (MUST + OUT-OF-SCOPE) locked and documented
+  - Demo acceptance criteria defined for each feature
+  - Read after 10 min: still understand what demo includes
+  - Artifact: `RFC_Signee_DemoScope_v1.md` (signed off)
+- **Owner:** You
+
+---
+
+**Outcome #2: Board Basic Flow Stable + RobotOS Middleware & STM32F4 Bringup**
+
+- **Why:** Unblock Q1 roadmap (v0.1 Alpha deadline 2026-04-30)
+- **Success signal / DoD:**
+  - Both boards run basic flow repeatable ≥3 times (same conditions)
+  - Logs captured: error + root cause + fix + rerun condition
+  - Runbook 1-page exists (setup + rerun fast)
+  - Test cases defined + quality gate clear (for dev in week 4)
+  - RobotOS: Zephyr workspace setup done (west init/update, build OK on STM32F4)
+  - RobotOS: Middleware core skeleton started (pub/sub interface + memory pool link OK)
+  - RobotOS: STM32F4 bringup minimal (build + flash + hello world runs)
+  - Artifact: `LOG_Board_Bringup_Mar.md` + `RUNBOOK_BasicFlow_1page.md` + `LOG_RobotOS_Bringup_Mar.md`
+- **Owner:** You
+
+---
+
+**Outcome #3: Frontend Skeleton + 1 Flow (PWA Ready)**
+
+- **Why:** Unblock demo flows April; finalize UI architecture before large effort
+- **Success signal / DoD:**
+  - Skeleton app runs (routing/navigation baseline)
+  - 1 flow end-to-end working (mock data OK)
+  - UI architecture ADR done (prevents rewrite later)
+  - Artifact: `ADR_UI_Architecture.md` + code commit(s)
+- **Owner:** You
+
+---
+
+## 3) Capacity & Rhythm
+
+- **WIP max (concurrent):** 2–3 big things / week
 - **Capacity budget (%):**
-  - Signee (dominant): 35%
-  - RobotOS (middleware + bringup): 30%
-  - Zephyr KTLO (work-world): 15%
-  - Buffer (đứt mạch, fix, emergency ≤48h): 20%
-- **Deep blocks/day:** 2 blocks (90')
-- **Office hours (techlead):** slot 1 (Tue/Thu 16:00–16:30) ; slot 2 (Sat 10:00–10:30) *(có thể đổi theo thực tế)*
+  - Signee scope/demo: 35%
+  - RobotOS middleware + bringup: 30%
+  - Zephyr KTLO (work): 15%
+  - Buffer (breakage, emergency ≤48h): 20%
+- **Deep blocks/day:** 2 blocks (90 min each)
+- **Office hours (if applicable):** Tue/Thu 16:00–16:30 + Sat 10:00–10:30
 
-## 4) Weekly Intent (4 tuần) — 5–10 phút
-> Mỗi tuần 1 "intent" rõ ràng để giảm mơ hồ và tránh scope phình.
+---
 
-- **Week 1 (2026-W09): Setup + Framing**
-  - Big: draft demo scope v0 + test board (board mới)
-  - Small: tạo LOG + checklist bring-up; RobotOS west init/update + STM32F4 hello world
-  - KTLO focus: dọn 1–2 nợ nhỏ (không mở việc mới)
+## 3.1) Monthly Planning Protection Rules
 
-- **Week 2 (2026-W10): Freeze v1 + First loop**
-  - Big: Signee demo scope freeze v1 (internal sign-off)
-  - Small: run basic flow lần 2–3, ghi rõ điều kiện; giao board + assign việc cho các anh em; RobotOS scope freeze v1
-  - KTLO focus: giữ nhịp "ít nhưng đúng"
+**Scope Trade-off Rule:** If March gains new major work → existing outcome scope must shrink.
 
-- **Week 3 (2026-W11): Stabilize + QA strategy**
-  - Big: board stabilize top 3 blockers → runbook 1 trang; define quality gate + test cases + test methodology cho dev (tuần 4)
-  - Small: RobotOS Middleware core skeleton (pub/sub + memory pool compile & link OK)
-  - KTLO focus: không để "chuyển ngữ cảnh" phá nhịp
+**Drift Check Rule:** If actual capacity strays >15% from 35/30/15/20 budget for >1 week → rebalance immediately.
 
-- **Week 4 (2026-W12): All apps running + April readiness**
-  - Big: chốt Outcome #2 (board runbook + RobotOS bringup log); see all apps running (board + Frontend + RobotOS); gom artifact + link
-  - Small: Frontend test bằng PWA (OK on mobile); RobotOS STM32F4 bringup xác nhận lần cuối; 2–4 contracts I/O
-  - KTLO focus: đóng debt, không mở scope
+**Anti-Wish-List Rule:** Only 3 outcomes max. If 4th seems "strategic" → defer to Q2.
 
-## 5) Risk / Assumption / Decisions (P0) — 5 phút
-### Top risks (3)
-1) Scope creep (demo scope không "ký" được → kéo dài sang tháng 4)
-2) Board instability (basic flow không lặp lại được → tốn tuần 3–4)
-3) Priority distortion (emergency xen vào làm vỡ deep blocks, trôi artifact)
+---
+
+## 4) Weekly Intent (Month-level direction)
+
+> Not detailed weekly scheduling — just the theme/direction for each week to prevent scope creep.
+
+**Week 1 (2026-W09): Setup + Framing**
+- Signee: draft demo scope v0, test on new board
+- RobotOS: Zephyr setup, STM32F4 hello world
+- Zephyr: maintain stability
+- Anti-goal: don't open new features
+
+**Week 2 (2026-W10): Freeze v1 + First Loop**
+- Signee: internal scope freeze v1
+- RobotOS: basic flow run 2–3 times, log conditions
+- Zephyr: stable on mainline
+- Anti-goal: no scope creep
+
+**Week 3 (2026-W11): Stabilize + QA Strategy**
+- Signee: board stabilize top 3 blockers → runbook
+- RobotOS: Middleware core skeleton (pub/sub compile/link OK)
+- Zephyr: maintain CI green
+- Anti-goal: no context switching
+
+**Week 4 (2026-W12): All Apps Running + April Readiness**
+- Signee: Outcome #3 done, PWA test on mobile
+- RobotOS: STM32F4 bringup final confirm
+- Zephyr: no P0 bugs
+- Anti-goal: no new scope, close debt
+
+---
+
+## 4.1) Monthly Scope Trade-off
+
+| Added Priority | Trade-off Action | What Traded Off | Reason |
+|---|---|---|---|
+| (none expected) | N/A | N/A | Month is scope-locked from quarter direction |
+
+---
+
+## 5) Risk / Assumption / Decisions
+
+### Top strategic risks (3)
+
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Scope creep (demo scope not "signed off") | Outcome #1 miss, delay April | Feature freeze rule + weekly drift check |
+| Board instability (basic flow can't repeat) | Outcome #2 miss, delay v0.1 | Early bringup weeks 1–2 + runbook discipline |
+| Priority distortion (emergency breaks deep blocks) | Artifact loss, rework in April | Buffer 20%, escalate >4h emergency items to weekly review |
 
 ### Assumptions
-- Board/hardware đã sẵn sàng để test thực tế trong tháng 3.
-- Demo scope có thể đóng băng nội bộ (ít nhất mức "v1") mà không cần chờ hoàn hảo.
-- RobotOS tháng 3: scope freeze v1 + bắt đầu Middleware core skeleton + STM32F4 bringup tối thiểu (không mở thêm module ngoài pub/sub + memory pool).
 
-### Decisions needed (24/48/72h)
-- [ ] Decision: "Basic flow" định nghĩa chính thức là gì? | Deadline: 2026-03-02 | Owner: You
-- [ ] Decision: Signee demo MUST list (top 10) chốt v0 | Deadline: 2026-03-03 | Owner: You
-- [ ] Decision: UI architecture choice (routing/state strategy) cho skeleton | Deadline: 2026-03-10 | Owner: You
+- Board hardware ready for testing in March
+- Demo scope v1 can be frozen internally (doesn't need to be perfect)
+- RobotOS month 1 is scope freeze + Middleware skeleton + STM32F4 bringup only (no module expansion)
+- Capacity assumptions from quarterly plan hold: 3–4 blocks/day sustainable
 
-## 6) Reading budget (để agent đọc ít nhưng đúng)
-- **INDEX:** `00_INDEX.md` (map vault + map repo bus)
-- **00_CONTEXT:** `00_CONTEXT/Quarter_Hardening_Mar-May.md`
-- **Snapshot (latest):** `SNAPSHOTS/2026-02_EndMonth.md`
-- **Week plans:** `WEEK/2026-W09.md` … `2026-W12.md`
-- **ADR liên quan:** `ADR_UI_Architecture.md`, `ADR_Signee_DemoCriteria.md` (nếu có)
-- **Team tools (Jira/GitHub links):** *(điền link repo + board notes)*
+### Decisions needed (early)
+
+| Decision | Required by | Owner |
+|---|---|---|
+| "Basic flow" formal definition | 2026-03-02 | You |
+| Signee demo MUST list (top 10) v0 | 2026-03-03 | You |
+| UI architecture choice (routing/state) | 2026-03-10 | You |
 
 ---
 
-# B) Monthly Review (cuối tháng) — 45–60 phút
+## 6) Reading budget
 
-## 0) DoD (Definition of Done) cho Monthly Review
-Monthly Review được coi là **HOÀN THÀNH** khi:
-- Có cái nhìn rõ ràng về **xu hướng tháng**
-- Tất cả **System Change** trong tháng được đánh giá (giữ/điều chỉnh/rollback)
-- Trọng tâm tháng tới được **thu gọn & rõ ràng** (1–2 điểm)
-- Không mang cảm giác "phải làm nhiều hơn", mà là "làm đúng hơn"
+- **Quarter direction:** `03_PLANNING/01_QUARTER/Q1_Review_Q2Planning.md` (Part A)
+- **Weekly plans:** `03_PLANNING/03_WEEK/2026-W09.md` through `2026-W12.md`
+- **Logs:** `04_LOGS/Decision_Log.md`, `04_LOGS/Spike_Log.md`
+- **Templates:** `05_TEMPLATES/TEMPLATE_Month_Final.md`, `05_TEMPLATES/TEMPLATE_Week_Final.md`
 
 ---
 
-## 1) Executive Summary of the Month (5 phút)
-- **Tháng này nhìn chung thế nào? (1–3 câu):** …
-- **Trạng thái tổng thể:** ⬆️ / ➖ / ⬇️
-- **Cảm nhận chung về năng lượng & nhịp sống:** …
-- **Một câu mô tả tháng:** …
+# PART B: MONTHLY REVIEW
 
 ---
 
-## 2) Output & Outcome Review (10–15 phút)
-> Nhìn output như **tín hiệu**, không quản lý delivery.
+## 0) DoD for Monthly Review
 
-### 📦 Output đáng chú ý
-- **Những output quan trọng đã hoàn thành:**
-  - …
-  - …
-- **Output quan trọng chưa đạt / bị trì hoãn:**
-  - …
-  - …
+Monthly Review is **COMPLETE** when:
 
-### 🎯 Outcome thực tế
-- **Điều gì thực sự tạo ra giá trị trong tháng này?**
-  - …
-- **Điều gì làm nhiều nhưng giá trị thấp?**
-  - …
+- [ ] Clear view of the month's direction and trajectory
+- [ ] All System Changes evaluated (keep/adjust/rollback)
+- [ ] Next month's focus narrowed to 1–2 clear priorities
+- [ ] Capacity truth captured (what assumptions held, what broke)
+- [ ] Carry forward / stop / reframe is actionable for April
 
 ---
 
-## 3) System Change Review (10–15 phút)
-> Đánh giá các "System Change" đã triển khai trong tháng (thói quen/cơ chế/công cụ/quy tắc).
+## 1) Executive Summary of the Month
 
-| System Change | Mục tiêu | Kết quả (Effective/Partial/Ineffective) | Quyết định (Giữ/Điều chỉnh/Rollback) |
+**Month narrative (1–3 sentences):** 
+…
+
+**Overall state:** [ ] Up (exceeded intent) | [ ] Flat (as planned) | [ ] Down (underperformed) | [ ] Pivoted (intentional change)
+
+**Energy trend:** …
+
+**One sentence summary:** …
+
+---
+
+## 2) Output & Outcome Review
+
+### Completed Outputs
+- Outcome #1 (Signee Demo Scope Freeze): …
+- Outcome #2 (Board Basic Flow + RobotOS Bringup): …
+- Outcome #3 (Frontend Skeleton): …
+
+### What Created the Most Value?
+…
+
+### What Consumed Effort Without Proportional Value?
+…
+
+---
+
+## 2.1) Monthly Drift Check
+
+**Did the month stay aligned with quarterly intent?**
+- [ ] Yes, mostly aligned | [ ] Partially aligned | [ ] Significantly drifted
+
+**Did one project stream dominate unexpectedly?**
+- [ ] No, allocation stayed balanced | [ ] Slightly off-balance | [ ] One stream overran others (which?)
+
+**What capacity assumptions broke?**
+…
+
+---
+
+## 3) System Change Review
+
+Did any process/rule changes happen this month? How effective?
+
+| System Change | Purpose | Result (Effective/Partial/Ineffective) | Decision (Keep/Adjust/Rollback) |
 |---|---|---|---|
 | … | … | … | … |
-| … | … | … | … |
-| … | … | … | … |
 
-**Rule (cứng):**
-- Mỗi System Change **phải có kết luận** trong tháng.
-- Không để System Change trôi sang tháng sau mà **không đánh giá**.
+**Rule:** Each System Change must conclude this month; don't defer evaluation.
 
 ---
 
-## 4) Life Anchors — Monthly Trend (5–10 phút)
-> Đánh giá xu hướng duy trì cuộc sống trong cả tháng.
+## 3.1) Portfolio Balance Check
 
-| Anchor | Xu hướng (⬆️/➖/⬇️) | Nhận định ngắn |
+| Domain | Planned % | Actual % | Status | Notes |
+|---|---|---|---|---|
+| Signee scope/demo | 35% | …% | OK / Drift | … |
+| RobotOS dev | 30% | …% | OK / Drift | … |
+| Zephyr KTLO | 15% | …% | OK / Drift | … |
+| Buffer | 20% | …% | OK / Drift | … |
+
+---
+
+## 4) Life Anchors — Monthly Trend
+
+| Anchor | Trend (⬆️/➖/⬇️) | Notes |
 |---|---|---|
-| Movement |  |  |
-| House Basics |  |  |
-| Eat Properly |  |  |
-| Recovery |  |  |
-| Connection |  |  |
+| Movement (exercise) | | |
+| House Basics (sleep, eat) | | |
+| Focus Flow | | |
+| Recovery | | |
+| Connection | | |
 
 ---
 
-## 5) Anti-Anchors — Monthly Pattern (5–10 phút)
-> Nhận diện pattern phá hoại lặp lại trong tháng.
+## 5) Anti-Anchors — Monthly Pattern
 
-- **Anti-Anchor nào xuất hiện nhiều nhất?** …
-- **Có hành vi nào trở thành "bình thường mới"?** …
-- **Điều gì cần chặn sớm trong tháng tới?** …
+**Destructive pattern that appeared?**
+…
+
+**Did any anti-anchor become "new normal"?**
+…
+
+**What needs blocking early next month?**
+…
 
 ---
 
-## 6) Focus Adjustment for Next Month (10 phút)
-> Tinh chỉnh trọng tâm, **không đặt mục tiêu tham vọng**.
+## 6) Focus Adjustment for Next Month
 
-### 🎯 Trọng tâm chính của tháng tới (1–2)
-1) …
-2) …
+### Primary focus for April (1–2)
+1. …
+2. …
 
-### ⛔ Điều cần giảm / bỏ / tránh
+### What to reduce / stop / avoid
 - …
 - …
 
-### 🛠 System Change dự kiến (nếu có)
-- …
-
----
-
-## 7) Context Compression (nếu tới chu kỳ 2–4 tuần / milestone)
-- Snapshot created? (Yes/No): …
-- Snapshot link: …
-
----
-
-## Appendix (tuỳ chọn)
-- PR/commit/doc quan trọng
-- Links: ADR / Spec / Logs / Jira/GitHub
+### System Changes planned for April
 - …
 
 ---
 
-## Note về Daily HOT 15 ngày (để khỏi nổ folder)
-- Daily files chỉ giữ **15 ngày HOT**.  
-- Lịch sử dài hạn nằm ở **Weekly/Monthly/Snapshots** và **Logs**.
+## 7) Context Compression
+
+**Snapshot created?** (Yes/No): …
+
+**Snapshot location:** `06_MONTHS/2026-03_End_of_March.md` (optional)
+
+---
+
+## Appendix (Optional)
+
+**Important artifacts generated:**
+- Commit links
+- ADR/RFC links
+- Jira/GitHub board snapshots
+- Decision log entries
+- Spike log entries
