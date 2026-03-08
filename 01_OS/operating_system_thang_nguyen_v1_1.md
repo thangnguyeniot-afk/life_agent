@@ -629,6 +629,88 @@ Không biến thành hệ ghi chú phức tạp — nếu không reusable và kh
 
 ---
 
+---
+
+## 14) Anti-Gravity Rules v1
+
+> Hệ thống phải phục vụ thực thi. Không để việc vận hành hệ thống nặng hơn giá trị mà nó tạo ra.
+
+**System serves execution, not the other way around.**
+
+Templates là công cụ hỗ trợ, không phải nghĩa vụ cứng trong mọi tình huống.
+
+---
+
+### 14.1 Escape Hatches
+
+#### Escape Hatch 1 — Quick Task
+Task nhỏ, rõ, làm nhanh không cần đi qua full task schema. Có thể ghi tối giản 1 dòng nếu:
+- rõ mục tiêu
+- không mơ hồ
+- không cần trade-off lớn
+- không tạo rủi ro hệ thống
+
+> Ví dụ: fix nhỏ, trả lời ngắn, cập nhật đơn giản, việc hành chính ngắn.
+
+#### Escape Hatch 2 — Lightweight Research
+Không phải mọi hoạt động đọc / tìm hiểu đều bắt buộc tạo `RESEARCH_NOTE`. Chỉ research có giá trị tái sử dụng, ảnh hưởng quyết định, hoặc phục vụ design mới cần artifact rõ.
+
+> Đọc nhanh để unblock execution có thể không cần ghi thành artifact.
+
+#### Escape Hatch 3 — Skip Daily Formality
+Ngày quá bận / có incident / bị phân mảnh mạnh có thể bỏ bớt ritual cấp ngày. Giữ tối thiểu:
+- việc quan trọng nhất
+- artifact chính
+- bước đầu tiên của ngày mai
+
+---
+
+### 14.2 80/20 Documentation Rule
+
+- **80%** công việc chỉ cần mức ghi chép tối thiểu
+- **20%** công việc quan trọng mới cần artifact có cấu trúc đầy đủ
+
+Artifact cấu trúc đầy đủ nên dùng cho:
+- architecture decisions
+- system design
+- reusable knowledge
+- important research
+- scope / system changes
+- work that will be revisited later
+
+---
+
+### 14.3 Proportionality Rule
+
+Mức độ formalization phải tỷ lệ với:
+- độ mơ hồ
+- mức độ quan trọng
+- khả năng tái sử dụng
+- rủi ro nếu hiểu sai / quên mất
+
+| Việc | Mức formalization |
+|---|---|
+| Nhỏ, rõ, ít rủi ro | Tối giản — 1 dòng đủ |
+| Lớn, mơ hồ, chiến lược | Formal hơn — có artifact |
+| Decision kiến trúc | ADR bắt buộc |
+| Research chỉ để unblock nhanh | Nhẹ — không bắt buộc artifact |
+
+---
+
+### 14.4 Friction Check
+
+Nếu một phần của hệ thống:
+- bị né tránh nhiều lần
+- thường xuyên bị bỏ qua
+- tốn công hơn giá trị nó tạo ra
+- làm chậm execution rõ rệt
+
+→ Coi đó là **tín hiệu system friction** — đưa vào Weekly Review.
+
+> Không mặc định lỗi thuộc về kỷ luật cá nhân; có thể hệ đang quá nặng.
+
+---
+
 ## Kiến trúc Personal OS v1 — Tổng quan
 
 ```
@@ -649,4 +731,10 @@ PLANNING CADENCE
 ├── Monthly Review / Planning
 ├── Weekly Review / Planning
 └── Daily Plan / Shutdown
+
+ANTI-GRAVITY SAFEGUARDS (§14)
+├── Escape Hatches           — Quick Task / Lightweight Research / Skip Daily Formality
+├── 80/20 Documentation      — formal only when it matters
+├── Proportionality Rule     — formalization ∝ importance × ambiguity
+└── Friction Check           → Weekly Review signal
 ```

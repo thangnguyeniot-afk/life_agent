@@ -1,6 +1,8 @@
 ﻿# Daily Plan – YYYY-MM-DD
 
 > **Nguồn:** Weekly commitment → Daily execution. Không tạo commitment mới ở cấp ngày.
+> Nếu ngày bị vỡ mạnh, giữ tối thiểu: 1 việc quan trọng nhất · artifact chính · first step ngày mai.
+> Không bắt buộc formalize đầy đủ với việc nhỏ, rõ, ít rủi ro.
 
 ## Morning Setup (5')
 - Deep blocks hôm nay: …

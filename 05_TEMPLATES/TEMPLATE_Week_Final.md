@@ -66,10 +66,13 @@
 - [ ] Có sự lệch rõ giữa **plan vs reality** không? (ví dụ: plan deep work nhưng thực tế toàn interruption)
 - [ ] Có task lặp lại nhiều tuần nhưng chưa được đưa vào planner structure không?
 - [ ] Weekly plan thường xuyên overcommit so với năng lực thực tế không?
+- [ ] Có phần nào của hệ thống đang tạo **friction lớn hơn giá trị** không?
 
 ### Quyết định
 Nếu trả lời **YES** cho bất kỳ câu hỏi nào ở trên:
 → **Nâng cấp thành System Change** (mục 5) để điều chỉnh capacity / deep work blocks / support budget / planning rules.
+
+Nếu friction check có tín hiệu → cân nhắc tạo **System Change** để giảm độ nặng / giảm formalism / thêm escape hatch.
 
 **Rule cứng:** Planner phải mô tả **thực tế vận hành**, không phải lý tưởng mong muốn.
 
