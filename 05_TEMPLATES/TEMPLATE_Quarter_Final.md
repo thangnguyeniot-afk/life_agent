@@ -3,6 +3,13 @@
 > **Mục đích:** Định hướng chiến lược + bảo vệ khỏi trôi dạt + đảm bảo tính khả thi.
 > Quarter = control direction + allocate capacity + set boundaries.
 
+**⚠️ Template này KHÔNG dùng để:**
+- quản lý task chi tiết
+- lập lịch tuần
+- breakdown execution step-by-step
+
+**Template này DỰA VÀO:** quarter planning + review + strategic oversight.
+
 ---
 
 # PART A: QUARTER PLANNING
@@ -103,6 +110,20 @@ For each objective:
 
 ### Decisions that must be resolved early
 - Decision: … | Required by: … | Owner: …
+
+---
+
+## 5.5) Early Quarter Signals
+
+**Tín hiệu sớm cho thấy quarter đang lệch hướng hoặc vượt khả năng thật:**
+
+- [ ] Một objective đang nuốt quá nhiều effort (>50–60%)
+- [ ] Monthly direction bị collapse sớm
+- [ ] Dependency quan trọng chưa được gỡ đúng lúc
+- [ ] Capacity thực tế giảm rõ so với giả định đầu quý
+- [ ] Một stream bất ngờ trở thành dominant và làm lệch strategic allocation
+
+**Rule:** Nếu xuất hiện tín hiệu mạnh trong nhóm này → kích hoạt **Strategic Drift Check** sớm, không chờ cuối quý.
 
 ---
 
