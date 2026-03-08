@@ -130,27 +130,38 @@ Human responds:
 
 ### Confirmation Model
 
-| Risk Level | When Applied | Example |
-|---|---|---|
-| No confirmation | Pure additive, no strategic content | `log decision`, `create spike` (append only) |
-| Light confirmation | Agent presents summary before writing | `open day`, `update metrics` |
-| Full confirmation | Involves scope or planning decisions | `plan week`, `plan month`, `close month` |
+| Risk Level | Default Behavior | When Applied | Example |
+|---|---|---|---|
+| None | Direct write | Pure additive, no strategic content | `log decision` (append only) |
+| Light | Preview first | Low-risk file creation or backfill | `open day`, `close day`, `update metrics`, `create spike` |
+| Full | Present options | Scope or planning decisions | `plan week`, `plan month`, `close week`, `close month` |
 
 ---
 
 ## 5. Core Command Set
 
+### Pilot Core Commands
+
+These 8 commands form the primary operational loop. Implement these first in the 4-phase roadmap.
+
 | Command | Purpose | Minimal Input | Expected Output | Confirmation |
 |---|---|---|---|---|
-| `open day` | Instantiate today's daily plan | Top priority (1 sentence) | `YYYY-MM-DD_DailyPlan.md` created in `03_PLANNING/04_DAILY/` | Light |
+| `open day` | Instantiate today's daily plan | Top priority (1 sentence) | Daily plan file + suggested blocks + first action anchor | Light |
 | `close day` | Fill shutdown section + metrics capture | actual blocks / energy / artifact / main drift | Daily file shutdown + metrics section filled | Light |
 | `plan week` | Create next week plan file | Week number, top priorities, known capacity constraints | `YYYY-Www_WeekPlan.md` created in `03_PLANNING/03_WEEK/` | Full |
 | `close week` | Complete week review + metrics | Main wins, main drift, energy pattern, actual blocks | `WeeklyReview.md` + `WeeklyMetrics.md` created | Full |
 | `plan month` | Create next month plan file | Month, theme, top 3 outcomes (1-line each) | `YYYY-MM_MonthPlan.md` created in `03_PLANNING/02_MONTH/` | Full |
 | `close month` | Fill monthly review + metrics | 3 wins, 3 lessons, capacity truth, adjustment | Month plan Part B filled + monthly metrics created | Full |
-| `update metrics` | Fill metrics from daily captures | Raw daily data or "compute from daily files" | Weekly or monthly metrics file updated | Light |
 | `create spike` | Instantiate spike document | Topic/question, constraint, deadline | `SPIKE_YYYY-MM-DD_<topic>.md` created | Light |
 | `log decision` | Append decision record | Decision, options, chosen, rationale | `Decision_Log.md` entry appended | None |
+
+### Secondary / On-Demand Commands
+
+These 4 commands support the core loop. Use when needed; do not require cadence.
+
+| Command | Purpose | Minimal Input | Expected Output | Confirmation |
+|---|---|---|---|---|
+| `update metrics` | Repair, backfill, or recompute metrics from daily captures | Raw daily data or "compute from daily files" + level + week/month | Weekly or monthly metrics file updated + warning signals flagged | Light |
 | `triage inbox` | Process idea parking lot | None (Agent reads lot) | Categorized list: Execute / Spike / Defer / Drop | Full (human decides fate) |
 | `drift check` | Surface current execution drift | None (Agent reads recent plans + actuals) | Drift summary + 1–2 adjustment options | Full (human confirms action) |
 | `prepare artifact` | Create knowledge artifact stub | Type (ADR/Research/Summary/Design), topic | Artifact file created in `knowledge/` | Light |
@@ -251,6 +262,22 @@ adjustment: [1–2 things for next month]
 
 ---
 
+### `update metrics`
+
+> *Repair, backfill, or recompute metrics when daily captures are missing, partial, or need recalculation.*
+> **Output:** Metrics file updated + warning signals flagged | **Confirm:** Light
+
+```
+update metrics
+level: [weekly / monthly]
+week or month: [YYYY-Www or YYYY-MM]
+source: [from daily files / raw daily data below]
+```
+
+*(Agent attempts to read daily files first. If incomplete or missing, agent requests raw daily data or asks human to fill manually.)*
+
+---
+
 ### `create spike`
 
 ```
@@ -302,7 +329,7 @@ Each command must produce the outputs listed below. No extra files unless needed
 
 | Command | Primary Output | Secondary Output | Metrics Touch |
 |---|---|---|---|
-| `open day` | Daily plan file created | None | None |
+| `open day` | Daily plan file created | Suggested block layout + first action anchor | Risk note if priority conflicts with week plan |
 | `close day` | Daily file shutdown section filled | Metrics Capture section filled | Daily entry |
 | `plan week` | Week plan file created | Carry-over list from previous week | None |
 | `close week` | Weekly review file created | Weekly metrics instance created | Weekly rollup |
@@ -361,7 +388,7 @@ Each command must produce the outputs listed below. No extra files unless needed
 **Target:** Establish `open day` → `close day` as the daily execution loop.
 
 - Start each day with `open day [priority]`.
-- End each day with `close day [3 fields]`.
+- End each day with `close day [4 fields; artifact may be "none"]`.
 - No other commands required.
 - Goal: Generate real daily data for metrics.
 
