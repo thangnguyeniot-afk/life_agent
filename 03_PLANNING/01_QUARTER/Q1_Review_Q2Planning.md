@@ -517,32 +517,3 @@ Quarter này có 2 tầng song song:
 Không cái nào được phá cái kia.
 
 
-BẮC ↑
-TÂY ←                                                                 → ĐÔNG (SÂN + CỔNG)
-
-                CỤM BẾP (10x5) + NVS/BẾP PHỤ                 KHỐI CHÍNH (15x5) + HÈ 2m
-┌───────────────┬──────────────────────────────┐        ┌───────────────────────────────┬──────────┐
-│ NVS cũ 3x3     │                              │        │        PN1 (≈4.5x5)           │  HÈ 2m   │
-│               │                              │        │-------------------------------│ (mặt sân)│
-├───────────────┤      NHÀ BẾP 10x5            │        │        PN2 (≈4.5x5)           │          │
-│ Bếp phụ 3x6    │                              │        └───────────────────────────────┴──────────┘
-│ (cúng giỗ)     │                              │        ┌───────────────────────────────┬──────────┐
-│ (chạy dọc)     │                              │        │  PHÒNG KHÁCH/THỜ 6x5           │  HÈ 2m   │
-└───────────────┴───────────────┬──────────────┘        │  (cửa chính mở ra sân)         │ (đoạn dọc)│
-                                │ HÀNH LANG/CẦU THANG    └───────────────────────────────┴──────────┘
-                                │ (lõi giao thông)                    │
-                        ┌───────┴───────┐                              │  HÈ 2m chạy ngang trước lõi
-                        │   PN3 3x4     │<----- đoạn hè dọc 2m --------│  (như bạn vẽ: "đây là hè+mái")
-                        └───────────────┘                              │
-                                                                       │
-                         ┌───────────────┐                             │
-                         │  NHÀ KHO 3x4   │                             │
-                         └───────────────┘                             │
-
-NAM ↓
-
-GHI CHÚ:
-- PN4 (gác lửng) nằm trên PN1 + PN2 (tổng 9x5).
-- Hè/hiên luôn rộng 2m: (1) dọc mặt sân phía Đông; (2) đoạn chạy ngang trước hành lang; (3) 1 đoạn dọc cạnh PN3 như bạn vẽ.
-- Cửa chính: ở phòng khách/thờ mở ra sân phía Đông.
-- Cửa hông/phụ: nằm ở vùng hành lang (theo sơ đồ bạn vẽ có cửa ở góc dưới phải sân).
