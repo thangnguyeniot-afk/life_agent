@@ -21,6 +21,7 @@
 - [7. Major Risks](#7-major-risks)
 - [8. Execution Model](#8-execution-model)
 - [9. Alignment with Quarter Strategy](#9-alignment-with-quarter-strategy)
+- [Week Seeds](#week-seeds)
 
 **PART B: MARCH REVIEW**
 - [10. DoD for Monthly Review](#10-dod-for-monthly-review)
@@ -255,6 +256,53 @@ Specifically:
 - **Interface locking prevents integration rework** in May when both tracks must come together
 
 By March 31, the entire team should feel confident about what needs to be delivered and how the systems fit together. April and May become execution-focused, not discovery-focused.
+
+---
+
+## Week Seeds
+
+> Tactical direction for each week, distilled from monthly scope.
+> Not a task list — use each seed to generate the Week Mission (week plan). Tasks are broken down inside the week plan, not here.
+
+### Week 1 — W09 (March 2–8): Clarify & Bring-up
+Focus:
+- Signee: Get board environment operational; run basic flow and document blockers
+- RobotOS: Architecture spike; identify Zephyr integration unknowns; surface v0.1/v0.2 scope intent
+
+Expected progress:
+- Board bring-up completed or blockers explicitly documented
+- RobotOS architecture spike results captured
+- Initial Signee scope questions listed (not yet resolved)
+
+### Week 2 — W10 (March 9–15): Validate & Skeleton
+Focus:
+- Signee: Validate board baseline, draft demo scope v0, identify must-have vs. out-of-scope
+- RobotOS: Draft architecture ADR, define core layer boundaries (Adapter / Framework / App)
+
+Expected progress:
+- Signee scope v0 drafted (not final)
+- RobotOS architecture draft ready for internal review
+- No unresolved P0 hardware blockers
+
+### Week 3 — W11 (March 16–22): Integration & Shape
+Focus:
+- Signee: Finalize and sign off demo scope RFC; begin POC on first feature
+- RobotOS: Finalize architecture ADR; lock module interface contracts
+
+Expected progress:
+- Demo scope RFC signed off (target ~3/18)
+- RobotOS ADR approved and module interfaces locked
+- Signee frontend POC underway
+
+### Week 4 — W12 (March 23–29): Freeze & Verify
+Focus:
+- Signee: Complete POC on 1–2 features; produce board setup runbook
+- RobotOS: Validate bringup runbook; confirm build/flash/debug pipeline end-to-end
+
+Expected progress:
+- All exit criteria green or explicitly escalated
+- Developer environment documented and verified
+- Zero blocking ambiguities remain for April
 
 ---
 
