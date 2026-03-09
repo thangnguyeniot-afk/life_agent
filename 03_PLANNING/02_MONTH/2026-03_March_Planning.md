@@ -76,13 +76,13 @@ Discovery and validation work now prevents 2–3x rework in April/May.
 
 ---
 
-## 3. Project Focus
+## 3. Project Focus — Strategic Emphasis
 
-| Project | Role in March | Priority |
+| Project | Role in March | Strategic Emphasis |
 |---|---|---|
-| **Signee** | Demo preparation, board validation, scope definition | 🔴 Dominant (55% capacity) |
-| **RobotOS** | Prototype scope freeze, architecture definition, interfaces | 🟠 Secondary (25% capacity) |
-| **Zephyr** | Stable environment, maintain baseline, support both tracks | 🟡 Foundation (10% capacity) |
+| **Signee** | Demo preparation, board validation, scope definition | 🔴 Dominant (55% strategic focus) |
+| **RobotOS** | Prototype scope freeze, architecture definition, interfaces | 🟠 Secondary (25% strategic focus) |
+| **Zephyr** | Stable environment, maintain baseline, support both tracks | 🟡 Foundation (10% strategic focus) |
 
 **Why this priority:**
 Signee Series A demo (May 30) is the external-facing deadline. Demo scope must be frozen before April to prevent feature creep during implementation. RobotOS prototype (May 31) depends on clear architecture boundaries before implementation. Zephyr is a stable base that must not create friction for either project.
@@ -261,8 +261,10 @@ By March 31, the entire team should feel confident about what needs to be delive
 
 ## Week Seeds
 
-> Tactical direction for each week, distilled from monthly scope.
-> Not a task list — use each seed to generate the Week Mission (week plan). Tasks are broken down inside the week plan, not here.
+> **Tactical direction only.** Week Seeds define the intended focus for each week, distilled from monthly scope.
+> Week Seeds are **not a task list and must not become a task board.**
+> Actual commitments, task decomposition, and scheduling happen in the Week Plan (separate planning artifact).
+> Each seed is used to generate the corresponding Week Mission.
 
 ### Week 1 — W09 (March 2–8): Clarify & Bring-up
 Focus:
@@ -303,6 +305,9 @@ Expected progress:
 - All exit criteria green or explicitly escalated
 - Developer environment documented and verified
 - Zero blocking ambiguities remain for April
+
+#### March 30–31: Month Close & Handoff
+Reserved for final review, escalation handling, exit criteria validation, and April briefing prep.
 
 ---
 
@@ -383,8 +388,8 @@ Monthly Review is **COMPLETE** when:
 **Did the month align with quarterly intent?**
 - [ ] Yes, fully aligned | [ ] Mostly aligned | [ ] Partially aligned | [ ] Drifted significantly
 
-**Strategic focus vs. time allocation:**
-Note: the earlier allocation percentages (Signee 55% / RobotOS 25% / Zephyr 10%) represent strategic focus during the month, while the drift check percentages below represent a balanced time allocation baseline used for review.
+**Strategic Emphasis vs. Execution Review Baseline:**
+Note: Section 3 shows strategic emphasis (55% / 25% / 10%) to guide monthly priorities. The review baseline below (35% / 30% / 15% / 20%) is a balanced allocation target used to detect actual time drift during the month. These serve different purposes: strategic emphasis guides what matters; review baseline detects what actually happened.
 
 **Project allocation (target: Signee 35% / RobotOS 30% / Zephyr 15% / Buffer 20%):**
 
