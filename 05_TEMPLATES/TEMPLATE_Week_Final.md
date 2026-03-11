@@ -27,7 +27,7 @@
   - [6.5 Ưu tiên lớn của tuần tới](#65-ưu-tiên-lớn-của-tuần-tới-13)
   - [6.6 System Change sẽ thực hiện / theo dõi](#66-system-change-sẽ-thực-hiện--theo-dõi)
   - [6.7 Risks / Constraints / Protection](#67-risks--constraints--protection-13)
-  - [6.8 Execution Anchors](#68-execution-anchors)
+  - [Daily Anchor Guidance](#daily-anchor-guidance)
 - [7) Definition of Done (DoD)](#7-definition-of-done-dod--weekly-review-hoàn-thành-khi)
 
 ---
@@ -268,31 +268,39 @@ Nếu **Có**, ghi:
 - **Risk:** …
   - **Protection / mitigation:** …
 
-## 6.8 Execution Anchors
-> Execution Anchors are daily directional checkpoints derived from this week's missions.  
-> They help Daily plans stay aligned with Week missions without becoming task lists.  
-> Anchors are NOT micro-steps. Keep them short and directional (1 line per day).
+## Daily Anchor Guidance
+> Anchor = direction, not task list.  
+> Daily execution selects from weekly missions based on capacity and operating context.  
+> **Max 2 anchors per day.** No 3-project parallelism on a normal day.  
+> Weekday rhythm: Zephyr-dominant (Primary). Weekend: Signee / RobotOS / Review.
 
-**[Project / Stream A]**
-- Mon:
-- Tue:
-- Wed:
-- Thu:
-- Fri:
+**Mon**
+- Primary Anchor: (project — direction)
+- Secondary Anchor: (project — direction)
 
-**[Project / Stream B]**
-- Mon:
-- Tue:
-- Wed:
-- Thu:
-- Fri:
+**Tue**
+- Primary Anchor:
+- Secondary Anchor:
 
-**[Project / Stream C]**
-- Mon:
-- Tue:
-- Wed:
-- Thu:
-- Fri:
+**Wed**
+- Primary Anchor:
+- Secondary Anchor:
+
+**Thu**
+- Primary Anchor:
+- Secondary Anchor:
+
+**Fri**
+- Primary Anchor:
+- Secondary Anchor:
+
+**Sat** *(optional — if work session planned)*
+- Primary Anchor:
+- Secondary Anchor:
+
+**Sun** *(optional — review / reset)*
+- Primary Anchor: Weekly Review
+- Secondary Anchor: (light continuation if energy allows)
 
 ### ❌ Không research  
 ### ❌ Không tối ưu lịch  

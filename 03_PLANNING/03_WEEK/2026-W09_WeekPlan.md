@@ -226,31 +226,34 @@ Target allocation *this week*:
 
 ## 7. Execution Anchors
 
-> Daily directional checkpoints derived from W09 missions.  
-> Each anchor tells Daily: *"what is the most important direction for this project today?"*  
-> Anchors are NOT task lists. Keep execution details in daily blocks.  
-> Note: Team meeting moved to Tuesday — Monday anchors reflect individual work only.
+> Anchor = direction for the day, not a task list.  
+> Max 2 anchors per day. Daily blocks derive from these; do not copy missions mechanically.  
+> Weekday rhythm: Zephyr = Primary (office-hours dominant). Signee / RobotOS rotate as Secondary.  
+> Note: Team meeting moved to Tuesday — Monday = individual work only.
 
-**Signee**
-- Mon: Capture W08 remaining items; start scope context draft for board baseline
-- Tue: Team meeting — gather inputs, capture new customer requirements; clarify scope questions
-- Wed: Board bring-up progress; document any hardware blockers found
-- Thu: Consolidate scope questions list; draft board status summary
-- Fri: Close board baseline doc (rough); confirm scope questions are captured for W10
+**Mon (3/2)**
+- Primary Anchor: Zephyr — review test queue; push 1–2 tests; close any W08 loose ends
+- Secondary Anchor: Signee — start scope context draft for board baseline
 
-**RobotOS**
-- Mon: Start architecture spike — list key unknowns (interface strategy, layer boundaries)
-- Tue: Explore Zephyr integration questions; note STM32F4 compatibility gaps
-- Wed: Draft v0.1/v0.2 scope intent (1–2 sentences each); identify what is still unclear
-- Thu: Consolidate spike notes; flag any unknowns needing a sub-spike before W10
-- Fri: Close spike artifact (rough notes ok); confirm architecture questions are listed
+**Tue (3/3)**
+- Primary Anchor: Zephyr — team sync; capture Zephyr-related blockers and integration concerns
+- Secondary Anchor: Signee — gather meeting inputs; capture new customer requirements and scope questions
 
-**Zephyr**
-- Mon: Review test queue; push out 1–2 tests from queue to maintain baseline activity
-- Tue: Attend team sync; capture any Zephyr-related blockers or integration concerns
-- Wed: Verify mainline green; confirm Signee board environment has no Zephyr-side blocker
-- Thu: Confirm RobotOS STM32F4 environment can be set up without friction
-- Fri: Weekly status check — mainline stable, no regressions, both tracks unblocked
+**Wed (3/4)**
+- Primary Anchor: Zephyr — verify mainline green; confirm Signee board env has no Zephyr-side blocker
+- Secondary Anchor: RobotOS — draft v0.1/v0.2 scope intent; identify what remains unclear
+
+**Thu (3/5)**
+- Primary Anchor: Zephyr — confirm RobotOS STM32F4 environment can be set up without friction
+- Secondary Anchor: RobotOS — consolidate spike notes; flag unknowns needing sub-spike before W10
+
+**Fri (3/6)**
+- Primary Anchor: Signee — close board baseline doc (rough); confirm scope questions captured for W10
+- Secondary Anchor: Zephyr — weekly status check; mainline stable, no regressions
+
+**Sat (3/7)** *(optional — if work session available)*
+- Primary Anchor: RobotOS — close spike artifact (rough notes ok); architecture questions listed
+- Secondary Anchor: Signee — review scope questions list; confirm readiness for W10 scope drafting
 
 ---
 

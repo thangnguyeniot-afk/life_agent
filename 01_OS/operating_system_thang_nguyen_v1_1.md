@@ -482,6 +482,28 @@ Một ngày bình thường:
 - Daily scheduling = **chọn item để execute**, không phải expand thêm scope
 - Nếu something mới khẩn cấp → apply swap rule (Midweek Commitment Swap)
 
+### 12.7 Anchor Scheduler Rule (v1)
+
+> Anchor = daily directional focus. Not a task list. Not a checklist. One day, one direction per project slot.
+
+**Daily anchor limit: 2**
+- **Primary Anchor** — dominant direction for the day (highest capacity goes here)
+- **Secondary Anchor** — supporting direction (≤ 30–40% of remaining capacity)
+- *(Optional)* Review / Recovery / Buffer marker — use on heavy meeting days or end-of-week
+
+**Rules:**
+1. A normal day MUST NOT have 3 concurrent project anchors.
+2. Anchor is outcome-oriented, not micro-task-oriented. One directional sentence per anchor.
+3. Weekday operating rhythm:
+   - **Mon–Fri:** Zephyr is dominant (office-hours project). Zephyr = Primary Anchor most days.
+   - Secondary rotates between Signee and RobotOS based on week mission priority.
+4. Weekend operating rhythm:
+   - Signee / RobotOS = Primary focus.
+   - Must include time for Weekly Review / cadence reset (Sunday preferred).
+5. If a day is all Zephyr (heavy meetings or incident), Secondary Anchor may be omitted — write *(none / buffer)* explicitly.
+6. Anchor generation: Week Mission → Execution Anchors → Daily Morning Setup → block selection.
+   Do NOT copy missions mechanically. Compress to a direction.
+
 ---
 
 ## 13) Knowledge Engine v1

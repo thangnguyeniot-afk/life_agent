@@ -38,7 +38,9 @@
 
 ## Morning Setup (5 min)
 
-- **Today's Anchor:** (from Week's Execution Anchors for this project/day)
+- **Primary Anchor:** (project — direction)
+- **Secondary Anchor:** (project — direction)
+- **Why these anchors today?** (optional — 1-line capacity/context reason)
 - **1 Most Important Outcome today:** …
 - **Key artifact expected:** …
 - **First execution step:** …
@@ -99,6 +101,9 @@
 ## Shutdown (10 min)
 
 **Main artifact today:**  
+…
+
+**Key question raised today:**  
 …
 
 **Unfinished work:**  
