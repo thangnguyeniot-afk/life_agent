@@ -27,6 +27,7 @@
   - [6.5 Ưu tiên lớn của tuần tới](#65-ưu-tiên-lớn-của-tuần-tới-13)
   - [6.6 System Change sẽ thực hiện / theo dõi](#66-system-change-sẽ-thực-hiện--theo-dõi)
   - [6.7 Risks / Constraints / Protection](#67-risks--constraints--protection-13)
+  - [6.8 Execution Anchors](#68-execution-anchors)
 - [7) Definition of Done (DoD)](#7-definition-of-done-dod--weekly-review-hoàn-thành-khi)
 
 ---
@@ -266,6 +267,32 @@ Nếu **Có**, ghi:
   - **Protection / mitigation:** …
 - **Risk:** …
   - **Protection / mitigation:** …
+
+## 6.8 Execution Anchors
+> Execution Anchors are daily directional checkpoints derived from this week's missions.  
+> They help Daily plans stay aligned with Week missions without becoming task lists.  
+> Anchors are NOT micro-steps. Keep them short and directional (1 line per day).
+
+**[Project / Stream A]**
+- Mon:
+- Tue:
+- Wed:
+- Thu:
+- Fri:
+
+**[Project / Stream B]**
+- Mon:
+- Tue:
+- Wed:
+- Thu:
+- Fri:
+
+**[Project / Stream C]**
+- Mon:
+- Tue:
+- Wed:
+- Thu:
+- Fri:
 
 ### ❌ Không research  
 ### ❌ Không tối ưu lịch  

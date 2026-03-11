@@ -265,6 +265,7 @@ By March 31, the entire team should feel confident about what needs to be delive
 > Week Seeds are **not a task list and must not become a task board.**
 > Actual commitments, task decomposition, and scheduling happen in the Week Plan (separate planning artifact).
 > Each seed is used to generate the corresponding Week Mission.
+> Week Missions generate **Execution Anchors** (day-by-day directional checkpoints). Daily plans derive from today's anchor.
 
 ### Week 1 — W09 (March 2–8): Clarify & Bring-up
 Focus:

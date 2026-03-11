@@ -18,8 +18,9 @@
 - [4. Success Criteria & Exit Signals](#4-success-criteria--exit-signals)
 - [5. Capacity & Guardrails](#5-capacity--guardrails)
 - [6. Risks, Constraints & Protection](#6-risks-constraints--protection)
-- [7. Daily Breakdown Guidance](#7-daily-breakdown-guidance)
-- [8. DoD for Week](#8-dod-for-week)
+- [7. Execution Anchors](#7-execution-anchors)
+- [8. Daily Breakdown Guidance](#8-daily-breakdown-guidance)
+- [9. DoD for Week](#9-dod-for-week)
 
 ---
 
@@ -223,7 +224,37 @@ Target allocation *this week*:
 
 ---
 
-## 7. Daily Breakdown Guidance
+## 7. Execution Anchors
+
+> Daily directional checkpoints derived from W09 missions.  
+> Each anchor tells Daily: *"what is the most important direction for this project today?"*  
+> Anchors are NOT task lists. Keep execution details in daily blocks.  
+> Note: Team meeting moved to Tuesday — Monday anchors reflect individual work only.
+
+**Signee**
+- Mon: Capture W08 remaining items; start scope context draft for board baseline
+- Tue: Team meeting — gather inputs, capture new customer requirements; clarify scope questions
+- Wed: Board bring-up progress; document any hardware blockers found
+- Thu: Consolidate scope questions list; draft board status summary
+- Fri: Close board baseline doc (rough); confirm scope questions are captured for W10
+
+**RobotOS**
+- Mon: Start architecture spike — list key unknowns (interface strategy, layer boundaries)
+- Tue: Explore Zephyr integration questions; note STM32F4 compatibility gaps
+- Wed: Draft v0.1/v0.2 scope intent (1–2 sentences each); identify what is still unclear
+- Thu: Consolidate spike notes; flag any unknowns needing a sub-spike before W10
+- Fri: Close spike artifact (rough notes ok); confirm architecture questions are listed
+
+**Zephyr**
+- Mon: Review test queue; push out 1–2 tests from queue to maintain baseline activity
+- Tue: Attend team sync; capture any Zephyr-related blockers or integration concerns
+- Wed: Verify mainline green; confirm Signee board environment has no Zephyr-side blocker
+- Thu: Confirm RobotOS STM32F4 environment can be set up without friction
+- Fri: Weekly status check — mainline stable, no regressions, both tracks unblocked
+
+---
+
+## 8. Daily Breakdown Guidance
 
 ### Principles for Daily Execution
 
@@ -253,7 +284,7 @@ Not: "Completed task X, task Y 50% done, task Z to start tomorrow"
 
 ---
 
-## 8. DoD for Week
+## 9. DoD for Week
 
 Week 1 (W09) is **COMPLETE** when:
 
