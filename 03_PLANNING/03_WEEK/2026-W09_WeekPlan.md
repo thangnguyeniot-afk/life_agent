@@ -30,6 +30,7 @@
 **Dates:** March 2–8, 2026  
 **ISO Week:** W09  
 **Position in month:** Week 1 of 4  
+**Review file:** `07_REVIEWS/03_WEEK/2026-W09_Review.md`  
 
 **This week's role in March:**
 - First gate toward scope freeze (target ~3/16–3/18)

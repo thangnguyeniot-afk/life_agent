@@ -1,9 +1,11 @@
-# TEMPLATE_Week_Final.md — Weekly Review + Weekly Planning (Agent-Ready)
+# TEMPLATE_Week_Final.md — Weekly Planning (Agent-Ready)
 
 > **Week:** YYYY-Www (e.g., 2026-W10)  
 > **Time:** 20–30 phút  
 > **Vai trò:** *Nơi DUY NHẤT được phép ra quyết định thay đổi hệ thống* + chốt cam kết tuần tới.  
 > **Không phải:** nghiên cứu sâu, phân tích nguyên nhân gốc, hay tự đánh giá bản thân.
+> **Related Review:** `07_REVIEWS/03_WEEK/YYYY-Www_Review.md` ← create using `TEMPLATE_WeeklyReview_Final.md`
+> **Separation rule:** WeekPlan = commitment. WeeklyReview = judgment. Review content must NOT appear in this file.
 
 ---
 
@@ -327,6 +329,9 @@ Nếu **Có**, ghi:
 - **Daily sinh tín hiệu**  
 - **Weekly ra quyết định**  
 - **Không quyết định hệ thống ngoài Weekly Review**
+
+> **After completing this file:** Create the corresponding review at `07_REVIEWS/03_WEEK/YYYY-Www_Review.md` using `05_TEMPLATES/TEMPLATE_WeeklyReview_Final.md`.
+> The WeekPlan locks commitment. The WeeklyReview judges execution and hands off to the next plan.
 
 ---
 
