@@ -12,6 +12,7 @@
 - [1. Week Identity](#1-week-identity)
 - [2. Week Classification](#2-week-classification)
 - [3. Executive Judgment](#3-executive-judgment)
+- [3.1 Week Storyline](#31-week-storyline)
 - [4. Planned vs Actual](#4-planned-vs-actual)
 - [5. Artifact Ledger](#5-artifact-ledger)
 - [6. Questions Captured](#6-questions-captured)
@@ -36,13 +37,16 @@
 | File | Type | Evidence Quality |
 |---|---|---|
 | `03_PLANNING/03_WEEK/YYYY-Www_WeekPlan.md` | WeekPlan | Primary plan reference |
-| `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md` (Mon) | Daily | Confirmed / Partial / Drafted only |
-| `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md` (Tue) | Daily | Confirmed / Partial / Drafted only |
-| `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md` (Wed) | Daily | Confirmed / Partial / Drafted only |
-| `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md` (Thu) | Daily | Confirmed / Partial / Drafted only |
-| `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md` (Fri) | Daily | Confirmed / Partial / Drafted only |
+| Mon Daily | Daily | Confirmed / Partial / Drafted only |
+| Tue Daily | Daily | Confirmed / Partial / Drafted only |
+| Wed Daily | Daily | Confirmed / Partial / Drafted only |
+| Thu Daily | Daily | Confirmed / Partial / Drafted only |
+| Fri Daily | Daily | Confirmed / Partial / Drafted only |
+| Sat Daily *(if applicable)* | Daily | Confirmed / Partial / Drafted only |
+| Sun Daily *(if applicable)* | Daily | Confirmed / Partial / Drafted only |
 
 > If any daily files were not closed out (DoD checkboxes incomplete), note it here. The review must be grounded in evidence, not assumption.
+> Weekend files are included only if the week used them for meaningful execution or review.
 
 ---
 
@@ -74,17 +78,29 @@
 
 ---
 
+## 3.1 Week Storyline
+
+> 2–3 bullets capturing the actual weekly arc. Helps future retrospective reading across many weeks.
+> Operational, not reflective prose.
+
+- …
+- …
+- … *(optional)*
+
+---
+
 ## 4. Planned vs Actual
 
 > Review by mission / outcome, not by task checklist. Outcome movement = the measure.
 > Status: `Done` | `Partial` | `Blocked` | `Deferred` | `Unverified` | `Not started`
 > Evidence = artifact name, daily file reference, or team signal.
+> Rows: fill in the actual outcome areas for this week (typically 2–4 rows; examples: Signee board baseline, Zephyr mainline, RobotOS spike, etc.).
 
 | Mission / Outcome Area | Planned Outcome | Actual Movement | Status | Evidence |
 |---|---|---|---|---|
-| **Signee** — [label] | … | … | … | … |
-| **RobotOS** — [label] | … | … | … | … |
-| **Zephyr** — [label] | … | … | … | … |
+| … | … | … | … | … |
+| … | … | … | … | … |
+| … | … | … | … | … |
 
 **Mission-level notes:** (observations not captured in the table — max 3 bullets)
 
@@ -154,7 +170,7 @@
 **Main source of drag:** …
 
 **Realistic capacity next week:**
-[ ] Full (15–18 blocks)  [ ] -20% (~12–15 blocks)  [ ] -30% (~10–12 blocks)  [ ] Limited (reason: …)
+[ ] Full (~14–16 blocks)  [ ] Reduced (~11–13 blocks)  [ ] Limited (<10 blocks — reason: …)
 
 **Capacity notes:** (patterns or observations that should inform next week's planning)
 
@@ -192,11 +208,13 @@
 - Anchor limit: max 2/day (Primary + Secondary); no 3-project parallelism on normal days
 - …
 
-**Likely First Anchors (Mon–Tue):**
+**Likely First Anchors (Mon–Tue)** *(suggestions for next WeekPlan author; not commitments)*:
 - Mon Primary: …
 - Mon Secondary: …
 - Tue Primary: …
 - Tue Secondary: …
+
+> **Note:** These anchors are evidence-informed suggestions based on W09 carry-forward and observed direction. The next WeekPlan author will confirm, adjust, or replace them based on updated context. They are inputs to planning, not commitments.
 
 **Planning Note:**
 (1–2 sentences: what the next WeekPlan author must know before writing the plan)
@@ -215,6 +233,8 @@
 - Wed: `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md`
 - Thu: `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md`
 - Fri: `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md`
+- Sat (if exists): `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md`
+- Sun (if exists): `06_MONTHS/YYYY-MM_[Month]/YYYY-MM-DD_Daily.md`
 
 **Key Artifacts Reviewed:**
 - [artifact name] → [location]
