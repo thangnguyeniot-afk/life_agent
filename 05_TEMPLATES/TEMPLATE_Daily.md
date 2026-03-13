@@ -14,6 +14,7 @@
 - [Optional — Delegations / Handoffs](#optional--delegations--handoffs)
 - [Shutdown (10 min)](#shutdown-10-min)
 - [DoD (Daily closure)](#dod-daily-closure)
+- [Human Reflection (Optional)](#human-reflection-optional)
 
 ---
 
@@ -154,3 +155,26 @@
 - [ ] Unfinished work documented
 - [ ] Tomorrow's first step clear
 - [ ] Any escalation signals noted
+
+---
+
+## Human Reflection (Optional)
+
+> **Not a task log. Not planning.** A few lines to capture the human side of today.
+> 
+> This space records your lived experience: emotions, mental state, challenges, small insights,
+> meaningful moments, growth signals.
+
+**Reflective prompts** (choose 1–2 to guide your thinking; ignore if not relevant):
+- What emotion or mood dominated today?
+- What challenged me mentally or emotionally?
+- Was there a moment worth remembering?
+- Did I notice any personal growth or shift today?
+- How am I feeling about the anchors and pace this week?
+
+**Reflection:**  
+(2–4 sentences. Keep it light and natural, not heavy.)
+
+```
+(leave blank if reflection doesn't feel necessary today)
+```
