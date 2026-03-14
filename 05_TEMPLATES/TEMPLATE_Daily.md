@@ -7,8 +7,10 @@
 - [Context](#context)
 - [Source](#source)
 - [Daily Project Scope Rule (Critical)](#daily-project-scope-rule-critical)
+- [Work Time Domain (Critical)](#work-time-domain-critical)
 - [Morning Setup (5 min)](#morning-setup-5-min)
-- [Deep Work Blocks (prioritized)](#deep-work-blocks-prioritized)
+- [Office Hours – Deep Work](#office-hours--deep-work-mon--fri-900--1730)
+- [Evening – Personal Projects](#evening--personal-projects-1730-or-weekend)
 - [Builder / Support Work](#builder--support-work-active-anchors-only-max-34-items-size-s)
 - [Signals (check if occurred)](#signals-check-if-occurred)
 - [Optional — Delegations / Handoffs](#optional--delegations--handoffs)
@@ -49,7 +51,31 @@
 
 ---
 
+## Work Time Domain (Critical)
+
+> **Operating boundary:** Office hours (Mon–Fri, 9:00–17:30) are reserved for **Zephyr work only**.
+> 
+> **Personal projects** (RobotOS, Signee baseline, prototyping, research spikes, or experimental work) **must be scheduled in evening blocks** (17:30+ or weekend time).
+> 
+> - **Why:** Protects core work time for primary responsibility (Zephyr); prevents office-hours fragmentation.
+> - **Rationale:** Zephyr has external dependencies and team sync windows; personal projects have flexible timing and can absorb evening energy without cost.
+> - **Exception:** If a personal project has hard deadline, customer priority, or blocking dependency (e.g., "RobotOS STM32 environment blocks Zephyr integration Friday"), may be escalated to office hours. Requires explicit justification in Morning Setup.
+
+**Default rule (no exception needed):**
+- Zephyr blocks → Office Hours section
+- RobotOS, Signee, personal work → Evening section
+
+---
+
 ## Morning Setup (5 min)
+
+**Work Time Domain Check:**
+- **Office Hours anchor (Zephyr only):** [name of expected office-hours work]
+- **Evening anchor (personal project):** [name of evening work, if any] ← or leave blank if day is office-only
+- **Exception to Work Time Domain Rule?** [ ] No (default) [ ] Yes — justify below
+  - *If yes, which project? Why must it be in office hours?*
+
+---
 
 - **Primary Anchor:** (project — direction)
 - **Secondary Anchor:** (project — direction)
@@ -61,33 +87,67 @@
 
 ---
 
-## Deep Work Blocks (prioritized)
+## Office Hours – Deep Work (Mon–Fri 9:00–17:30)
 
-> **Scope lock:** Every block must serve the Primary Anchor or the Secondary Anchor only. Block 3 (if used) must not introduce a third project on normal days. If a third project appears, mark as incident or escalation (not normal execution).
+> **Time domain:** Standard office hours. **Zephyr work only** (primary responsibility). If evening project must run here, mark exception in Morning Setup.
 
-### Block 1 (90 min) — Primary or Secondary Anchor
-- **Anchor:** Primary / Secondary
+### Block 1 (90 min) — Zephyr Primary
+- **Anchor:** Zephyr
 - **Goal:** …
 - **Size (S / M / L):** …
 - **Ambiguity (0–5):** …
 - **Expected Artifact:** …
 - **First Step:** …
 
-### Block 2 (90 min) — Primary or Secondary Anchor
-- **Anchor:** Primary / Secondary
+### Block 2 (90 min) — Zephyr Primary
+- **Anchor:** Zephyr
 - **Goal:** …
 - **Size (S / M / L):** …
 - **Ambiguity (0–5):** …
 - **Expected Artifact:** …
 - **First Step:** …
 
-### Block 3 (optional) — Primary or Secondary Anchor only
-- **Anchor:** Primary / Secondary ← if a third project appears, mark as [ ] Incident [ ] Escalation
+### Block 3 (optional) — Zephyr Primary only
+- **Anchor:** Zephyr ← if exception applies, mark [ ] Exception in Morning Setup
 - **Goal:** …
 - **Size (S / M / L):** …
 - **Ambiguity (0–5):** …
 - **Expected Artifact:** …
 - **First Step:** …
+
+---
+
+## Evening – Personal Projects (17:30+ or weekend)
+
+> **Time domain:** Evening blocks, weekends, or flexible-time slots. For RobotOS, Signee baseline work, prototyping, research, or secondary projects. Can be moved if day ends early or energy dips.
+
+### Block 1 (60–90 min) — Secondary Anchor (optional)
+- **Anchor:** RobotOS / Signee / Personal project
+- **Goal:** …
+- **Size (S / M / L):** …
+- **Ambiguity (0–5):** …
+- **Expected Artifact:** …
+- **First Step:** …
+
+### Block 2 (60–90 min) — Secondary Anchor (optional)
+- **Anchor:** RobotOS / Signee / Personal project
+- **Goal:** …
+- **Size (S / M / L):** …
+- **Ambiguity (0–5):** …
+- **Expected Artifact:** …
+- **First Step:** …
+
+### Block 3 (optional) — Secondary Anchor (optional)
+- **Anchor:** RobotOS / Signee / Personal project
+- **Goal:** …
+- **Size (S / M / L):** …
+- **Ambiguity (0–5):** …
+- **Expected Artifact:** …
+- **First Step:** …
+
+---
+
+**Note:** If no evening blocks are needed today, leave this section empty. Evening time is for sustained energy and deep focus on secondary work, not administrative cleanup.
 
 ---
 
