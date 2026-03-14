@@ -292,6 +292,17 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 - Did ambiguity enter execution too early repeatedly?
   - [ ] No — intake discipline held | [ ] Occasionally | [ ] Yes — repeated pattern
 
+**Knowledge Extraction — Monthly Consolidation:**
+- Which sizing corrections should become standing heuristics? (2+ confirmed observations this month)
+  - (note if any)
+- Which artifact mappings proved best by project this month?
+  - (note if any)
+- Which task types should no longer be scheduled in certain slots? (confirmed mismatch)
+  - (note if any)
+- Which admission failure patterns should be strengthened in the engine?
+  - (note if any)
+- Update `01_OS/KNOWLEDGE_EXTRACTION_ENGINE.md` if any pattern meets promotion threshold (2+ obs).
+
 ---
 
 ## 6) Focus Adjustment for Next Month (10 phút)

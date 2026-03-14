@@ -194,6 +194,7 @@ Nếu **Có**, ghi:
 - Weekly Plan chỉ được lấy từ các mục đã được **Pick**
 - M+ tasks or tasks with ambiguity ≥ 3 should pass **Task Intake & Admission** before committing — see `01_OS/TASK_INTAKE_AND_ADMISSION.md`
 - Prefer admitted, artifact-ready tasks; do not schedule tasks whose artifact is still unclear
+- When available, prefer heuristically-informed admitted tasks — agent proposals refined by `01_OS/KNOWLEDGE_EXTRACTION_ENGINE.md` are more accurate on sizing, slot, and artifact
 
 ---
 

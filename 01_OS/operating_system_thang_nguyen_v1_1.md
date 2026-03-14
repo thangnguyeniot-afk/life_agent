@@ -637,6 +637,42 @@ See `01_OS/TASK_INTAKE_AND_ADMISSION.md` for full specification, project default
 
 ---
 
+### 12.12 Knowledge Extraction Engine
+
+> **Canonical specification:** `01_OS/KNOWLEDGE_EXTRACTION_ENGINE.md`
+
+The Knowledge Extraction Engine is the learning layer that converts repeated execution patterns into reusable heuristics for future intake/admission quality.
+
+**Position in architecture:**
+```
+Execution → Signals / Artifacts
+→ Weekly Intelligence / Monthly Reflection
+→ Knowledge Extraction Engine
+→ Better future Task Intake / Admission proposals
+```
+
+**Outputs:**
+- Project heuristics memory (Zephyr / RobotOS / Signee)
+- Estimation corrections
+- Artifact mapping corrections
+- Capacity fit rules
+- Re-entry risk patterns
+- Admission failure patterns
+
+**Extraction frequency:**
+- Light extraction: weekly (during Weekly Intelligence)
+- Consolidation: monthly (during Monthly Reflection)
+- No daily extraction overhead
+
+**Relation to Task Intake & Admission:**
+- §12.11 (Task Intake & Admission) defines the decision protocol
+- §12.12 (Knowledge Extraction Engine) improves future proposal quality
+- Hard OS rules always override learned heuristics
+
+See `01_OS/KNOWLEDGE_EXTRACTION_ENGINE.md` for full specification, output categories, and update rules.
+
+---
+
 ## 13) Knowledge Engine v1
 
 > Knowledge Engine chịu trách nhiệm cho nghiên cứu, học tập kỹ thuật, lưu trữ quyết định kiến trúc, nén kiến thức quan trọng, và hỗ trợ thiết kế hệ thống.

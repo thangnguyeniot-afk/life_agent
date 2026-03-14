@@ -457,4 +457,31 @@ When a raw task or idea is given, the agent should:
 
 ---
 
+## 13. Knowledge-Informed Proposal Rule
+
+> **Canonical specification for the engine:** `01_OS/KNOWLEDGE_EXTRACTION_ENGINE.md`
+
+For any non-trivial task, the agent should consult the Knowledge Extraction Engine **before** finalizing:
+- size proposal
+- artifact proposal
+- slot proposal
+- re-entry sensitivity proposal
+- admission decision suggestion
+
+**Consultation chain:**
+1. Check Project Heuristics Memory (§6 of engine) — does the task type match a known pattern for this project?
+2. Check Estimation Corrections (§7) — does the task framing match a known mis-sizing pattern?
+3. Check Artifact Mapping Corrections (§8) — does the task type map to a known preferred artifact?
+4. Check Capacity Fit Rules (§9) — does the proposed slot match observed fit for this task type?
+5. Check Re-entry Risk Patterns (§10) — what re-entry sensitivity level is typical for this task type?
+6. Check Admission Failure Patterns (§11) — does the task framing match a known failure mode?
+
+**Rule:** The engine improves proposal quality. It does not bypass admission rules.
+Hard admission rules (§7 of this file) always override learned heuristics from the engine.
+
+**When the agent overrides a default based on a heuristic, it must say so explicitly:**
+> e.g., "Size upgraded from S to M per RobotOS estimation correction (architecture tasks are rarely S)."
+
+---
+
 *TASK_INTAKE_AND_ADMISSION.md is a canonical system spec. Changes to admission rules or project defaults should be made via deliberate System Change decision (see TEMPLATE_Week_Final.md §5).*

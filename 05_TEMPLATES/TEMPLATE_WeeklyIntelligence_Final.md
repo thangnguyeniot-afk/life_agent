@@ -190,6 +190,22 @@
 - Repeated pattern: systemic; add intake checkpoint to planning flow
 - Project-specific pattern: review project-aware defaults in `01_OS/TASK_INTAKE_AND_ADMISSION.md`
 
+### Knowledge Extraction Candidates
+> Patterns worth extracting into the Knowledge Extraction Engine this week. Keep to 1–3 items max. Consolidate at monthly review.
+
+**Candidate patterns (mark any observed this week):**
+- [ ] Repeated mis-sizing detected (task type + direction: e.g., "RobotOS review S→M again")
+- [ ] Artifact mismatch (task type that produced drift due to vague artifact)
+- [ ] Slot-fit failure (task type + wrong slot: e.g., "debugging in late evening")
+- [ ] Admission failure pattern (framing that should not pass admission)
+- [ ] Re-entry trap (task that required rebuild due to missing re-entry note)
+- [ ] Project-specific drift trigger (Zephyr / RobotOS / Signee)
+
+**Extraction notes (brief, 1–2 lines each):**
+- (note if any)
+
+**Promote to engine?** Check after monthly review: `01_OS/KNOWLEDGE_EXTRACTION_ENGINE.md`
+
 ---
 
 ## 7. Question Resolution Pattern
