@@ -9,6 +9,7 @@
 - [Daily Project Scope Rule (Critical)](#daily-project-scope-rule-critical)
 - [Work Time Domain (Critical)](#work-time-domain-critical)
 - [Morning Setup (5 min)](#morning-setup-5-min)
+- [Canonical Daily Anchors](#canonical-daily-anchors)
 - [Office Hours – Deep Work](#office-hours--deep-work-mon--fri-900--1730)
 - [Evening – Personal Projects](#evening--personal-projects-1730-or-weekend)
 - [Signals (check if occurred)](#signals-check-if-occurred)
@@ -35,8 +36,9 @@
 
 ## Source
 
-> Weekly commitments → Daily execution.  
-> Daily does NOT create new commitments without explicit escalation.  
+> Weekly commitments listed by **project and mission** — not by anchor label. Anchor labels belong in Canonical Daily Anchors only.
+> Weekly commitments → Daily execution.
+> Daily does NOT create new commitments without explicit escalation.
 > If day collapses: capture only main artifact + unfinished + next step.
 > Daily blocks should originate from admitted tasks (Task Intake & Admission passed). If a block feels artifact-less or ambiguous, flag in Signals — do not force execution on unresolved work.
 
@@ -72,8 +74,8 @@
 ## Morning Setup (5 min)
 
 **Work Time Domain Check:**
-- **Office Hours anchor (Zephyr only):** [name of expected office-hours work]
-- **Evening anchor (personal project):** [name of evening work, if any] ← or leave blank if day is office-only
+- **Office Hours domain:** Zephyr *(domain confirmed; full anchor defined in Canonical Daily Anchors below)*
+- **Evening domain:** [RobotOS / Signee / personal / none] *(domain confirmed; full anchor defined below)*
 - **Exception to Work Time Domain Rule?** [ ] No (default) [ ] Yes — justify below
   - *If yes, which project? Why must it be in office hours?*
 
@@ -88,13 +90,31 @@
 
 ---
 
-- **Primary Anchor:** (project — direction)
-- **Secondary Anchor:** (project — direction)
-- **Today's Active Projects:** Primary: [name] | Secondary: [name] ← max 2; no third project unless escalation [ ]
-- **Why these anchors today?** (optional — 1-line capacity/context reason)
-- **1 Most Important Outcome today:** …
-- **Key artifact expected:** …
-- **First execution step:** …
+## Canonical Daily Anchors
+
+> **Single source of truth for anchor identity.** All blocks, shutdown entries, and DoD items refer back to these names.
+> **Format rule:** `<Project> — <task/phase>` — no cross-project purpose text; no "so X can proceed" phrasing; artifact or justification text belongs in Purpose or Expected Artifacts, not the anchor line.
+
+**Primary Execution Anchor:** [Project] — [task/phase]
+*(e.g., Zephyr — validate STM32F4 toolchain setup and flashing pipeline)*
+
+**Secondary Execution Anchor:** [Project] — [task/phase]
+*(e.g., RobotOS — consolidate architecture spike findings)*
+*(leave blank if office-hours-only day)*
+
+**Purpose / Scheduling Rationale:**
+- Primary: (why this anchor today — 1 line; downstream enablement of other projects belongs here, not in anchor identity)
+- Secondary: (why this anchor today — 1 line)
+
+**1 Most Important Outcome today:**
+(one sentence; may reference both anchors' combined effects; must not collapse both projects into one anchor statement)
+
+**Daily Expected Artifacts:**
+- [Primary project]: [specific artifact]
+- [Secondary project]: [specific artifact, if applicable]
+
+**First Execution Step (Primary Anchor):**
+(concrete 10–15 min action to start the morning; Zephyr block start action)
 
 ---
 
