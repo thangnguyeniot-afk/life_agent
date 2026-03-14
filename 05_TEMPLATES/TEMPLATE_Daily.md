@@ -11,7 +11,6 @@
 - [Morning Setup (5 min)](#morning-setup-5-min)
 - [Office Hours – Deep Work](#office-hours--deep-work-mon--fri-900--1730)
 - [Evening – Personal Projects](#evening--personal-projects-1730-or-weekend)
-- [Builder / Support Work](#builder--support-work-active-anchors-only-max-34-items-size-s)
 - [Signals (check if occurred)](#signals-check-if-occurred)
 - [Optional — Delegations / Handoffs](#optional--delegations--handoffs)
 - [Shutdown (10 min)](#shutdown-10-min)
@@ -46,7 +45,7 @@
 
 > **Operating constraint:** A normal execution day contains **max 2 active projects** (Primary Anchor + Secondary Anchor).
 > - All Deep Work Blocks must map to one of these 2 anchors only.
-> - All Builder / Support Work must support one of these 2 anchors only.
+> - All support / admin work must belong to Office Hours or Evening domain; no standalone third zone.
 > - Key questions and shutdown notes should reference only these 2 anchors on normal days.
 > - A third project may appear only as: incident, escalation, or administrative mention (not active work).
 > - **Exception:** Planning or review days may legitimately reference 3+ projects; mark these explicitly as review-day exceptions.
@@ -128,6 +127,9 @@
 
 > If any office-hours block is unfinished at day close, capture a re-entry note in Shutdown before closing the day.
 
+**Office Hours — Support / Admin** *(optional; Zephyr-side only; Size S)*
+- **Task:** … | **Goal:** … | **Artifact:** …
+
 ---
 
 ## Evening – Personal Projects (17:30+ or weekend)
@@ -159,19 +161,12 @@
 - **First Step:** …
 - **Evening role:** [Support]
 
+**Evening — Support / Follow-up** *(optional; personal projects only; Size S)*
+- **Task:** … | **Goal:** … | **Artifact:** …
+
 ---
 
 **Note:** If no evening blocks are needed, leave this section empty. If capacity mode is `S-only`, use Block 1 only and defer Block 2. If any evening block is unfinished, capture a re-entry note in Shutdown before closing.
-
----
-
-## Builder / Support Work (active anchors only, max 3–4 items, Size S)
-
-> **Scope lock:** Items may support the Primary Anchor, the Secondary Anchor, or daily system maintenance only. Do not introduce a third active project. Administrative mentions are allowed; active work is not.
-
-1. **Anchor: Primary / Secondary** | **Task:** … | **Goal:** … | **Artifact:** …
-2. **Anchor: Primary / Secondary** | **Task:** … | **Goal:** … | **Artifact:** …
-3. **Anchor: Primary / Secondary** | **Task:** … | **Goal:** … | **Artifact:** …
 
 ---
 
