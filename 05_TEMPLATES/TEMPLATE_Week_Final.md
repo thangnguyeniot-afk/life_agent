@@ -251,6 +251,9 @@ Nếu **Có**, ghi:
 - Do not assume all evenings are usable for meaningful project progress
 - Max 1 primary block (M) per weekday evening; or up to 2 light (S) blocks
 - Protect recovery and consistency over theoretical throughput
+
+**Carry-over rule:** Carry-over is acceptable only if re-entry is explicit and low-friction.
+
 **Notes:**
 - Tuần chỉ nên có số lượng commitment phù hợp với năng lực thật; ưu tiên **ít nhưng có artifact rõ**
 - Nếu đã có 1 Big Bet ambiguity cao, giảm số Small Bet tương ứng
@@ -346,6 +349,14 @@ Nếu **Có**, ghi:
 - [ ] Does the plan rely on “future me” to absorb too much deferred work?
 
 > If any check triggers → reduce evening load before committing the plan.
+
+**Re-entry / carry-over check:**
+- [ ] Did unfinished work from this week carry clear re-entry notes?
+- [ ] Were any carry-over items hard to restart (high friction)?
+- [ ] Did the week accumulate stale unfinished blocks?
+- [ ] Were key artifacts resumed cleanly, or repeatedly reopened cold?
+
+> If repeated restart friction detected → flag in §2 Task Signals for System Change consideration.
 
 ---
 

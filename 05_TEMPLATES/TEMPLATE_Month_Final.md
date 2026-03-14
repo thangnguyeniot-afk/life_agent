@@ -203,6 +203,7 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 - [ ] Mức deep work thực tế có thấp hơn giả định của tháng không?
 - [ ] Các mục tiêu tháng có đang dựa trên năng lực thật hay chỉ dựa trên kỳ vọng?
 - [ ] Có tình trạng lặp đi lặp lại evening spillover nhiều tuần không?
+- [ ] Có unfinished work tích lũy qua nhiều tuần mà không có re-entry package rõ ràng không?
 
 ### Quyết định
 - Nếu có lệch rõ → cân nhắc tạo **System Change** hoặc điều chỉnh scope / allocation của tháng tiếp theo
@@ -272,6 +273,16 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
   - [ ] Synthesis / writing | [ ] Debugging | [ ] Planning | [ ] Admin | [ ] Exploration
 - Did any evening pattern cause repeated spillover?
   - (note pattern if yes)
+
+**Restart Friction Pattern (monthly reflection):**
+- Did I repeatedly carry unfinished work without a clear re-entry package?
+  - [ ] No — carry-over was always recoverable
+  - [ ] Occasionally — a few unclear hand-offs
+  - [ ] Yes — repeated restart friction across weeks
+- Which project type had the highest restart friction?
+  - [ ] Zephyr | [ ] RobotOS | [ ] Signee | [ ] N/A this month
+- Did any task become stale due to missing re-entry package?
+  - (note if applicable)
 
 ---
 

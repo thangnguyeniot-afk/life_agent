@@ -158,6 +158,22 @@
 ### Escalations (critical blockers for next phase)
 - Escalation: … | Must be addressed: (yes / should be / optional)
 
+### Restart Friction (re-entry pattern assessment)
+> Identifies work that is technically tracked but not operationally resumable.
+
+**Restart-friction patterns detected (mark all that apply):**
+- [ ] Repeated restart friction (resuming tasks took longer than expected)
+- [ ] Unfinished blocks had no re-entry package (carry-over was vague)
+- [ ] Carry-over existed but next step was unclear at start of new session
+- [ ] Tasks reopened cold too many times (context lost between sessions)
+- [ ] Artifact continuity repeatedly broken (reopened file needed full re-read)
+- [ ] Significant time spent reconstructing context before executing
+
+**Interpretation:**
+- Isolated instance: acceptable, monitor next window
+- 2+ occurrences: systemic; consider re-entry package discipline for affected project type
+- Recurring pattern: escalate to Recommended Control Rules (§10)
+
 ---
 
 ## 7. Question Resolution Pattern

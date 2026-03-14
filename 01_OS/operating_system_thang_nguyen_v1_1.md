@@ -554,6 +554,61 @@ Một ngày bình thường:
 
 ---
 
+### 12.10 Execution Rule — Re-entry Guard
+
+> **Canonical rule.** Any meaningful unfinished block must leave a Re-entry Package before day closure. Prevents vague carry-over and ensures multi-session work stays recoverable with low restart friction.
+
+**Scope:**
+- Applies whenever a meaningful block is not completed as planned
+- Applies to both office-hours and evening work
+- Applies especially to blocks that produce or modify artifacts
+
+**Core rule:** Any unfinished meaningful block must leave a Re-entry Package before day closure.
+
+**Re-entry Package — required fields:**
+
+| Field | Description |
+|---|---|
+| **Current phase** | Where the work stopped within the block / artifact flow |
+| **Artifact state** | Current state of the output (not started / draft exists / partially verified / blocked / waiting response / ready for review) |
+| **Next exact step** | A concrete 10–15 minute restart action; specific enough to start immediately without re-analysis |
+| **Re-entry condition** | What kind of slot or condition is required to resume (e.g., needs office-hours Zephyr block / needs evening primary block / needs dependency resolved first / needs high-energy session) |
+
+**Invalid closure examples (not acceptable):**
+- Continue tomorrow
+- Finish later
+- Resume RobotOS
+- Keep going next time
+- Complete remaining work tomorrow
+
+**Valid Re-entry Package examples:**
+
+*Example 1 (Zephyr office-hours):*
+- Current phase: smoke tests done; blocker summary not yet written
+- Artifact state: test log complete; summary missing
+- Next exact step: write 5-line blocker summary from build notes into report
+- Re-entry condition: next office-hours Zephyr block
+
+*Example 2 (RobotOS evening primary block):*
+- Current phase: scope draft reviewed; open questions not extracted
+- Artifact state: draft exists; unknowns list missing
+- Next exact step: extract 3 unresolved questions from spike notes
+- Re-entry condition: evening primary block (not support slot)
+
+*Example 3 (blocked — dependency):*
+- Current phase: Signee verification started; blocked by missing device response
+- Artifact state: checklist partially filled; blocked
+- Next exact step: rerun verification after dependency response arrives
+- Re-entry condition: dependency resolved first; next suitable low-ambiguity slot
+
+**Intent:**
+- Reduce restart friction
+- Make carry-over recoverable across sessions
+- Protect continuity for multi-session work
+- Prevent stale unfinished tasks from accumulating and eroding system trust
+
+---
+
 ## 13) Knowledge Engine v1
 
 > Knowledge Engine chịu trách nhiệm cho nghiên cứu, học tập kỹ thuật, lưu trữ quyết định kiến trúc, nén kiến thức quan trọng, và hỗ trợ thiết kế hệ thống.

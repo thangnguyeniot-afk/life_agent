@@ -18,7 +18,7 @@
 - [DoD (Daily closure)](#dod-daily-closure)
 - [Human Reflection (Optional)](#human-reflection-optional)
 
-> **Active rules:** Daily Project Scope Rule (max 2 anchors) · Work Time Domain (office = Zephyr; evening = personal) · Evening Capacity Guard (weekday evening max: 1×M or 2×S; no L tasks) — see OS §12.7–12.9
+> **Active rules:** Daily Project Scope Rule (max 2 anchors) · Work Time Domain (office = Zephyr; evening = personal) · Evening Capacity Guard (weekday evening max: 1×M or 2×S; no L tasks) · Re-entry Guard (unfinished meaningful work must leave a re-entry package) — see OS §12.7–12.10
 
 ---
 
@@ -126,6 +126,8 @@
 - **Expected Artifact:** …
 - **First Step:** …
 
+> If any office-hours block is unfinished at day close, capture a re-entry note in Shutdown before closing the day.
+
 ---
 
 ## Evening – Personal Projects (17:30+ or weekend)
@@ -159,7 +161,7 @@
 
 ---
 
-**Note:** If no evening blocks are needed, leave this section empty. If capacity mode is `S-only`, use Block 1 only and defer Block 2.
+**Note:** If no evening blocks are needed, leave this section empty. If capacity mode is `S-only`, use Block 1 only and defer Block 2. If any evening block is unfinished, capture a re-entry note in Shutdown before closing.
 
 ---
 
@@ -183,6 +185,9 @@
 - [ ] Evening overcommitment detected
 - [ ] Evening energy mismatch (planned vs actual capacity)
 - [ ] Planned too much for post-work capacity
+- [ ] Restart friction likely tomorrow
+- [ ] Unfinished work left without clear next step
+- [ ] Carry-over ambiguity detected
 
 > If any signal persists → escalate to Weekly Review.
 
@@ -204,11 +209,22 @@
 **Key question raised today:**  
 (from Primary or Secondary Anchor — if from elsewhere, note why)
 
-**Unfinished work:**  
+**Unfinished work requiring re-entry pack** *(meaningful incomplete blocks only — write "None" if day closed cleanly):*  
 (map to Primary / Secondary Anchor; if third project appears, mark escalation)
 
+**Unfinished Work — Re-entry Pack** *(skip if day closed cleanly):*
+- **Current phase:** (where the work stopped within the block / artifact flow)
+- **Artifact state:** (not started / draft exists / partially verified / blocked / waiting response / ready for review)
+- **Next exact step:** (concrete 10–15 min restart action; specific enough to start immediately without re-analysis)
+- **Re-entry condition:** (needs office-hours Zephyr block / needs evening primary block / needs dependency resolved / …)
+
+**Unfinished work — re-entry package captured?**
+- [ ] Yes
+- [ ] No unfinished work (day closed cleanly)
+- [ ] No — fix before closure
+
 **First step tomorrow:**  
-(normally Primary Anchor if week is continuing; if handoff to Secondary or new project, note explicitly)
+(day-level start; normally Primary Anchor if week is continuing; if handoff to Secondary or new project, note explicitly)
 
 **Signals to escalate to Weekly Review:**  
 …
@@ -236,7 +252,7 @@
 
 ## DoD (Daily closure)
 - [ ] Main artifact captured
-- [ ] Unfinished work documented
+- [ ] Unfinished work documented (with re-entry pack if applicable)
 - [ ] Tomorrow's first step clear
 - [ ] Any escalation signals noted
 
