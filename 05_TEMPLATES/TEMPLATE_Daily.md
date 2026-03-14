@@ -18,6 +18,8 @@
 - [DoD (Daily closure)](#dod-daily-closure)
 - [Human Reflection (Optional)](#human-reflection-optional)
 
+> **Active rules:** Daily Project Scope Rule (max 2 anchors) · Work Time Domain (office = Zephyr; evening = personal) · Evening Capacity Guard (weekday evening max: 1×M or 2×S; no L tasks) — see OS §12.7–12.9
+
 ---
 
 ## Context
@@ -75,6 +77,15 @@
 - **Exception to Work Time Domain Rule?** [ ] No (default) [ ] Yes — justify below
   - *If yes, which project? Why must it be in office hours?*
 
+**Evening Capacity Mode** *(weekday only; check one):*
+- [ ] `1 × M` — one meaningful block (default normal day)
+- [ ] `2 × S` — two light blocks
+- [ ] `S-only` — energy degraded; keep only most strategic task
+- [ ] `None` — office-only day or rest evening
+
+**Reason for tonight's capacity mode:**  
+(e.g.: normal office day / poor sleep / heavy workout / heavy meetings / recovery evening)
+
 ---
 
 - **Primary Anchor:** (project — direction)
@@ -119,35 +130,36 @@
 
 ## Evening – Personal Projects (17:30+ or weekend)
 
-> **Time domain:** Evening blocks, weekends, or flexible-time slots. For RobotOS, Signee baseline work, prototyping, research, or secondary projects. Can be moved if day ends early or energy dips.
+> **Time domain:** Evening blocks, weekends, or flexible-time slots. For RobotOS, Signee baseline work, prototyping, research, or secondary projects.
 
-### Block 1 (60–90 min) — Secondary Anchor (optional)
+> **Evening Capacity Guard (weekday rule):**  
+> - Max 1 primary evening block + optional 1 light support block  
+> - No L-sized tasks on weekday evenings  
+> - If ambiguity is high, reduce scope before scheduling  
+> - Allowed patterns: `1×M` | `2×S` | `1×S` (degraded energy)  
+> - Capacity mode set in Morning Setup
+
+### Block 1 (60–90 min) — Primary evening block
 - **Anchor:** RobotOS / Signee / Personal project
 - **Goal:** …
-- **Size (S / M / L):** …
+- **Size (S / M / L):** … ← no L on weekday evenings
 - **Ambiguity (0–5):** …
 - **Expected Artifact:** …
 - **First Step:** …
+- **Evening role:** [Primary]
 
-### Block 2 (60–90 min) — Secondary Anchor (optional)
+### Block 2 (optional) — Support block only
 - **Anchor:** RobotOS / Signee / Personal project
-- **Goal:** …
-- **Size (S / M / L):** …
+- **Goal:** … ← keep this S-sized; support/admin/light only if Block 1 is M
+- **Size (S / M / L):** S
 - **Ambiguity (0–5):** …
 - **Expected Artifact:** …
 - **First Step:** …
-
-### Block 3 (optional) — Secondary Anchor (optional)
-- **Anchor:** RobotOS / Signee / Personal project
-- **Goal:** …
-- **Size (S / M / L):** …
-- **Ambiguity (0–5):** …
-- **Expected Artifact:** …
-- **First Step:** …
+- **Evening role:** [Support]
 
 ---
 
-**Note:** If no evening blocks are needed today, leave this section empty. Evening time is for sustained energy and deep focus on secondary work, not administrative cleanup.
+**Note:** If no evening blocks are needed, leave this section empty. If capacity mode is `S-only`, use Block 1 only and defer Block 2.
 
 ---
 
@@ -168,6 +180,9 @@
 - [ ] Energy collapse mid-day
 - [ ] Scope creep detected
 - [ ] System friction encountered
+- [ ] Evening overcommitment detected
+- [ ] Evening energy mismatch (planned vs actual capacity)
+- [ ] Planned too much for post-work capacity
 
 > If any signal persists → escalate to Weekly Review.
 
@@ -197,6 +212,15 @@
 
 **Signals to escalate to Weekly Review:**  
 …
+
+**Evening plan vs actual capacity:**
+- [ ] No — plan matched energy
+- [ ] Slightly — minor overrun, no deferral needed
+- [ ] Yes — exceeded capacity
+
+**Evening spillover created?**
+- [ ] No
+- [ ] Yes → deferred: (note what was moved and where)
 
 ---
 

@@ -202,6 +202,7 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 - [ ] KTLO / support / việc phát sinh có lớn hơn giả định ban đầu không?
 - [ ] Mức deep work thực tế có thấp hơn giả định của tháng không?
 - [ ] Các mục tiêu tháng có đang dựa trên năng lực thật hay chỉ dựa trên kỳ vọng?
+- [ ] Có tình trạng lặp đi lặp lại evening spillover nhiều tuần không?
 
 ### Quyết định
 - Nếu có lệch rõ → cân nhắc tạo **System Change** hoặc điều chỉnh scope / allocation của tháng tiếp theo
@@ -259,6 +260,18 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 - **Anti-Anchor nào xuất hiện nhiều nhất?** …
 - **Có hành vi nào trở thành “bình thường mới”?** …
 - **Điều gì cần chặn sớm trong tháng tới?** …
+
+**Evening Capacity Pattern (monthly reflection):**
+- Did I repeatedly overestimate weekday evening capacity this month?
+  - [ ] No — plan was realistic
+  - [ ] Occasionally — a few slips
+  - [ ] Yes — consistently overloaded
+- Which evening load pattern was actually sustainable?
+  - [ ] S-only | [ ] 1×M | [ ] 2×S | [ ] Inconsistent
+- Which work type fit evenings best? (mark all that apply)
+  - [ ] Synthesis / writing | [ ] Debugging | [ ] Planning | [ ] Admin | [ ] Exploration
+- Did any evening pattern cause repeated spillover?
+  - (note pattern if yes)
 
 ---
 

@@ -234,7 +234,23 @@ Nếu **Có**, ghi:
   - Buffer: …%
 - **WIP max (tuần):** 2–3 việc lớn (P0/P1)  
 - **Deep blocks/day:** 2 blocks (90’)
+**Evening Capacity Budget (Mon–Fri)**  
+> Expected evening load by day. Labels: `none` | `S` | `M` | `2S` | `recovery` | `flex`  
+> Rule: do not assign multiple M-sized expectations to the same weekday evening.
 
+| Day | Project | Planned load |
+|---|---|---|
+| Mon | | |
+| Tue | | |
+| Wed | | |
+| Thu | | |
+| Fri | | |
+
+**Evening planning rule reminder:**
+- Weekday evenings are limited-capacity slots
+- Do not assume all evenings are usable for meaningful project progress
+- Max 1 primary block (M) per weekday evening; or up to 2 light (S) blocks
+- Protect recovery and consistency over theoretical throughput
 **Notes:**
 - Tuần chỉ nên có số lượng commitment phù hợp với năng lực thật; ưu tiên **ít nhưng có artifact rõ**
 - Nếu đã có 1 Big Bet ambiguity cao, giảm số Small Bet tương ứng
@@ -322,6 +338,14 @@ Nếu **Có**, ghi:
   - DoD hoặc success criteria
 - Weekly scope là **realistic** so với capacity + tính chất công việc
 - Không có overcommit (special rule: 1 Big Bet ambiguity cao = giảm Small Bet)
+
+**Evening load sanity check:**
+- [ ] Did the weekly plan assume too much evening energy?
+- [ ] Were RobotOS / Signee expectations realistic for actual weekday capacity?
+- [ ] Are any evenings assigned multiple M-sized personal project expectations?
+- [ ] Does the plan rely on “future me” to absorb too much deferred work?
+
+> If any check triggers → reduce evening load before committing the plan.
 
 ---
 

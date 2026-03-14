@@ -103,6 +103,19 @@
 - [ ] Minor drift (1–2 projects), correctable
 - [ ] Major drift (project allocations need reset)
 
+**Evening load drift assessment:**
+- [ ] Evening plan was realistic across the window
+- [ ] Some evenings overloaded (1–2 instances), isolated
+- [ ] Repeated evening overcommitment detected — pattern requires adjustment
+
+**Evening patterns detected (mark all that apply):**
+- [ ] Repeated spillover (planned work not completed, night after night)
+- [ ] Evening overcommitment (2× M blocks planned on weekday evenings)
+- [ ] Too many M-sized tasks assigned to post-work slots
+- [ ] Plan assumed energy not actually available after office day
+- [ ] Support/admin work + main block together exceeded evening capacity
+- [ ] Personal project progress model too optimistic for current workweek conditions
+
 ---
 
 ## 5. Artifact Production Pattern

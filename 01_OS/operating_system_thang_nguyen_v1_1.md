@@ -506,6 +506,54 @@ Một ngày bình thường:
 
 ---
 
+### 12.8 Execution Rule — Work Time Domain
+
+> **Canonical rule.** Referenced by daily template and weekly planning.
+
+**Office hours (Mon–Fri, 9:00–17:30):** Zephyr work only.  
+**Evening (17:30+) and weekends:** RobotOS / Signee / personal projects only.
+
+- Protects primary responsibility from fragmentation.
+- Personal projects have flexible timing; Zephyr has team sync windows.
+- Exception: personal project may enter office hours only with explicit justification in Morning Setup (e.g., hard external deadline, blocking dependency).
+
+---
+
+### 12.9 Execution Rule — Evening Capacity Guard
+
+> **Canonical rule.** Weekday evenings are a constrained execution domain. Planning must reflect real recovery needs after office work.
+
+**Scope:** Mon–Fri evenings by default. Weekend evenings are more flexible and not subject to this rule unless explicitly flagged.
+
+**Default allowed load (weekday evening):**
+- Max 1 primary evening block
+- Optional 1 light support/admin block
+- Do NOT schedule 2 heavy (M/L) project blocks by default
+- No L-sized tasks in weekday evening blocks
+
+**Allowed evening planning patterns:**
+- `1 × M` (one meaningful block)
+- `2 × S` (two light blocks)
+- `1 × S` if energy is degraded
+
+**Downgrade triggers — switch to S-only mode if any of these are present:**
+- Low sleep / poor recovery
+- Heavy office fatigue (intense meetings, incident, deep problem-solving day)
+- Heavy workout day
+- Late meal / post-dinner energy drop
+- Unusually high ambiguity task planned for the evening
+- Emotional friction or overload signals
+
+**Downgrade behavior:**
+- Switch evening mode to S-only
+- Keep only the most strategic evening task
+- Move the rest to backlog, weekend, or next suitable slot
+- Do not force catch-up inside the same evening
+
+**Intent:** Protect system trustworthiness. Avoid hidden overcommitment. Keep RobotOS / Signee progressing steadily at realistic pace rather than collapsing into repeated spillover.
+
+---
+
 ## 13) Knowledge Engine v1
 
 > Knowledge Engine chịu trách nhiệm cho nghiên cứu, học tập kỹ thuật, lưu trữ quyết định kiến trúc, nén kiến thức quan trọng, và hỗ trợ thiết kế hệ thống.
