@@ -192,6 +192,8 @@ Nếu **Có**, ghi:
 - Nếu Ambiguity ≥ 4 → không đưa thẳng vào execution, phải tách thành Spike / framing task
 - Không chọn quá nhiều; ưu tiên **ít nhưng có artifact rõ**
 - Weekly Plan chỉ được lấy từ các mục đã được **Pick**
+- M+ tasks or tasks with ambiguity ≥ 3 should pass **Task Intake & Admission** before committing — see `01_OS/TASK_INTAKE_AND_ADMISSION.md`
+- Prefer admitted, artifact-ready tasks; do not schedule tasks whose artifact is still unclear
 
 ---
 

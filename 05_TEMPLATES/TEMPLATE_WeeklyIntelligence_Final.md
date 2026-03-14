@@ -174,6 +174,22 @@
 - 2+ occurrences: systemic; consider re-entry package discipline for affected project type
 - Recurring pattern: escalate to Recommended Control Rules (§10)
 
+### Intake Quality (task admission pattern assessment)
+> Identifies work that was technically scheduled but not properly admitted.
+
+**Intake failure patterns detected (mark all that apply):**
+- [ ] Oversized tasks (L/XL) admitted directly without decomposition
+- [ ] High-ambiguity tasks (≥4) scheduled without prior spike or clarification
+- [ ] Tasks scheduled without a clear expected artifact
+- [ ] Repeated spike work hidden inside normal execution blocks
+- [ ] Task type mismatch by project (e.g., vague design framing on a Zephyr execution task)
+- [ ] Multi-session tasks started without re-entry sensitivity noted
+
+**Interpretation:**
+- 1–2 instances: acceptable; adjust individual tasks
+- Repeated pattern: systemic; add intake checkpoint to planning flow
+- Project-specific pattern: review project-aware defaults in `01_OS/TASK_INTAKE_AND_ADMISSION.md`
+
 ---
 
 ## 7. Question Resolution Pattern

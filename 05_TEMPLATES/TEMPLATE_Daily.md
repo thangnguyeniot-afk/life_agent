@@ -38,6 +38,7 @@
 > Weekly commitments → Daily execution.  
 > Daily does NOT create new commitments without explicit escalation.  
 > If day collapses: capture only main artifact + unfinished + next step.
+> Daily blocks should originate from admitted tasks (Task Intake & Admission passed). If a block feels artifact-less or ambiguous, flag in Signals — do not force execution on unresolved work.
 
 ---
 

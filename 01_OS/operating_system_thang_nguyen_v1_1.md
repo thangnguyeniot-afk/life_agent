@@ -609,6 +609,34 @@ Một ngày bình thường:
 
 ---
 
+### 12.11 Task Intake & Admission
+
+> **Canonical specification:** `01_OS/TASK_INTAKE_AND_ADMISSION.md`
+
+This subsystem sits between backlog/mission intent and weekly/daily scheduling. It standardizes task analysis before execution commitment.
+
+**Conceptual flow:**
+```
+Raw task idea
+→ Task Intake (Level 1 — Quick Intake)
+→ Task Analysis Card (Level 2 — for M+ / ambiguous / strategic / multi-session)
+→ Admission Decision (Level 3 — go / split / spike / clarify / backlog)
+→ Weekly / Daily scheduling
+→ Execution
+→ Re-entry / Signals / Review
+```
+
+**Three levels:**
+- Level 1 — Quick Intake: lightweight classification for all non-trivial tasks
+- Level 2 — Task Analysis Card: deeper analysis for M+ / ambiguous / strategic tasks
+- Level 3 — Admission Decision: go / split / spike / clarify / backlog
+
+**Hard minimum:** Any task with ambiguity ≥ 4, size XL, or unclear artifact must resolve pre-steps before entering execution scheduling.
+
+See `01_OS/TASK_INTAKE_AND_ADMISSION.md` for full specification, project defaults, examples, and agent behavior rules.
+
+---
+
 ## 13) Knowledge Engine v1
 
 > Knowledge Engine chịu trách nhiệm cho nghiên cứu, học tập kỹ thuật, lưu trữ quyết định kiến trúc, nén kiến thức quan trọng, và hỗ trợ thiết kế hệ thống.

@@ -284,6 +284,14 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 - Did any task become stale due to missing re-entry package?
   - (note if applicable)
 
+**Intake Quality Pattern (monthly reflection):**
+- Which task types were consistently mis-sized this month?
+  - [ ] Zephyr tasks over-scoped | [ ] RobotOS architecture rushed | [ ] Signee validation unclear | [ ] None notable
+- Which project produced the most admission failures (artifact-less / re-added / ambiguous tasks)?
+  - (note project if any)
+- Did ambiguity enter execution too early repeatedly?
+  - [ ] No — intake discipline held | [ ] Occasionally | [ ] Yes — repeated pattern
+
 ---
 
 ## 6) Focus Adjustment for Next Month (10 phút)
