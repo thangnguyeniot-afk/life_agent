@@ -6,7 +6,8 @@
 > **Prerequisite:** `INTEGRATE_DAILY.md` must have completed first  
 > **Reuse:** Run once per day after daily integration. Safe to re-run before next day starts.  
 > **Maintained by:** Agent 2 (file reads/writes) + Agent 1 (decisions only when escalation required)  
-> **Related:** [`INTEGRATE_DAILY.md`](INTEGRATE_DAILY.md) — run this first
+> **Sequence:** Run after [`INTEGRATE_DAILY.md`](INTEGRATE_DAILY.md) completes  
+> **Weekly framing:** Weekly file generated/updated by [`GENERATE_WEEKLY_EXECUTION.md`](../WEEKLY_CONTROL/GENERATE_WEEKLY_EXECUTION.md)
 
 ---
 

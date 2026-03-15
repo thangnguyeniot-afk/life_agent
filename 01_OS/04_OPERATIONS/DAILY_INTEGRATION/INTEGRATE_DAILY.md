@@ -4,7 +4,9 @@
 > **Layer:** OS / Operations  
 > **Scope:** Single completed Daily execution file → all upstream system layers  
 > **Reuse:** Run once per closed daily. Safe to re-run if interrupted.  
-> **Maintained by:** Agent 2 (file reads/writes) + Agent 1 (decisions only when escalation required)
+> **Maintained by:** Agent 2 (file reads/writes) + Agent 1 (decisions only when escalation required)  
+> **Sequence:** After this completes, run [`PREPARE_NEXT_DAILY.md`](PREPARE_NEXT_DAILY.md)  
+> **Weekly framing:** Weekly file generated/updated by [`GENERATE_WEEKLY_EXECUTION.md`](../WEEKLY_CONTROL/GENERATE_WEEKLY_EXECUTION.md)
 
 ---
 

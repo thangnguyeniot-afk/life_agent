@@ -144,12 +144,23 @@ Includes:
 
 **Location:** `01_OS/04_OPERATIONS/`
 
+### Weekly Control
+
+- `01_OS/04_OPERATIONS/WEEKLY_CONTROL/GENERATE_WEEKLY_EXECUTION.md` — Canonical weekly execution generation procedure. Creates or updates the Weekly Execution file from Monthly direction + execution reality (recent Daily) reconciliation. Supports 3 modes: New generation (Mode A), Week reconstruction from Daily files (Mode B), Weekly rebalance (Mode C). Includes data collection checklist, 10-step procedure, anchor rules, carry-over rules, reconstruction rules, consistency check, and reusable Copilot command template.
+
+### Daily Integration
+
 - `01_OS/04_OPERATIONS/DAILY_INTEGRATION/INTEGRATE_DAILY.md` — Canonical daily reverse-integration procedure. Run after each closed Daily file to sync execution reality into Weekly / Monthly / Project / Anchor tracking layers. Includes 8-step procedure, guardrails, consistency check, and reusable Copilot command template.
 - `01_OS/04_OPERATIONS/DAILY_INTEGRATION/PREPARE_NEXT_DAILY.md` — Canonical next-day preparation procedure. Run after INTEGRATE_DAILY to create or prefill the next Daily file from carry-over + weekly state. Includes 9-step procedure, carry-over rules, anchor selection rules, overload check, and reusable Copilot command template.
 
-**Sequence:** INTEGRATE_DAILY → PREPARE_NEXT_DAILY (run in order after each closed day)
+**Operational sequences:**
 
-**Model:** Run by Agent 2 daily. Agent 1 only when escalation or scope decision required.
+1. **At week start:** GENERATE_WEEKLY_EXECUTION (Mode A or B) → Create Week file
+2. **Daily workflow:** INTEGRATE_DAILY (after day ends) → PREPARE_NEXT_DAILY (after integration) → Next day ready
+3. **Mid-week if needed:** GENERATE_WEEKLY_EXECUTION (Mode C) → Rebalance active week
+4. **End of week:** INTEGRATE_DAILY for final day → Weekly Review reflects final state
+
+**Model:** Run by Agent 2 (OS procedures). Agent 1 only when escalation, strategic decision, or rebalance justification required.
 
 ---
 
