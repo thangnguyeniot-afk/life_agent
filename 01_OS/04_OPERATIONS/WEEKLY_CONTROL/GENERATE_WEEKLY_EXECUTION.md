@@ -6,7 +6,7 @@
 > **Prerequisite:** Month file must exist and be accessible  
 > **Reuse:** Run once per week, typically at end of week or Sunday, OR on-demand for reconstruction/rebalance  
 > **Maintained by:** Agent 2 (file reads/writes + data collection) + Agent 1 (escalation decisions only)  
-> **Related:** [`INTEGRATE_DAILY.md`](../DAILY_INTEGRATION/INTEGRATE_DAILY.md) | [`PREPARE_NEXT_DAILY.md`](../DAILY_INTEGRATION/PREPARE_NEXT_DAILY.md)
+> **Related:** [`WEEKLY_REBALANCE.md`](WEEKLY_REBALANCE.md) (mid-week correction) | [`INTEGRATE_DAILY.md`](../DAILY_INTEGRATION/INTEGRATE_DAILY.md) | [`PREPARE_NEXT_DAILY.md`](../DAILY_INTEGRATION/PREPARE_NEXT_DAILY.md)
 
 ---
 
