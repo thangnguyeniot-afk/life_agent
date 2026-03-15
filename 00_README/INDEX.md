@@ -145,6 +145,9 @@ Includes:
 **Location:** `01_OS/04_OPERATIONS/`
 
 - `01_OS/04_OPERATIONS/DAILY_INTEGRATION/INTEGRATE_DAILY.md` — Canonical daily reverse-integration procedure. Run after each closed Daily file to sync execution reality into Weekly / Monthly / Project / Anchor tracking layers. Includes 8-step procedure, guardrails, consistency check, and reusable Copilot command template.
+- `01_OS/04_OPERATIONS/DAILY_INTEGRATION/PREPARE_NEXT_DAILY.md` — Canonical next-day preparation procedure. Run after INTEGRATE_DAILY to create or prefill the next Daily file from carry-over + weekly state. Includes 9-step procedure, carry-over rules, anchor selection rules, overload check, and reusable Copilot command template.
+
+**Sequence:** INTEGRATE_DAILY → PREPARE_NEXT_DAILY (run in order after each closed day)
 
 **Model:** Run by Agent 2 daily. Agent 1 only when escalation or scope decision required.
 

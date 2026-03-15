@@ -244,6 +244,9 @@ File: `<ANCHOR_TRACKING_FILE>` (weekly Execution Tracker, or dedicated section)
 
 File: `<NEXT_DAILY_FILE>` (create from `<DAILY_TEMPLATE_FILE>` if not present)
 
+> **Full procedure:** For complete next-day preparation including anchor selection, block design, dependency-aware encoding, and overload check, run [`PREPARE_NEXT_DAILY.md`](PREPARE_NEXT_DAILY.md) after this step.
+> The instructions below cover the minimum carry-over required during integration. PREPARE_NEXT_DAILY handles full drafting.
+
 1. If the next daily file does not exist, create it from the canonical daily template.
 2. Prefill the following sections from today's carry-over:
    - **Morning Setup / Re-entry Block:** Inherit spillover anchor, re-entry mode, first action
