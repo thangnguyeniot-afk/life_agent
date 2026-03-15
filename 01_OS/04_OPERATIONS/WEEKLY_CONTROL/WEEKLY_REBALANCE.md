@@ -9,6 +9,7 @@
 - Preserves: `W##_WeekPlan.md` (weekly planning intent baseline)
 - Preserves: Month file (monthly strategy baseline)
 - Inputs: Recent Daily files (execution truth)
+- Related procedures: [`GENERATE_WEEKLY_EXECUTION.md`](GENERATE_WEEKLY_EXECUTION.md) | [`WEEK_CLOSEOUT.md`](WEEK_CLOSEOUT.md) (week-end) | [`INTEGRATE_DAILY.md`](../DAILY_INTEGRATION/INTEGRATE_DAILY.md)
 
 ---
 
