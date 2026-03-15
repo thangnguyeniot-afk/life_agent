@@ -87,6 +87,13 @@
 - **Exception to Work Time Domain Rule?** [ ] No (default) [ ] Yes — justify below
   - *If yes, which project? Why must it be in office hours?*
 
+**Re-entry Block Check** *(if any spillover from previous day):*
+- [ ] No inherited spillover (day starts fresh)
+- [ ] Yes, inherited spillover from previous day
+  - *Project/anchor:* …
+  - *Re-entry mode required:* [ ] Quick (Structured/Closure — resume at last state) [ ] Analytical (Synthesis/planning — restore reasoning chain) [ ] Fragile (Integration/merge — inspect state + validate)
+  - *First re-entry action:* (concrete 5–10 min context-reload step; e.g. "review Mon Shutdown notes + reopen test file + confirm current branch state")
+
 **Evening Capacity Mode** *(weekday only; inherit from §6.8 + §7 — confirm or downgrade only; do not silently upgrade on weak-energy days):*
 - [ ] `1 × M` — one meaningful block (default normal day)
 - [ ] `2 × S` — two light blocks
@@ -104,6 +111,7 @@
 > **Derived from:** Weekly Anchor Map (`WeekPlan §7`, today's row) — refine here; do not reinvent.
 > **Anchor Stability:** Weekly defines identity. Daily confirms, refines, or downgrades. Do not redefine anchor identity unless there is an incident, hard blocker, or explicit escalation — document the reason if identity changes.
 > **Format rule:** `<Project> — <task/phase>` — no cross-project purpose text; no "so X can proceed" phrasing; artifact or justification text belongs in Purpose or Expected Artifacts, not the anchor line.
+> **Re-entry note:** If this day inherits spillover from a prior day, re-entry is a continuation **pre-step** (5–10 min), not a new anchor. It belongs to the inherited anchor path. Use the re-entry mode and first action defined in Morning Setup above; do not create a second anchor for re-entry.
 
 **Primary Execution Anchor:** [Project] — [task/phase]
 *(e.g., Zephyr — validate STM32F4 toolchain setup and flashing pipeline)*
@@ -240,12 +248,14 @@
 
 **Unfinished Work — Re-entry Pack** *(skip if day closed cleanly):*
 - **Current phase:** (where the work stopped within the block / artifact flow)
-- **Artifact state:** (not started / draft exists / partially verified / blocked / waiting response / ready for review)
+- **Artifact state:** (not started / draft exists / partially verified / blocked / waiting response / ready for review / other)
 - **Next exact step:** (concrete 10–15 min restart action; specific enough to start immediately without re-analysis)
+- **Recommended re-entry mode** *(used by tomorrow's Morning Setup)*: [ ] Quick (resume at last state) [ ] Analytical (review notes, restore chain) [ ] Fragile (inspect state, validate) 
+- **Receiving day constraint note** *(if spillover tomorrow):* Energy fit? Load saturated? Work-type appropriate for tomorrow's energy mode?
 - **Re-entry condition:** (needs office-hours Zephyr block / needs evening primary block / needs dependency resolved / …)
 
 **Unfinished work — re-entry package captured?**
-- [ ] Yes
+- [ ] Yes (complete above; tomorrow's re-entry is prepared)
 - [ ] No unfinished work (day closed cleanly)
 - [ ] No — fix before closure
 
@@ -278,9 +288,10 @@
 
 ## DoD (Daily closure)
 - [ ] Main artifact captured
-- [ ] Unfinished work documented (with re-entry pack if applicable)
+- [ ] Unfinished work documented (with re-entry pack if applicable; re-entry mode specified)
 - [ ] Tomorrow's first step clear
 - [ ] Any escalation signals noted
+- [ ] If spillover tomorrow: re-entry doesn't violate receiving day saturation (check weekly load)
 
 ---
 

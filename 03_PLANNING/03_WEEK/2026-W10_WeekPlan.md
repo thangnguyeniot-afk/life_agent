@@ -79,7 +79,8 @@
 | Sat | Open / Deep | Synthesis or Heavy Engineering | — | Architecture synthesis or spike closure |
 | Sun | Review / Reset | Closure / Admin | — | Weekly Review + W11 seed |
 
-**This week's energy constraint:** Scope freeze gate hardness means Fri EOD is non-negotiable. All heavy verification work must land Mon–Thu. Friday is synthesis and closure only.
+**This week's energy constraint:** Scope freeze gate hardness means Fri EOD is non-negotiable. All verification work should land Mon–Thu.
+Friday should avoid introducing new verification loops.
 
 ---
 
@@ -197,12 +198,23 @@
 
 ### Weekly Anchor Map — Spillover / Re-entry Targets
 
-| Source day | Spillover target | Re-entry condition |
-|---|---|---|
-| Mon (mainline regressions) | Tue morning triage first, before any new work | Re-entry note from Mon Shutdown required |
-| Thu evening (RobotOS spike) | Fri morning office hours or Fri evening | Re-entry note from Thu Shutdown; check energy |
-| Fri (Signee scope close) | Sat if session available | Re-entry note; mark carry-forward in Weekly Review |
-| Any scope-freeze-critical item | Escalate to W11 only if verdict is documented | Must have status note before deferring |
+| Source day | Spillover target | Re-entry requirement | Re-entry mode | Continuation rule |
+|---|---|---|---|---|
+| Mon test write (if incomplete) | Tue morning before merge | Yes | Quick | Reload test notes; confirm test readiness; if Tue is still good-depth, continue immediately. If Tue energy degrades, downgrade to "Tue merge only, defer new test to Wed" |
+| Tue merge (if debugging needed) | Wed morning or Thu morning final check | Yes | Fragile | Inspect merge state (branch cleanliness, test results, dependency impact); validate develop branch still safe before resuming debug. If Wed/Thu load is high, convert to merge-verification-only (not full debug). |
+| Thu RobotOS outline spillover | Fri morning (Office Hours check-in) or Fri evening | Yes | Analytical | Review Thu outline notes + source spike document; confirm next pptx section; check if Fri closure load allows content writing vs structure finalization only. If Fri is saturated, transform to "finalize existing slide structure + capture scope placeholders" rather than reopening outline. |
+| Fri docs (if incomplete) | Sat polish session (if available) or W11 handoff | Yes | Analytical | Artifact state snapshot + next doc section; mark as explicit carry-forward in Sunday Review; do not assume W11 Mon inherits at full continuation pace. |
+| Any scope-freeze item | 3/16+ (post-freeze) | Escalate | N/A | Scope freeze is hard gate. If W10 artifact incomplete by Fri EOD, capture blocker + next steps in Weekly Review; do not silently carry into W11. |
+
+**Re-entry strategy for W10 specifics:**
+- **Mon test writing → Tue merge:** If test writing spills, Tue re-entry (Quick mode) confirms test quality + merge readiness before proceeding to merge. If Tue energy is high, both write-confirm and merge can happen same day. If Tue energy drops, prioritize merge over test refinement (complete test → verify — do not reopen design).
+- **Tue merge → Wed/Thu check:** If merge debugging is needed, Wed morning or Thu final-check re-entry (Fragile mode) inspects develop branch state, revalidates test results, confirms no hidden breakage. Keep inspection focused; do not open new merge strategies if energy is low.
+- **Thu pptx outline → Fri finalization:** If Thu outline spills to Fri, re-entry (Analytical mode) reviews outline structure + source notes before continuing. **Key constraint:** Fri is closure day already. If RobotOS pptx outline + Signee/Zephyr cleanup both spill to Fri, Fri becomes saturated. Prioritize: (1) test merge verified, (2) pptx scope structure locked, (3) context/env docs finalized. If all cannot fit Fri evening safely, defer pptx detailed content to W11 + mark spike as "scope finalized pending detail write-up".
+
+**Direct continuation vs transformed continuation:**
+- **Direct continuation:** Mon test write → Tue test write (same work type, Structured Execution continues)
+- **Transformed continuation:** Thu pptx Synthesis outline at low energy (`S-only`) → Fri pptx finalization at Closure mode (scope/structure locked; detail-writing deferred or brief only)
+- **Deferred continuation:** If Fri closure load is already saturated (all 3 projects finalizing), defer pptx content detail to W11 + document spike as "architecture complete, implementation detail pending"
 
 ### W10 Anchor Map Sanity Pass
 
@@ -236,9 +248,9 @@
 - No threshold violations
 - Evening load: Mon–Wed at `1×M`, Thu at `S-only`, Fri at `S-only`/none; matches energy pattern
 
-**Balancing note:** If test complexity on Tue grows, Integration block will consume focus — balance with context synthesis accordingly. If needed, shift context planning to Wed evening; flexibility exists.
+**Balancing note:** If test complexity on Tue grows, Integration block will consume focus — balance with context synthesis accordingly. If needed, shift context planning to Wed evening; flexibility exists. **Re-entry overhead:** Tue merge may require Mon spillover re-entry (10–20 min Quick mode), and Thu spillover may require Fri re-entry (10–20 min Analytical mode); these are factored into the load assessment.
 
-**Spillover check:** Thu evening Synthesis is low-load (`S-only`). If pptx outline spills to Fri morning, Fri is Closure/Admin already — spillover integrates cleanly (pptx content detail doesn't break closure mode).
+**Spillover check:** Thu evening Synthesis is low-load (`S-only`). If pptx outline spills to Fri morning, Fri is Closure/Admin already — spillover integrates cleanly (pptx content detail doesn't break closure mode). However, if **all three projects** (Zephyr merge verify + Signee docs + RobotOS pptx finalize) land on Fri, the day becomes saturated. Receiving day saturation rule: If Fri closure load is at threshold, transform Thu RobotOS spillover from "pptx detail outline" to "pptx scope structure frozen + placeholders for detail" and defer detailed pptx writing to W11 (acceptable for spike consolidation task).
 
 ---
 

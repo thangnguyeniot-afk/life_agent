@@ -32,6 +32,8 @@
   - [6.8 Weekly Energy Pattern](#68-weekly-energy-pattern)
 - [7) Weekly Anchor Map](#7-weekly-anchor-map)
   - [Anchor Load Summary](#anchor-load-summary)
+  - [Re-entry Block Rule](#re-entry-block-rule)
+  - [Spillover / Re-entry Targets](#weekly-anchor-map--spillover--re-entry-targets)
 - [8) Definition of Done (DoD)](#8-definition-of-done-dod--weekly-review-hoàn-thành-khi)
 
 ---
@@ -359,6 +361,15 @@ Nếu **Có**, ghi:
 > - Do NOT place `Heavy Engineering` (office) + `Ambiguity Discovery` (evening) on a Dip day
 > - Evening `M` block must be protected on fatigue-sensitive weekdays — downgrade to `S-only` or `none` if energy signals are present
 > - Friday absorbs spillover but must not become silent overload; close-out work takes precedence over secondary progress
+>
+> **Re-entry Block Rule:**
+> Any spillover that lands on a later day must begin with a short, intentional re-entry block before continuation.
+> Re-entry block purpose: (1) reload context + artifact state, (2) inspect intermediate progress, (3) confirm next exact step, (4) decide whether original work type still fits receiving day.
+> Default size: 10–20 min. Re-entry is **not a new anchor**; it is a continuation pre-step attached to the inherited anchor.
+> Use **Quick Re-entry** for Structured Execution / Closure items (review checklist, reopen file, resume).
+> Use **Analytical Re-entry** for Synthesis / document / planning work (review prior notes, restore reasoning chain, confirm structure before continuing).
+> Use **Fragile Re-entry** for Integration / merge / debug work (inspect state, validate assumptions before resuming).
+> If receiving day energy does not suit the original work type, **transform** (e.g., Ambiguity→Synthesis, Heavy→stabilization) before continuing, rather than forcing the original work type.
 
 ---
 
@@ -468,19 +479,23 @@ Nếu **Có**, ghi:
 
 ### Weekly Anchor Map — Spillover / Re-entry Targets
 
-> When a day slips, this table defines where the work lands. Prevents silent drift.
+> When a day slips, this table defines where the work lands and how it re-enters. Prevents silent drift and hidden re-entry setup cost.
 
-| Source day | Spillover target | Re-entry condition |
-|---|---|---|
-| Monday evening | Tuesday evening | Re-entry note from Mon Shutdown; same anchor |
-| Thursday evening | Friday morning (Office Hours support) or Fri evening | Re-entry note from Thu Shutdown; check energy first |
-| Friday | Saturday (if session available) or W[n+1] Mon | Re-entry note required; mark as carry-forward in Weekly Review |
-| Any day | *(next working day same anchor)* | Re-entry pack required if block was M or higher |
+| Source day | Spillover target | Re-entry requirement | Re-entry mode | Continuation rule |
+|---|---|---|---|---|
+| Monday evening | Tuesday evening | Yes | Quick or Analytical | Same anchor; re-entry confirms energy fit; if Tue energy drops, downgrade work type (not anchor) |
+| Thursday evening | Friday morning (Office Hours check-in) or Fri evening | Yes | Fragile or Analytical | Inspect artifact state first; if Fri closure load is already high, transform work-type to closure-compatible form rather than pushing full continuation |
+| Friday artifact | Saturday (if session available) or W[n+1] Mon | Yes | Analytical | Re-entry note describes artifact state + next section; mark as explicit carry-forward in Weekly Review; do not silently assume W[n+1] Mon inherits at full continuation pace |
+| Any day (`M` or higher) | Next working day same anchor | Yes if `M`+ work | Depends on work type | Re-entry pack required (see Daily template Shutdown section). Receiving day saturation check: if load is already at threshold, convert work type or defer |
 
-> **Spillover work-type rule:** Spillover inherits project/phase intent — but the receiving day re-evaluates work type based on its own energy mode.
-> - `Ambiguity Discovery` landing on a Closure/Dip day → convert to `Synthesis` or re-entry packaging; do not reopen full discovery
+> **Spillover work-type transformation rule:** Spillover inherits project/phase intent — but the receiving day re-evaluates work type based on its own energy mode.
+> - `Ambiguity Discovery` landing on a Closure/Dip day → convert to `Synthesis` or summary/prioritization note; do not reopen full discovery
 > - `Heavy Engineering` landing on a Dip day → convert to issue capture / stabilization / next-step prep; do not push for full continuation
-> - `Integration` landing on a fragmented or low-energy day → defer entirely; a continuity break is worse than the delay
+> - `Integration` landing on a fragmented or low-energy day or adjacent to a gap → defer entirely; continuity break is worse than the delay
+> - `Synthesis` landing on a Closure day → continue but in closure mode (finalize structure/scope vs deepen insight)
+>
+> **Receiving Day Saturation Rule:** Before accepting spillover on a given day, verify the receiving day's load is not already at or near threshold. If load is saturated (check Anchor Load Summary and evening capacity), (1) convert spillover work-type to lower-load form, (2) defer spillover to a less loaded window, or (3) explicitly defer to W[n+1] with clear carry-forward note.
+> Re-entry block cost (10–20 min) must be factored into receiving day's actual capacity — account for re-entry overhead when estimating remaining space for new work.
 
 ---
 
@@ -557,12 +572,16 @@ Nếu **Có**, ghi:
 > If any check triggers → reduce evening load before committing the plan.
 
 **Re-entry / carry-over check:**
-- [ ] Did unfinished work from this week carry clear re-entry notes?
+- [ ] Did unfinished work from this week carry clear re-entry notes (with re-entry mode specified)?
 - [ ] Were any carry-over items hard to restart (high friction)?
 - [ ] Did the week accumulate stale unfinished blocks?
 - [ ] Were key artifacts resumed cleanly, or repeatedly reopened cold?
+- [ ] Are any spillover continuations blocked by the receiving day being already saturated (Anchor Load Summary)?
+- [ ] For each spillover in the plan †— is the receiving day's load manageable when accounting for 10–20 min re-entry overhead?
 
 > If repeated restart friction detected → flag in §2 Task Signals for System Change consideration.
+>
+> **Re-entry block cost reminder:** Planning must account for 10–20 min re-entry overhead when spillover arrives on a receiving day. This is part of the continuation block's actual cost, not hidden setup time. Receiving day saturation is a planning constraint, not an execution surprise.
 
 ---
 
