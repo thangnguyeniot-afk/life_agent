@@ -286,6 +286,21 @@
 
 ---
 
+## Drift Early Warning (30 sec)
+
+> **Purpose:** Detect trajectory/pressure building (not events). Feeds weekly interpretation, not daily replanning.
+> **Distinct from Signals:** Signals = "Did this event happen?". Drift = "Is pressure accumulating toward weekly realism breakdown?"
+
+**Quick scan checklist:**
+- [ ] Anchor progress: On track / Slightly behind / Meaningfully behind
+- [ ] Spillover pressure: Low / Medium / High (work accumulating into tomorrow)
+- [ ] Dependency pressure: Low / Medium / High (blockers affecting flow)
+- [ ] Capacity confidence: High / Medium / Low (energy vs plan mismatch)
+- [ ] Weekly integrity: Yes / No (plan still realistic, or corrective action needed)
+- [ ] Smallest corrective move: (1–2 line action, if any: defer block / downgrade task / confirm dependency / none)
+
+---
+
 ## DoD (Daily closure)
 - [ ] Main artifact captured
 - [ ] Unfinished work documented (with re-entry pack if applicable; re-entry mode specified)

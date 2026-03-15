@@ -585,7 +585,30 @@ Nếu **Có**, ghi:
 
 ---
 
-## Câu chốt (rất nên giữ)
+## Drift Interpretation Rule
+
+> How daily Drift Early Warning signals feed into weekly rescope decisions.
+
+**Checking daily drift signals during Weekly Review:**
+- Collect all "Drift Early Warning" checklist results from Mon–Fri
+- Count days with: "Meaningfully behind" OR "Medium-High spillover pressure" OR "Low capacity confidence" OR "No" on weekly integrity
+- Apply decision rule:
+  - **0 days**: Planning hypothesis is sound. Proceed as planned.
+  - **1 day**: Monitor only. Single day's deviation is normal. Verify dependency is resolved or spillover handled for next day.
+  - **2+ consecutive days** OR **escalating pressure** (e.g., day 2 worse than day 1): Trigger micro-rescope.
+    - Identify which Daily blocks created pressure
+    - Choose ONE small action: drop 1 low-priority evening block, downgrade 1 M task to S, defer 1 task to next week
+    - Update § 7 Anchor Load Summary for remaining days
+    - Update § 6.2 Capacity & WIP if pattern indicates chronic overcommit
+
+**User guidance (anti-pattern alert):**
+- Do NOT rescope from a single day's "Meaningfully behind" unless it's a systemic problem (e.g., same block every day)
+- Do NOT interpret Drift Early Warning as daily re-planning authority; the signal is trajectory, not emergency
+- DO use this to catch gradual weekly unraveling early, before Fri review is too late
+
+---
+
+
 - **Daily sinh tín hiệu**  
 - **Weekly ra quyết định**  
 - **Không quyết định hệ thống ngoài Weekly Review**
