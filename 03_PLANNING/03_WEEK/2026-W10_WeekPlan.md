@@ -64,7 +64,7 @@
 
 ## 6.8 Weekly Energy Pattern
 
-> W10 energy shape — informs §7 anchor type placement below.
+> W10 energy shape — **planning hypothesis**, not hard schedule fact. Informs §7 anchor type placement. If actual daily energy differs, downgrade capacity/work type before changing anchor identity.
 
 | Day | Expected energy | Best-fit work type | Evening capacity | Notes |
 |---|---|---|---|---|
@@ -201,17 +201,40 @@
 | Fri (Signee scope close) | Sat if session available | Re-entry note; mark carry-forward in Weekly Review |
 | Any scope-freeze-critical item | Escalate to W11 only if verdict is documented | Must have status note before deferring |
 
-### W10 Energy-Aware Placement Audit
+### W10 Anchor Map Sanity Pass
 
-> Verified against protection rules:
+> Quick planning-time check. Daily actuals may deviate; respond by downgrading capacity/work type, not anchor identity.
 
-- ✅ Mon: Structured Execution (office) + Structured Execution (evening) — safe for restart-friction day
+- ✅ Mon: Structured Execution × 2 — safe for restart-friction day; no ambiguity stacking
 - ✅ Tue: Structured Execution (office) + Synthesis (evening) — good depth day, no dual ambiguity stack
 - ✅ Wed: Structured Execution + Synthesis (office) + Synthesis (evening) — normal day, no violation
-- ✅ Thu: Structured Execution (office) + Synthesis (evening, `S-only`) — dip day correctly light; no Ambiguity Discovery in either slot
-- ✅ Fri: Synthesis + Closure (office) + Closure/Admin (evening, `S-only`) — closure day correctly absorbed
-- ✅ No Heavy Engineering + Ambiguity Discovery double-stack anywhere
+- ✅ Thu: Structured Execution (office) + Synthesis `S-only` (evening) — dip day correctly light; no Ambiguity Discovery or Heavy Engineering in either slot
+- ✅ Fri: Synthesis + Closure/Admin (office) + Closure/Admin `S-only` (evening) — closure day correctly absorbed
+- ✅ No Heavy Engineering / Integration / Ambiguity Discovery stack detected across all days
 - ✅ Scope freeze P0 constraint enforced on Fri (Signee > RobotOS)
+
+### W10 Anchor Load Summary
+
+> Major anchor placements by work type, Mon–Fri only.
+
+| Work type | Office anchors | Evening anchors | Total |
+|---|---|---|---|
+| Heavy Engineering | 0 | 0 | **0** |
+| Integration | 0 | 0 | **0** |
+| Ambiguity Discovery | 0 | 0 | **0** |
+| Structured Execution | 4 (Mon, Tue, Wed, Thu) | 2 (Mon, Tue) | **6** |
+| Synthesis | 2 (Wed, Fri) | 3 (Wed, Thu, Fri) | **5** |
+| Closure / Admin | 1 (Fri) | 1 (Fri) | **2** |
+
+**Load observations:**
+- Heavy Engineering = 0, Integration = 0, Ambiguity Discovery = 0 — appropriate for scope-freeze-prep week; no new builds or discovery work
+- Load shape: Structured Execution → Synthesis → Closure/Admin — mirrors artifact consolidation flow of scope freeze prep
+- No threshold violations
+- Evening load peaks Mon–Wed (`1×M`), then correctly descends to `S-only` Thu → `S-only/none` Fri; matches Thu dip and Fri closure patterns
+
+**Balancing note:** If Mon regression findings cause Tue evening to shift toward Ambiguity Discovery, total = 1 (within threshold). If it extends to Wed evening also, add a Synthesis buffer on Thu office before scope freeze deadline.
+
+**Spillover check:** Thu evening `S-only` is lightly loaded. If it spills to Fri morning (Synthesis/Closure day), no work-type conversion needed — spillover lands safely.
 
 ---
 
@@ -221,7 +244,8 @@
 - [ ] Signee board baseline artifact confirmed or re-executed
 - [ ] RobotOS spike findings consolidated into scope freeze input
 - [ ] Weekly Anchor Map filled for Mon–Fri ✅ (complete above)
-- [ ] §6.8 Weekly Energy Pattern filled; Thu dip and Fri closure reflected in anchor types ✅
-- [ ] Energy-aware placement audit passed ✅ (no protection rule violations)
+- [ ] §6.8 Weekly Energy Pattern filled as planning hypothesis ✅; Thu dip and Fri closure reflected in anchor types
+- [ ] Anchor Map Sanity Pass completed ✅; no protection rule violations
+- [ ] Anchor Load Summary filled ✅; no threshold violations; balancing note included
 - [ ] Weekly Review artifact produced by Sunday
 - [ ] W11 plan seeded with scope freeze outcome

@@ -31,6 +31,7 @@
   - [6.7 Risks / Constraints / Protection](#67-risks--constraints--protection-13)
   - [6.8 Weekly Energy Pattern](#68-weekly-energy-pattern)
 - [7) Weekly Anchor Map](#7-weekly-anchor-map)
+  - [Anchor Load Summary](#anchor-load-summary)
 - [8) Definition of Done (DoD)](#8-definition-of-done-dod--weekly-review-hoàn-thành-khi)
 
 ---
@@ -294,8 +295,9 @@ Nếu **Có**, ghi:
   - **Protection / mitigation:** …
 
 ## 6.8 Weekly Energy Pattern
-> Scheduling input — not a mood forecast. Use this to decide which work types land on which days.
-> Fill once during weekly planning; §7 Weekly Anchor Map rows derive from this.
+> **Planning hypothesis** — not a hard schedule fact. Default expectations based on recurring patterns.
+> Use this to decide which work types land on which days; §7 Weekly Anchor Map rows derive from this.
+> If actual daily energy differs from expected: **(1)** downgrade capacity, **(2)** downgrade work type, **(3)** preserve anchor identity. Only reassign anchor identity when safe execution is no longer possible.
 
 | Day | Expected energy | Best-fit work type | Evening capacity | Notes |
 |---|---|---|---|---|
@@ -314,12 +316,19 @@ Nếu **Có**, ghi:
 - `Restart friction` — Monday re-entry cost; don't open with unfamiliar ambiguity
 - `Closure` — Friday absorption mode; prioritize artifact completion over new execution
 
-**Work type labels:**
-- `Heavy Engineering` — build / debug / integration / bring-up
-- `Ambiguity Discovery` — spike / research / architecture clarification / unknown reduction
+**Work type labels** *(ascending cognitive load / fragility):*
+- `Closure / Admin` — wrap-up / reporting / re-entry packaging / weekly review
 - `Structured Execution` — validation / checklist / known procedure / doc update
 - `Synthesis` — findings cleanup / ADR input / loop closure / scope review
-- `Closure / Admin` — wrap-up / reporting / re-entry packaging / weekly review
+- `Integration` — cross-boundary bring-up / integration test / system-level handshake; **medium ambiguity, high fragility, continuity-sensitive**
+- `Ambiguity Discovery` — spike / research / architecture clarification / unknown reduction
+- `Heavy Engineering` — build / debug / deep technical investigation; high focus cost, high interruption sensitivity
+
+**⚡ Energy Mismatch Handling** *(when actual energy deviates from expected):*
+1. Downgrade capacity first — `M` → `S-only`; `1×M` → `none`
+2. Downgrade work type — e.g., `Ambiguity Discovery` → `Synthesis`; `Heavy Engineering` → `Structured Execution`; `Integration` → `Structured Execution` or defer
+3. Preserve anchor identity — change *what you execute* before changing *what you are working on*
+4. Reassign anchor identity only if safe execution is genuinely no longer possible (hard blocker, incident, dependency failure)
 
 **This week's energy shape** *(fill at planning time)*:
 - Mon: (expected energy)
@@ -340,8 +349,11 @@ Nếu **Có**, ghi:
 >
 > **Scope protection:** Max 2 active projects/day. Third project only as incident/escalation.
 >
+> **Anchor Stability Rule:** The Weekly Anchor Map defines anchor identity. Daily planning confirms, refines execution, or downgrades capacity — it does not casually redefine anchor identity. If conditions require an identity change, document it as an incident, escalation, or hard blocker — not silent reassignment.
+>
 > **Energy-aware placement rules:**
-> - Place `Heavy Engineering` or `Ambiguity Discovery` anchors only on High/Normal energy days
+> - Place `Heavy Engineering`, `Integration`, or `Ambiguity Discovery` anchors only on High/Normal energy days
+> - `Integration` anchors require continuity — do not place on days adjacent to a known gap or forced recovery day
 > - `Dip` days: prefer `Structured Execution`, `Synthesis`, or `Closure / Admin` only
 > - Do NOT stack two `Ambiguity Discovery` anchors on the same day (office + evening)
 > - Do NOT place `Heavy Engineering` (office) + `Ambiguity Discovery` (evening) on a Dip day
@@ -465,6 +477,11 @@ Nếu **Có**, ghi:
 | Friday | Saturday (if session available) or W[n+1] Mon | Re-entry note required; mark as carry-forward in Weekly Review |
 | Any day | *(next working day same anchor)* | Re-entry pack required if block was M or higher |
 
+> **Spillover work-type rule:** Spillover inherits project/phase intent — but the receiving day re-evaluates work type based on its own energy mode.
+> - `Ambiguity Discovery` landing on a Closure/Dip day → convert to `Synthesis` or re-entry packaging; do not reopen full discovery
+> - `Heavy Engineering` landing on a Dip day → convert to issue capture / stabilization / next-step prep; do not push for full continuation
+> - `Integration` landing on a fragmented or low-energy day → defer entirely; a continuity break is worse than the delay
+
 ---
 
 ### Weekly Anchor Map — Energy-Aware Protection Rules
@@ -479,6 +496,33 @@ Nếu **Có**, ghi:
 - ✅ Spillover from Thu → Fri morning (not Fri evening, unless Fri is explicitly light)
 - ✅ If Saturday is used for architecture/spike work, it should be a single-project deep block
 - ✅ Evening capacity declared in §6.8 must be consistent with §7 evening anchor type
+
+---
+
+### Anchor Load Summary
+
+> Count major planned anchor placements by work type across Mon–Fri (office + evening). Skip admin noise — only count meaningful execution anchors. Two minutes at planning time; catches imbalance before it becomes overload.
+
+| Work type | Office anchors | Evening anchors | Total |
+|---|---|---|---|
+| Heavy Engineering | | | |
+| Integration | | | |
+| Ambiguity Discovery | | | |
+| Structured Execution | | | |
+| Synthesis | | | |
+| Closure / Admin | | | |
+
+**Load safety thresholds:**
+- `Ambiguity Discovery` total ≥ 3 → require ≥ 2 Synthesis or Closure landings later in the same week
+- `Heavy Engineering` total ≥ 3 → protect at least one lower-friction day for stabilization and documentation
+- `Integration` anchors ≥ 2 → verify no continuity gap between placement days; gap = defer to next sequence
+- Evening `M` blocks ≥ 4 → require at least one `S-only` or `none` evening in the week
+- No more than 2 consecutive high-load days (Heavy Engineering / Integration / Ambiguity Discovery) without a Synthesis or Closure buffer
+
+**Spillover placement check:** Before accepting spillover on a given day, verify its load is not already saturated. If receiving day is at high-load, convert work type (see spillover rule above) or defer to next appropriate window.
+
+**Observations / Balancing actions** *(fill at planning time)*:
+- (note threshold violations and correction applied; write "balanced" if none)
 
 ---
 
@@ -499,7 +543,8 @@ Nếu **Có**, ghi:
   - Expected artifact
   - DoD hoặc success criteria
 - **Weekly Anchor Map is filled** for at least Mon–Fri (Office Hours anchor + Evening anchor + work type + artifact direction)
-- **§6.8 Weekly Energy Pattern** filled; Thu dip and Fri closure reflected in §7 anchor types
+- **§6.8 Weekly Energy Pattern** filled as planning hypothesis; Thu dip and Fri closure reflected in §7 anchor types
+- **Anchor Load Summary** filled; no threshold violations (or balancing actions noted)
 - Weekly scope là **realistic** so với capacity + tính chất công việc
 - Không có overcommit (special rule: 1 Big Bet ambiguity cao = giảm Small Bet)
 

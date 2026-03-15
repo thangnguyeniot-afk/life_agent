@@ -46,7 +46,7 @@
 - Office Hours anchor: (paste from map — `<Project> — <phase>`)
 - Evening anchor: (paste from map — `<Project> — <phase>` or none)
 - Artifact direction: (paste from map)
-- **Expected energy mode:** (paste from map — e.g., `Normal` / `Dip` / `Restart friction` / `Closure`)
+- **Expected energy mode:** (paste from map — **planning hypothesis**; if actual energy differs, downgrade capacity/work type before changing anchor identity)
 - **Evening capacity:** (paste from map — e.g., `1×M` / `S-only` / `none`)
 - Risk / flex note: (paste from map if relevant)
 
@@ -87,7 +87,7 @@
 - **Exception to Work Time Domain Rule?** [ ] No (default) [ ] Yes — justify below
   - *If yes, which project? Why must it be in office hours?*
 
-**Evening Capacity Mode** *(weekday only; default: inherit from Weekly Anchor Map §6.8 + §7 unless actuals differ):*
+**Evening Capacity Mode** *(weekday only; inherit from §6.8 + §7 — confirm or downgrade only; do not silently upgrade on weak-energy days):*
 - [ ] `1 × M` — one meaningful block (default normal day)
 - [ ] `2 × S` — two light blocks
 - [ ] `S-only` — energy degraded; keep only most strategic task
@@ -100,7 +100,10 @@
 
 ## Canonical Daily Anchors
 
-> **Single source of truth for anchor identity.** All blocks, shutdown entries, and DoD items refer back to these names.> **Derived from:** Weekly Anchor Map (`WeekPlan §7`, today's row) — refine here; do not reinvent.> **Format rule:** `<Project> — <task/phase>` — no cross-project purpose text; no "so X can proceed" phrasing; artifact or justification text belongs in Purpose or Expected Artifacts, not the anchor line.
+> **Single source of truth for anchor identity.** All blocks, shutdown entries, and DoD items refer back to these names.
+> **Derived from:** Weekly Anchor Map (`WeekPlan §7`, today's row) — refine here; do not reinvent.
+> **Anchor Stability:** Weekly defines identity. Daily confirms, refines, or downgrades. Do not redefine anchor identity unless there is an incident, hard blocker, or explicit escalation — document the reason if identity changes.
+> **Format rule:** `<Project> — <task/phase>` — no cross-project purpose text; no "so X can proceed" phrasing; artifact or justification text belongs in Purpose or Expected Artifacts, not the anchor line.
 
 **Primary Execution Anchor:** [Project] — [task/phase]
 *(e.g., Zephyr — validate STM32F4 toolchain setup and flashing pipeline)*
