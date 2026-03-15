@@ -6,7 +6,7 @@
 > **Reuse:** Run once per closed daily. Safe to re-run if interrupted.  
 > **Maintained by:** Agent 2 (file reads/writes) + Agent 1 (decisions only when escalation required)  
 > **Sequence:** After this completes, run [`PREPARE_NEXT_DAILY.md`](PREPARE_NEXT_DAILY.md)  
-> **Weekly framing:** Generated/updated by [`GENERATE_WEEKLY_EXECUTION.md`](../WEEKLY_CONTROL/GENERATE_WEEKLY_EXECUTION.md); corrected mid-week by [`WEEKLY_REBALANCE.md`](../WEEKLY_CONTROL/WEEKLY_REBALANCE.md) if drift detected; closed by [`WEEK_CLOSEOUT.md`](../WEEKLY_CONTROL/WEEK_CLOSEOUT.md) at week end
+> **Weekly framing:** Generated/updated by [`GENERATE_WEEKLY_EXECUTION.md`](../WEEKLY_CONTROL/GENERATE_WEEKLY_EXECUTION.md) (baseline from [`GENERATE_WEEKPLAN.md`](../WEEKLY_CONTROL/GENERATE_WEEKPLAN.md)); corrected mid-week by [`WEEKLY_REBALANCE.md`](../WEEKLY_CONTROL/WEEKLY_REBALANCE.md) if drift detected; closed by [`WEEK_CLOSEOUT.md`](../WEEKLY_CONTROL/WEEK_CLOSEOUT.md) at week end
 
 ---
 

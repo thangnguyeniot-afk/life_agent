@@ -6,10 +6,10 @@
 
 **Operational relationship:**
 - Reads: Active `W##_Execution.md` + Daily files (execution evidence)
-- References: `W##_WeekPlan.md` (planning intent baseline)
+- References: `W##_WeekPlan.md` (planning intent baseline, created by GENERATE_WEEKPLAN)
 - Updates: `W##_Execution.md` with closeout section and carry-over notes
 - Feeds: Month/Project tracking with factual weekly state changes
-- Prepares: Ground for next week generation
+- Prepares: Carry-over and learnings for next GENERATE_WEEKPLAN (next week generation input)
 
 ---
 

@@ -146,6 +146,8 @@ Includes:
 
 ### Weekly Control
 
+- `01_OS/04_OPERATIONS/WEEKLY_CONTROL/GENERATE_WEEKPLAN.md` — Canonical weekly planning procedure. Generates the weekly planning artifact (`W##_WeekPlan.md`) that translates month context, project states, and previous-week carry-over into a coherent weekly plan. Defines weekly goals, mission structure, anchor hypothesis, constraints, capacity, and Definition of Done. Serves as the strategic baseline for execution. Includes 10-step procedure, planning logic, anchor generation rules, carry-over handling, consistency check, and reusable command template.
+
 - `01_OS/04_OPERATIONS/WEEKLY_CONTROL/GENERATE_WEEKLY_EXECUTION.md` — Canonical weekly execution generation procedure. Creates or updates the Weekly Execution file from Monthly direction + execution reality (recent Daily) reconciliation. Supports 3 modes: New generation (Mode A), Week reconstruction from Daily files (Mode B), Mid-week rebalance (Mode C). Includes data collection checklist, 10-step procedure, anchor rules, carry-over rules, reconstruction rules, consistency check, and reusable Copilot command template.
 
 - `01_OS/04_OPERATIONS/WEEKLY_CONTROL/WEEKLY_REBALANCE.md` — Canonical mid-week rebalance procedure. Performs controlled correction of an active Weekly Execution file when real execution has drifted enough to threaten operational coherence. Operates on Daily evidence (not planning baseline). Defines 3 distortion levels (Local/Weekly/Structural), trigger thresholds, allowed/forbidden changes, escalation rules, and reusable command template. Does not rewrite WeekPlan or Month strategy.
@@ -157,13 +159,13 @@ Includes:
 - `01_OS/04_OPERATIONS/DAILY_INTEGRATION/INTEGRATE_DAILY.md` — Canonical daily reverse-integration procedure. Run after each closed Daily file to sync execution reality into Weekly / Monthly / Project / Anchor tracking layers. Includes 8-step procedure, guardrails, consistency check, and reusable Copilot command template.
 - `01_OS/04_OPERATIONS/DAILY_INTEGRATION/PREPARE_NEXT_DAILY.md` — Canonical next-day preparation procedure. Run after INTEGRATE_DAILY to create or prefill the next Daily file from carry-over + weekly state. Includes 9-step procedure, carry-over rules, anchor selection rules, overload check, and reusable Copilot command template.
 
-**Operational sequences:**
+**Operational sequences (5-step weekly cycle):**
 
-1. **At week start:** GENERATE_WEEKLY_EXECUTION (Mode A) → Create Week file from Month direction + capacity
-2. **Daily workflow:** INTEGRATE_DAILY (after each day ends) → PREPARE_NEXT_DAILY (after integration) → Next day ready
-3. **Mid-week if needed:** INTEGRATE_DAILY detects weekly-level drift → WEEKLY_REBALANCE corrects active Week file (if Level 2/3 distortion)
-4. **At week end:** Final INTEGRATE_DAILY + **WEEK_CLOSEOUT** (validates delivery, extracts carry-over, prepares next-week hints)
-5. **Next week start:** GENERATE_WEEKLY_EXECUTION (Mode A, using CLOSEOUT carry-over as input)
+1. **At week start (planning):** GENERATE_WEEKPLAN → Create `W##_WeekPlan.md` from Month context + previous closure + project states + carry-over; defines goals, anchor, DoD, constraints
+2. **Week baseline:** GENERATE_WEEKLY_EXECUTION (Mode A) → Create `W##_Execution.md` from `W##_WeekPlan.md` baseline + execution reality
+3. **Daily workflow:** INTEGRATE_DAILY (after each day ends) → PREPARE_NEXT_DAILY (after integration) → Next day ready
+4. **Mid-week if needed:** INTEGRATE_DAILY detects weekly-level drift → WEEKLY_REBALANCE corrects active Week file (if Level 2/3 distortion)
+5. **At week end:** Final INTEGRATE_DAILY + **WEEK_CLOSEOUT** (validates delivery, extracts carry-over, prepares next-week hints)
 
 **Trigger sequence for mid-week rebalance:**
 - INTEGRATE_DAILY reveals daily/weekly mismatch
@@ -171,11 +173,11 @@ Includes:
 - Local Drift → absorb via carry-over (no rebalance)
 - Weekly/Structural → WEEKLY_REBALANCE runs; corrects Week file; escalation if needed
 
-**Trigger sequence for week closeout:**
+**Trigger sequence for week closeout → next week start:**
 - Final daily of week closes; all Daily integrations complete
 - WEEK_CLOSEOUT validates execution against evidence (Daily files)
 - Produces closure summary, carry-over extraction, next-week hints
-- Prepares ground for next week generation
+- Prepares ground for next GENERATE_WEEKPLAN (carry-over becomes input to planning)
 
 **Model:** Run by Agent 2 (OS procedures). Agent 1 only when escalation, strategic decision, or rebalance justification required.
 

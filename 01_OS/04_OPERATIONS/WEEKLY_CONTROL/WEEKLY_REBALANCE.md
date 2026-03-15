@@ -5,11 +5,11 @@
 **When to run:** During an active week (Mon–Fri typically); triggered when Daily integration reveals weekly-level distortion that exceeds local drift handling capacity.
 
 **Operational relationship:**
+- Reads: `W##_WeekPlan.md` (created by GENERATE_WEEKPLAN; planning intent baseline)
 - Updates: Active `W##_Execution.md` (operational reality artifact)
-- Preserves: `W##_WeekPlan.md` (weekly planning intent baseline)
 - Preserves: Month file (monthly strategy baseline)
 - Inputs: Recent Daily files (execution truth)
-- Related procedures: [`GENERATE_WEEKLY_EXECUTION.md`](GENERATE_WEEKLY_EXECUTION.md) | [`WEEK_CLOSEOUT.md`](WEEK_CLOSEOUT.md) (week-end) | [`INTEGRATE_DAILY.md`](../DAILY_INTEGRATION/INTEGRATE_DAILY.md)
+- Related procedures: [`GENERATE_WEEKPLAN.md`](GENERATE_WEEKPLAN.md) (weekly planning) | [`GENERATE_WEEKLY_EXECUTION.md`](GENERATE_WEEKLY_EXECUTION.md) | [`WEEK_CLOSEOUT.md`](WEEK_CLOSEOUT.md) (week-end) | [`INTEGRATE_DAILY.md`](../DAILY_INTEGRATION/INTEGRATE_DAILY.md)
 
 ---
 

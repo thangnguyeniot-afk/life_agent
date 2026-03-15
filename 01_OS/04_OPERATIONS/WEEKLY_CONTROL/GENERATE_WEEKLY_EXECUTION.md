@@ -3,10 +3,10 @@
 > **Type:** Operating Procedure  
 > **Layer:** OS / Operations  
 > **Scope:** Monthly direction + execution reality → Weekly Execution file  
-> **Prerequisite:** Month file must exist and be accessible  
-> **Reuse:** Run once per week, typically at end of week or Sunday, OR on-demand for reconstruction/rebalance  
+> **Prerequisite:** WeekPlan must exist and be accessible (created by GENERATE_WEEKPLAN)  
+> **Reuse:** Run once per week, typically at week start, OR on-demand for reconstruction/rebalance  
 > **Maintained by:** Agent 2 (file reads/writes + data collection) + Agent 1 (escalation decisions only)  
-> **Related:** [`WEEKLY_REBALANCE.md`](WEEKLY_REBALANCE.md) (mid-week correction) | [`WEEK_CLOSEOUT.md`](WEEK_CLOSEOUT.md) (week-end closure) | [`INTEGRATE_DAILY.md`](../DAILY_INTEGRATION/INTEGRATE_DAILY.md) | [`PREPARE_NEXT_DAILY.md`](../DAILY_INTEGRATION/PREPARE_NEXT_DAILY.md)
+> **Related:** [`GENERATE_WEEKPLAN.md`](GENERATE_WEEKPLAN.md) (weekly planning) | [`WEEKLY_REBALANCE.md`](WEEKLY_REBALANCE.md) (mid-week correction) | [`WEEK_CLOSEOUT.md`](WEEK_CLOSEOUT.md) (week-end closure) | [`INTEGRATE_DAILY.md`](../DAILY_INTEGRATION/INTEGRATE_DAILY.md) | [`PREPARE_NEXT_DAILY.md`](../DAILY_INTEGRATION/PREPARE_NEXT_DAILY.md)
 
 ---
 
