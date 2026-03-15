@@ -42,6 +42,12 @@
 > If day collapses: capture only main artifact + unfinished + next step.
 > Daily blocks should originate from admitted tasks (Task Intake & Admission passed). If a block feels artifact-less or ambiguous, flag in Signals — do not force execution on unresolved work.
 
+**Inherited from Weekly Anchor Map** *(copy the relevant day row from WeekPlan §7)*:
+- Office Hours anchor: (paste from map — `<Project> — <phase>`)
+- Evening anchor: (paste from map — `<Project> — <phase>` or none)
+- Artifact direction: (paste from map)
+- Risk / flex note: (paste from map if relevant)
+
 ---
 
 ## Daily Project Scope Rule (Critical)
@@ -92,8 +98,7 @@
 
 ## Canonical Daily Anchors
 
-> **Single source of truth for anchor identity.** All blocks, shutdown entries, and DoD items refer back to these names.
-> **Format rule:** `<Project> — <task/phase>` — no cross-project purpose text; no "so X can proceed" phrasing; artifact or justification text belongs in Purpose or Expected Artifacts, not the anchor line.
+> **Single source of truth for anchor identity.** All blocks, shutdown entries, and DoD items refer back to these names.> **Derived from:** Weekly Anchor Map (`WeekPlan §7`, today's row) — refine here; do not reinvent.> **Format rule:** `<Project> — <task/phase>` — no cross-project purpose text; no "so X can proceed" phrasing; artifact or justification text belongs in Purpose or Expected Artifacts, not the anchor line.
 
 **Primary Execution Anchor:** [Project] — [task/phase]
 *(e.g., Zephyr — validate STM32F4 toolchain setup and flashing pipeline)*

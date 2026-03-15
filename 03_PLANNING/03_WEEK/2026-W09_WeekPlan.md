@@ -225,36 +225,102 @@ Target allocation *this week*:
 
 ---
 
-## 7. Execution Anchors
+## 7. Weekly Anchor Map
 
-> Anchor = direction for the day, not a task list.  
-> Max 2 anchors per day. Daily blocks derive from these; do not copy missions mechanically.  
-> Weekday rhythm: Zephyr = Primary (office-hours dominant). Signee / RobotOS rotate as Secondary.  
-> Note: Team meeting moved to Tuesday — Monday = individual work only.
+> Pre-assigned anchor directions for each day. Daily files refine; they do not reinvent.
+> Format: `<Project> — <phase/checkpoint>`. Downstream purpose text belongs in Risk/Flex notes, not anchor fields.
 
-**Mon (3/2)**
-- Primary Anchor: Zephyr — review test queue; push 1–2 tests; close any W08 loose ends
-- Secondary Anchor: Signee — start scope context draft for board baseline
+---
 
-**Tue (3/3)**
-- Primary Anchor: Zephyr — team sync; capture Zephyr-related blockers and integration concerns
-- Secondary Anchor: Signee — gather meeting inputs; capture new customer requirements and scope questions
+### Monday (3/2)
 
-**Wed (3/4)**
-- Primary Anchor: Zephyr — verify mainline green; confirm Signee board env has no Zephyr-side blocker
-- Secondary Anchor: RobotOS — draft v0.1/v0.2 scope intent; identify what remains unclear
+| Field | Value |
+|---|---|
+| **Office Hours anchor** | Zephyr — review test queue; push 1–2 tests; close W08 loose ends |
+| **Evening anchor** | Signee — start scope context draft for board baseline |
+| **Artifact direction** | Zephyr: test queue status note; Signee: rough scope context draft (even 5 bullets) |
+| **Risk / ambiguity** | Fresh week, expected higher energy; keep scope tight to allow momentum |
+| **Flex / defer note** | Signee scope context can carry to Tue evening if Mon is meeting-heavy |
 
-**Thu (3/5)**
-- Primary Anchor: Zephyr — confirm RobotOS STM32F4 environment can be set up without friction
-- Secondary Anchor: RobotOS — consolidate spike notes; flag unknowns needing sub-spike before W10
+---
 
-**Fri (3/6)**
-- Primary Anchor: Signee — close board baseline doc (rough); confirm scope questions captured for W10
-- Secondary Anchor: Zephyr — weekly status check; mainline stable, no regressions
+### Tuesday (3/3)
 
-**Sat (3/7)** *(optional — if work session available)*
-- Primary Anchor: RobotOS — close spike artifact (rough notes ok); architecture questions listed
-- Secondary Anchor: Signee — review scope questions list; confirm readiness for W10 scope drafting
+| Field | Value |
+|---|---|
+| **Office Hours anchor** | Zephyr — team sync; capture Zephyr-related blockers and integration concerns |
+| **Evening anchor** | Signee — gather meeting inputs; capture new customer requirements and scope questions |
+| **Artifact direction** | Zephyr: blockers/concerns note; Signee: scope questions list (from meeting inputs) |
+| **Risk / ambiguity** | Team sync shifts context; scope questions may multiply — that's expected |
+| **Flex / defer note** | If sync overruns, Signee evening block reduces to S only |
+
+---
+
+### Wednesday (3/4)
+
+| Field | Value |
+|---|---|
+| **Office Hours anchor** | Zephyr — verify mainline green; confirm Signee board env has no Zephyr-side blocker |
+| **Evening anchor** | RobotOS — draft v0.1/v0.2 scope intent; identify what remains unclear |
+| **Artifact direction** | Zephyr: mainline status confirmation; RobotOS: scope intent draft (even rough) |
+| **Risk / ambiguity** | Architecture framing for RobotOS is exploratory; keep evening block M at most |
+| **Flex / defer note** | RobotOS scope intent can slip to Thu evening if Wed energy is lower than expected |
+
+---
+
+### Thursday (3/5)
+
+| Field | Value |
+|---|---|
+| **Office Hours anchor** | Zephyr — validate STM32F4 toolchain setup and flashing pipeline |
+| **Evening anchor** | RobotOS — consolidate architecture spike findings |
+| **Artifact direction** | Zephyr: toolchain validation note ("ready" or "issues: [list]"); RobotOS: consolidated spike findings document |
+| **Risk / ambiguity** | Thursday energy dip typical; toolchain can surface unexpected issues; keep evening at 1×M |
+| **Flex / defer note** | If RobotOS spike consolidation is unfinished, sub-spike prioritization defers to Friday |
+
+---
+
+### Friday (3/6)
+
+| Field | Value |
+|---|---|
+| **Office Hours anchor** | Signee — close board baseline doc (rough); confirm scope questions captured |
+| **Evening anchor** | Zephyr — weekly status check; mainline stable; no regressions |
+| **Artifact direction** | Signee: board baseline doc (rough OK); Zephyr: mainline status note |
+| **Risk / ambiguity** | Friday is carry-forward target for Thu spillover; check Thu re-entry note first |
+| **Flex / defer note** | If Signee board baseline is already draft-ready from Thu, use Friday morning for RobotOS spike close instead |
+
+---
+
+### Saturday (3/7) *(optional)*
+
+| Field | Value |
+|---|---|
+| **Domain** | Personal projects |
+| **Anchor** | RobotOS — close spike artifact; architecture questions listed |
+| **Artifact direction** | RobotOS: spike notes or framing doc; Signee: scope questions list review |
+| **Notes** | Weekend deep block; architecture synthesis preferred |
+
+---
+
+### Sunday (3/8) *(optional)*
+
+| Field | Value |
+|---|---|
+| **Domain** | Weekly Review / reset |
+| **Anchor** | Weekly Review — close W09; open W10 |
+| **Artifact direction** | W09 Review artifact + W10 plan initial seed |
+| **Notes** | Review must precede W10 planning |
+
+---
+
+### Weekly Anchor Map — Spillover / Re-entry Targets
+
+| Source day | Spillover target | Re-entry condition |
+|---|---|---|
+| Thu evening (RobotOS spike) | Fri morning (office hours support) or Fri evening | Re-entry note from Thu Shutdown; check energy |
+| Fri (Signee close-out) | Sat (if session available) | Re-entry note; mark as carry-forward in Weekly Review |
+| Any evening block | Next working day same anchor | Re-entry pack required if block was M+ |
 
 ---
 

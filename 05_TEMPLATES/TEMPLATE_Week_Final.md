@@ -29,8 +29,8 @@
   - [6.5 Ưu tiên lớn của tuần tới](#65-ưu-tiên-lớn-của-tuần-tới-13)
   - [6.6 System Change sẽ thực hiện / theo dõi](#66-system-change-sẽ-thực-hiện--theo-dõi)
   - [6.7 Risks / Constraints / Protection](#67-risks--constraints--protection-13)
-  - [Daily Anchor Guidance](#daily-anchor-guidance)
-- [7) Definition of Done (DoD)](#7-definition-of-done-dod--weekly-review-hoàn-thành-khi)
+- [7) Weekly Anchor Map](#7-weekly-anchor-map)
+- [8) Definition of Done (DoD)](#8-definition-of-done-dod--weekly-review-hoàn-thành-khi)
 
 ---
 
@@ -292,39 +292,124 @@ Nếu **Có**, ghi:
 - **Risk:** …
   - **Protection / mitigation:** …
 
-## Daily Anchor Guidance
-> Anchor = direction, not task list.  
-> Daily execution selects from weekly missions based on capacity and operating context.  
-> **Max 2 anchors per day.** No 3-project parallelism on a normal day.  
-> Weekday rhythm: Zephyr-dominant (Primary). Weekend: Signee / RobotOS / Review.
+---
 
-**Mon**
-- Primary Anchor: (project — direction)
-- Secondary Anchor: (project — direction)
+# 7) Weekly Anchor Map
 
-**Tue**
-- Primary Anchor:
-- Secondary Anchor:
+> **Purpose:** Pre-assign likely execution anchors across the week so daily files refine rather than invent.
+> Daily planning derives Office Hours domain, Evening domain, Canonical Anchors, and artifact direction from this map.
+> The map is a planning commitment — not a rigid schedule. Daily files may adapt due to energy, spill-over, or incident.
+>
+> **Format rule:** Each anchor entry is `<Project> — <phase/checkpoint>`. No cross-project purpose text in anchor fields; downstream rationale belongs in the Risk/Flex note.
+>
+> **Scope protection:** Map must enforce max 2 active projects/day. Third project only as incident/escalation.
 
-**Wed**
-- Primary Anchor:
-- Secondary Anchor:
+---
 
-**Thu**
-- Primary Anchor:
-- Secondary Anchor:
+### Monday
 
-**Fri**
-- Primary Anchor:
-- Secondary Anchor:
+| Field | Value |
+|---|---|
+| **Office Hours domain** | Zephyr |
+| **Office Hours anchor** | Zephyr — (phase/checkpoint) |
+| **Evening domain** | (RobotOS / Signee / none) |
+| **Evening anchor** | (Project) — (phase/checkpoint) |
+| **Artifact direction** | (what should exist after this day — 1 line per project) |
+| **Risk / ambiguity** | (any known energy, dependency, or complexity risk for this day) |
+| **Flex / defer note** | (what can slip to Tuesday if capacity is tighter than expected) |
 
-**Sat** *(optional — if work session planned)*
-- Primary Anchor:
-- Secondary Anchor:
+---
 
-**Sun** *(optional — review / reset)*
-- Primary Anchor: Weekly Review
-- Secondary Anchor: (light continuation if energy allows)
+### Tuesday
+
+| Field | Value |
+|---|---|
+| **Office Hours domain** | Zephyr |
+| **Office Hours anchor** | Zephyr — (phase/checkpoint) |
+| **Evening domain** | (RobotOS / Signee / none) |
+| **Evening anchor** | (Project) — (phase/checkpoint) |
+| **Artifact direction** | … |
+| **Risk / ambiguity** | … |
+| **Flex / defer note** | … |
+
+---
+
+### Wednesday
+
+| Field | Value |
+|---|---|
+| **Office Hours domain** | Zephyr |
+| **Office Hours anchor** | Zephyr — (phase/checkpoint) |
+| **Evening domain** | (RobotOS / Signee / none) |
+| **Evening anchor** | (Project) — (phase/checkpoint) |
+| **Artifact direction** | … |
+| **Risk / ambiguity** | … |
+| **Flex / defer note** | … |
+
+---
+
+### Thursday
+
+| Field | Value |
+|---|---|
+| **Office Hours domain** | Zephyr |
+| **Office Hours anchor** | Zephyr — (phase/checkpoint) |
+| **Evening domain** | (RobotOS / Signee / none) |
+| **Evening anchor** | (Project) — (phase/checkpoint) |
+| **Artifact direction** | … |
+| **Risk / ambiguity** | (Thursday energy dip is a recurring pattern; keep evening at 1×M max) |
+| **Flex / defer note** | (Evening Block 2 defers to Friday if energy is below normal) |
+
+---
+
+### Friday
+
+| Field | Value |
+|---|---|
+| **Office Hours domain** | Zephyr / Signee *(close-out day; may include Signee wrap-up)* |
+| **Office Hours anchor** | (Project) — (close-out / artifact finalization) |
+| **Evening domain** | (RobotOS / Signee / none / review) |
+| **Evening anchor** | (Project) — (phase/checkpoint) or Weekly Review |
+| **Artifact direction** | (close-out artifacts; what must be finalized before week close) |
+| **Risk / ambiguity** | (Friday is carry-forward target for Thu spillover) |
+| **Flex / defer note** | (if Thu spilled, Fri morning absorbs the re-entry before new Fri work) |
+
+---
+
+### Saturday *(optional — if session planned)*
+
+| Field | Value |
+|---|---|
+| **Domain** | Personal projects (RobotOS / Signee / Review work) |
+| **Anchor** | (Project) — (phase/checkpoint) |
+| **Artifact direction** | … |
+| **Notes** | Weekend deep block available; open-ended architecture work preferred over fragmented tasks |
+
+---
+
+### Sunday *(optional — review / reset)*
+
+| Field | Value |
+|---|---|
+| **Domain** | Weekly Review / reset |
+| **Anchor** | Weekly Review — close W[n]; open W[n+1] |
+| **Artifact direction** | Weekly Review artifact + W[n+1] plan seeded |
+| **Notes** | If review not done Sunday, must complete by Monday morning before execution begins |
+
+---
+
+### Weekly Anchor Map — Spillover / Re-entry Targets
+
+> When a day slips, this table defines where the work lands. Prevents silent drift.
+
+| Source day | Spillover target | Re-entry condition |
+|---|---|---|
+| Monday evening | Tuesday evening | Re-entry note from Mon Shutdown; same anchor |
+| Thursday evening | Friday morning (Office Hours support) or Fri evening | Re-entry note from Thu Shutdown; check energy first |
+| Friday | Saturday (if session available) or W[n+1] Mon | Re-entry note required; mark as carry-forward in Weekly Review |
+| Any day | *(next working day same anchor)* | Re-entry pack required if block was M or higher |
+
+---
 
 ### ❌ Không research  
 ### ❌ Không tối ưu lịch  
@@ -332,7 +417,7 @@ Nếu **Có**, ghi:
 
 ---
 
-# 7) Definition of Done (DoD) — Weekly Review hoàn thành khi
+# 8) Definition of Done (DoD) — Weekly Review hoàn thành khi
 - Tất cả **tín hiệu** trong tuần đã được xử lý (giữ / theo dõi / system change)
 - Nhịp sống & hành vi phá hoại được đánh giá tổng thể (anchors + anti-anchors)
 - Có quyết định rõ ràng: **giữ nguyên** hoặc **System Change**
@@ -342,6 +427,7 @@ Nếu **Có**, ghi:
   - Size (S/M/L) và Ambiguity (0–5)
   - Expected artifact
   - DoD hoặc success criteria
+- **Weekly Anchor Map is filled** for at least Mon–Fri (Office Hours anchor + Evening anchor + artifact direction)
 - Weekly scope là **realistic** so với capacity + tính chất công việc
 - Không có overcommit (special rule: 1 Big Bet ambiguity cao = giảm Small Bet)
 
