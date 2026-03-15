@@ -46,6 +46,8 @@
 - Office Hours anchor: (paste from map — `<Project> — <phase>`)
 - Evening anchor: (paste from map — `<Project> — <phase>` or none)
 - Artifact direction: (paste from map)
+- **Expected energy mode:** (paste from map — e.g., `Normal` / `Dip` / `Restart friction` / `Closure`)
+- **Evening capacity:** (paste from map — e.g., `1×M` / `S-only` / `none`)
 - Risk / flex note: (paste from map if relevant)
 
 ---
@@ -85,7 +87,7 @@
 - **Exception to Work Time Domain Rule?** [ ] No (default) [ ] Yes — justify below
   - *If yes, which project? Why must it be in office hours?*
 
-**Evening Capacity Mode** *(weekday only; check one):*
+**Evening Capacity Mode** *(weekday only; default: inherit from Weekly Anchor Map §6.8 + §7 unless actuals differ):*
 - [ ] `1 × M` — one meaningful block (default normal day)
 - [ ] `2 × S` — two light blocks
 - [ ] `S-only` — energy degraded; keep only most strategic task

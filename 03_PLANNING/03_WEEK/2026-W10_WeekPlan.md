@@ -62,6 +62,24 @@
 
 ---
 
+## 6.8 Weekly Energy Pattern
+
+> W10 energy shape — informs §7 anchor type placement below.
+
+| Day | Expected energy | Best-fit work type | Evening capacity | Notes |
+|---|---|---|---|---|
+| Mon | Restart friction / Medium | Structured Execution | `1×M` | Re-entry from W09 carry-forward; do not open with new ambiguity |
+| Tue | Good depth | Structured Execution + light Synthesis | `1×M` | Best window for verification follow-up and scope integration |
+| Wed | Normal | Structured Execution or Synthesis | `1×M` | Mid-week stable; RobotOS evening block appropriate |
+| Thu | ⚠️ Dip (recurring) | Structured Execution | `S-only` or `1×M` *(careful)* | Keep evening light; no dual ambiguity-heavy anchors |
+| Fri | Closure / Carry-forward | Synthesis + Closure / Admin | `S-only` or `none` | Absorb Thu spillover; scope freeze must be closed by EOD |
+| Sat | Open / Deep | Synthesis or Heavy Engineering | — | Architecture synthesis or spike closure |
+| Sun | Review / Reset | Closure / Admin | — | Weekly Review + W11 seed |
+
+**This week's energy constraint:** Scope freeze gate hardness means Fri EOD is non-negotiable. All heavy verification work must land Mon–Thu. Friday is synthesis and closure only.
+
+---
+
 ## 7. Weekly Anchor Map
 
 > Pre-assigned anchor directions for each day. Daily files refine; they do not reinvent.
@@ -74,11 +92,15 @@
 
 | Field | Value |
 |---|---|
+| **Expected energy** | Restart friction / Medium |
 | **Office Hours anchor** | Zephyr — verify mainline green; confirm no regressions from W09 |
+| **Office work type** | Structured Execution *(verification pass = known procedure; not new discovery)* |
 | **Evening anchor** | Signee — confirm board baseline artifact exists; re-execute bring-up check if missing |
+| **Evening work type** | Structured Execution |
+| **Evening capacity** | `1×M` *(downgrade to `S` if mainline regression surfaces and switches mode)* |
 | **Artifact direction** | Zephyr: mainline status note ("green" or "issues: [list]"); Signee: board baseline artifact or bring-up re-run log |
 | **Risk / ambiguity** | W09 carry-forward; do not skip verification — this is not new execution |
-| **Flex / defer note** | If mainline check surfaces regressions, Signee evening reduces to S; recovery mode |
+| **Flex / defer note** | If mainline check surfaces regressions, Signee evening reduces to `S`; recovery mode |
 
 ---
 
@@ -86,8 +108,12 @@
 
 | Field | Value |
 |---|---|
+| **Expected energy** | Good depth |
 | **Office Hours anchor** | Zephyr — both-track enablement check; integration stability for scope freeze |
+| **Office work type** | Structured Execution *(integration check = known procedure; if regression from Mon, upgrade to Heavy Engineering)* |
 | **Evening anchor** | Signee or RobotOS — priority based on Mon findings (larger W09 gap wins) |
+| **Evening work type** | Structured Execution or Synthesis |
+| **Evening capacity** | `1×M` |
 | **Artifact direction** | Zephyr: both-track status note; Signee: scope questions captured / RobotOS: spike framing doc start |
 | **Risk / ambiguity** | Evening project choice depends on Mon outcome — check re-entry note before planning |
 | **Flex / defer note** | RobotOS spike framing can slip to Wed evening if Signee still has open board baseline questions |
@@ -98,8 +124,12 @@
 
 | Field | Value |
 |---|---|
+| **Expected energy** | Normal |
 | **Office Hours anchor** | Zephyr — Signee scope question support + integration check |
+| **Office work type** | Structured Execution + Synthesis *(scope support = known input; integration = known procedure)* |
 | **Evening anchor** | RobotOS — advance spike artifact toward scope freeze readiness |
+| **Evening work type** | Synthesis *(consolidate, don't discover — scope is already partially known)* |
+| **Evening capacity** | `1×M` |
 | **Artifact direction** | Zephyr: scope question support log; RobotOS: architecture spike doc (partial OK) |
 | **Risk / ambiguity** | Mid-week energy; keep RobotOS evening block to M (not L) |
 | **Flex / defer note** | If Zephyr integration check uncovers issue, suppress RobotOS evening; triage first |
@@ -110,11 +140,15 @@
 
 | Field | Value |
 |---|---|
+| **Expected energy** | ⚠️ Dip (recurring pattern) |
 | **Office Hours anchor** | Zephyr — scope freeze prep check; final Signee scope question support |
+| **Office work type** | Structured Execution *(checklist / confirmation pass — no new ambiguity-heavy work on dip day)* |
 | **Evening anchor** | RobotOS — consolidate spike findings into scope freeze input |
+| **Evening work type** | Synthesis *(consolidation only — not new discovery; Synthesis is safe on dip evening)* |
+| **Evening capacity** | `S-only` — downgrade from M given dip pattern; protect against overrun |
 | **Artifact direction** | Zephyr: scope freeze readiness status; RobotOS: spike findings note (even rough bullets) |
-| **Risk / ambiguity** | Thursday energy dip is a recurring pattern; keep evening at 1×M max |
-| **Flex / defer note** | RobotOS consolidation defers to Fri morning if Thu evening energy is below M threshold |
+| **Risk / ambiguity** | ⚠️ Do not stack Ambiguity Discovery in both slots; evening Synthesis only |
+| **Flex / defer note** | RobotOS consolidation defers to Fri morning if Thu evening energy is below S threshold |
 
 ---
 
@@ -122,10 +156,14 @@
 
 | Field | Value |
 |---|---|
+| **Expected energy** | Closure / Carry-forward |
 | **Office Hours anchor** | Signee — scope questions finalized; scope freeze prep complete |
+| **Office work type** | Synthesis + Closure / Admin *(absorb Thu spillover first; finalize existing artifacts)* |
 | **Evening anchor** | RobotOS — finalize spike artifact; or start Weekly Review if artifact is done |
+| **Evening work type** | Closure / Admin *(wrap-up only; no new discovery or engineering on Fri evening)* |
+| **Evening capacity** | `S-only` or `none` |
 | **Artifact direction** | Signee: scope questions closed doc; RobotOS: final spike artifact or Weekly Review open |
-| **Risk / ambiguity** | Close-out day; carry-forward target for Thu spillover — check Thu re-entry note |
+| **Risk / ambiguity** | Carry-forward absorption day — do not schedule new ambiguity-heavy work |
 | **Flex / defer note** | If Signee scope freeze prep incomplete, suppress RobotOS evening entirely; Signee is P0 |
 
 ---
@@ -134,10 +172,11 @@
 
 | Field | Value |
 |---|---|
-| **Domain** | Personal projects |
+| **Expected energy** | Open / Deep (if session available) |
 | **Anchor** | RobotOS — architecture spike closure; or Weekly Review if not started Fri |
+| **Work type** | Synthesis or Heavy Engineering *(single-project deep block preferred)* |
 | **Artifact direction** | RobotOS: spike artifact finalized; or W10 Review: §1–§5 drafted |
-| **Notes** | Weekend deep block preferred for architecture synthesis; schedule review if spike is already clean |
+| **Notes** | Weekend deep block; architecture synthesis preferred; do not fragment across projects |
 
 ---
 
@@ -145,8 +184,9 @@
 
 | Field | Value |
 |---|---|
-| **Domain** | Weekly Review / reset |
+| **Expected energy** | Review / Reset |
 | **Anchor** | Weekly Review — close W10; open W11 with scope freeze status |
+| **Work type** | Closure / Admin |
 | **Artifact direction** | W10 Review artifact + W11 plan seed (especially scope freeze outcome and carry-forwards) |
 | **Notes** | Review must include scope freeze readiness verdict before W11 opens |
 
@@ -161,6 +201,18 @@
 | Fri (Signee scope close) | Sat if session available | Re-entry note; mark carry-forward in Weekly Review |
 | Any scope-freeze-critical item | Escalate to W11 only if verdict is documented | Must have status note before deferring |
 
+### W10 Energy-Aware Placement Audit
+
+> Verified against protection rules:
+
+- ✅ Mon: Structured Execution (office) + Structured Execution (evening) — safe for restart-friction day
+- ✅ Tue: Structured Execution (office) + Synthesis (evening) — good depth day, no dual ambiguity stack
+- ✅ Wed: Structured Execution + Synthesis (office) + Synthesis (evening) — normal day, no violation
+- ✅ Thu: Structured Execution (office) + Synthesis (evening, `S-only`) — dip day correctly light; no Ambiguity Discovery in either slot
+- ✅ Fri: Synthesis + Closure (office) + Closure/Admin (evening, `S-only`) — closure day correctly absorbed
+- ✅ No Heavy Engineering + Ambiguity Discovery double-stack anywhere
+- ✅ Scope freeze P0 constraint enforced on Fri (Signee > RobotOS)
+
 ---
 
 ## 8. Definition of Done
@@ -168,6 +220,8 @@
 - [ ] Zephyr mainline green confirmation note exists
 - [ ] Signee board baseline artifact confirmed or re-executed
 - [ ] RobotOS spike findings consolidated into scope freeze input
-- [ ] Weekly Anchor Map is filled for Mon–Fri ✅ (complete above)
+- [ ] Weekly Anchor Map filled for Mon–Fri ✅ (complete above)
+- [ ] §6.8 Weekly Energy Pattern filled; Thu dip and Fri closure reflected in anchor types ✅
+- [ ] Energy-aware placement audit passed ✅ (no protection rule violations)
 - [ ] Weekly Review artifact produced by Sunday
 - [ ] W11 plan seeded with scope freeze outcome

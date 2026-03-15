@@ -29,6 +29,7 @@
   - [6.5 Ưu tiên lớn của tuần tới](#65-ưu-tiên-lớn-của-tuần-tới-13)
   - [6.6 System Change sẽ thực hiện / theo dõi](#66-system-change-sẽ-thực-hiện--theo-dõi)
   - [6.7 Risks / Constraints / Protection](#67-risks--constraints--protection-13)
+  - [6.8 Weekly Energy Pattern](#68-weekly-energy-pattern)
 - [7) Weekly Anchor Map](#7-weekly-anchor-map)
 - [8) Definition of Done (DoD)](#8-definition-of-done-dod--weekly-review-hoàn-thành-khi)
 
@@ -292,17 +293,60 @@ Nếu **Có**, ghi:
 - **Risk:** …
   - **Protection / mitigation:** …
 
+## 6.8 Weekly Energy Pattern
+> Scheduling input — not a mood forecast. Use this to decide which work types land on which days.
+> Fill once during weekly planning; §7 Weekly Anchor Map rows derive from this.
+
+| Day | Expected energy | Best-fit work type | Evening capacity | Notes |
+|---|---|---|---|---|
+| Mon | Restart friction / Medium | Structured Execution or Ambiguity Discovery (if well-rested) | `1×M` or `2×S` | Re-entry from weekend; avoid stacking new heavy anchors |
+| Tue | Good depth | Heavy Engineering or Ambiguity Discovery | `1×M` | Best deep-work day; schedule hardest anchor here |
+| Wed | Normal | Structured Execution or Synthesis | `1×M` | Stable mid-week; moderate evening load OK |
+| Thu | Dip (recurring) | Structured Execution or Closure | `S-only` or `1×M` *(careful)* | ⚠️ Do not place two ambiguity-heavy anchors; evening must stay light |
+| Fri | Closure / Carry-forward | Synthesis or Closure / Admin | `S-only` or `none` | Absorb Thu spillover first; protect against silent overload |
+| Sat | Open / Deep (if session) | Heavy Engineering or Ambiguity Discovery | — | Full deep block available; use for architecture or spike |
+| Sun | Review / Reset | Closure / Admin | — | Weekly Review + next-week seed only |
+
+**Energy labels:**
+- `High` — strong focus capacity; ambiguity-heavy or engineering-heavy work allowed
+- `Normal` — standard execution; moderate secondary anchor allowed
+- `Dip` — avoid stacking ambiguity-heavy in both slots; prefer structured or synthesis
+- `Restart friction` — Monday re-entry cost; don't open with unfamiliar ambiguity
+- `Closure` — Friday absorption mode; prioritize artifact completion over new execution
+
+**Work type labels:**
+- `Heavy Engineering` — build / debug / integration / bring-up
+- `Ambiguity Discovery` — spike / research / architecture clarification / unknown reduction
+- `Structured Execution` — validation / checklist / known procedure / doc update
+- `Synthesis` — findings cleanup / ADR input / loop closure / scope review
+- `Closure / Admin` — wrap-up / reporting / re-entry packaging / weekly review
+
+**This week's energy shape** *(fill at planning time)*:
+- Mon: (expected energy)
+- Tue: (expected energy)
+- Wed: (expected energy)
+- Thu: Dip — keep evening light
+- Fri: Closure — absorb spillover before new work
+
 ---
 
 # 7) Weekly Anchor Map
 
 > **Purpose:** Pre-assign likely execution anchors across the week so daily files refine rather than invent.
-> Daily planning derives Office Hours domain, Evening domain, Canonical Anchors, and artifact direction from this map.
+> Daily planning derives Office Hours domain, Evening domain, Canonical Anchors, artifact direction, and expected energy from this map.
 > The map is a planning commitment — not a rigid schedule. Daily files may adapt due to energy, spill-over, or incident.
 >
-> **Format rule:** Each anchor entry is `<Project> — <phase/checkpoint>`. No cross-project purpose text in anchor fields; downstream rationale belongs in the Risk/Flex note.
+> **Format rule:** Each anchor entry is `<Project> — <phase/checkpoint>`. No cross-project purpose text; downstream rationale belongs in Risk/Flex note.
 >
-> **Scope protection:** Map must enforce max 2 active projects/day. Third project only as incident/escalation.
+> **Scope protection:** Max 2 active projects/day. Third project only as incident/escalation.
+>
+> **Energy-aware placement rules:**
+> - Place `Heavy Engineering` or `Ambiguity Discovery` anchors only on High/Normal energy days
+> - `Dip` days: prefer `Structured Execution`, `Synthesis`, or `Closure / Admin` only
+> - Do NOT stack two `Ambiguity Discovery` anchors on the same day (office + evening)
+> - Do NOT place `Heavy Engineering` (office) + `Ambiguity Discovery` (evening) on a Dip day
+> - Evening `M` block must be protected on fatigue-sensitive weekdays — downgrade to `S-only` or `none` if energy signals are present
+> - Friday absorbs spillover but must not become silent overload; close-out work takes precedence over secondary progress
 
 ---
 
@@ -310,10 +354,12 @@ Nếu **Có**, ghi:
 
 | Field | Value |
 |---|---|
-| **Office Hours domain** | Zephyr |
+| **Expected energy** | Restart friction / Medium |
 | **Office Hours anchor** | Zephyr — (phase/checkpoint) |
-| **Evening domain** | (RobotOS / Signee / none) |
+| **Office work type** | Structured Execution *(avoid opening Mon with unfamiliar ambiguity)* |
 | **Evening anchor** | (Project) — (phase/checkpoint) |
+| **Evening work type** | (Structured Execution / Synthesis) |
+| **Evening capacity** | `1×M` or `2×S` |
 | **Artifact direction** | (what should exist after this day — 1 line per project) |
 | **Risk / ambiguity** | (any known energy, dependency, or complexity risk for this day) |
 | **Flex / defer note** | (what can slip to Tuesday if capacity is tighter than expected) |
@@ -324,10 +370,12 @@ Nếu **Có**, ghi:
 
 | Field | Value |
 |---|---|
-| **Office Hours domain** | Zephyr |
+| **Expected energy** | Good depth |
 | **Office Hours anchor** | Zephyr — (phase/checkpoint) |
-| **Evening domain** | (RobotOS / Signee / none) |
+| **Office work type** | Heavy Engineering or Ambiguity Discovery *(best deep-work day)* |
 | **Evening anchor** | (Project) — (phase/checkpoint) |
+| **Evening work type** | (Structured Execution / Synthesis) |
+| **Evening capacity** | `1×M` |
 | **Artifact direction** | … |
 | **Risk / ambiguity** | … |
 | **Flex / defer note** | … |
@@ -338,10 +386,12 @@ Nếu **Có**, ghi:
 
 | Field | Value |
 |---|---|
-| **Office Hours domain** | Zephyr |
+| **Expected energy** | Normal |
 | **Office Hours anchor** | Zephyr — (phase/checkpoint) |
-| **Evening domain** | (RobotOS / Signee / none) |
+| **Office work type** | Structured Execution or Synthesis |
 | **Evening anchor** | (Project) — (phase/checkpoint) |
+| **Evening work type** | (Structured Execution / Synthesis) |
+| **Evening capacity** | `1×M` |
 | **Artifact direction** | … |
 | **Risk / ambiguity** | … |
 | **Flex / defer note** | … |
@@ -352,13 +402,15 @@ Nếu **Có**, ghi:
 
 | Field | Value |
 |---|---|
-| **Office Hours domain** | Zephyr |
+| **Expected energy** | ⚠️ Dip (recurring pattern) |
 | **Office Hours anchor** | Zephyr — (phase/checkpoint) |
-| **Evening domain** | (RobotOS / Signee / none) |
+| **Office work type** | Structured Execution *(do not open Thu with new ambiguity-heavy work)* |
 | **Evening anchor** | (Project) — (phase/checkpoint) |
+| **Evening work type** | Synthesis or Closure / Admin only *(no Ambiguity Discovery on dip evening)* |
+| **Evening capacity** | `S-only` or `1×M` *(careful — downgrade if fatigue signals present)* |
 | **Artifact direction** | … |
-| **Risk / ambiguity** | (Thursday energy dip is a recurring pattern; keep evening at 1×M max) |
-| **Flex / defer note** | (Evening Block 2 defers to Friday if energy is below normal) |
+| **Risk / ambiguity** | ⚠️ Do not stack ambiguity-heavy in both slots; evening must stay light |
+| **Flex / defer note** | Evening defers to Friday if energy is below threshold |
 
 ---
 
@@ -366,13 +418,15 @@ Nếu **Có**, ghi:
 
 | Field | Value |
 |---|---|
-| **Office Hours domain** | Zephyr / Signee *(close-out day; may include Signee wrap-up)* |
+| **Expected energy** | Closure / Carry-forward |
 | **Office Hours anchor** | (Project) — (close-out / artifact finalization) |
-| **Evening domain** | (RobotOS / Signee / none / review) |
+| **Office work type** | Synthesis or Closure / Admin *(absorb Thu spillover first)* |
 | **Evening anchor** | (Project) — (phase/checkpoint) or Weekly Review |
+| **Evening work type** | Closure / Admin or none |
+| **Evening capacity** | `S-only` or `none` |
 | **Artifact direction** | (close-out artifacts; what must be finalized before week close) |
-| **Risk / ambiguity** | (Friday is carry-forward target for Thu spillover) |
-| **Flex / defer note** | (if Thu spilled, Fri morning absorbs the re-entry before new Fri work) |
+| **Risk / ambiguity** | Carry-forward absorption day — do not schedule new ambiguity-heavy work |
+| **Flex / defer note** | If Thu spilled, Fri morning absorbs re-entry before any new Fri work |
 
 ---
 
@@ -380,10 +434,11 @@ Nếu **Có**, ghi:
 
 | Field | Value |
 |---|---|
-| **Domain** | Personal projects (RobotOS / Signee / Review work) |
+| **Expected energy** | Open / Deep (if session available) |
 | **Anchor** | (Project) — (phase/checkpoint) |
+| **Work type** | Heavy Engineering or Ambiguity Discovery *(full deep block; architecture/spike preferred)* |
 | **Artifact direction** | … |
-| **Notes** | Weekend deep block available; open-ended architecture work preferred over fragmented tasks |
+| **Notes** | Weekend session; open-ended architecture work preferred over fragmented tasks |
 
 ---
 
@@ -391,8 +446,9 @@ Nếu **Có**, ghi:
 
 | Field | Value |
 |---|---|
-| **Domain** | Weekly Review / reset |
+| **Expected energy** | Review / Reset |
 | **Anchor** | Weekly Review — close W[n]; open W[n+1] |
+| **Work type** | Closure / Admin |
 | **Artifact direction** | Weekly Review artifact + W[n+1] plan seeded |
 | **Notes** | If review not done Sunday, must complete by Monday morning before execution begins |
 
@@ -408,6 +464,21 @@ Nếu **Có**, ghi:
 | Thursday evening | Friday morning (Office Hours support) or Fri evening | Re-entry note from Thu Shutdown; check energy first |
 | Friday | Saturday (if session available) or W[n+1] Mon | Re-entry note required; mark as carry-forward in Weekly Review |
 | Any day | *(next working day same anchor)* | Re-entry pack required if block was M or higher |
+
+---
+
+### Weekly Anchor Map — Energy-Aware Protection Rules
+
+> Violations of these rules during planning = scheduling debt that surfaces as overload mid-week.
+
+- ❌ Do not place two `Ambiguity Discovery` anchors on the same day (office + evening)
+- ❌ Do not place `Heavy Engineering` (office) + `Ambiguity Discovery` (evening) on a Dip day
+- ❌ Do not assign evening `M` blocks on days already marked `Dip` unless there is explicit energy reason
+- ❌ Do not use Friday evening as a "catch-up" slot for deferred heavy work — Friday absorbs spillover artifacts, not re-opened execution
+- ❌ Max 2 active projects per day remains enforced
+- ✅ Spillover from Thu → Fri morning (not Fri evening, unless Fri is explicitly light)
+- ✅ If Saturday is used for architecture/spike work, it should be a single-project deep block
+- ✅ Evening capacity declared in §6.8 must be consistent with §7 evening anchor type
 
 ---
 
@@ -427,7 +498,8 @@ Nếu **Có**, ghi:
   - Size (S/M/L) và Ambiguity (0–5)
   - Expected artifact
   - DoD hoặc success criteria
-- **Weekly Anchor Map is filled** for at least Mon–Fri (Office Hours anchor + Evening anchor + artifact direction)
+- **Weekly Anchor Map is filled** for at least Mon–Fri (Office Hours anchor + Evening anchor + work type + artifact direction)
+- **§6.8 Weekly Energy Pattern** filled; Thu dip and Fri closure reflected in §7 anchor types
 - Weekly scope là **realistic** so với capacity + tính chất công việc
 - Không có overcommit (special rule: 1 Big Bet ambiguity cao = giảm Small Bet)
 
