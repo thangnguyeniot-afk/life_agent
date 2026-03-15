@@ -16,6 +16,7 @@
 - [6) Knowledge System](#6-knowledge-system)
 - [6b) Metrics Engine](#6b-metrics-engine)
 - [6c) Automation Layer](#6c-automation-layer)
+- [6d) Operations Layer](#6d-operations-layer)
 - [7) Reviews & Monthly Journal](#7-reviews--monthly-journal)
 - [8) Writing Rules](#8-writing-rules)
 - [9) Cadence](#9-cadence)
@@ -136,6 +137,16 @@ Includes:
 - `05_TEMPLATES/TEMPLATE_Command_Pack.md` — Practical quick-reference: 12 copy-paste command templates for daily use.
 
 **Model:** Human → minimal input → Agent 2 (repo read + file write), with Agent 1 (reasoning) for non-trivial decisions.
+
+---
+
+## 6d) Operations Layer
+
+**Location:** `01_OS/04_OPERATIONS/`
+
+- `01_OS/04_OPERATIONS/DAILY_INTEGRATION/INTEGRATE_DAILY.md` — Canonical daily reverse-integration procedure. Run after each closed Daily file to sync execution reality into Weekly / Monthly / Project / Anchor tracking layers. Includes 8-step procedure, guardrails, consistency check, and reusable Copilot command template.
+
+**Model:** Run by Agent 2 daily. Agent 1 only when escalation or scope decision required.
 
 ---
 
