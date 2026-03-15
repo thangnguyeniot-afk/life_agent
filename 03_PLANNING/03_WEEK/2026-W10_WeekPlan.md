@@ -5,6 +5,13 @@
 
 ---
 
+## W10 Artifacts (Execution Complete)
+
+- **[2026-W10_Execution.md](2026-W10_Execution.md)** — Mode B reconstruction from daily evidence; full execution record with metrics, spillover analysis, drift interpretation
+- **[2026-W10_Review.md](../../../07_REVIEWS/03_WEEK/2026-W10_Review.md)** — 8-section review; commitment delivery, anchor execution, scope freeze readiness, system learnings
+
+---
+
 ## 1. Context Carry-Forward (from W09 Review)
 
 | Carry-forward item | Status | Priority |
