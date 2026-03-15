@@ -9,17 +9,17 @@
 
 | Carry-forward item | Status | Priority |
 |---|---|---|
-| Zephyr — mainline regressions check | Unverified | High (scope freeze dependency) |
-| Signee — board baseline artifact | Unconfirmed | High (scope freeze input) |
-| RobotOS — spike architecture findings | Incomplete | Medium (scope freeze input, lower urgency) |
+| Zephyr — mainline regressions check | Confirmed | High (scope freeze dependency) |
+| Signee — board baseline artifact | Pending -> Thiếu thiết bị test | High (scope freeze input) |
+| RobotOS — spike architecture findings | Completed -> Thiếu file pptx chi tiết | Medium (scope freeze input, lower urgency) |
 
 ---
 
 ## 2. Weekly Goals
 
-1. Verify Zephyr mainline is green and regression-free (scope freeze unblocked)
-2. Confirm or re-execute Signee board baseline bring-up check; artifact exists by Friday
-3. Advance RobotOS spike artifact toward scope freeze input readiness
+1. Viết và merged 3 test vào nhánh develope (Dbuds write, Dbus break, Dbus Ram test)
+2. Load lại ngữ cảnh và plan việc tiếp theo cho nhân viên, đồng thời setup lại môi trường mới cho ổn định
+3. Advance RobotOS spike artifact toward scope freeze input readiness -> Phải ra được file pptx báo cáo tiến độ và scope chi tiết
 4. Complete Weekly Review by Sunday; open W11 with clean scope freeze status
 
 ---
@@ -28,16 +28,18 @@
 
 | Project | Mission | Weight |
 |---|---|---|
-| Zephyr | Scope freeze verification + daily mainline stability watch | 50% |
-| Signee | Board baseline confirmation + scope questions closed | 30% |
-| RobotOS | Spike artifact consolidation toward scope freeze input | 20% |
+| Zephyr | Write + merge 3 tests (Dbugs write, Dbus break, Dbugs Ram) to develop branch | 45% |
+| Signee | Reload team context + plan next steps + setup new environment (test equipment pending) | 30% |
+| RobotOS | Consolidate spike findings into detailed pptx: progress report + scope detail | 25% |
 
 ---
 
 ## 4. Constraints
 
-- Scope freeze gate is hard: ~3/16–3/18. All verification artifacts must be ready before Friday EOD.
-- W09 carry-forward means Mon must open with verification pass, not new execution.
+- Scope freeze gate is hard: ~3/16–3/18. All artifacts (test merge, context reload, pptx) must be ready before Friday EOD.
+- Test merges must not break develop branch; verification before commit.
+- Signee test equipment is missing; design environment setup workaround / document blockers.
+- RobotOS pptx must consolidate already-completed spike findings (not discover new); structure for scope freeze input.
 - Thursday energy dip pattern — keep evening at 1×M maximum.
 - Max 2 projects per day; no cross-project artifact mixing.
 
@@ -45,9 +47,9 @@
 
 ## 5. Commitments (≤ 3 output artifacts this week)
 
-1. Zephyr: Mainline green / regression-free confirmation note (by Thu)
-2. Signee: Board baseline artifact confirmed or re-executed bring-up doc (by Fri)
-3. RobotOS: Spike findings consolidated into scope freeze input note (by Fri / Sat)
+1. Zephyr: 3 tests merged to develop (Dbugs write, Dbus break, Dbugs Ram tests); merge verification log (by Fri)
+2. Signee: Team context reload document + environment setup checklist / blockers list (by Fri)
+3. RobotOS: Detailed spike findings pptx — progress report + detailed scope + scope freeze input summary (by Fri / Sat)
 
 ---
 
@@ -55,10 +57,11 @@
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| Mainline regression discovered Mon | Blocks scope freeze | Triage immediately; Signee/RobotOS defer to recovery mode |
-| Signee board baseline requires re-run | Delays scope freeze input | Start Mon evening regardless of perceived status |
-| RobotOS spike is wider than expected | Scope freeze input incomplete | Timebox to architecture questions list; full artifact can be W11 |
-| Scope freeze pulls in (before 3/16) | All carry-forwards must accelerate | Flag in W11 if needed; no new execution this week |
+| Test merge conflicts when pushing to develop | Blocks test merge artifact | Isolate each test merge; test independently before group merge |
+| Test equipment missing (Signee) | Delays environment setup | Document blocker; design software-only workaround if possible; flag as W11 blocker |
+| Pptx completeness vs spike complexity | Findings may be incomplete | Timebox pptx to consolidate only completed findings; open questions list deferred to W11 |
+| Team context reload takes longer than expected | Delays next-week planning precision | Start reload Mon evening; prioritize key unknowns first |
+| Scope freeze pulls in (before 3/16) | All artifacts must accelerate | Flag in W11 if needed; no new discovery this week |
 
 ---
 
@@ -93,14 +96,14 @@
 | Field | Value |
 |---|---|
 | **Expected energy** | Restart friction / Medium |
-| **Office Hours anchor** | Zephyr — verify mainline green; confirm no regressions from W09 |
-| **Office work type** | Structured Execution *(verification pass = known procedure; not new discovery)* |
-| **Evening anchor** | Signee — confirm board baseline artifact exists; re-execute bring-up check if missing |
-| **Evening work type** | Structured Execution |
-| **Evening capacity** | `1×M` *(downgrade to `S` if mainline regression surfaces and switches mode)* |
-| **Artifact direction** | Zephyr: mainline status note ("green" or "issues: [list]"); Signee: board baseline artifact or bring-up re-run log |
-| **Risk / ambiguity** | W09 carry-forward; do not skip verification — this is not new execution |
-| **Flex / defer note** | If mainline check surfaces regressions, Signee evening reduces to `S`; recovery mode |
+| **Office Hours anchor** | Zephyr — write Dbugs write + Dbus break tests; verify test cases independent of harness |
+| **Office work type** | Structured Execution *(test writing = known procedure; follow existing test patterns)* |
+| **Evening anchor** | Signee — reload team context; consolidate team knowledge base + identify unknowns |
+| **Evening work type** | Structured Execution + Synthesis |
+| **Evening capacity** | `1×M` |
+| **Artifact direction** | Zephyr: 2 test implementations ready for merge review; Signee: team context reload document (even partial) |
+| **Risk / ambiguity** | W09 carry-forward; test quality is verification focus, not speed |
+| **Flex / defer note** | If test complexity exceeds estimate, Signee reload moves to Tue evening |
 
 ---
 
@@ -109,14 +112,14 @@
 | Field | Value |
 |---|---|
 | **Expected energy** | Good depth |
-| **Office Hours anchor** | Zephyr — both-track enablement check; integration stability for scope freeze |
-| **Office work type** | Structured Execution *(integration check = known procedure; if regression from Mon, upgrade to Heavy Engineering)* |
-| **Evening anchor** | Signee or RobotOS — priority based on Mon findings (larger W09 gap wins) |
-| **Evening work type** | Structured Execution or Synthesis |
+| **Office Hours anchor** | Zephyr — merge tests to develop branch; verify merge does not break develop build |
+| **Office work type** | Structured Execution + Integration *(test merge = known procedure but cross-boundary interaction sensitive)* |
+| **Evening anchor** | Signee — extend context reload; plan team responsibilities for W11 |
+| **Evening work type** | Synthesis |
 | **Evening capacity** | `1×M` |
-| **Artifact direction** | Zephyr: both-track status note; Signee: scope questions captured / RobotOS: spike framing doc start |
-| **Risk / ambiguity** | Evening project choice depends on Mon outcome — check re-entry note before planning |
-| **Flex / defer note** | RobotOS spike framing can slip to Wed evening if Signee still has open board baseline questions |
+| **Artifact direction** | Zephyr: 2 tests merged to develop, merge verification log; Signee: team plan draft for W11 |
+| **Risk / ambiguity** | Merge conflicts or unexpected test failures; context reload insights may surface new planning needs |
+| **Flex / defer note** | If merge debugging runs past office hours, Signee planning slips to Wed evening |
 
 ---
 
@@ -125,14 +128,14 @@
 | Field | Value |
 |---|---|
 | **Expected energy** | Normal |
-| **Office Hours anchor** | Zephyr — Signee scope question support + integration check |
-| **Office work type** | Structured Execution + Synthesis *(scope support = known input; integration = known procedure)* |
-| **Evening anchor** | RobotOS — advance spike artifact toward scope freeze readiness |
-| **Evening work type** | Synthesis *(consolidate, don't discover — scope is already partially known)* |
+| **Office Hours anchor** | Zephyr — write Dbugs Ram test; prepare for final merge |
+| **Office work type** | Structured Execution *(test writing = known pattern; similar-to-Mon complexity)* |
+| **Evening anchor** | Signee — environment setup progress; document blockers if test equipment unavailable |
+| **Evening work type** | Structured Execution + Synthesis *(setup = known procedure + unknown workaround design)* |
 | **Evening capacity** | `1×M` |
-| **Artifact direction** | Zephyr: scope question support log; RobotOS: architecture spike doc (partial OK) |
-| **Risk / ambiguity** | Mid-week energy; keep RobotOS evening block to M (not L) |
-| **Flex / defer note** | If Zephyr integration check uncovers issue, suppress RobotOS evening; triage first |
+| **Artifact direction** | Zephyr: 3rd test implementation ready for merge; Signee: environment setup checklist + blocker list |
+| **Risk / ambiguity** | Mid-week energy stable; test equipment missing may require creative workaround |
+| **Flex / defer note** | If Dbugs Ram test complexity surfaces, defer full setup documentation; placeholder OK |
 
 ---
 
@@ -141,14 +144,14 @@
 | Field | Value |
 |---|---|
 | **Expected energy** | ⚠️ Dip (recurring pattern) |
-| **Office Hours anchor** | Zephyr — scope freeze prep check; final Signee scope question support |
-| **Office work type** | Structured Execution *(checklist / confirmation pass — no new ambiguity-heavy work on dip day)* |
-| **Evening anchor** | RobotOS — consolidate spike findings into scope freeze input |
-| **Evening work type** | Synthesis *(consolidation only — not new discovery; Synthesis is safe on dip evening)* |
-| **Evening capacity** | `S-only` — downgrade from M given dip pattern; protect against overrun |
-| **Artifact direction** | Zephyr: scope freeze readiness status; RobotOS: spike findings note (even rough bullets) |
-| **Risk / ambiguity** | ⚠️ Do not stack Ambiguity Discovery in both slots; evening Synthesis only |
-| **Flex / defer note** | RobotOS consolidation defers to Fri morning if Thu evening energy is below S threshold |
+| **Office Hours anchor** | Zephyr — final merge verification; confirm develop branch stable post-merge |
+| **Office work type** | Structured Execution *(merge final check = checklist/confirmation; no new coding)* |
+| **Evening anchor** | RobotOS — draft pptx structure; outline progress + key findings + scope freeze input |
+| **Evening work type** | Synthesis *(structure draft from completed spike notes; not new discovery)* |
+| **Evening capacity** | `S-only` — downgrade from M; pptx structure only, detailed content Fri |
+| **Artifact direction** | Zephyr: merge verification log + develop stability status; RobotOS: pptx outline/structure |
+| **Risk / ambiguity** | ⚠️ Dip day: keep evening synthesis to outline only; avoid detail writing when fatigued |
+| **Flex / defer note** | RobotOS detailed pptx content defers to Fri morning if Thu evening energy below S |
 
 ---
 
@@ -157,14 +160,14 @@
 | Field | Value |
 |---|---|
 | **Expected energy** | Closure / Carry-forward |
-| **Office Hours anchor** | Signee — scope questions finalized; scope freeze prep complete |
-| **Office work type** | Synthesis + Closure / Admin *(absorb Thu spillover first; finalize existing artifacts)* |
-| **Evening anchor** | RobotOS — finalize spike artifact; or start Weekly Review if artifact is done |
-| **Evening work type** | Closure / Admin *(wrap-up only; no new discovery or engineering on Fri evening)* |
+| **Office Hours anchor** | Zephyr — tests merged, develop stable; close W10 Zephyr deliverable; handoff for W11 |
+| **Office work type** | Closure / Admin *(confirm merge complete; no new code changes)* |
+| **Evening anchor** | RobotOS + Signee — finalize pptx + complete context/environment docs |
+| **Evening work type** | Closure / Admin *(finish existing docs; no new discovery)* |
 | **Evening capacity** | `S-only` or `none` |
-| **Artifact direction** | Signee: scope questions closed doc; RobotOS: final spike artifact or Weekly Review open |
-| **Risk / ambiguity** | Carry-forward absorption day — do not schedule new ambiguity-heavy work |
-| **Flex / defer note** | If Signee scope freeze prep incomplete, suppress RobotOS evening entirely; Signee is P0 |
+| **Artifact direction** | Zephyr: test merge artifact complete; Signee: context reload + environment setup docs finalized; RobotOS: spike findings pptx complete |
+| **Risk / ambiguity** | Carry-forward absorption day — all three projects now in closure/finalization mode |
+| **Flex / defer note** | If docs unfinished, keep most critical (pptx); defer secondary refinements to W11 review handoff |
 
 ---
 
@@ -173,10 +176,10 @@
 | Field | Value |
 |---|---|
 | **Expected energy** | Open / Deep (if session available) |
-| **Anchor** | RobotOS — architecture spike closure; or Weekly Review if not started Fri |
-| **Work type** | Synthesis or Heavy Engineering *(single-project deep block preferred)* |
-| **Artifact direction** | RobotOS: spike artifact finalized; or W10 Review: §1–§5 drafted |
-| **Notes** | Weekend deep block; architecture synthesis preferred; do not fragment across projects |
+| **Anchor** | RobotOS + Signee — pptx finalization + any doc refinement |
+| **Work type** | Synthesis + Closure / Admin |
+| **Artifact direction** | RobotOS: pptx polished + ready for scope freeze stakeholders; Signee: docs complete; or W10 Review: §1–§5 drafted |
+| **Notes** | Weekend deep block if needed; polish existing artifacts (not new discovery); stay ready for Sunday review |
 
 ---
 
@@ -185,10 +188,10 @@
 | Field | Value |
 |---|---|
 | **Expected energy** | Review / Reset |
-| **Anchor** | Weekly Review — close W10; open W11 with scope freeze status |
+| **Anchor** | Weekly Review — close W10 (test merge + context reload + pptx); open W11 |
 | **Work type** | Closure / Admin |
-| **Artifact direction** | W10 Review artifact + W11 plan seed (especially scope freeze outcome and carry-forwards) |
-| **Notes** | Review must include scope freeze readiness verdict before W11 opens |
+| **Artifact direction** | W10 Review: test merge status, context reload completeness assessment, pptx reception readiness; W11 plan seed |
+| **Notes** | Review must confirm all three artifacts (tests, context, pptx) ready for scope freeze; flag any W10 spillover to W11 explicitly |
 
 ---
 
@@ -205,13 +208,13 @@
 
 > Quick planning-time check. Daily actuals may deviate; respond by downgrading capacity/work type, not anchor identity.
 
-- ✅ Mon: Structured Execution × 2 — safe for restart-friction day; no ambiguity stacking
-- ✅ Tue: Structured Execution (office) + Synthesis (evening) — good depth day, no dual ambiguity stack
-- ✅ Wed: Structured Execution + Synthesis (office) + Synthesis (evening) — normal day, no violation
-- ✅ Thu: Structured Execution (office) + Synthesis `S-only` (evening) — dip day correctly light; no Ambiguity Discovery or Heavy Engineering in either slot
-- ✅ Fri: Synthesis + Closure/Admin (office) + Closure/Admin `S-only` (evening) — closure day correctly absorbed
-- ✅ No Heavy Engineering / Integration / Ambiguity Discovery stack detected across all days
-- ✅ Scope freeze P0 constraint enforced on Fri (Signee > RobotOS)
+- ✅ Mon: Structured Execution × 2 (test write + context reload) — safe for restart-friction day
+- ✅ Tue: Structured Execution + Integration (merge) + Synthesis (team plan) — good depth day; Integration appropriate for cross-boundary merge
+- ✅ Wed: Structured Execution (test) + Structured Execution + Synthesis (environment) — normal day, balanced load
+- ✅ Thu: Structured Execution (merge check) + Synthesis (pptx outline) — dip day correctly light; no high-cognitive-load stacking
+- ✅ Fri: Closure/Admin × 2 (test confirm + finalize all docs) — closure day correctly absorbed
+- ✅ No Heavy Engineering / Ambiguity Discovery stack anywhere; Integration only once (appropriate)
+- ✅ Test merge (Integration) on good-depth day (Tue) — good placement
 
 ### W10 Anchor Load Summary
 
@@ -220,32 +223,35 @@
 | Work type | Office anchors | Evening anchors | Total |
 |---|---|---|---|
 | Heavy Engineering | 0 | 0 | **0** |
-| Integration | 0 | 0 | **0** |
+| Integration | 1 (Tue merge) | 0 | **1** |
 | Ambiguity Discovery | 0 | 0 | **0** |
-| Structured Execution | 4 (Mon, Tue, Wed, Thu) | 2 (Mon, Tue) | **6** |
-| Synthesis | 2 (Wed, Fri) | 3 (Wed, Thu, Fri) | **5** |
+| Structured Execution | 5 (Mon, Tue, Wed×2, Thu) | 1 (Mon) | **6** |
+| Synthesis | 0 | 3 (Tue, Wed, Thu) | **3** |
 | Closure / Admin | 1 (Fri) | 1 (Fri) | **2** |
 
 **Load observations:**
-- Heavy Engineering = 0, Integration = 0, Ambiguity Discovery = 0 — appropriate for scope-freeze-prep week; no new builds or discovery work
-- Load shape: Structured Execution → Synthesis → Closure/Admin — mirrors artifact consolidation flow of scope freeze prep
+- Heavy Engineering = 0, Ambiguity Discovery = 0 — appropriate for test-merge + docs week; no new discovery/builds
+- Work type flow: Structured Execution (test write) → Integration merge + Synthesis (context) → Structured Execution (merge check) + Synthesis (pptx) → Closure (finalize)
+- Integration = 1 (test merge on Tue, good-depth day) — appropriate placement for continuity-sensitive merge
 - No threshold violations
-- Evening load peaks Mon–Wed (`1×M`), then correctly descends to `S-only` Thu → `S-only/none` Fri; matches Thu dip and Fri closure patterns
+- Evening load: Mon–Wed at `1×M`, Thu at `S-only`, Fri at `S-only`/none; matches energy pattern
 
-**Balancing note:** If Mon regression findings cause Tue evening to shift toward Ambiguity Discovery, total = 1 (within threshold). If it extends to Wed evening also, add a Synthesis buffer on Thu office before scope freeze deadline.
+**Balancing note:** If test complexity on Tue grows, Integration block will consume focus — balance with context synthesis accordingly. If needed, shift context planning to Wed evening; flexibility exists.
 
-**Spillover check:** Thu evening `S-only` is lightly loaded. If it spills to Fri morning (Synthesis/Closure day), no work-type conversion needed — spillover lands safely.
+**Spillover check:** Thu evening Synthesis is low-load (`S-only`). If pptx outline spills to Fri morning, Fri is Closure/Admin already — spillover integrates cleanly (pptx content detail doesn't break closure mode).
 
 ---
 
 ## 8. Definition of Done
 
-- [ ] Zephyr mainline green confirmation note exists
-- [ ] Signee board baseline artifact confirmed or re-executed
-- [ ] RobotOS spike findings consolidated into scope freeze input
+- [ ] Zephyr: 3 tests written and merged to develop branch (Dbugs write, Dbus break, Dbugs Ram)
+- [ ] Zephyr: merge verification log confirms develop branch stability
+- [ ] Signee: team context reload document exists (even partial; full OK)
+- [ ] Signee: environment setup checklist + blocker list documented (test equipment missing flagged if applicable)
+- [ ] RobotOS: detailed spike findings pptx complete (progress report + scope detail + freeze input)
 - [ ] Weekly Anchor Map filled for Mon–Fri ✅ (complete above)
 - [ ] §6.8 Weekly Energy Pattern filled as planning hypothesis ✅; Thu dip and Fri closure reflected in anchor types
 - [ ] Anchor Map Sanity Pass completed ✅; no protection rule violations
 - [ ] Anchor Load Summary filled ✅; no threshold violations; balancing note included
-- [ ] Weekly Review artifact produced by Sunday
-- [ ] W11 plan seeded with scope freeze outcome
+- [ ] Weekly Review artifact produced by Sunday (test merge artifact + context reload + pptx quality assessment)
+- [ ] W11 plan seeded with team context insights + environment setup status + scope freeze outcome
