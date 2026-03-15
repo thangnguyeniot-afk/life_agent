@@ -65,7 +65,7 @@
 
 ## Work Time Domain (Critical)
 
-> **Operating boundary:** Office hours (Mon–Fri, 9:00–17:30) are reserved for **Zephyr work only**.
+> **Operating boundary:** Office hours (Mon–Fri, 8:00–17:30) are reserved for **Zephyr work only**.
 > 
 > **Personal projects** (RobotOS, Signee baseline, prototyping, research spikes, or experimental work) **must be scheduled in evening blocks** (17:30+ or weekend time).
 > 
@@ -136,7 +136,7 @@
 
 ---
 
-## Office Hours – Deep Work (Mon–Fri 9:00–17:30)
+## Office Hours – Deep Work (Mon–Fri 8:00–17:30)
 
 > **Time domain:** Standard office hours. **Zephyr work only** (primary responsibility). If evening project must run here, mark exception in Morning Setup.
 

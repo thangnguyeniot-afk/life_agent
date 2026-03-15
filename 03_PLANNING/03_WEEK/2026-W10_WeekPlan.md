@@ -95,7 +95,7 @@ Friday should avoid introducing new verification loops.
 - **Status:** Mon closed with safe spillover + re-entry pack ready for Tue; no scope creep; expected
 
 ### Tuesday 3/10 (In Progress → Check at EOD)
-- **Zephyr:** Absorbing Mon spillover (test break) via Analytical re-entry (9:00–9:10) → test merge primary focus → 2 tests merged + verification log expected
+- **Zephyr:** Absorbing Mon spillover (test break) via Analytical re-entry (8:00–8:10) → test merge primary focus → 2 tests merged + verification log expected
 - **Signee:** Conditional evening block only (proceed if customer email arrives Tue PM; else hold + defer to Wed evening)
 - **Watch items:** Merge conflicts on develop; test environment state; customer email arrival for Signee continuation
 - **Plan integrity check:** Tue scope remains 2 projects (Zephyr + Signee conditional); no third project creep; Integration anchor appropriate for good-depth day

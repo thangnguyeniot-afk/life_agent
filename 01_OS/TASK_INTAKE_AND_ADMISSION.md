@@ -202,7 +202,7 @@ Decompose into schedulable phases (L or smaller) before admission.
 
 **Rule 4 — Time domain gate:**
 If the task does not fit a valid time domain, it is not schedulable yet.
-- Zephyr tasks → Office Hours only (Mon–Fri, 9:00–17:30)
+- Zephyr tasks → Office Hours only (Mon–Fri, 8:00–17:30)
 - RobotOS / Signee → Evening or Weekend
 - Exception: requires explicit Morning Setup justification
 
@@ -230,7 +230,7 @@ Use these defaults to reduce manual judgment when shaping tasks.
 | **Typical task types** | Validation · debug · blocker isolation · toolchain check · execution |
 | **Typical artifacts** | Test log · repro note · blocker summary · status update · checklist |
 | **Common ambiguity sources** | Environment · integration dependency · toolchain behavior |
-| **Scheduling preference** | Office Hours only (Mon–Fri, 9:00–17:30) |
+| **Scheduling preference** | Office Hours only (Mon–Fri, 8:00–17:30) |
 | **Typical done boundary** | Verified / reproduced / blocker isolated / evidence captured |
 | **Anti-patterns** | Vague architecture work during office hours; scope expansion inside a verification task |
 

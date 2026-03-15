@@ -510,7 +510,7 @@ Một ngày bình thường:
 
 > **Canonical rule.** Referenced by daily template and weekly planning.
 
-**Office hours (Mon–Fri, 9:00–17:30):** Zephyr work only.  
+**Office hours (Mon–Fri, 8:00–17:30):** Zephyr work only.  
 **Evening (17:30+) and weekends:** RobotOS / Signee / personal projects only.
 
 - Protects primary responsibility from fragmentation.

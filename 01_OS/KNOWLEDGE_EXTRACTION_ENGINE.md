@@ -138,7 +138,7 @@ Compact per-project rolling heuristic summary.
 | **Best artifact mappings** | Checklist + evidence log · blocker summary · test result note · status update |
 | **Common ambiguity sources** | Environment instability · integration dependency · toolchain behavior |
 | **Common mis-sizing patterns** | "Quick check" phrased as S — often M when reproduction is unstable |
-| **Slot fit** | Office Hours only (Mon–Fri, 09:00–17:30); never evening or weekend primary |
+| **Slot fit** | Office Hours only (Mon–Fri, 08:00–17:30); never evening or weekend primary |
 | **Drift triggers** | Unstable reproduction target · missing evidence standard · scope expansion inside verification |
 | **Re-entry risk** | Low for procedure-driven validation; medium-high for open reproduction chains |
 
