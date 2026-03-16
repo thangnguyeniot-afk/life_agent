@@ -159,7 +159,7 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 
 **What belongs here:**
 - Architecture, design, implementation work assigned to personal time (e.g., RobotOS builds)
-- Evening focus blocks (20:00–21:30 per OS daily schedule model — Job 2 / Small Bet slot)
+- Evening focus blocks (19:30–21:30 per OS daily schedule model — personal evening capacity)
 - Weekend blocks (optional, if explicitly planned)
 
 **What must NOT be placed here:**
@@ -168,11 +168,14 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 - **Any work during office hours — office hours belong 100% to Layer 1 (Zephyr + overhead)**
 
 **Capacity ceiling:**
-- Evening blocks: ~1.5h/evening per available evening (20:00–21:30)
-- Typical pattern: Mon–Wed + Fri = ~4 evenings = ~6h/week (Thu = low-energy dip, typically zero)
-- Weekend: optional, if explicitly planned (~2–4h)
+- Evening blocks: 2h/evening (19:30–21:30), Mon–Fri
+- Baseline: 5 evenings × 2h = 10h/week
+- Thu: S-only due to energy dip (block exists but lower intensity; plan lighter personal work)
+- Fri: valid closure-work evening — not optional by default
+- Weekend daytime: Saturday daytime = substantial deep-work block; Sunday daytime = planning + execution; both are valid personal capacity if intentionally named
+- Weekend evenings: **Saturday evening = OFF (protected rest)**; **Sunday evening = OFF (protected rest)**; must not be allocated as execution capacity
 - Morning architect block (06:30–07:15): PLANNING only — not execution capacity
-- **Total personal execution capacity: ~6–8h/week (evenings) + optional weekend**
+- **Total personal execution capacity: 10h/week baseline (Mon–Fri evenings 19:30–21:30) + substantial weekend daytime extension (if intentionally planned)**
 - **HARD RULE: This layer does NOT include any office hours. Office = Pool A / Layer 1 only.**
 
 **Rule for evening blocks:** If weekly goals require evening capacity, the plan **must name those blocks explicitly** (days + hours). Silent evening dependency is a validation error.
@@ -222,8 +225,8 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 | Type | Description | Layer | Allowed Time Slots | Disallowed | Scheduling Behavior |
 |---|---|---|---|---|---|
 | **TYPE A** | Fixed office-hours / KTLO / maintenance | Layer 1 | Office hours only | Evening, weekend | Pre-committed, allocated first; non-negotiable time slot |
-| **TYPE B** | Personal deep-work / architecture / design | Layer 2 | Personal evenings + weekend ONLY. **Office hours: FORBIDDEN.** | Cannot use any office hours (all office = TYPE A Zephyr) | Block-model (1 block ≈ 1.5–3h focused work); evening slots; weekend synthesis |
-| **TYPE C** | Async / spec / review / coordination | Layer 3 | Personal evenings + weekend ONLY. **Office hours: FORBIDDEN.** | Must not crowd out TYPE B deep focus | Interruptible, async-compatible; fills personal time gaps (not office gaps) |
+| **TYPE B** | Personal deep-work / architecture / design | Layer 2 | Personal evenings (19:30–21:30, Mon–Fri) + weekend daytime ONLY. **Weekend evenings and office hours: FORBIDDEN.** | Cannot use any office hours (all office = TYPE A Zephyr) | Block-model (1 block ≈ 1.5–3h focused work); evening slots; weekend daytime synthesis |
+| **TYPE C** | Async / spec / review / coordination | Layer 3 | Personal evenings (19:30–21:30, Mon–Fri) + weekend daytime ONLY. **Weekend evenings and office hours: FORBIDDEN.** | Must not crowd out TYPE B deep focus | Interruptible, async-compatible; fills personal time gaps (not office gaps) |
 | **TYPE D** | Admin / comms / system overhead | Layer 4 | Office hours (prefer morning/EOD) | Must not use deep-work slots | Fixed deduction; not a flexible allocation |
 | **TYPE E** | Conditional / blocked work | Any layer at activation | Only when unblock trigger fires | Must not be pre-allocated as baseline if truly blocked | Parked until explicit unblock event; effort is NOT in baseline plan |
 
@@ -296,8 +299,11 @@ POOL A — Office-Locked (Layer 1 — Zephyr + overhead):
 
 POOL B — Personal Flex (Layers 2+3 — RobotOS + Signee):
   Realistic personal capacity = [named evening blocks] + [optional weekend]
-  = [~1.5h × available weekday evenings] + [weekend if explicitly planned]
-  Typical: ~6h/week (4 evenings × 1.5h) + optional Sat (~2h) = ~6–8h/week
+  = [2h × 5 weekday evenings (19:30–21:30 Mon–Fri)] + [weekend daytime if intentionally planned]
+  = 10h/week baseline evenings
+  + substantial weekend daytime extension (Sat+Sun daytime; must be named explicitly)
+  Note: Thu evening = S-only (energy dip); Fri evening = valid closure capacity
+  Note: Weekend EVENINGS (Sat+Sun eve) = protected rest; NOT part of Pool B
 
 If personal project goals require more than Pool B capacity:
   → Reduce scope, or span goal across multiple weeks
@@ -329,9 +335,27 @@ Pool A (office hours, weekdays 08:30–17:00) and Pool B (personal time: evening
 - If Pool B capacity is insufficient for personal project goals: reduce scope or span goal to next week
 
 **Sources confirming pool separation:**
-- OS daily schedule: Job 1 (08:30–17:00) = Zephyr; Job 2 (20:00–21:30) = RobotOS/Signee
+- OS daily schedule: Job 1 (08:30–17:00) = Zephyr; Personal evening (19:30–21:30) = RobotOS/Signee
 - Zephyr_Project_Context §5: "Executed during office hours only. No regular evening deep work."
 - Zephyr_Project_Context §7: "Do not schedule Zephyr work in evening blocks. Protect capacity for Signee (Phase 1) and RobotOS (Phase 2)."
+
+---
+
+### R10 — Weekend Evening Protection and Sustainability
+
+Weekend evenings (Saturday evening and Sunday evening) are protected recovery time. They must not be allocated as personal execution capacity under any framing.
+
+- Saturday daytime: valid personal deep-work capacity; must be explicitly named
+- Sunday daytime: valid personal planning and execution capacity; must be explicitly named
+- Saturday evening: OFF — rest protection; not plannable by default
+- Sunday evening: OFF — rest protection; not plannable by default
+
+If a plan requires weekend evening work to close, it is a **scope problem, not a scheduling solution**. Resolve via scope reduction (§8 Resolution 3) — do NOT consume protected rest.
+
+**Sustainability balance principle:**
+- Do NOT model personal capacity so low (~6–8h) that the engine systematically underestimates achievable personal work and forces unnecessary multi-week spans
+- Do NOT model personal capacity so high (all evenings + all weekend day + all weekend evening) that burnout becomes the hidden cost of meeting weekly goals
+- Correct baseline: 10h/week evenings + intentional weekend daytime = sustainable and realistic
 
 ---
 
@@ -379,10 +403,10 @@ The engine produces a **Capacity Summary block** that the weekly plan's `## Capa
 
 | Project | Type | Personal Blocks (Source) | Hours | Notes |
 |---|---|---|---|---|
-| [TYPE B project — RobotOS] | TYPE B | Evenings: [days] (20:00–21:30); optional weekend | [h] | Deep-work blocks; execution; no office hours |
-| [TYPE C project — Signee] | TYPE C | Evenings: [days]; weekend async | [h] | Spec/coordination; async-compatible; no office hours |
+| [TYPE B project — RobotOS] | TYPE B | Evenings: [days] (19:30–21:30); weekend daytime if planned | [h] | Deep-work blocks; execution; no office hours; no weekend evenings |
+| [TYPE C project — Signee] | TYPE C | Evenings: [days] (19:30–21:30); weekend daytime async | [h] | Spec/coordination; async-compatible; no office hours; no weekend evenings |
 | [TYPE E items] | TYPE E | — | 0 (conditional) | Activates if: [trigger event] |
-| **Pool B total** | — | Named evenings + weekend | [sum] | Against ~6–8h/week personal capacity |
+| **Pool B total** | — | Weekday evenings (baseline 10h) + weekend daytime (if named) | [sum] | Against 10h/week baseline; weekend daytime is extension |
 
 > Pool B boundary: ALL personal project work must be sourced from named personal blocks only.
 > Cannot use office hours.
@@ -392,7 +416,7 @@ The engine produces a **Capacity Summary block** that the weekly plan's `## Capa
 | Pool | Source | Available | Allocated | Utilization | Status |
 |---|---|---|---|---|---|
 | **Pool A — Office-Locked** | Office hours (weekdays) | ~40h gross / ~36h effective | Zephyr effective + D1 | ~100% | Zephyr only; no personal |
-| **Pool B — Personal Flex** | Evenings + weekend | ~6–8h/week | TYPE B + TYPE C personal | [%] | PASS / WARN / FAIL |
+| **Pool B — Personal Flex** | Weekday evenings (19:30–21:30) + weekend daytime | 10h/week baseline + [weekend daytime h] | TYPE B + TYPE C personal | [%] | PASS / WARN / FAIL |
 
 ### Validation Status
 
@@ -575,17 +599,17 @@ Total = 100% = 36h
 
 | Project | Type | Personal Blocks (Source) | Hours | Notes |
 |---|---|---|---|---|
-| RobotOS (architecture + onboarding) | TYPE B | Evenings: Mon–Wed (20:00–21:30) + optional Sat | ~6–7h | W11 partial; full goal (~15h) spans W11–W12; no office hours |
-| Signee (testing specification) | TYPE C | Evenings: Wed–Fri async + optional weekend | ~2–3h | W11 partial; no office hours |
+| RobotOS (architecture + onboarding) | TYPE B | Weekday evenings Mon–Fri (19:30–21:30); Sat daytime if planned | ~7h | W11 partial allocation (intentional scope decision); full goal (~15h) spans W11–W12; no office hours; no weekend evenings |
+| Signee (testing specification) | TYPE C | Evenings Wed–Fri (19:30–21:30); optional weekend daytime | ~3h | W11 partial allocation; no office hours; no weekend evenings |
 | Board testing (Signee) | TYPE E | — | 0 conditional | Activates when: hardware delivered |
-| **Pool B total** | — | Named evenings + optional Sat | ~8–10h | W11 personal capacity; near personal ceiling |
+| **Pool B total** | — | Weekday evenings (10h baseline) + Sat daytime if planned | ~10h | W11: uses full weekday evening baseline; weekend daytime available as extension if goals require it |
 
 ### Capacity Summary
 
 | Pool | Source | Available | Allocated | Utilization | Status |
 |---|---|---|---|---|---|
 | Pool A — Office | Office hours | ~40h gross | Zephyr + overhead | ~100% | Full; contains Zephyr only |
-| Pool B — Personal | Evenings + weekend | ~8–10h | RobotOS ~6–7h + Signee ~2–3h | 80–100% | WARN: near personal ceiling |
+| Pool B — Personal | Weekday evenings (19:30–21:30) + Sat daytime | ~10h (eve baseline) + [Sat daytime if named] | RobotOS ~7h + Signee ~3h | ~100% | PASS: within baseline; no ceiling breach |
 
 Validation status: V1 PASS | V2 PASS | V3 PASS (evening blocks named) | V4 PASS | V5 PASS | V6 PASS (goal estimates reflect W11 personal scope) | V7 requires anchor restructure | V8 WARN (document office vs evening clearly in anchor table) | V9 PASS | V10 PASS | **V11 PASS (pool isolation confirmed)**
 ```
@@ -605,3 +629,4 @@ Validation status: V1 PASS | V2 PASS | V3 PASS (evening blocks named) | V4 PASS 
 |---|---|---|
 | 2026-03-16 | 1.0 | Initial creation: capacity modeling engine for LIFE_AGENT weekly planning system. Created in response to W11 capacity audit findings. Defines TYPE A–E classification, 4 capacity layers, 10 validation checks, output contract, and integration points. |
 | 2026-03-16 | 1.1 | Architecture correction: dual-pool model. Ground-truth rule applied: office hours (08:30–17:00) are exclusively Zephyr (Pool A); personal projects (RobotOS, Signee) must use personal time only (Pool B: evenings + weekends). Layer 2 renamed to "Personal Deep-Work Pool"; TYPE B/C definitions updated to forbid office hours; R9 pool isolation rule added; V11 pool isolation check added; output contract rewritten to show Pool A and Pool B separately; §11 example corrected to remove "office support" rows for personal projects. |
+| 2026-03-16 | 1.2 | Personal-capacity schedule correction. Ground-truth evening schedule applied: 19:30–21:30 (not 20:00–21:30); Mon–Fri 5 evenings × 2h = 10h/week baseline (not 4 evenings × 1.5h = ~6h). Weekend model corrected: Sat+Sun daytime = substantial intentional capacity; Sat+Sun evening = OFF (protected rest). Layer 2 capacity ceiling rewritten; TYPE B/C allowed columns updated; R7 Pool B formula updated; R9 source footnote corrected; R10 (weekend evening protection + sustainability balance) added; output contract template updated; §11 example corrected to reflect 10h baseline. |

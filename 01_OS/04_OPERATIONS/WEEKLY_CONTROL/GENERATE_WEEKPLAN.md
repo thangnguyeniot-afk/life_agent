@@ -317,13 +317,13 @@ See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.m
 
 Capacity is computed in **two separate, non-mixing pools:**
 - **Pool A — Office-Locked:** TYPE A (Zephyr, KTLO/maintenance) + TYPE D admin. 100% of office hours. RobotOS and Signee CANNOT draw from this pool.
-- **Pool B — Personal Flex:** TYPE B (RobotOS — personal evenings + weekend) + TYPE C (Signee — personal evenings + weekend). **Cannot use office hours.**
+- **Pool B — Personal Flex:** TYPE B (RobotOS — personal evenings + weekend daytime) + TYPE C (Signee — personal evenings + weekend daytime). **Cannot use office hours. Weekend evenings are protected rest — not allocatable.**
 - **TYPE E (conditional):** Work that cannot start without a named external trigger. Zero baseline allocation.
 
 Capacity layers within each pool:
 - **Pool A / Layer 1 (office-hours / fixed):** TYPE A pre-committed first. TYPE D admin deducted. ~36h effective Zephyr capacity.
-- **Pool B / Layer 2 (personal deep-work):** TYPE B projects (architecture, implementation). Personal evening blocks (20:00–21:30) + named weekend. No office hours.
-- **Pool B / Layer 3 (personal async/spec):** TYPE C projects (specification, review, coordination). Personal evenings + weekend. No office hours.
+- **Pool B / Layer 2 (personal deep-work):** TYPE B projects (architecture, implementation). Personal evening blocks (19:30–21:30, Mon–Fri) + named weekend daytime. No office hours. No weekend evenings.
+- **Pool B / Layer 3 (personal async/spec):** TYPE C projects (specification, review, coordination). Personal evenings (19:30–21:30) + weekend daytime. No office hours. No weekend evenings.
 
 Capacity summary is produced by running CAPACITY_ENGINE before Step 6. The engine output (validated allocation table + V-check status) is embedded in the WeekPlan `## Capacity & Constraints` section.
 
@@ -572,10 +572,14 @@ See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.m
 5. Embed the engine's Capacity Summary block in the WeekPlan `## Capacity & Constraints` section
 6. Carry the pool assignments (Pool A / Pool B) and layer assignments (TYPE A/B/C) forward into Step 7 (Anchor Design)
 
-**Key rules (from CAPACITY_ENGINE §5 and §9):**
+**Key rules (from CAPACITY_ENGINE §5, §9, and §10):**
 - TYPE A projects (office-hours-only / KTLO) are pre-committed before flexible allocation begins
 - TYPE A work must NOT receive evening or weekend allocation
 - TYPE B and TYPE C projects (RobotOS, Signee) must draw capacity ONLY from personal time (Pool B) — office hours are FORBIDDEN for personal projects
+- **Personal evening baseline: Mon–Fri 19:30–21:30, 2h/evening = 10h/week** — use this as the starting model; adjust only if this week's calendar has genuine exceptions
+- **Weekend daytime:** explicitly decide whether Sat daytime and/or Sun daytime are being used this week; if yes, name the hours; if no, note that weekend daytime is not planned
+- **Weekend evenings: PROTECTED rest — Sat evening and Sun evening are OFF by default and must NOT be allocated**
+- **Anti-regression:** do NOT use "~6–8h/week personal" as a capacity shorthand unless that week truly has constrained availability; the default baseline is 10h/week evenings + potential weekend daytime
 - Baseline work must NOT be labeled contingent (TYPE E requires a named external trigger)
 - Goal effort estimates must match capacity allocations — mismatches are V6 failures
 - If evening blocks are required to close personal project capacity, they must be named explicitly (V3 check)
@@ -810,6 +814,9 @@ If goals were reframed at any point during planning, stale narrative from earlie
 - [ ] **Checkpoint wording matches current goals:** Mid-week and end-of-week checkpoints reference deliverables from the finalized goal list
 - [ ] **Baseline work not labeled contingent:** Work that can start now is TYPE B or TYPE C; TYPE E requires a named external trigger that prevents execution start
 - [ ] **Time-model wording consistent:** Sections that reference project scheduling (Missions, Anchor, Carry-over) respect the TYPE A/B/C layer assignments from CAPACITY_ENGINE output
+- [ ] **Capacity-reality match:** Personal capacity section matches the week's actual evening/weekend calendar — not copied forward from a prior week with a different schedule
+- [ ] **Personal window timing:** Evening blocks use 19:30 (not 20:00) start time throughout all sections
+- [ ] **Weekend evening protection:** No section allocates work to Saturday evening or Sunday evening
 
 If any item fails: correct the section before finalizing. Do not commit a WeekPlan with known narrative residue.
 
