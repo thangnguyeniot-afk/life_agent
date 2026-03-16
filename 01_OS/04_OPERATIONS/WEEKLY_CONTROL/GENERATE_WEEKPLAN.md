@@ -787,6 +787,21 @@ Use this checklist before finalizing a WeekPlan:
 - [ ] Constraint honoring ✅ (hard constraints listed and achievable)
 - [ ] Month alignment ✅ (goals serve month strategy)
 
+### Narrative Residue Check
+
+**Run this check after any goal revision, and as a final gate before committing the WeekPlan.**
+
+If goals were reframed at any point during planning, stale narrative from earlier iterations can survive in downstream sections. This check detects that class of error.
+
+- [ ] **Effort consistency:** Goal effort estimate = Capacity section allocation = Carry-over effort for the same item — all three match; no section holds a stale value
+- [ ] **No old milestone language:** Search appendix assumptions, risk assumptions, Next Steps, Carry-over Integration, Focus Summary, and Version History for prior goal names, build targets, or milestone labels that no longer apply
+- [ ] **Risk assumptions match current goals:** Each risk is plausible against the final W## goal list, not a prior planning iteration
+- [ ] **Checkpoint wording matches current goals:** Mid-week and end-of-week checkpoints reference deliverables from the finalized goal list
+- [ ] **Baseline work not labeled contingent:** Work that can start now is TYPE B or TYPE C; TYPE E requires a named external trigger that prevents execution start
+- [ ] **Time-model wording consistent:** Sections that reference project scheduling (Missions, Anchor, Carry-over) respect the TYPE A/B/C layer assignments from CAPACITY_ENGINE output
+
+If any item fails: correct the section before finalizing. Do not commit a WeekPlan with known narrative residue.
+
 ### Post-Planning (after WeekPlan is written)
 - [ ] WeekPlan file created at `OS/03_EXECUTION/WEEK/W##_WeekPlan.md`
 - [ ] File links to month, previous week closure, project context

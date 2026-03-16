@@ -205,6 +205,13 @@ Nếu **Có**, ghi:
 # 6) Weekly Planning — Commitment Level (5–10 phút)
 > Biến quyết định thành cam kết — **KHÔNG nghiên cứu lại**.
 
+> **SECTION SYNC RULES** — enforced at generation and after any goal revision:
+> 1. If Weekly Goals / Big Bet change, ALL of the following must be revalidated before committing: Capacity & WIP (§6.2), KTLO focus (§6.1), Risk/Constraints (§6.7), Planning Assumptions (Appendix A), Risk Assumptions (Appendix A), Next Steps / checkpoints (§10).
+> 2. No old milestone, build-target, or prior iteration language may remain after a goal pivot — run the **Narrative Residue Check** from `GENERATE_WEEKPLAN.md` before finalizing.
+> 3. No effort estimate may differ across sections (Goals, Capacity, Carry-over) without a documented explanation in a note or Version History row.
+> 4. No work item may be labeled contingent unless a named external trigger blocks execution start (TYPE E rule — see `CAPACITY_ENGINE.md`).
+> 5. Time-model constraints (TYPE A office-only / TYPE B flex+evening / TYPE C async) must be consistent across Capacity, Mission Structure, and Anchor sections.
+
 ## 6.1 Big / Small / KTLO (bắt buộc để đúng OS)
 
 ### Big Bet (1)

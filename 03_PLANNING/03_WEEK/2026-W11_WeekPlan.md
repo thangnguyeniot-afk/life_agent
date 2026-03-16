@@ -154,7 +154,7 @@ Full week (no vacation); office-hours pool: 40h gross − 4h admin = 36h base. Z
 - **RobotOS is TYPE B (flexible deep-work)** — uses office deep blocks + named evening extensions to close the 18h allocation
 - **Signee specification is TYPE C (baseline, async)** — 9h allocated; specification proceeds regardless of equipment status
 - **Evening blocks (Mon–Wed 20:00–21:30):** ~4.5h/week for RobotOS architecture work and Signee async specification. Explicit, not implied.
-- **Daily Project Scope Rule strictly enforced** — max 2 projects per day prevents time-slot type collision between TYPE A and TYPE B anchors
+- **Daily Project Scope Rule enforced** — limits to max 2 active projects per day to reduce cognitive load; time-slot separation (TYPE A in fixed office blocks, TYPE B/C in flex and named evening blocks) is what prevents actual scheduling collision between office-only and flexible work
 
 ### Hard Constraints
 
@@ -283,14 +283,14 @@ Full week (no vacation); office-hours pool: 40h gross − 4h admin = 36h base. Z
 |---|---|---|---|---|
 | **Zephyr W11 handoff notes** | Documented | Integrate | Consume handoff on Mon (15 min); understand next test phase direction | 0.25 hr |
 | **RobotOS spike findings** | Complete | Integrate | Spike document is architecture baseline; use for clarity documentation all week | 0 hr (already done) |
-| **Signee test equipment blocker** | Unresolved | Escalate + activate | Definitive resolution by Fri EOD required; testing spec definition proceeds regardless; if equipment unavailable, testing spec provides structure for native developers | 5 hrs (Signee testing spec work) |
+| **Signee test equipment blocker** | Unresolved | Escalate + activate | Definitive resolution by Fri EOD required; testing specification proceeds as baseline work (TYPE C) regardless of equipment status; equipment blocker affects board testing only (TYPE E — not this week) | ~9h (Signee testing specification — baseline) |
 | **System learnings (re-entry blocks, Thu dip, synthesis timing)** | Documented | Integrate | Apply all three to W11 anchor design; re-entry blocks ready for RobotOS/Zephyr/Signee flexibility; Thu dip respected; weekend synthesis option available | 0 hr (design only) |
 
 ### Carry-over Statistics
 
 - **Integrated:** 2 items (Zephyr handoff, RobotOS spike findings)
 - **Escalated:** 1 item (Signee equipment — decision required by Fri)
-- **Effort impact:** <1 hr on integrated items; 5 hrs allocated to Signee testing spec work (independent of blocker)
+- **Effort impact:** <1 hr on integrated items; ~9h allocated to Signee testing specification baseline (independent of blocker; consistent with Goal 3 effort estimate and §3 capacity allocation)
 - **No stale carry-over:** All items from W10 have explicit integration path or resolution deadline
 
 ---
@@ -491,7 +491,7 @@ If all three progress as planned, W11 closes with RobotOS architecture clearly e
 2. **Run GENERATE_WEEKLY_EXECUTION (Mode A)** to create W11_Execution.md operational baseline from this plan
 3. **Monday 3/16:** Execute first day against plan; inherit anchor structure (RobotOS primary, Zephyr secondary)
 4. **Daily:** INTEGRATE_DAILY + PREPARE_NEXT_DAILY for each closed day
-5. **Wed 3/18:** Checkpoint (are we on track for M1 completion? any toolchain issues?)
+5. **Wed 3/18:** Checkpoint — architecture materials progress (slide drafted? diagram complete?); contributor onboarding confirmed; Zephyr RAM tests started; Signee test sets in progress
 6. **Fri 3/20:** Final day; Signee blocker must reach decision
 7. **Sun 3/22:** WEEK_CLOSEOUT; close W11 and prepare carry-over for W12
 
@@ -511,14 +511,14 @@ If all three progress as planned, W11 closes with RobotOS architecture clearly e
 1. **No vacation or major blocking meetings in W11** — standard 40-hour work week available
 2. **Test equipment blocker status resolves (one way or another) by Fri EOD** — cannot leave ambiguous into W12
 3. **Signee team notified of blocker resolution + next steps by Fri EOD** — communication required before W12 planning
-4. **RobotOS M1 can be completed in 15 hours of deep focus work** — based on spike findings clarity; if toolchain surprises exceed 2 hours, escalate timeline
+4. **RobotOS architecture clarification + contributor onboarding can be completed in the planned ~18h effort** — work spans office deep blocks + named Mon–Wed evening extensions; complexity risk is communication and design clarity, not build completion; if architecture explanation remains unclear by Wed checkpoint, escalate to professor feedback loop immediately
 5. **Thursday dip pattern holds for W11** — W10 evidence was strong; W09 + W10 = 2 week confirmation
 
 ### Risk Assumptions
 
-- **RobotOS toolchain integration is highest-risk task** — embedded systems setup has historically hidden complexity; re-entry mode planned
-- **Signee blocker will remain unresolved at least through Wed** — equipment is still pending as of planning date; may resolve Thu/Fri
-- **Zephyr regression unlikely** — maintenance mode, test environment near-complete; risk is medium (not low) due to test environment finalization edge cases
+- **RobotOS architecture clarity is highest-risk task** — explanation may remain abstract without concrete demo concept; diagram/slide iteration may take longer than estimated; contributor onboarding load may expand if contributors need more ramp-up time than planned
+- **Signee testing specification may expand if feature scope is unclear** — if feature boundaries between native developer areas are ambiguous, spec definition takes longer; equipment blocker is a separate TYPE E item and does not delay specification work
+- **Zephyr regression unlikely** — maintenance mode, test coverage near-complete; risk is edge-case regressions during RAM loading tests or factory setting code analysis
 
 ---
 
@@ -527,7 +527,7 @@ If all three progress as planned, W11 closes with RobotOS architecture clearly e
 | Date | Version | Changes |
 |---|---|---|
 | 2026-03-15 | 1.0 | Initial W11 plan: 3 goals (RobotOS M1, Zephyr stability, Signee blocker resolution); 10-section structure; anchor hypothesis integrating W10 learnings; contingent third mission design |
-| — | — | — |
+| 2026-03-16 | 1.1 | Corrected: goals realigned to actual W11 scope (architecture clarification, test infrastructure, testing spec); capacity model updated to TYPE A/B/C layers via CAPACITY_ENGINE; Signee effort corrected 5h → 9h baseline; stale M1/toolchain planning assumptions and risk language replaced; checkpoint wording updated; utilization assessment precision fix |
 
 ---
 
