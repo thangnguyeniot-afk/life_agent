@@ -104,6 +104,38 @@ All of the following must be complete before running GENERATE_WEEKPLAN:
 
 ---
 
+## Capacity Model Reminder (CRITICAL — Read Before Planning)
+
+The LIFE_AGENT planning system uses a **dual-pool capacity model**. Single-pool thinking will break the plan.
+
+**Pool A — Office Hours (08:30–17:00 weekdays)**
+- Allocated exclusively to TYPE A projects (Zephyr + KTLO)
+- Allocated exclusively to TYPE D overhead (admin, comms) — ~4h/week deduction
+- Effective capacity: ~40h gross − 4h overhead = **~36h/week**
+- RobotOS and Signee **CANNOT borrow from this pool under any circumstance**
+
+**Pool B — Personal Time (19:30–21:30 evenings Mon–Fri + optional weekend daytime)**
+- Allocated exclusively to TYPE B projects (RobotOS architecture + implementation)
+- Allocated exclusively to TYPE C projects (Signee specification + async coordination)
+- Weekday baseline: **10h/week** (5 evenings × 2h/evening)
+- Weekend daytime: **optional if explicitly planned** (Sat + Sun daytime); both daytime periods are substantial capacity if intentionally used
+- Weekend evenings: **OFF by default** (protected rest — Sat+Sun evenings are not allocatable)
+- Zephyr and office projects **CANNOT borrow from this pool under any circumstance**
+
+**Cross-Pool Allocation is Prohibited.**
+- Do NOT attempt to "use remaining office capacity" for RobotOS/Signee
+- Do NOT attempt to "use remaining personal capacity" for Zephyr
+- If Pool A capacity is insufficient: reduce Zephyr scope or defer to next week
+- If Pool B capacity is insufficient: reduce RobotOS/Signee scope or defer to next week
+- Capacity problems are resolved by scope adjustment, **not by moving work between pools**
+
+**When validating a week plan:**
+- Pool A validation: `Zephyr effort ≤ ~36h effective`
+- Pool B validation: `(RobotOS hours + Signee hours) ≤ 10h baseline + [optional weekend daytime hours]`
+- If either pool exceeds capacity: plan must be corrected before execution
+
+---
+
 ## Outputs
 
 ### Primary Output
@@ -213,12 +245,13 @@ Narrow-band planning is recommended for weeks with:
 
 ### Planning Flow (see §9 for detailed procedure)
 
+**Actions:**
 1. **Read Month** — Understand strategic direction and constraints
 2. **Read Previous Closure** — Identify carry-over and patterns
 3. **Evaluate Projects** — Determine feasible scope for each project
 4. **Reconcile Carry-over** — Decide what to integrate, park, or drop
 5. **Determine Goals** — Synthesize month strategy + project state + carry-over into 3–5 weekly goals
-6. **Assess Capacity** — Estimate effort for goals; check against available hours
+6. **Assess Capacity per Pool** — Validate effort for goals against CAPACITY_ENGINE output; verify dual-pool model enforced
 7. **Design Anchor Structure** — Choose anchor hypothesis that fits goals and supports execution
 8. **Define Constraints** — Document scope freeze, blockers, dependencies
 9. **Write DoD** — Specify what completion means for each goal
@@ -280,12 +313,12 @@ For each carry-over item from the previous week:
 
 ### Carry-over Effort Budget
 
-Allocate 10–20% of weekly capacity to absorb carry-over work. This allows:
-- Ad-hoc bugs or urgent requests
-- Blocked items that unblock mid-week
-- Context-switching costs
+Carry-over work must be absorbed **inside the same pool that owns the project**.
 
-Do not inflate carry-over into the primary capacity plan. Treat it as a cushion, not a guarantee.
+- **Zephyr carry-over:** Allocate inside Pool A effective capacity (~36h). Carry-over should be ~5–10% of Pool A (not shared across pools).
+- **RobotOS/Signee carry-over:** Allocate inside Pool B personal capacity (~10h baseline). Carry-over should be ~10–20% of Pool B (not borrowed from Pool A).
+
+Do not inflate carry-over into the primary capacity plan. Treat it as a buffer **within the appropriate pool**.
 
 ---
 
@@ -298,7 +331,7 @@ Do not inflate carry-over into the primary capacity plan. Treat it as a cushion,
 1. **Project Deadlines** — If RobotOS demo is Friday, all prep work must fit before Friday
 2. **External Dependencies** — If Signee requires equipment from vendor, plan cannot proceed until equipment arrives
 3. **Scope Freeze** — If month decision is "freeze scope at 3 goals," do not add a 4th without month-level decision
-4. **Capacity Limits** — If total available hours are 40, do not plan 50 hours of work
+4. **Pool Capacity Ceilings** — Do NOT exceed Pool A (~36h effective) or Pool B (~10h baseline) without correcting scope. Never borrow capacity between pools.
 
 ### Soft Constraints
 
@@ -422,10 +455,14 @@ Before finalizing the WeekPlan, verify all of the following:
 - [ ] Deep blocks (if any) are scheduled and protected
 
 ### Capacity Alignment
-- [ ] Total planned work ≤ 70% of available hours (leaves 30% buffer)
-- [ ] Carry-over effort is estimated conservatively (+15% for context-switching)
-- [ ] Vacation, meetings, and external time are accounted for
-- [ ] No single anchor is overloaded (>60% of its available time)
+- [ ] Pool A capacity validated: Zephyr effort ≤ ~36h effective (after admin deduction)
+- [ ] Pool B capacity validated: (RobotOS + Signee) effort ≤ 10h baseline (+ optional weekend daytime if named)
+- [ ] No TYPE B/C project allocated against office hours (Pool A isolation enforced)
+- [ ] No TYPE A project allocated to evening/weekend (Pool A / Pool B separation maintained)
+- [ ] Carry-over allocated within the same pool as the project (no cross-pool carry-over)
+- [ ] Vacation, meetings, and external time accounted for in respective pools
+- [ ] Personal capacity does NOT use shorthand like "~6–8h/week"; uses explicit baseline of 10h baseline + named weekend daytime if extended
+- [ ] No anchor is overallocated within its pool (Zephyr ≤ 70% of Pool A; RobotOS+Signee ≤ 70% of Pool B baseline)
 
 ### Constraint Honoring
 - [ ] Hard constraints are explicitly listed and cannot be violated
@@ -697,9 +734,10 @@ Before finalizing the WeekPlan, validate the following checklist:
 - [ ] Risks and blockers are listed
 
 ### Goal Validation
-- [ ] Goals sum to month strategy (not contradicting)
-- [ ] Goals fit available capacity (with 20–30% buffer)
-- [ ] Goals do not conflict with each other
+- [ ] Goals align with month strategy (not contradicting)
+- [ ] Zephyr goals fit within Pool A (~36h effective capacity)
+- [ ] RobotOS + Signee goals fit within Pool B (~10h baseline; weekend daytime optional if named)
+- [ ] Goals do not create cross-pool dependencies (no "borrow from office to cover personal")
 - [ ] Each goal has an owner (clarity on who executes)
 
 ### Carry-over Validation
@@ -707,18 +745,23 @@ Before finalizing the WeekPlan, validate the following checklist:
 - [ ] Parked carry-over is explicitly marked secondary/optional
 - [ ] Escalated carry-over has decision documented (waiting on month/project)
 - [ ] No carry-over is left ambiguous (integrate, park, escalate, or drop — choose one)
+- [ ] All carry-over remains in its original pool (no cross-pool carry-over)
 
 ### Anchor Validation
 - [ ] Proposed anchor structure has >60% historical adherence
 - [ ] Primary anchor matches primary goal (coherence)
 - [ ] Re-entry pattern is clearly defined
 - [ ] Deep blocks (if any) are scheduled and protected
+- [ ] Office anchor (Zephyr) and personal anchor (RobotOS/Signee) are time-separated (no confusion about which pool owns which daily block)
 
 ### Capacity Validation
-- [ ] Available hours calculated correctly (work hours minus vacation/admin)
-- [ ] Planned work ≤ 70% of available (leave 30% buffer)
-- [ ] Carry-over effort includes context-switching buffer (+15%)
-- [ ] No single anchor overloaded (>60% of its available time)
+- [ ] Pool A capacity: Zephyr effort ≤ ~36h effective; all office-hours allocation accounted for
+- [ ] Pool B capacity: RobotOS + Signee ≤ 10h baseline (+ optional weekend hours if named)
+- [ ] No TYPE B/C project (RobotOS/Signee) has office-hour allocation (V11 check from CAPACITY_ENGINE)
+- [ ] No TYPE A project (Zephyr) has evening/weekend allocation
+- [ ] Carry-over effort remains within its pool; does not borrow across pools
+- [ ] Personal capacity uses 10h baseline + explicit weekend daytime decision (NOT "~6–8h shorthand")
+- [ ] All CAPACITY_ENGINE validation checks pass (V1–V11) before finalizing
 
 ### Constraint Validation
 - [ ] Hard constraints listed (project deadlines, external dependencies, scope freeze)
@@ -749,7 +792,7 @@ Before considering the WeekPlan final, verify:
 
 ### Reality-Based Planning
 - [ ] Effort estimates are conservative (not optimistic)
-- [ ] Capacity calculation is honest (not inflated available hours)
+- [ ] Capacity model enforced: dual-pool allocation (no single-pool thinking; no cross-pool borrowing)
 - [ ] Carry-over is either integrated with time allocated or explicitly parked
 - [ ] Blockers are documented (not hoped-for-to-disappear)
 
@@ -1036,16 +1079,29 @@ GENERATE_WEEKPLAN is the **first step** of the weekly cycle. It produces the str
 
 ### Problem: "Planned work exceeds available capacity (>85% utilization)"
 
-**Diagnosis:** Scope inflation. Too many goals or inflated effort estimates.
+**Diagnosis:** Scope inflation or pool violation. Either too many goals, inflated effort estimates, or illegal cross-pool allocation.
 
-**Resolution:**
-1. Do not plan >70% of capacity (leave 30% buffer).
-2. Choose: either reduce goals or extend capacity:
-   - **Option A:** Drop a goal (which is most flexible or least important?)
-   - **Option B:** Park a goal as secondary/optional (execute if capacity allows)
-   - **Option C:** Request more capacity from month-level (vacation reduction, external time reduction)
-   - **Option D:** Escalate overflow to next week (carry to W##+ 1)
-3. Recalculate with reduced scope until work ≤ 70% of capacity.
+**Pool-specific resolution:**
+
+**If Pool A (Zephyr) is overloaded (>36h):**
+1. Do not plan >70% of Pool A (~25h floor; leaving 11h buffer).
+2. Choose:
+   - **Option A:** Drop a Zephyr goal (which is most flexible or least important?)
+   - **Option B:** Park a Zephyr goal as optional (execute if capacity allows)
+   - **Option C:**Request more office capacity from month-level (reduce vacation, reduce external time)
+   - **Option D:** Defer Zephyr scope to next week (carry to W##+ 1)
+3. Recalculate until Zephyr ≤ 25h (~70% of Pool A).
+
+**If Pool B (RobotOS + Signee) is overloaded (>10h baseline):**
+1. Do not plan >70% of Pool B baseline (~7h floor; leaving 3h buffer).
+2. Choose:
+   - **Option A:** Drop a personal goal (which is most flexible or least important?)
+   - **Option B:** Park a personal goal as optional (execute if weekend daytime is available)
+   - **Option C:** Use weekend daytime intentionally (explicitly name and estimate weekend hours; update Personal Anchor)
+   - **Option D:** Defer personal scope to next week (carry to W##+ 1)
+3. Recalculate until (RobotOS + Signee) ≤ 7h (~70% of Pool B baseline).
+
+**Critical:** Do NOT solve Pool A overflow by moving work to personal time, and vice versa. Each pool is structurally separate.
 
 ---
 
@@ -1192,9 +1248,14 @@ QUESTION 5: Month strategy — clear?
   Clear   → Continue to QUESTION 6
 
 QUESTION 6: Available capacity this week?
-  <20 hours → Overloaded week; escalate for scope reduction
-  20–30 hours → Normal; proceed with planning
-  30+ hours  → High capacity; can be aggressive with scope
+  **Pool A (Zephyr office-hours):**
+    <20 hours → High margin; proceed
+    20–30 hours → Normal; proceed
+    >30 hours   → Overloaded; reduce scope
+  **Pool B (RobotOS + Signee personal time):**
+    <5 hours    → High margin; proceed
+    5–7 hours   → Normal; proceed
+    >7 hours baseline → Overloaded unless weekend daytime explicitly used; reduce scope
 
 QUESTION 7: How many goals for the week?
   <3      → Too few; integrate more carry-over or projects
@@ -1206,10 +1267,15 @@ QUESTION 8: Anchor structure — historical adherence?
   60–80%  → Acceptable; use it; monitor
   <60%    → Risky; modify structure or accept high-risk rebalance trigger
 
-QUESTION 9: Carry-over effort + new goals — fit in capacity?
-  Work > 85% of capacity → Reduce scope or escalate
-  Work 70–85%           → Tight but achievable; ensure buffer
-  Work < 70%            → Comfortable; plan is sustainable
+QUESTION 9: Dual-pool capacity check — does work fit each pool?
+  **Pool A (Zephyr): Effort > 25h (~70% of 36h effective)?**
+    YES → Reduce Zephyr scope or escalate to next week
+    NO  → Proceed to Pool B check
+  **Pool B (RobotOS + Signee): Effort > 7h (~70% of 10h baseline)?**
+    YES (baseline only) → Reduce personal scope or escalate to next week
+    YES (+ weekend daytime named) → Acceptable; verify weekend daytime is explicitly planned
+    NO  → Proceed to QUESTION 10
+  **Critical:** Do NOT move work between pools to "balance" capacity.
 
 QUESTION 10: All constraints and DoD documented?
   NO  → Document before finalizing
