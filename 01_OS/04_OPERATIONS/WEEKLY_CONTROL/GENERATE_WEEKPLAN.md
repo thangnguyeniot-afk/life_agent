@@ -311,19 +311,17 @@ Do not inflate carry-over into the primary capacity plan. Treat it as a cushion,
 
 ### Capacity Calculation
 
-**Available hours = (total work hours per week) - (vacation, meetings, external time) - (maintenance/admin)**
+**Capacity modeling is delegated to CAPACITY_ENGINE.** Do not substitute ad-hoc arithmetic here.
 
-Example:
-- Work week: 40 hours gross
-- Vacation/meetings: 5 hours
-- Admin, comms, email: 4 hours
-- **Available for planned work: 31 hours**
+See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.md)
 
-Allocate planned work as:
-- Primary goals: 60–70% (18–22 hours)
-- Secondary missions: 15–20% (5–6 hours)
-- Carry-over buffer: 10–15% (3–5 hours)
-- Unplanned contingency: 5–10% (2–3 hours)
+Capacity is computed in **layers, not as percentage slices of a single pool:**
+- **Layer 1 (office-hours / fixed):** TYPE A projects (KTLO, maintenance) + TYPE D admin. Pre-committed first.
+- **Layer 2 (flexible deep-work):** TYPE B projects (architecture, implementation). Office deep blocks + named evening extension.
+- **Layer 3 (async/spec/coordination):** TYPE C projects (specification, review, coordination). Flexible timing.
+- **TYPE E (conditional):** Work that cannot start without a named external trigger. Zero baseline allocation.
+
+Capacity summary is produced by running CAPACITY_ENGINE before Step 6. The engine output (validated allocation table + V-check status) is embedded in the WeekPlan `## Capacity & Constraints` section.
 
 ---
 
@@ -550,22 +548,29 @@ A **good WeekPlan** demonstrates all of the following:
 
 ### Step 6 — Assess Capacity and Effort Balance
 
-**Purpose:** Verify that planned work fits available capacity.
+**Purpose:** Verify that planned work fits available capacity — using the canonical capacity model, not ad-hoc arithmetic.
+
+**Required: Run CAPACITY_ENGINE before completing this step.**
+See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.md)
 
 **Actions:**
-- Calculate available hours:
-  - Total work hours per week (e.g., 40)
-  - Subtract vacation, external meetings, maintenance (e.g., 9 hours)
-  - Remaining capacity (e.g., 31 hours)
-- Estimate effort for each goal (use project context + historical data)
-- Add carry-over effort estimate
-- Total effort vs. available capacity:
-  - If total ≤ 70% of capacity (21 hours), plan is sustainable
-  - If total 70–85% (21–26 hours), plan is tight but achievable
-  - If total > 85% (>26 hours), scope must be reduced or escalated
-- If scope inflation exists, decide: reduce a goal, escalate for capacity request, or replan to be realistic
+1. Collect engine inputs: active projects + types, goal effort estimates from Step 5, office exceptions for this week, evening availability, admin overhead, carry-over estimates, blocker status
+2. Run CAPACITY_ENGINE — classify each project (TYPE A/B/C/D/E), assign capacity layers, validate V1–V10
+3. Review engine output:
+   - If any V-check is **FAIL**: resolve before proceeding (see CAPACITY_ENGINE §8 — Decision Logic)
+   - If any V-check is **WARN**: document the assumption and proceed with caution
+   - If all checks are **PASS**: proceed
+4. Embed the engine's Capacity Summary block in the WeekPlan `## Capacity & Constraints` section
+5. Carry the layer assignments (TYPE A/B/C assignments) forward into Step 7 (Anchor Design)
 
-**Output:** Capacity summary (available hours, planned hours, % utilization, contingency buffer)
+**Key rules (from CAPACITY_ENGINE §5):**
+- TYPE A projects (office-hours-only / KTLO) are pre-committed before flexible allocation begins
+- TYPE A work must NOT receive evening or weekend allocation
+- Baseline work must NOT be labeled contingent (TYPE E requires a named external trigger)
+- Goal effort estimates must match capacity allocations — mismatches are V6 failures
+- If evening blocks are required to close capacity, they must be named explicitly (V3 check)
+
+**Output:** Capacity Summary block (engine output) ready to embed in WeekPlan. Validation status: PASS / WARN / FAIL per check.
 
 ---
 
@@ -778,7 +783,7 @@ Use this checklist before finalizing a WeekPlan:
 - [ ] Project alignment ✅ (blockers documented, no missing dependencies)
 - [ ] Carry-over alignment ✅ (all items classified, integrated items scheduled)
 - [ ] Anchor alignment ✅ (historical adherence >60%, supports goals)
-- [ ] Capacity alignment ✅ (work ≤ 70% of available, buffer exists)
+- [ ] Capacity alignment ✅ (CAPACITY_ENGINE V-checks pass; work fits modeled layers; no hidden evening dependency)
 - [ ] Constraint honoring ✅ (hard constraints listed and achievable)
 - [ ] Month alignment ✅ (goals serve month strategy)
 
@@ -897,8 +902,13 @@ GENERATE_WEEKPLAN is the **first step** of the weekly cycle. It produces the str
 
 **Operational Sequence:**
 
+0. **CAPACITY_ENGINE** (upstream primitive) → Called by Step 6 before anchor design
+   - Inputs: Active projects + types, goal estimates, office exceptions, evening availability, blockers
+   - Outputs: Validated capacity summary (TYPE A/B/C/D/E assignments, Layer 1–3 allocations, V1–10 checks)
+   - See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.md)
+
 1. **GENERATE_WEEKPLAN** (this procedure) → Creates W##_WeekPlan.md
-   - Inputs: Month file, previous closure, project states, carry-over, capacity
+   - Inputs: Month file, previous closure, project states, carry-over, capacity (from CAPACITY_ENGINE)
    - Outputs: WeekPlan (goals, anchor, DoD, constraints)
 
 2. **GENERATE_WEEKLY_EXECUTION** (operational execution) → Creates W##_Execution.md
@@ -920,6 +930,7 @@ GENERATE_WEEKPLAN is the **first step** of the weekly cycle. It produces the str
 
 **Cross-References:**
 
+- GENERATE_WEEKPLAN → CAPACITY_ENGINE: Capacity modeling is delegated to the engine; plan consumes engine output. Engine called at Step 6 before anchor design.
 - GENERATE_WEEKPLAN ↔ GENERATE_WEEKLY_EXECUTION: Plan is the baseline; Execution tracks how reality diverges
 - GENERATE_WEEKPLAN ↔ WEEKLY_REBALANCE: Plan may be replanned mid-week if distortion exceeds threshold
 - GENERATE_WEEKPLAN ↔ WEEK_CLOSEOUT: Plan's DoD is used to validate completion at week-end

@@ -1,7 +1,7 @@
 # 2026-W11 — Weekly Plan
 
 **Week:** March 16–22, 2026  
-**Phase:** Post-scope-freeze execution; RobotOS M1 launch; Zephyr stability hold  
+**Phase:** Post-scope-freeze execution; RobotOS architecture clarification; Zephyr testing infrastructure  
 **Planning date:** 2026-03-15 (Sunday evening)  
 **Status:** Ready for GENERATE_WEEKLY_EXECUTION
 
@@ -28,85 +28,102 @@
 March is the system design & execution framework phase. W11 shifts focus from scope-freeze prep (W10) to execution-on-commit. Three active projects (Zephyr/RobotOS/Signee) must be held simultaneously, with explicit Daily Project Scope Rule preventing silent multi-project leakage.
 
 **W11 role in monthly narrative:**  
-Post-scope-freeze (3/16–3/18 gates completed), W11 is the second full operational week. W10 validated that re-entry blocks work, contingent holds work, and Thursday dip is reliable. W11 applies all three learnings while launching RobotOS M1 (Kernel & Build system foundation) — a high-complexity architectural task requiring protected deep blocks.
+Post-scope-freeze (3/16–3/18 gates completed), W11 is the second full operational week. W10 validated that re-entry blocks work, contingent holds work, and Thursday dip is reliable. W11 applies all three learnings while delivering RobotOS architecture clarification and team enablement — shifting from build milestones to architectural clarity and contributor onboarding. Zephyr extends testing infrastructure. Signee defines testing specification for native developer teams.
 
 **Capacity reality:**  
-Full week (no vacation); standard 40-hour capacity minus 4 hours admin/comms = 36 hours available. Split: RobotOS primary (50%), Zephyr secondary (35%), Signee contingent on blocker resolution (15%).
+Full week (no vacation); office-hours pool: 40h gross − 4h admin = 36h base. Zephyr is TYPE A (office-hours-only, pre-committed); RobotOS is TYPE B (flexible deep-work, evening-eligible); Signee spec is TYPE C (async/baseline, independent of equipment blocker). Total operative capacity includes named evening blocks (Mon–Wed 20:00–21:30 + optional Sat) for RobotOS/Signee.
 
 ---
 
 ## 2. Weekly Goals
 
-### Goal 1: **RobotOS — Milestone 1 Launch (Kernel & Build System Foundation)**
+### Goal 1: **RobotOS — Architecture Clarification & Team Onboarding**
 
 **Owner:** Self (architecture lead)
 
-**What:** Initialize Zephyr RTOS workspace; configure build system (West + CMake); integrate STM32F4 toolchain; document first build verification.
+**What:** Clarify RobotOS project architecture and design concept for stakeholders; prepare architecture materials and onboard two new contributors to the project.
 
-**Why:** RobotOS v0.1 Alpha deadline is 2026-04-30 (6 weeks away). M1 is the foundation; without kernel + build system, no middleware or examples can begin. W10 spike identified requirements; W11 must execute the architectural setup.
+**Why:** The professor requires clearer explanation of the RobotOS architecture and concept before proceeding with milestone execution. Team expansion (two new contributors) requires structured onboarding. Strong architectural foundation and team alignment enable faster execution in W12+.
 
 **Deliverables:**
-- Zephyr RTOS workspace initialized (west init, west update complete)
-- CMake + Build system configured for STM32F4 target
-- Toolchain (arm-none-eabi-gcc) integrated and verified
-- First successful build of minimal kernel app
-- Build verification log documented
+- Refined architecture slide explaining system structure clearly
+- Visual architecture diagram (framework / adapter / kernel concept)
+- Explanation of RobotOS key motivation and project differentiation
+- Demo concept explanation (what the demo will show and how it proves the design)
+- High-level hardware and software component overview
+- Initial project timeline draft (v0.1 to v0.2)
+- Contributor onboarding for two new team members:
+  - Repository structure walkthrough
+  - Architecture and design philosophy explanation
+  - Guided learning path for existing C code repository
+  - Setup instructions and development environment configuration
 
-**Effort estimate:** 15 hours (deep focus work required; high complexity)
+**Effort estimate:** 15 hours (architecture design + teaching/documentation)
 
 **Success criteria:**
-- `west build` succeeds for STM32F4 target
-- Toolchain integration verified (compiler, linker present and working)
-- No build configuration ambiguities remain
-- Ready for M2 (Middleware Core) in W12
+- Architecture clearly explained in slides and diagrams
+- Demonstration concept is concrete and achievable
+- Two contributors understand repository structure and design philosophy
+- Contributors can navigate C code repository independently
+- Timeline draft identifies key milestones and dependencies
+- Ready for full team milestone execution in W12+
 
 ---
 
-### Goal 2: **Zephyr — Finalize Testing Environment + Stability Hold**
+### Goal 2: **Zephyr — Test Infrastructure Extension**
 
-**Owner:** Self (maintenance lead)
+**Owner:** Self (test lead)
 
-**What:** Complete DBUS2 test environment setup (remaining tasks); run full regression test suite; document environment ready-for-release state; continue weekly stability release cadence (if on schedule).
+**What:** Extend Zephyr testing infrastructure with RAM loading test cases; prepare code for merge; analyze factory setting related code; document testing pipeline and strategy for future test reuse.
 
-**Why:** Zephyr is in maintenance + controlled improvement phase. Test environment finalization unblocks next test phase. Stability hold ensures no regressions from W10 work carry forward.
+**Why:** Zephyr testing ecosystem improvement supports stability and future feature development. RAM loading tests are needed for comprehensive test coverage. Factory setting analysis informs future configuration handling. Testing documentation enables consistent and efficient test development.
 
 **Deliverables:**
-- DBUS2 test environment finalized (all setup tasks complete)
-- Full regression test suite executed and passing
-- Environment documentation updated
-- Weekly release on schedule (if applicable to W11)
+- RAM loading related test cases added and passing
+- Test code prepared for merge (even if functionality support is partial)
+- Begin analysis and documentation of "factory setting" related code
+- If extra time remains:
+  - Testing pipeline documentation (execution flow, tools, environment setup)
+  - Testing rules and best practices documentation
+  - Strategy for reusing test cases across modules
 
-**Effort estimate:** 10 hours (moderate complexity; mostly verification + documentation)
+**Effort estimate:** 12 hours (code + analysis + documentation)
 
 **Success criteria:**
-- Test environment setup complete with no open TODOs
-- Zero regressions detected in stability pass
-- Release schedule maintained
-- Ready to hand off to W12 test phase
+- All RAM loading tests pass and are ready for code review
+- Test code quality meets project standards for merge
+- Factory setting code analysis documented (findings, dependencies)
+- Testing pipeline documentation clear for future test development
+- Zero regressions in existing test suite
+- Ready to hand off test infrastructure improvements to W12
 
 ---
 
-### Goal 3: **Signee — Resolve Test Equipment Blocker + Android Core Progress**
+### Goal 3: **Signee — Testing Specification Definition**
 
-**Owner:** Self (tech lead, with external dependency)
+**Owner:** Self (QA lead)
 
-**What:** Definitive escalation/workaround decision for test equipment. If blocker resolves: begin camera capture + QR display logic. If blocker remains: document constraint and pivot to mock-based testing setup.
+**What:** Define comprehensive testing standard and specification for Signee application features. Establish testing structure so native developers can test their implementations and prepare for board testing in W12.
 
-**Why:** Signee W10 carried a test equipment blocker into scope freeze. W11 must resolve this decisively (equipment arrives, or we commit to workaround). Android scaffold is ready for core logic; unblocking this enables Sprint 1 progress.
+**Why:** Native development is progressing independently by other developers. Testing specification enables them to validate their work. Preparing testing structure in advance accelerates board testing phase and reduces integration friction.
 
 **Deliverables:**
-- Blocker resolution decision documented (equipment acquired or workaround confirmed)
-- If blocker resolved: camera capture + QR display draft code
-- If blocker unresolved: mock data setup documented + Android core logic designed for mock input
-- Clear path to Sprint 2 (PWA) starting point
+- Define test sets for each feature area (capture, QR, authentication, fitting, gallery)
+- Define quality gate criteria for feature completion
+- Define pass / fail conditions for each test case
+- Define timeout and retry expectations for async operations
+- Prepare testing structure and documentation for board testing in W12
+- Create testing checklist for native developers
 
-**Effort estimate:** 8 hours (conditional; either equipment work or mock setup)
+**Effort estimate:** 9 hours (specification + testing structure design)
 
 **Success criteria:**
-- Blocker status explicit (not ambiguous or deferred)
-- Android core logic started (either with real device or mock setup)
-- Team notified of constraint + workaround decision
-- PWA start readiness unambiguous
+- Testing specification is complete and unambiguous
+- Test sets cover all major feature areas
+- Quality gates are measurable and enforceable
+- Pass/fail conditions are explicit and verifiable
+- Board testing structure and documents ready for W12 execution
+- Native developers understand testing expectations and process
 
 ---
 
@@ -124,23 +141,26 @@ Full week (no vacation); standard 40-hour capacity minus 4 hours admin/comms = 3
 
 | Component | Allocation | Hours | Notes |
 |---|---|---|---|
-| **Primary: RobotOS M1** | 50% | 18 | Deep focus work; architectural foundation |
-| **Secondary: Zephyr stability** | 35% | 12.5 | Testing, regression, documentation |
-| **Contingent: Signee blocker resolution** | 15% | 5 | Depends on equipment blocker resolution |
-| **Unplanned contingency** | — | 0.5 | Reserved for unexpected escalations |
-| **Total utilization** | — | 36 | 100% of available capacity (tight but achievable) |
+| **Primary: RobotOS architecture clarification & onboarding** | TYPE B | ~18h | Office deep blocks + Mon–Wed evening blocks (20:00–21:30) + optional Sat |
+| **Secondary: Zephyr test infrastructure extension** | TYPE A | ~12.5h | **FIXED to office hours only. No evening work.** Source: Zephyr_Project_Context §5, §7 |
+| **Tertiary: Signee testing specification** | TYPE C | ~9h | Baseline. Spec is independent of equipment blocker; can proceed regardless. Async-compatible. |
+| **Admin / comms** | TYPE D | 4h | Standard overhead. Pre-deducted from office pool. |
+| **Board testing (Signee)** | TYPE E | 0 (conditional) | Activates when: equipment delivered. Not pre-allocated. |
+| **Total utilization** | — | ~43–44h | Closes with named evening blocks (Mon–Wed eve ~4.5h + Sat optional ~3h) |
 
 ### Utilization Assessment
 
-- **Primary + Secondary = 85% of capacity** (RobotOS + Zephyr)
-- **Contingent third (Signee) depends on blocker** — if unresolved, Signee shifts to parking and contingency hours absorb other urgent items
-- **Risk: All three active simultaneously would exceed capacity** → Daily Project Scope Rule strictly enforced (max 2 projects per day)
+- **Zephyr is pre-committed TYPE A (office hours only)** — 12.5h allocated from office pool; cannot be moved to evening
+- **RobotOS is TYPE B (flexible deep-work)** — uses office deep blocks + named evening extensions to close the 18h allocation
+- **Signee specification is TYPE C (baseline, async)** — 9h allocated; specification proceeds regardless of equipment status
+- **Evening blocks (Mon–Wed 20:00–21:30):** ~4.5h/week for RobotOS architecture work and Signee async specification. Explicit, not implied.
+- **Daily Project Scope Rule strictly enforced** — max 2 projects per day prevents time-slot type collision between TYPE A and TYPE B anchors
 
 ### Hard Constraints
 
-1. **RobotOS M1 must progress** — v0.1 deadline (2026-04-30) is 6 weeks away; delay here cascades to whole Q2 timeline
+1. **RobotOS architecture must be clarified** — professor requires clear explanation before M1 execution proceeds; team alignment depends on architecture clarity; cascades to W12 execution speed
 2. **Zephyr stability cannot regress** — maintenance project must hold release schedule; zero regressions in testing
-3. **Signee blocker must be resolved** — cannot leave "awaiting equipment" ambiguity into W12; must commit to workaround or actual solution
+3. **Signee testing specification must be defined** — regardless of equipment status, specification must be complete by Fri so native developers and W12 board testing can proceed unblocked
 
 ### Soft Constraints
 
@@ -158,47 +178,43 @@ Full week (no vacation); standard 40-hour capacity minus 4 hours admin/comms = 3
 
 ## 4. Mission Structure
 
-### Primary Mission: RobotOS Architectural Foundation
+### Primary Mission: RobotOS Architecture Clarification & Team Onboarding
 
-**Focus:** Spend 50% of available capacity launching M1 (Kernel + Build system setup).
+**Focus:** ~18h (TYPE B: office deep blocks + Mon–Wed evening extension) on architecture design and contributor onboarding.
 
 **Dependency flow:**
-- Input: W10 spike findings (architectural requirements defined)
-- Action: Zephyr RTOS workspace setup → Build system configuration → Toolchain integration
-- Output: Working build system ready for M2 (Middleware Core) in W12
-- Success: `west build` produces artifact for STM32F4
+- Input: RobotOS project vision and spike findings from W10
+- Action: Create architecture materials → Onboard contributors → Build team alignment
+- Output: Clear architecture explanation; two contributors ready to contribute; timeline defined
+- Success: Stakeholders understand design; team can execute milestones independently
 
-**Risk:** High complexity (embedded systems setup); if toolchain integration hits unexpected issues, may need escalation to decision log by Wed evening.
+**Risk:** High importance (architecture clarity required before proceeding); moderate complexity (architecture documentation + teaching). Should stay on schedule.
 
 ---
 
-### Secondary Mission: Zephyr Stability & Testing
+### Secondary Mission: Zephyr Test Infrastructure Extension
 
-**Focus:** Spend 35% of capacity completing test environment + running regression suite.
+**Focus:** ~12.5h (TYPE A: office hours only. No evening.) extending testing infrastructure.
 
 **Dependency flow:**
-- Input: W10 test completion + environment near-complete state
-- Action: Final environment setup tasks → Full regression test suite → Documentation + release prep
-- Output: Test environment finalized; stability confirmed for W11+ releases
-- Success: All tests passing; zero regressions; release documentation complete
+- Input: Existing test environment + identified RAM loading test requirements
+- Action: Add RAM loading tests → Analyze factory setting code → Document testing pipeline
+- Output: Extended test coverage; improved testing documentation and reuse strategy
+- Success: Tests passing; code ready for merge; testing pipeline documented
 
-**Risk:** Low complexity (mostly verification work). Should complete on schedule.
+**Risk:** Low complexity (testing work is mostly straightforward). Should complete on schedule.
 
 ---
 
-### Contingent Mission: Signee Blocker Resolution + Android Core
+### Tertiary Mission: Signee Testing Specification
 
-**Focus:** 15% of capacity (conditional), depending on test equipment blocker status.
+**Focus:** ~9h (TYPE C: baseline async, independent of equipment blocker) defining testing specification for native developers.
 
-**If blocker resolves (equipment arrives):**
-- Action: Begin camera capture + QR display logic implementation; integrate with existing scaffold
-- Output: Android core work begun; Sprint 1 progresses
-- Success: Core logic drafted; UI scaffolding connected to real device
-
-**If blocker remains (equipment delayed/unavailable):**
-- Action: Commit to mock-based testing setup; design Android core to accept mock data
-- Output: Workaround documented; Sprint 1 can continue without hardware
-- Success: Mock setup functional; team notified of constraint; clear path to Sprint 2
+**Dependency flow:**
+- Input: Signee feature requirements and architecture
+- Action: Define test sets → Establish quality gates → Prepare testing structure
+- Output: Testing specification complete; board testing ready to start W12
+- Success: Specification clear and unambiguous; developers understand testing expectations
 
 ---
 
@@ -208,11 +224,11 @@ Full week (no vacation); standard 40-hour capacity minus 4 hours admin/comms = 3
 
 | Day | Primary anchor | Secondary anchor | Re-entry pattern | Notes |
 |---|---|---|---|---|
-| **Mon 3/16** | RobotOS M1 setup (Zephyr workspace init) | Zephyr env finalization checklist | Fall back to Zephyr if blocked | Post-scope-freeze; momentum from W10 high |
-| **Tue 3/17** | RobotOS M1 (CMake configuration) | Zephyr regression test run | Fall back to Zephyr if CMake blocked | Mid-week focus; deep work on CMake |
-| **Wed 3/18** | RobotOS M1 (Toolchain integration + build verify) | Zephyr documentation | Fall back to Zephyr if toolchain issues | Expected complexity peak; protected deep block if needed |
-| **Thu 3/19** | RobotOS M1 closure (build log + handoff) | Zephyr final stability check | No synthesis; S-only evening | **Thursday dip day** — lightweight execution, checklist work |
-| **Fri 3/20** | RobotOS M1 handoff complete + Signee blocker decision | Zephyr—release closure | Fall back to Signee if RobotOS complete | Closure day; blocker resolution must be final by end-of-day |
+| **Mon 3/16** | RobotOS architecture outline / clarification kickoff | Zephyr RAM-loading test preparation | Fall back to Zephyr if architecture questions stall | Post-scope-freeze; momentum from W10 high; establish scope and structure |
+| **Tue 3/17** | RobotOS slide drafting + architecture diagram work | Zephyr RAM-loading test implementation | Fall back to Zephyr if slide/diagram thinking stalls | Mid-week focus; deep explanation and documentation work |
+| **Wed 3/18** | RobotOS deep block — architecture diagram, motivation, demo concept | Zephyr documentation / merge preparation | Fall back to Zephyr if architecture work hits ambiguity | Expected complexity peak; protected deep block (2-3 hrs); likely peak cognition day |
+| **Thu 3/19** | RobotOS contributor onboarding / repo walkthrough / timeline draft | Zephyr factory-setting analysis or lightweight checklist | No synthesis-heavy recovery; S-only evening | **Thursday dip day** — lighter structured execution only; S-only evening enforced |
+| **Fri 3/20** | RobotOS validation / architecture material closure / team alignment wrap-up | Signee testing spec closure + Zephyr merge closure if needed | Fall back to Signee or Zephyr if RobotOS primary complete | Closure day; ensure no ambiguity remains entering W12; Signee equipment decision final |
 
 ### Re-entry Pattern
 
@@ -232,30 +248,30 @@ Full week (no vacation); standard 40-hour capacity minus 4 hours admin/comms = 3
 
 ### Deep Blocks
 
-**Wed 3/18 afternoon (2–3 hours):** RobotOS M1 toolchain integration
-- **Why:** Toolchain integration is the highest-complexity single task; benefits from interrupted focus
-- **Constraint:** Only if RobotOS blocks (CMake config) are complete and ready for integration
-- **Alternative:** If Wed morning has unexpected complexity, defer deep block to Thu morning (before dip)
+**Wed 3/18 afternoon (2–3 hours):** RobotOS architecture diagram & documentation
+- **Why:** Architecture documentation is the highest-complexity deliverable; benefits from interrupted focus time
+- **Constraint:** Only if initial architecture slide and explanation are drafted
+- **Alternative:** If Wed morning has unexpected complexity (contributor Q&A), defer deep block to Thu morning (before dip)
 
-**Weekend (optional, Sat 3/21):** Signee mock setup polish (if blocker unresolved)
-- **Why:** Mock testing setup design is synthesis work; better on weekend than weekday evening
-- **Use if:** Equipment blocker remains unresolved by Fri; need to accelerate mock infrastructure for Sprint 1 continuity
+**Weekend (optional, Sat 3/21):** Testing specification polish or RobotOS onboarding refinement
+- **Why:** Specification refinement or deeper contributor walks are synthesis work; better on weekend than weekday evening
+- **Use if:** Specification draft ready for refinement, or conversations with contributors reveal gaps needing deeper explanation
 
 ---
 
 ### Anchor Rationale
 
-**RobotOS primary:** M1 is on critical path to v0.1 (2026-04-30). Architectural complexity requires protected focus. Primary anchor matches primary goal (highest value, highest complexity).
+**RobotOS primary:** Architecture clarification and contributor onboarding are enabling work for M1 execution. Complexity is documentary + teaching, not coding. Primary anchor matches primary goal (highest value, team enablement impact).
 
-**Zephyr secondary:** Maintenance project with lower complexity; testing tasks are verification-heavy and don't require as much deep focus as architecture. Secondary anchor fits lower cognitive load on some days (esp. Thu dip day).
+**Zephyr secondary:** Maintenance project with lower cognitive load; testing infrastructure tasks are verification-heavy and don't require as much deep focus as architecture documentation. Secondary anchor fits lower cognitive load on some days (esp. Thu dip day).
 
-**Signee contingent:** Equipment blocker status still pending as of planning. Conditional hold prevents wasted cycles on blocked work. If blocker resolves, activate fully. If not, park and use recovered hours for RobotOS/Zephyr depth.
+**Signee tertiary:** Testing specification definition is independent of equipment status. Can proceed regardless of blocker resolution. Provides value in enabling other teams' testing work and preparing W12 board testing phase. Uses recovered time if RobotOS completes early.
 
-**Re-entry to Zephyr:** If RobotOS hits unexpected blocker, Zephyr testing/documentation tasks are immediately available as productive fallback. Prevents unproductive waiting.
+**Re-entry to Zephyr or Signee:** If RobotOS architecture work hits unexpected questions, Zephyr testing or Signee specification tasks are immediately available as productive fallback. Prevents unproductive waiting.
 
-**Thursday dip respected:** S-only evening enforced; no synthesis or discovery work. Thu anchor is lightweight (RobotOS handoff checklist, Zephyr stability final pass) rather than high-complexity architecture.
+**Thursday dip respected:** S-only evening enforced; no synthesis or deep architecture work. Thu anchor is lightweight (architecture review, Zephyr stability final pass, Signee spec review) rather than high-complexity documentation.
 
-**Weekend synthesis optional:** If needed for Signee mock setup or RobotOS architecture polish, weekend deep blocks are available. W10 experience shows synthesis/polish timing better on weekend.
+**Weekend synthesis optional:** If needed for architecture refinement or specification polish, weekend deep blocks are available. Design and planning work often benefits from async refinement.
 
 ---
 
@@ -266,16 +282,16 @@ Full week (no vacation); standard 40-hour capacity minus 4 hours admin/comms = 3
 | Item | Status | Decision | W11 Integration | Effort |
 |---|---|---|---|---|
 | **Zephyr W11 handoff notes** | Documented | Integrate | Consume handoff on Mon (15 min); understand next test phase direction | 0.25 hr |
-| **RobotOS spike findings** | Complete | Integrate | Spike document is M1 requirements baseline; use all week | 0 hr (already done) |
-| **Signee test equipment blocker** | Unresolved | Escalate + activate | Definitive resolution by Fri EOD required; if resolved, activate Android core work; if not, commit to mock workaround | 5 hrs (conditional) |
-| **System learnings (re-entry blocks, Thu dip, synthesis timing)** | Documented | Integrate | Apply all three to W11 anchor design; re-entry blocks ready; Thu dip respected; weekend synthesis option available | 0 hr (design only) |
+| **RobotOS spike findings** | Complete | Integrate | Spike document is architecture baseline; use for clarity documentation all week | 0 hr (already done) |
+| **Signee test equipment blocker** | Unresolved | Escalate + activate | Definitive resolution by Fri EOD required; testing spec definition proceeds regardless; if equipment unavailable, testing spec provides structure for native developers | 5 hrs (Signee testing spec work) |
+| **System learnings (re-entry blocks, Thu dip, synthesis timing)** | Documented | Integrate | Apply all three to W11 anchor design; re-entry blocks ready for RobotOS/Zephyr/Signee flexibility; Thu dip respected; weekend synthesis option available | 0 hr (design only) |
 
 ### Carry-over Statistics
 
 - **Integrated:** 2 items (Zephyr handoff, RobotOS spike findings)
-- **Escalated:** 1 item (Signee blocker — must resolve by Fri)
-- **Effort impact:** <1 hr on integrated items; 5 hrs conditional on blocker resolution
-- **No stale carry-over:** All items from W10 have explicit status or resolution path
+- **Escalated:** 1 item (Signee equipment — decision required by Fri)
+- **Effort impact:** <1 hr on integrated items; 5 hrs allocated to Signee testing spec work (independent of blocker)
+- **No stale carry-over:** All items from W10 have explicit integration path or resolution deadline
 
 ---
 
@@ -283,38 +299,42 @@ Full week (no vacation); standard 40-hour capacity minus 4 hours admin/comms = 3
 
 ### Per-Goal Definition of Done
 
-#### RobotOS M1 Completion Criteria
+#### RobotOS Architecture & Onboarding Completion Criteria
 
-- [ ] Zephyr RTOS workspace initialized (`west init` + `west update` successful)
-- [ ] CMake build system configured for STM32F4 target
-- [ ] Toolchain (arm-none-eabi-gcc) integrated and verified
-- [ ] First kernel build succeeds (produces artifact)
-- [ ] Build verification log documented (environment details, tool versions, build log)
-- [ ] No open TODOs in build configuration
-- [ ] Ready for M2 (Middleware Core) in W12
+- [ ] Architecture slide clearly explains system structure
+- [ ] Visual architecture diagram (framework/adapter/kernel) created and documented
+- [ ] Motivation and project differentiation document written
+- [ ] Demo concept explanation complete (what it shows and how it proves design)
+- [ ] Hardware and software component overview documented
+- [ ] Initial project timeline (v0.1 to v0.2) drafted
+- [ ] Two contributors onboarded:
+  - [ ] Repository structure understood
+  - [ ] Architecture and design philosophy explained
+  - [ ] C code repository navigation learned
+  - [ ] Development environment set up
+- [ ] Architecture clarity validated with stakeholders (professor)
 
-#### Zephyr Stability Completion Criteria
+#### Zephyr Testing Infrastructure Completion Criteria
 
-- [ ] DBUS2 test environment finalized (all setup tasks complete)
-- [ ] Full regression test suite executed
-- [ ] All tests passing (zero failures)
-- [ ] Environment documentation updated with final state
-- [ ] Weekly release on schedule (if applicable to W11)
-- [ ] Zero regressions detected vs W10 baseline
+- [ ] RAM loading test cases added and passing
+- [ ] Test code prepared for merge (code review ready)
+- [ ] Factory setting related code analyzed and documented
+- [ ] If time permits:
+  - [ ] Testing pipeline documented
+  - [ ] Testing rules and best practices documented
+  - [ ] Test reuse strategy documented
+- [ ] All existing tests still passing (zero regressions)
+- [ ] Ready for next testing phase in W12
 
-#### Signee Blocker Resolution Criteria
+#### Signee Testing Specification Completion Criteria
 
-- [ ] **If blocker resolves (equipment arrives):**
-  - [ ] Camera capture + QR display logic draft completed
-  - [ ] Integration with existing Android scaffold verified
-  - [ ] Next steps (Sprint 1 continuation) documented
-  - [ ] Team notified of equipment status + progress
-
-- [ ] **If blocker remains (equipment delayed):**
-  - [ ] Mock data setup architecture documented
-  - [ ] Android core logic designed for mock input
-  - [ ] Team notified of constraint + workaround decision
-  - [ ] Sprint 1 continuation plan (without hardware) confirmed
+- [ ] Test sets defined for all feature areas
+- [ ] Quality gate criteria specified
+- [ ] Pass / fail conditions documented
+- [ ] Timeout and retry expectations defined
+- [ ] Testing structure prepared for W12 board testing
+- [ ] Testing checklist created for native developers
+- [ ] Specification is unambiguous and complete
 
 ### Week-Level Definition of Done
 
@@ -330,27 +350,69 @@ Full week (no vacation); standard 40-hour capacity minus 4 hours admin/comms = 3
 
 ## 8. Known Risks & Blockers
 
-### Blockers
+### Risk: Signee Equipment Status (MEDIUM)
 
-| # | Blocker | Severity | Mitigation | Owner |
-|---|---|---|---|---|
-| 1 | **Signee test equipment status** | Medium | Definitive resolution required by Fri EOD. If unavailable, commit to mock setup workaround. | Self (escalation to Signee stakeholders if needed) |
-| 2 | **RobotOS toolchain integration complexity** | Medium | Unexpected toolchain issues (missing headers, linker config, etc.) could delay M1. Mitigation: reserve analytical re-entry time on Wed/Thu. | Self (escalation to embedded systems reference if toolchain is intractable) |
+**Current State (as of W10 end):** Equipment development in progress by other native developers. Board availability for W12 testing currently uncertain.
 
-### Soft Risks
+**Impact if blocker:** 
+- Testing specification definition can proceed independently (no blocker)
+- Board testing will be delayed if equipment unavailable
+- Focus shifts to specification clarity so board testing can start immediately when equipment ready
 
-| # | Risk | Signal | Mitigation |
-|---|---|---|---|
-| 1 | **All three projects simultaneously active** | Capacity strain beyond 70% utilization | Daily Project Scope Rule strictly enforced. If mid-week pressures mount, park Signee and focus RobotOS + Zephyr. |
-| 2 | **RobotOS complexity underestimated** | If Mon/Tue setup takes >15 hours instead of projected 15 hours cumulative | Escalate M1 timeline decision to decision log by Wed EOD. Possible W12 continuation or scope reduction. |
-| 3 | **Zephyr regression detected late in week** | If regression shows up Thu/Fri during final stability pass | Follow regression root cause; may require Fri afternoon deep work. Weekend optional escalation if critical. |
+**Mitigation:**
+- Define testing specification without depending on equipment availability
+- Prepare testing checklist / structure so native developers can start immediately
+- Weekly check-in on equipment status (blockers to be resolved by Fri)
+- If equipment unavailable by Week closeout, escalate to project leadership
 
-### Decision Points
+**Owner:** Signee team lead (external) + planning review
 
-| # | Decision | Required by | Input | Owner |
-|---|---|---|---|---|
-| 1 | Signee test equipment: proceed with actual device OR commit to mock workaround | Fri 3/20 EOD | Equipment availability status; team capacity to implement mock setup | Self (+ Signee stakeholders if escalation needed) |
-| 2 | RobotOS M1 timeline realistic for W11 completion | Wed 3/18 EOD (checkpoint) | Actual progress vs plan through Tue | Self (escalation to decision log if behind) |
+---
+
+### Risk: RobotOS Architecture Clarity (MEDIUM)
+
+**Current State:** Professor required clearer architecture documentation before proceeding with M1 implementation. Week 11 focused on delivering clarity, not implementation.
+
+**Impact if risk materializes:**
+- Contributors cannot onboard effectively
+- Architecture doc insufficient for team alignment
+- Scope of M1 remains unclear
+
+**Mitigation:**
+- Deliver slide + diagram + written explanation in multiple formats
+- Validate architecture clarity with professor feedback (if possible)
+- Include demo concept to ground explanation in executable form
+- Document architecture philosophy so contributors understand design intent
+
+**Owner:** R&D lead (architecture) + RobotOS PM (validation)
+
+---
+
+### Risk: Zephyr Testing Infrastructure Scope (LOW-MEDIUM)
+
+**Current State:** Testing infrastructure extension is ongoing maintenance; not a critical blocker.
+
+**Impact if risk materializes:**
+- RAM loading tests delayed
+- Code merge delayed to W12
+- Factory setting analysis incomplete
+
+**Mitigation:**
+- Prioritize RAM loading tests (pass/fail clear; merge-ready is goal)
+- Document factory setting analysis incrementally (even if partial)
+- If time pressure: defer pipeline documentation to W12
+
+**Owner:** Zephyr maintainer (stability focus)
+
+---
+
+### Blocker Status Summary
+
+| Blocker | Status | Escalation Path | Decision Date |
+|---------|--------|-----------------|---------------|
+| Signee equipment | Medium | Team lead check-in weekly; escalate if unavailable by Fri | Fri 3/20 |
+| RobotOS clarity | Medium | Professor feedback loop; adjust docs based on feedback | As feedback arrives |
+| Zephyr stability | Low | On-track; no escalation needed | N/A |
 
 ---
 
@@ -358,37 +420,43 @@ Full week (no vacation); standard 40-hour capacity minus 4 hours admin/comms = 3
 
 ### The Week's Theme
 
-**W11 is the execution-on-commitment week following scope freeze.** W10 proved that re-entry blocks handle spillover, contingent holds manage blocked work, and Thursday dip is a reliable pattern. W11 applies all three learnings while attacking the highest-complexity new work: RobotOS M1 architectural foundation.
+**W11 is the execution-on-commitment week for architecture and enablement.** Following W10's validation of re-entry blocks and contingent holds, W11 shifts from build milestones to architectural clarity and team enablement. The professor's requirement for clear architecture documentation redirects focus from M1 kernel coding to architecture documentation and contributor onboarding. Zephyr sustains testing infrastructure development. Signee specifies testing requirements independently of equipment status.
 
-The month's challenge is holding three projects simultaneously without silent scope creep. W11 is the first full operational test of the Daily Project Scope Rule. RobotOS M1 is the star task (50% capacity); Zephyr quietly maintains stability (35%); Signee sits on a blocker awaiting definitive resolution (15%, contingent).
+The month's challenge is holding three projects simultaneously without silent scope creep. W11 operationally tests the Daily Project Scope Rule while delivering architectural clarity (RobotOS, TYPE B ~18h with evening blocks), test infrastructure (Zephyr, TYPE A ~12.5h office-only), and testing specification (Signee, TYPE C ~9h baseline async).
 
-If all three progress as planned, W11 closes with RobotOS M1 ready for M2, Zephyr stable + tested, and Signee either advancing (equipment) or committed to workaround (mock). If RobotOS hits complexity or Signee blocker drags, Zephyr secondary mission absorbs the hours and provides stable fallback work.
+If all three progress as planned, W11 closes with RobotOS architecture clearly explained and contributors onboarded, Zephyr testing infrastructure extended, and Signee testing specification ready for W12 board testing phase.
 
 ### Key Decisions Made
 
-**Why RobotOS is primary this week?**
-- v0.1 deadline (2026-04-30) is 6 weeks away
-- M1 is the foundation; all subsequent work depends on it
-- Spike is complete; architectural requirements are clear
-- Time to invest 50% capacity in high-value, high-complexity work
+**Why RobotOS architecture clarification is primary this week?**
+- Professor requires clear architectural explanation before proceeding
+- Team expansion (2 contributors) needs structured onboarding
+- Strong architecture documentation enables faster execution in W12+
+- Shift from implementation focus to documentation + teaching focus
 
-**Why Zephyr is secondary, not co-primary?**
-- Maintenance mode: testing + stability, not new development
+**Why Zephyr stays secondary at testing infrastructure level?**
+- Testing ecosystem extension is ongoing maintenance work
 - Lower cognitive load than architecture work
-- Provides reliable fallback if RobotOS hits blockers
-- Can be executed in parallel without context-switching friction
+- Provides reliable progress track if RobotOS hits clarity questions
+- Can be executed in parallel without context-switching friction (RAM tests, factory analysis, documentation)
 
-**Why Signee is contingent, not carried as third project?**
-- Test equipment blocker is unresolved
-- Equipment status has high variance (could arrive any day, could remain delayed)
-- Forcing execution on blocked work wastes cycles
-- Better to hold contingently and activate on unblock signal
+**Why Signee is tertiary with testing specification focus?**
+- Native developers (other teams) handle application implementation
+- Equipment status (board development) outside immediate control
+- Focus is enabling their testing + preparing W12 board testing phase
+- Testing specification is independent of equipment availability; provides value regardless
 
 **Why Thursday dip is respected as constraint?**
 - W10 confirmed it empirically (low energy observed)
 - S-only evening prevents over-execution on fatigue
 - Allows synthesis/discovery work to shift to weekend if needed
 - System is more resilient when dip is acknowledged, not fought
+
+### Success Indicators by Mid-Week (Wed 3/18)
+
+- **RobotOS:** Architecture slide drafted, diagram in progress, contributor interest confirmed
+- **Zephyr:** RAM tests identified and started, code merge preparation underway
+- **Signee:** Test sets documented, quality gate criteria drafted
 
 ---
 

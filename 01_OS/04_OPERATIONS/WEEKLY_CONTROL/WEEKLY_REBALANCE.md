@@ -79,6 +79,8 @@ After rebalance, the Weekly Execution file reflects coherent, believable remaini
 - Unexpected capacity drop (illness, urgent context switch) threatens remaining week credibility
 - 30–50% or more of the weekly execution frame has become unrealistic
 
+> **Capacity drift re-check:** If actual capacity has materially drifted from the plan (TYPE A work overran office hours, evening blocks were unavailable, a project took >2x estimated effort), re-check against CAPACITY_ENGINE before rebalancing the anchor hypothesis. Do not rebalance without a grounded capacity model — see [`CAPACITY_ENGINE.md`](CAPACITY_ENGINE.md) §8 (Decision Logic When Capacity Does Not Close).
+
 **Runner:** Agent 2 (autonomous operational procedure) or Agent 1 (strategic decision if escalation needed).
 
 ---

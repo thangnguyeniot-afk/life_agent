@@ -84,6 +84,8 @@ This procedure ensures Weekly Execution files are not planning documents pretend
 
 **Key constraint:** Must incorporate realistic carry-forward from previous week without overloading the new week.
 
+> **Inherited capacity constraints:** The WeekPlan produced by GENERATE_WEEKPLAN already contains a CAPACITY_ENGINE–validated capacity model (project TYPE A/B/C assignments, Layer allocations, V-check status). Mode A inherits these constraints directly — do not re-derive capacity from scratch. If execution reveals a new constraint not present during planning (unexpected TYPE A overrun, evening blocks unavailable), trigger WEEKLY_REBALANCE rather than silently adjusting here.
+
 ### Mode B — Week Reconstruction
 
 **Use when:** A weekly file is missing and must be reconstructed from Daily files + available tracking.
