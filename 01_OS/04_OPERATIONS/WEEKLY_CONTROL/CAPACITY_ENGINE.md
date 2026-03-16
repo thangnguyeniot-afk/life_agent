@@ -149,31 +149,33 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 - Standard: 5 days × 8 hours = 40 hours gross
 - Minus: KTLO-fixed project allocation (pre-committed, first-before-flex)
 - Minus: Admin/comms overhead (standard 4h; adjust for exceptions)
-- Remaining: flex-within-office capacity for RobotOS/Signee office support
+- Hard boundary: **ALL remaining office-hours capacity belongs exclusively to TYPE A project operation (Zephyr).** No personal projects (RobotOS, Signee) may be allocated against any part of the office pool — not "remaining capacity," not "support hours," not any other framing.
 
 **Rule:** If a project is "office hours only," its allocation is computed **against Layer 1 gross capacity**, not against a shared pool. It is **fixed and pre-committed**.
 
 ---
 
-#### Layer 2 — Flexible Deep-Work Pool
+#### Layer 2 — Personal Deep-Work Pool (Evenings + Weekend)
 
 **What belongs here:**
-- Architecture, design, implementation work (e.g., RobotOS, Signee builds)
-- Protected focus blocks (typically 2 × 1.5h deep-work slots per day in office hours)
-- Optional evening extension blocks (e.g., 20:00–21:30 per OS daily schedule model)
-- Weekend blocks (optional, when synthesis or continuation is needed)
+- Architecture, design, implementation work assigned to personal time (e.g., RobotOS builds)
+- Evening focus blocks (20:00–21:30 per OS daily schedule model — Job 2 / Small Bet slot)
+- Weekend blocks (optional, if explicitly planned)
 
 **What must NOT be placed here:**
 - KTLO/maintenance work (belongs in Layer 1)
 - Admin/comms (belongs in Layer 4)
+- **Any work during office hours — office hours belong 100% to Layer 1 (Zephyr + overhead)**
 
 **Capacity ceiling:**
-- Office deep-work slots: 2 × 1.5h per day = 3h/day × 5 days = ~15h/week
-- Plus: Evening extension (1.5h/day × available evenings; optional, not guaranteed)
-- Plus: Weekend work (if explicitly planned; must be decision-based, not implied)
-- **Total max with evenings: ~22–24h/week (if all evenings used)**
+- Evening blocks: ~1.5h/evening per available evening (20:00–21:30)
+- Typical pattern: Mon–Wed + Fri = ~4 evenings = ~6h/week (Thu = low-energy dip, typically zero)
+- Weekend: optional, if explicitly planned (~2–4h)
+- Morning architect block (06:30–07:15): PLANNING only — not execution capacity
+- **Total personal execution capacity: ~6–8h/week (evenings) + optional weekend**
+- **HARD RULE: This layer does NOT include any office hours. Office = Pool A / Layer 1 only.**
 
-**Rule for evening blocks:** If weekly goals require evening capacity to close the allocation, the plan **must name those blocks explicitly**. Silent evening dependency is a validation error.
+**Rule for evening blocks:** If weekly goals require evening capacity, the plan **must name those blocks explicitly** (days + hours). Silent evening dependency is a validation error.
 
 ---
 
@@ -190,7 +192,7 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 - Fixed office-hours commitments (belongs in Layer 1)
 
 **Capacity ceiling:**
-- Flexible: can use office hours, evenings, or weekend blocks
+- Personal time only — evenings or weekend blocks; **CANNOT use office hours** (office = Pool A = Zephyr only)
 - Typical range: 5–10h/week (depending on coordination load)
 - Compatible with Layer 2 on the same day if timing is non-overlapping
 
@@ -220,8 +222,8 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 | Type | Description | Layer | Allowed Time Slots | Disallowed | Scheduling Behavior |
 |---|---|---|---|---|---|
 | **TYPE A** | Fixed office-hours / KTLO / maintenance | Layer 1 | Office hours only | Evening, weekend | Pre-committed, allocated first; non-negotiable time slot |
-| **TYPE B** | Flexible deep-work / architecture / design | Layer 2 | Office deep blocks + evening optional | Cannot displace TYPE A within office slot | Block-model (1 block ≈ 2–4h focused work); protected from interruptions |
-| **TYPE C** | Async / spec / review / coordination | Layer 3 | Any slot (office, evening, weekend) | Must not crowd out TYPE B deep focus | Interruptible, async-compatible; can fill office gaps |
+| **TYPE B** | Personal deep-work / architecture / design | Layer 2 | Personal evenings + weekend ONLY. **Office hours: FORBIDDEN.** | Cannot use any office hours (all office = TYPE A Zephyr) | Block-model (1 block ≈ 1.5–3h focused work); evening slots; weekend synthesis |
+| **TYPE C** | Async / spec / review / coordination | Layer 3 | Personal evenings + weekend ONLY. **Office hours: FORBIDDEN.** | Must not crowd out TYPE B deep focus | Interruptible, async-compatible; fills personal time gaps (not office gaps) |
 | **TYPE D** | Admin / comms / system overhead | Layer 4 | Office hours (prefer morning/EOD) | Must not use deep-work slots | Fixed deduction; not a flexible allocation |
 | **TYPE E** | Conditional / blocked work | Any layer at activation | Only when unblock trigger fires | Must not be pre-allocated as baseline if truly blocked | Parked until explicit unblock event; effort is NOT in baseline plan |
 
@@ -286,9 +288,20 @@ Do not apply a single TYPE to all Signee work if sub-components have different c
 The sum of all layer allocations must be ≤ total realistic capacity. Realistic capacity is:
 
 ```
-Realistic capacity = Office Layer 1 (gross - admin) + named evening blocks
-= [5 days × 8h] - [TYPE D admin ~4h] + [Named evening h, if planned]
-= 36h base + explicit evening extension
+Capacity is split across TWO SEPARATE POOLS — they must never be combined:
+
+POOL A — Office-Locked (Layer 1 — Zephyr + overhead):
+  Realistic Zephyr capacity = [5 days × 8h] − [TYPE D admin ~4h] = ~36h effective
+  This entire pool belongs to Zephyr. There is no "remaining" to share with personal projects.
+
+POOL B — Personal Flex (Layers 2+3 — RobotOS + Signee):
+  Realistic personal capacity = [named evening blocks] + [optional weekend]
+  = [~1.5h × available weekday evenings] + [weekend if explicitly planned]
+  Typical: ~6h/week (4 evenings × 1.5h) + optional Sat (~2h) = ~6–8h/week
+
+If personal project goals require more than Pool B capacity:
+  → Reduce scope, or span goal across multiple weeks
+  → Do NOT compensate by borrowing from Pool A (office hours)
 ```
 
 If goals require more than 36h + named evening, scope must be reduced or deferrals must be documented.
@@ -297,10 +310,28 @@ If goals require more than 36h + named evening, scope must be reduced or deferra
 
 The daily anchor structure in the WeekPlan must be consistent with which projects belong to which layers:
 - TYPE A should appear in the anchor as an office-hours block, not listed alongside TYPE B as if interchangeable
-- TYPE B should appear in deep-work blocks (morning/afternoon focus blocks)
-- TYPE C should appear in flexible slots (between deep blocks, after TYPE A, or in evening)
+- TYPE B should appear in personal evening/weekend deep-work blocks
+- TYPE C should appear in personal async slots (evening or weekend)
 
 If the anchor table mixes TYPE A and TYPE B as equivalent daily anchors without time-slot distinction, it is a V7 validation failure.
+
+---
+
+### R9 — Pool Isolation: Office and Personal Capacity Must Not Share
+
+Pool A (office hours, weekdays 08:30–17:00) and Pool B (personal time: evenings + weekends) are structurally separate. They must never share capacity under any framing.
+
+**Pool isolation applies in both directions:**
+- TYPE B (RobotOS) and TYPE C (Signee) must draw capacity **only from Pool B** (personal evenings + weekends)
+- Pool A office hours must be allocated **only to TYPE A (Zephyr)** and TYPE D overhead
+- Framing like "using remaining office capacity for RobotOS" violates this rule
+- Framing like "Zephyr evening work to free up office time" violates this rule
+- If Pool B capacity is insufficient for personal project goals: reduce scope or span goal to next week
+
+**Sources confirming pool separation:**
+- OS daily schedule: Job 1 (08:30–17:00) = Zephyr; Job 2 (20:00–21:30) = RobotOS/Signee
+- Zephyr_Project_Context §5: "Executed during office hours only. No regular evening deep work."
+- Zephyr_Project_Context §7: "Do not schedule Zephyr work in evening blocks. Protect capacity for Signee (Phase 1) and RobotOS (Phase 2)."
 
 ---
 
@@ -320,6 +351,7 @@ Run all checks before accepting capacity model output.
 | Daily scope rule | V8 | Max 2 projects active per day can be verified given layer assignments | Ambiguous which 2 projects are active in which time slots |
 | Capacity sum | V9 | Total allocated hours ≤ realistic weekly capacity (office + named evening) | Total allocation exceeds modeled capacity |
 | Split-Signee rule | V10 | Signee sub-components with different types are allocated separately | All Signee work assigned one TYPE; blocks baseline allocation |
+| Pool isolation | V11 | Pool A (office) contains only TYPE A + TYPE D; Pool B (personal) contains only TYPE B + TYPE C; no cross-pool hours exist | Any personal project (TYPE B/C) has hours attributed to office hours; or Zephyr has hours attributed to personal blocks |
 
 ---
 
@@ -332,31 +364,35 @@ The engine produces a **Capacity Summary block** that the weekly plan's `## Capa
 ```markdown
 ## Capacity & Constraints — ENGINE OUTPUT
 
-### Office-Hours Layer (Layer 1 — Fixed)
+### POOL A — Office-Locked Capacity (Layer 1)
 
 | Component | Type | Hours | Constraint |
 |---|---|---|---|
-| [KTLO/TYPE A project] | TYPE A | [h/week] | Office hours only. No evening. Structural constraint from project context. |
-| Admin / comms | TYPE D | [h/week] | Standard overhead. Subtracted before flexible allocation. |
-| **Layer 1 total committed** | — | [sum] | Pre-committed before flexible allocation. |
-| **Layer 1 remaining (for flexible projects)** | — | [40 − sum] | Available for TYPE B/C office-hours support. |
+| [TYPE A project — Zephyr] | TYPE A | ~[h effective] | **Office hours only. Gross 40h. Effective after D1 overhead: ~36h.** |
+| Admin / comms (D1 overhead) | TYPE D | [h/week] | Inside Pool A. Subtracted from gross. |
+| **Pool A total** | — | ~40h gross | **100% office hours. Zero remaining for personal projects.** |
 
-### Flexible Project Allocation (Layer 2+3)
+> Pool A boundary: ALL office hours belong to TYPE A (Zephyr) + TYPE D overhead.
+> No personal projects (TYPE B, TYPE C) may be allocated against this pool under any framing.
 
-| Project | Type | Office Support | Evening/Flex | Total | Notes |
-|---|---|---|---|---|---|
-| [TYPE B project] | TYPE B | [h in office] | [h in named evening, or "not required"] | [total] | Deep blocks: [when] |
-| [TYPE C project] | TYPE C | [h in office] | [h in named async, or "not required"] | [total] | Baseline; spec/coordination work |
-| [TYPE E items] | TYPE E | — | — | 0 (conditional) | Activates if: [trigger event] |
+### POOL B — Personal Flex Capacity (Layers 2+3)
 
-### Capacity Totals
-
-| Pool | Capacity | Allocated | Utilization | Status |
+| Project | Type | Personal Blocks (Source) | Hours | Notes |
 |---|---|---|---|---|
-| Office-hours Layer 1 | 40h | [TYPE A + TYPE D] | [%] | KTLO committed |
-| Office remaining (flexible support) | [40 − Layer 1] | [TYPE B + TYPE C office] | [%] | Within bounds / exceed |
-| Evening extension (named) | [h or "none"] | [TYPE B + TYPE C evening] | [%] | Optional; explicit |
-| **Total operative** | [sum] | [sum] | [%] | PASS / WARN / FAIL |
+| [TYPE B project — RobotOS] | TYPE B | Evenings: [days] (20:00–21:30); optional weekend | [h] | Deep-work blocks; execution; no office hours |
+| [TYPE C project — Signee] | TYPE C | Evenings: [days]; weekend async | [h] | Spec/coordination; async-compatible; no office hours |
+| [TYPE E items] | TYPE E | — | 0 (conditional) | Activates if: [trigger event] |
+| **Pool B total** | — | Named evenings + weekend | [sum] | Against ~6–8h/week personal capacity |
+
+> Pool B boundary: ALL personal project work must be sourced from named personal blocks only.
+> Cannot use office hours.
+
+### Capacity Summary
+
+| Pool | Source | Available | Allocated | Utilization | Status |
+|---|---|---|---|---|---|
+| **Pool A — Office-Locked** | Office hours (weekdays) | ~40h gross / ~36h effective | Zephyr effective + D1 | ~100% | Zephyr only; no personal |
+| **Pool B — Personal Flex** | Evenings + weekend | ~6–8h/week | TYPE B + TYPE C personal | [%] | PASS / WARN / FAIL |
 
 ### Validation Status
 
@@ -372,6 +408,7 @@ The engine produces a **Capacity Summary block** that the weekly plan's `## Capa
 | Daily scope rule clarity | V8 | PASS / WARN | |
 | Capacity sum | V9 | PASS / FAIL | |
 | Split-Signee rule | V10 | PASS / N/A | |
+| Pool isolation | V11 | PASS / FAIL | |
 
 ### Warnings & Reconciliation Notes
 
@@ -517,45 +554,48 @@ Total = 100% = 36h
 3. Goal effort = 9h (Signee) but capacity = 5h — contradiction (**V6 fail**)
 4. 18 + 12.5 + 9 = 39.5h > 36h — numbers require ~3.5h evening capacity (**V3 fail: hidden**)
 5. Daily anchors list TYPE A and TYPE B as equivalent secondary/primary — no time-slot distinction (**V7 fail**)
+6. RobotOS (TYPE B) and Signee (TYPE C) allocated against office hours — pool isolation violated (**V11 fail**)
 
 ### What the corrected model looks like
 
 ```markdown
-### Office-Hours Layer (Layer 1 — Fixed)
+### POOL A — Office-Locked Capacity (Layer 1)
 
 | Component | Type | Hours | Constraint |
 |---|---|---|---|
-| Zephyr (TYPE A, KTLO) | TYPE A | 12.5 | Office hours only. No evening. Source: Zephyr_Project_Context §5, §7. |
-| Admin / comms | TYPE D | 4.0 | Standard overhead. |
-| Layer 1 total committed | — | 16.5 | Pre-committed. |
-| Layer 1 remaining | — | 23.5 | Available for TYPE B/C office support. |
+| Zephyr (TYPE A — test extension + operational) | TYPE A | ~36h effective | Office hours only. No evening. Gross 40h − 4h D1 = 36h. Source: Zephyr_Project_Context §5, §7. |
+| Admin / comms (D1) | TYPE D | 4h | Inside Pool A. Standard overhead. |
+| **Pool A total** | — | ~40h gross | **100% office hours. Zero allocated to personal projects.** |
 
-### Flexible Project Allocation (Layer 2+3)
+> Note: Zephyr's test extension goal (~12.5h estimated effort) sits inside Pool A's ~36h effective
+> capacity alongside other Zephyr operational work. The remaining ~23.5h stays as Zephyr ops time
+> (meetings, reviews, KTLO monitoring) — NOT available to personal projects.
 
-| Project | Type | Office Support | Evening/Flex | Total | Notes |
+### POOL B — Personal Flex Capacity (Layers 2+3)
+
+| Project | Type | Personal Blocks (Source) | Hours | Notes |
+|---|---|---|---|---|
+| RobotOS (architecture + onboarding) | TYPE B | Evenings: Mon–Wed (20:00–21:30) + optional Sat | ~6–7h | W11 partial; full goal (~15h) spans W11–W12; no office hours |
+| Signee (testing specification) | TYPE C | Evenings: Wed–Fri async + optional weekend | ~2–3h | W11 partial; no office hours |
+| Board testing (Signee) | TYPE E | — | 0 conditional | Activates when: hardware delivered |
+| **Pool B total** | — | Named evenings + optional Sat | ~8–10h | W11 personal capacity; near personal ceiling |
+
+### Capacity Summary
+
+| Pool | Source | Available | Allocated | Utilization | Status |
 |---|---|---|---|---|---|
-| RobotOS (architecture + onboarding) | TYPE B | 5–6h | 12–13h (evening blocks: named) | ~18h | Evening: 20:00–21:30 Mon–Wed + optional Sat; Required for closure |
-| Signee (testing specification) | TYPE C | 2–3h | 5–6h (evening or async) | ~8–9h | Baseline; independent of equipment blocker |
-| Board testing (Signee) | TYPE E | — | — | 0 conditional | Activates when: hardware delivered |
+| Pool A — Office | Office hours | ~40h gross | Zephyr + overhead | ~100% | Full; contains Zephyr only |
+| Pool B — Personal | Evenings + weekend | ~8–10h | RobotOS ~6–7h + Signee ~2–3h | 80–100% | WARN: near personal ceiling |
 
-### Capacity Totals
-
-| Pool | Capacity | Allocated | Utilization |
-|---|---|---|---|
-| Office Layer 1 (Zephyr + Admin) | 40h gross | 16.5h | 41% |
-| Office remaining (RobotOS + Signee office) | 23.5h | 8–9h office support | 36–38% |
-| Evening extension (named: Mon–Wed + Sat) | ~7–8h | 12–13h (RobotOS) + 5–6h (Signee async) | Allocated across 2 projects |
-| Total operative | ~43–44h | ~43.5h | Closes with named evening blocks |
-
-Validation status: V1 PASS | V2 PASS | V3 PASS (evening named) | V4 PASS | V5 PASS | V6 PASS | V7 requires anchor update | V8 WARN (document office vs evening in anchor table) | V9 PASS | V10 PASS
+Validation status: V1 PASS | V2 PASS | V3 PASS (evening blocks named) | V4 PASS | V5 PASS | V6 PASS (goal estimates reflect W11 personal scope) | V7 requires anchor restructure | V8 WARN (document office vs evening clearly in anchor table) | V9 PASS | V10 PASS | **V11 PASS (pool isolation confirmed)**
 ```
 
-**Key corrections:**
-- Zephyr is pre-committed as TYPE A; not competing with RobotOS in a shared pool
-- Signee specification is labeled baseline (TYPE C, 9h); board testing is TYPE E (0h conditional)
-- Evening capacity named explicitly (Mon–Wed evening blocks + optional Sat)
-- Goal effort (9h Signee) matches capacity (9h Signee) — V6 passes
-- Anchor table must distinguish office-hours TIME A slots vs. TYPE B deep blocks
+**Key corrections versus broken model:**
+- "Layer 1 remaining" for RobotOS/Signee = ELIMINATED. Office pool is 100% Zephyr.
+- RobotOS sourced from Pool B (evenings + weekend): ~6–7h in W11, not 18h
+- Signee sourced from Pool B (evenings + weekend): ~2–3h in W11, not 8–9h
+- Goal estimates for W11 reflect what personal capacity can deliver (multi-week goals span W11+W12)
+- Pool isolation check V11 added and passes when pools are correctly separated
 
 ---
 
@@ -564,3 +604,4 @@ Validation status: V1 PASS | V2 PASS | V3 PASS (evening named) | V4 PASS | V5 PA
 | Date | Version | Change |
 |---|---|---|
 | 2026-03-16 | 1.0 | Initial creation: capacity modeling engine for LIFE_AGENT weekly planning system. Created in response to W11 capacity audit findings. Defines TYPE A–E classification, 4 capacity layers, 10 validation checks, output contract, and integration points. |
+| 2026-03-16 | 1.1 | Architecture correction: dual-pool model. Ground-truth rule applied: office hours (08:30–17:00) are exclusively Zephyr (Pool A); personal projects (RobotOS, Signee) must use personal time only (Pool B: evenings + weekends). Layer 2 renamed to "Personal Deep-Work Pool"; TYPE B/C definitions updated to forbid office hours; R9 pool isolation rule added; V11 pool isolation check added; output contract rewritten to show Pool A and Pool B separately; §11 example corrected to remove "office support" rows for personal projects. |

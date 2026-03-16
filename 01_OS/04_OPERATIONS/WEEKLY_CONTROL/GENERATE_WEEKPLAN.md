@@ -315,11 +315,15 @@ Do not inflate carry-over into the primary capacity plan. Treat it as a cushion,
 
 See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.md)
 
-Capacity is computed in **layers, not as percentage slices of a single pool:**
-- **Layer 1 (office-hours / fixed):** TYPE A projects (KTLO, maintenance) + TYPE D admin. Pre-committed first.
-- **Layer 2 (flexible deep-work):** TYPE B projects (architecture, implementation). Office deep blocks + named evening extension.
-- **Layer 3 (async/spec/coordination):** TYPE C projects (specification, review, coordination). Flexible timing.
+Capacity is computed in **two separate, non-mixing pools:**
+- **Pool A — Office-Locked:** TYPE A (Zephyr, KTLO/maintenance) + TYPE D admin. 100% of office hours. RobotOS and Signee CANNOT draw from this pool.
+- **Pool B — Personal Flex:** TYPE B (RobotOS — personal evenings + weekend) + TYPE C (Signee — personal evenings + weekend). **Cannot use office hours.**
 - **TYPE E (conditional):** Work that cannot start without a named external trigger. Zero baseline allocation.
+
+Capacity layers within each pool:
+- **Pool A / Layer 1 (office-hours / fixed):** TYPE A pre-committed first. TYPE D admin deducted. ~36h effective Zephyr capacity.
+- **Pool B / Layer 2 (personal deep-work):** TYPE B projects (architecture, implementation). Personal evening blocks (20:00–21:30) + named weekend. No office hours.
+- **Pool B / Layer 3 (personal async/spec):** TYPE C projects (specification, review, coordination). Personal evenings + weekend. No office hours.
 
 Capacity summary is produced by running CAPACITY_ENGINE before Step 6. The engine output (validated allocation table + V-check status) is embedded in the WeekPlan `## Capacity & Constraints` section.
 
@@ -555,20 +559,27 @@ See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.m
 
 **Actions:**
 1. Collect engine inputs: active projects + types, goal effort estimates from Step 5, office exceptions for this week, evening availability, admin overhead, carry-over estimates, blocker status
-2. Run CAPACITY_ENGINE — classify each project (TYPE A/B/C/D/E), assign capacity layers, validate V1–V10
-3. Review engine output:
+2. **Classify each project by pool before running engine:**
+   - Pool A (office-locked): TYPE A + TYPE D only → e.g., Zephyr, admin overhead
+   - Pool B (personal-flex): TYPE B + TYPE C only → e.g., RobotOS (evenings), Signee (evenings + weekend)
+   - Verify: no personal project (TYPE B/C) is assigned office hours; no TYPE A project is assigned personal blocks
+   - If any cross-pool allocation exists: resolve before proceeding (R9 violation)
+3. Run CAPACITY_ENGINE — validate V1–V11 (including V11 pool isolation)
+4. Review engine output:
    - If any V-check is **FAIL**: resolve before proceeding (see CAPACITY_ENGINE §8 — Decision Logic)
    - If any V-check is **WARN**: document the assumption and proceed with caution
    - If all checks are **PASS**: proceed
-4. Embed the engine's Capacity Summary block in the WeekPlan `## Capacity & Constraints` section
-5. Carry the layer assignments (TYPE A/B/C assignments) forward into Step 7 (Anchor Design)
+5. Embed the engine's Capacity Summary block in the WeekPlan `## Capacity & Constraints` section
+6. Carry the pool assignments (Pool A / Pool B) and layer assignments (TYPE A/B/C) forward into Step 7 (Anchor Design)
 
-**Key rules (from CAPACITY_ENGINE §5):**
+**Key rules (from CAPACITY_ENGINE §5 and §9):**
 - TYPE A projects (office-hours-only / KTLO) are pre-committed before flexible allocation begins
 - TYPE A work must NOT receive evening or weekend allocation
+- TYPE B and TYPE C projects (RobotOS, Signee) must draw capacity ONLY from personal time (Pool B) — office hours are FORBIDDEN for personal projects
 - Baseline work must NOT be labeled contingent (TYPE E requires a named external trigger)
 - Goal effort estimates must match capacity allocations — mismatches are V6 failures
-- If evening blocks are required to close capacity, they must be named explicitly (V3 check)
+- If evening blocks are required to close personal project capacity, they must be named explicitly (V3 check)
+- If personal project scope exceeds Pool B capacity: reduce scope or span to next week; do NOT borrow from Pool A
 
 **Output:** Capacity Summary block (engine output) ready to embed in WeekPlan. Validation status: PASS / WARN / FAIL per check.
 

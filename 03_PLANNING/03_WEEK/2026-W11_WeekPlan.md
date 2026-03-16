@@ -31,7 +31,7 @@ March is the system design & execution framework phase. W11 shifts focus from sc
 Post-scope-freeze (3/16–3/18 gates completed), W11 is the second full operational week. W10 validated that re-entry blocks work, contingent holds work, and Thursday dip is reliable. W11 applies all three learnings while delivering RobotOS architecture clarification and team enablement — shifting from build milestones to architectural clarity and contributor onboarding. Zephyr extends testing infrastructure. Signee defines testing specification for native developer teams.
 
 **Capacity reality:**  
-Full week (no vacation); office-hours pool: 40h gross − 4h admin = 36h base. Zephyr is TYPE A (office-hours-only, pre-committed); RobotOS is TYPE B (flexible deep-work, evening-eligible); Signee spec is TYPE C (async/baseline, independent of equipment blocker). Total operative capacity includes named evening blocks (Mon–Wed 20:00–21:30 + optional Sat) for RobotOS/Signee.
+Full week (no vacation); office-hours pool (Pool A): 40h gross − 4h admin = ~36h effective Zephyr capacity. Personal pool (Pool B): ~7h evenings (Mon–Wed 20:00–21:30 + optional Fri) + optional Sat ~2h for RobotOS/Signee. Pool isolation enforced: office = Zephyr only; personal evening/weekend = RobotOS + Signee only. Multi-week goals (RobotOS 15h, Signee 9h) span W11–W12; W11 personal allocation is ~7h RobotOS + ~3h Signee.
 
 ---
 
@@ -141,20 +141,21 @@ Full week (no vacation); office-hours pool: 40h gross − 4h admin = 36h base. Z
 
 | Component | Allocation | Hours | Notes |
 |---|---|---|---|
-| **Primary: RobotOS architecture clarification & onboarding** | TYPE B | ~18h | Office deep blocks + Mon–Wed evening blocks (20:00–21:30) + optional Sat |
-| **Secondary: Zephyr test infrastructure extension** | TYPE A | ~12.5h | **FIXED to office hours only. No evening work.** Source: Zephyr_Project_Context §5, §7 |
-| **Tertiary: Signee testing specification** | TYPE C | ~9h | Baseline. Spec is independent of equipment blocker; can proceed regardless. Async-compatible. |
-| **Admin / comms** | TYPE D | 4h | Standard overhead. Pre-deducted from office pool. |
+| **Primary: RobotOS architecture clarification & onboarding** | TYPE B | ~7h (W11) | **Pool B (personal) only**: evening blocks Mon–Wed (20:00–21:30) + optional Sat. **No office hours.** Full goal (~15h) spans W11–W12. |
+| **Secondary: Zephyr test infrastructure extension** | TYPE A | ~12.5h | **Pool A (office) only. No evening work.** Source: Zephyr_Project_Context §5, §7 |
+| **Tertiary: Signee testing specification** | TYPE C | ~3h (W11) | **Pool B (personal) only**: evenings + optional weekend. **No office hours.** Remaining spec scope (~6h) continues W12. |
+| **Admin / comms** | TYPE D | 4h | Inside Pool A. Standard overhead. Pre-deducted from office. |
 | **Board testing (Signee)** | TYPE E | 0 (conditional) | Activates when: equipment delivered. Not pre-allocated. |
-| **Total utilization** | — | ~43–44h | Closes with named evening blocks (Mon–Wed eve ~4.5h + Sat optional ~3h) |
+| **Total W11 utilization** | — | Pool A: ~40h office · Pool B: ~10h personal | Pool A: Zephyr + overhead (office-locked). Pool B: RobotOS ~7h + Signee ~3h from named evening blocks. |
 
 ### Utilization Assessment
 
-- **Zephyr is pre-committed TYPE A (office hours only)** — 12.5h allocated from office pool; cannot be moved to evening
-- **RobotOS is TYPE B (flexible deep-work)** — uses office deep blocks + named evening extensions to close the 18h allocation
-- **Signee specification is TYPE C (baseline, async)** — 9h allocated; specification proceeds regardless of equipment status
-- **Evening blocks (Mon–Wed 20:00–21:30):** ~4.5h/week for RobotOS architecture work and Signee async specification. Explicit, not implied.
-- **Daily Project Scope Rule enforced** — limits to max 2 active projects per day to reduce cognitive load; time-slot separation (TYPE A in fixed office blocks, TYPE B/C in flex and named evening blocks) is what prevents actual scheduling collision between office-only and flexible work
+- **Zephyr is pre-committed TYPE A (Pool A — office hours only)** — 12.5h allocated for test extension goal from office pool; cannot be moved to evening
+- **RobotOS is TYPE B (Pool B — personal time only)** — uses personal evening blocks Mon–Wed (20:00–21:30) + optional Sat; ~7h W11 personal allocation; full goal (~15h) spans W11–W12; **office hours are off-limits for this project**
+- **Signee specification is TYPE C (Pool B — personal time only)** — ~3h W11 personal allocation from evenings + optional weekend; specification proceeds regardless of equipment status; full spec scope (~9h total) spans W11–W12
+- **Evening blocks (Mon–Wed 20:00–21:30 + optional Fri):** ~4.5–6h/week for RobotOS architecture work. Explicit, not implied.
+- **Pool isolation enforced (V11)** — Pool A (office: Zephyr + overhead) and Pool B (personal: RobotOS + Signee) are separate; no cross-pool allocation
+- **Daily Project Scope Rule enforced** — limits to max 2 active projects per day; time-slot separation (Zephyr in office blocks, RobotOS/Signee in personal evening/weekend blocks) prevents scheduling collision by design
 
 ### Hard Constraints
 
@@ -180,7 +181,7 @@ Full week (no vacation); office-hours pool: 40h gross − 4h admin = 36h base. Z
 
 ### Primary Mission: RobotOS Architecture Clarification & Team Onboarding
 
-**Focus:** ~18h (TYPE B: office deep blocks + Mon–Wed evening extension) on architecture design and contributor onboarding.
+**Focus:** ~7h W11 (TYPE B: **personal evening blocks only** — Mon–Wed 20:00–21:30 + optional Sat). Full goal (~15h) spans W11–W12; W11 delivers architecture framing, slides draft, and initial contributor onboarding.
 
 **Dependency flow:**
 - Input: RobotOS project vision and spike findings from W10
@@ -220,58 +221,67 @@ Full week (no vacation); office-hours pool: 40h gross − 4h admin = 36h base. Z
 
 ## 5. Anchor Hypothesis
 
-### Daily Anchor Structure
+### Dual-Pool Anchor Structure
 
-| Day | Primary anchor | Secondary anchor | Re-entry pattern | Notes |
+> **Pool separation rule:** Office hours (08:30–17:00) = Zephyr ONLY (Pool A). Personal time (20:00–21:30 evenings + optional weekend) = RobotOS / Signee (Pool B). These pools do not compete or overlap.
+
+### Office Anchor — Pool A (08:30–17:00 weekdays, Zephyr only)
+
+| Day | Zephyr focus | Work type | Notes |
+|---|---|---|---|
+| **Mon 3/16** | RAM-loading test preparation — identify target cases, set up test structure | Structured Execution | Re-entry from weekend; avoid opening with unfamiliar test complexity |
+| **Tue 3/17** | RAM-loading test implementation — write and run test cases | Heavy Engineering | Best deep-work day; schedule most complex test cases here |
+| **Wed 3/18** | Zephyr documentation + merge preparation | Structured Execution | Stable mid-week; documentation and merge-prep are focused but not fragile |
+| **Thu 3/19** | Factory-setting code analysis — identify and document findings | Structured Execution | ⚠️ Thu dip — structured analysis only; no new architecture decisions |
+| **Fri 3/20** | Zephyr merge closure + remaining test coverage | Synthesis / Closure | Absorb any Thu spillover first; finalize merge-ready state |
+
+### Personal Anchor — Pool B (20:00–21:30 evenings + optional Sat)
+
+| Day | Project | Personal focus | Capacity | Notes |
 |---|---|---|---|---|
-| **Mon 3/16** | RobotOS architecture outline / clarification kickoff | Zephyr RAM-loading test preparation | Fall back to Zephyr if architecture questions stall | Post-scope-freeze; momentum from W10 high; establish scope and structure |
-| **Tue 3/17** | RobotOS slide drafting + architecture diagram work | Zephyr RAM-loading test implementation | Fall back to Zephyr if slide/diagram thinking stalls | Mid-week focus; deep explanation and documentation work |
-| **Wed 3/18** | RobotOS deep block — architecture diagram, motivation, demo concept | Zephyr documentation / merge preparation | Fall back to Zephyr if architecture work hits ambiguity | Expected complexity peak; protected deep block (2-3 hrs); likely peak cognition day |
-| **Thu 3/19** | RobotOS contributor onboarding / repo walkthrough / timeline draft | Zephyr factory-setting analysis or lightweight checklist | No synthesis-heavy recovery; S-only evening | **Thursday dip day** — lighter structured execution only; S-only evening enforced |
-| **Fri 3/20** | RobotOS validation / architecture material closure / team alignment wrap-up | Signee testing spec closure + Zephyr merge closure if needed | Fall back to Signee or Zephyr if RobotOS primary complete | Closure day; ensure no ambiguity remains entering W12; Signee equipment decision final |
+| **Mon 3/16 eve** | RobotOS | Architecture outline — clarify layers, adapter model, key motivation | `1×M` | Entry point; establish architecture narrative structure |
+| **Tue 3/17 eve** | RobotOS | Slide drafting + architecture diagram sketch | `1×M` | Build on Mon outline; visual structure; do not polish yet |
+| **Wed 3/18 eve** | RobotOS | Deep block — architecture diagram, motivation doc, demo concept | `1×M` | Highest-complexity personal deliverable; protected focus |
+| **Thu 3/19 eve** | — | Recovery / S-only if energy permits | `S-only` | ⚠️ Thu dip enforced; no architecture work; max light Signee async review |
+| **Fri 3/20 eve** | Signee | Testing spec closure — test sets for priority feature areas | `S-only` or `none` | Signee spec work; closure mode only; no new architecture |
+| **Sat 3/21** | RobotOS | Contributor onboarding prep — repo walkthrough notes, learning path doc, timeline draft | `~2h optional` | Weekend deep block; use if Mon–Wed eve didn't close architecture outline |
 
 ### Re-entry Pattern
 
-**Quick re-entry (5–10 min):** For external blockers (equipment checks, approval gates)
-- Use: When waiting on third-party response
-- Example: Signee test equipment status check
+**Office re-entry (Zephyr):** If office work stalls (test failure, API question, toolchain issue) → continue with other Zephyr tasks (documentation, factory analysis) within office hours. Do NOT switch to RobotOS or Signee during office hours.
 
-**Analytical re-entry (10–15 min):** For technical ambiguity or continuation decisions
-- Use: When RobotOS hits unexpected toolchain issue or Zephyr test fails
-- Example: Debug build configuration if CMake fails
+**Personal re-entry (RobotOS/Signee):** If evening work stalls (architecture ambiguity, contributor Q&A) → fall back to Signee async review or stop the evening block. Personal blocks are limited; do not force continuation past 21:30.
 
-**Conditional hold:** For blocked work (Signee equipment blocker)
-- Use: When decision still pending
-- Holds until activation trigger (equipment arrives or decision made)
+**Conditional hold (Signee equipment):** Equipment blocker has no impact on architecture outline or slide work. Signee spec begins from test set definition (no equipment required).
 
 ---
 
 ### Deep Blocks
 
-**Wed 3/18 afternoon (2–3 hours):** RobotOS architecture diagram & documentation
-- **Why:** Architecture documentation is the highest-complexity deliverable; benefits from interrupted focus time
-- **Constraint:** Only if initial architecture slide and explanation are drafted
-- **Alternative:** If Wed morning has unexpected complexity (contributor Q&A), defer deep block to Thu morning (before dip)
+**Wed 3/18 evening (20:00–21:30 personal block):** RobotOS architecture diagram, motivation, demo concept
+- **Why:** Architecture documentation is the highest-complexity personal deliverable; requires uninterrupted evening focus
+- **Constraint:** Only if Mon–Tue architecture outline and slide draft are in progress; this block synthesizes both
+- **Alternative:** If Wed evening has unexpected energy drop, defer to Sat morning deep block
 
-**Weekend (optional, Sat 3/21):** Testing specification polish or RobotOS onboarding refinement
-- **Why:** Specification refinement or deeper contributor walks are synthesis work; better on weekend than weekday evening
-- **Use if:** Specification draft ready for refinement, or conversations with contributors reveal gaps needing deeper explanation
+**Sat 3/21 optional (morning ~2h):** Contributor onboarding prep and architecture polish
+- **Why:** Onboarding documentation and timeline draft are synthesis work; better in a longer weekend block than fragmented weekday evenings
+- **Use if:** Architecture outline is solid (Mon–Wed eve complete) and remaining gap is contributor materials
 
 ---
 
 ### Anchor Rationale
 
-**RobotOS primary:** Architecture clarification and contributor onboarding are enabling work for M1 execution. Complexity is documentary + teaching, not coding. Primary anchor matches primary goal (highest value, team enablement impact).
+**Zephyr = office anchor every day (non-negotiable):** Zephyr is TYPE A — office hours only. No daily variation. All office-hours attention is Zephyr regardless of which personal project needs more work. This is a structural constraint, not a preference.
 
-**Zephyr secondary:** Maintenance project with lower cognitive load; testing infrastructure tasks are verification-heavy and don't require as much deep focus as architecture documentation. Secondary anchor fits lower cognitive load on some days (esp. Thu dip day).
+**RobotOS = personal anchor Mon–Wed–Sat:** Architecture clarification and contributor onboarding are high-value personal work. Complexity is documentary + teaching. Evening focus Mon–Wed lets architecture narrative build progressively. Sat absorbs any gaps.
 
-**Signee tertiary:** Testing specification definition is independent of equipment status. Can proceed regardless of blocker resolution. Provides value in enabling other teams' testing work and preparing W12 board testing phase. Uses recovered time if RobotOS completes early.
+**Signee = personal secondary (Thu–Fri + async):** Testing specification is async-compatible and can fit around RobotOS's heavier evening blocks. Thu dip evening (S-only) is the natural slot for light Signee spec review. Fri evening closes spec if capacity allows.
 
-**Re-entry to Zephyr or Signee:** If RobotOS architecture work hits unexpected questions, Zephyr testing or Signee specification tasks are immediately available as productive fallback. Prevents unproductive waiting.
+**Thu dip respected:** S-only evening enforced for personal projects. No deep architecture or documentation work. Thu office (Zephyr) stays in structured execution mode — factory analysis and stability checks, not new test design.
 
-**Thursday dip respected:** S-only evening enforced; no synthesis or deep architecture work. Thu anchor is lightweight (architecture review, Zephyr stability final pass, Signee spec review) rather than high-complexity documentation.
+**Re-entry to a different PERSONAL project (not switching pools):** If RobotOS evening work hits ambiguity, fall back to Signee spec review (both are Pool B personal projects). This is pool-internal fallback, not switching to Zephyr.
 
-**Weekend synthesis optional:** If needed for architecture refinement or specification polish, weekend deep blocks are available. Design and planning work often benefits from async refinement.
+**Weekend synthesis optional:** Architecture documentation benefits from async refinement. If Sat session is available, use for contributor onboarding materials or architecture polish — both are synthesis work suited to weekend deep blocks.
 
 ---
 
@@ -422,7 +432,7 @@ Full week (no vacation); office-hours pool: 40h gross − 4h admin = 36h base. Z
 
 **W11 is the execution-on-commitment week for architecture and enablement.** Following W10's validation of re-entry blocks and contingent holds, W11 shifts from build milestones to architectural clarity and team enablement. The professor's requirement for clear architecture documentation redirects focus from M1 kernel coding to architecture documentation and contributor onboarding. Zephyr sustains testing infrastructure development. Signee specifies testing requirements independently of equipment status.
 
-The month's challenge is holding three projects simultaneously without silent scope creep. W11 operationally tests the Daily Project Scope Rule while delivering architectural clarity (RobotOS, TYPE B ~18h with evening blocks), test infrastructure (Zephyr, TYPE A ~12.5h office-only), and testing specification (Signee, TYPE C ~9h baseline async).
+The month's challenge is holding three projects simultaneously without silent scope creep. W11 operationally tests the Daily Project Scope Rule while delivering architectural clarity (RobotOS, TYPE B — ~7h personal evening blocks, full goal spans W11–W12), test infrastructure (Zephyr, TYPE A — ~12.5h office only), and testing specification (Signee, TYPE C — ~3h personal evening/async, remaining scope continues W12). Pool isolation enforced: office = Zephyr only; personal evening/weekend = RobotOS + Signee.
 
 If all three progress as planned, W11 closes with RobotOS architecture clearly explained and contributors onboarded, Zephyr testing infrastructure extended, and Signee testing specification ready for W12 board testing phase.
 
@@ -489,7 +499,7 @@ If all three progress as planned, W11 closes with RobotOS architecture clearly e
 
 1. **Commit W11_WeekPlan.md** to version control
 2. **Run GENERATE_WEEKLY_EXECUTION (Mode A)** to create W11_Execution.md operational baseline from this plan
-3. **Monday 3/16:** Execute first day against plan; inherit anchor structure (RobotOS primary, Zephyr secondary)
+3. **Monday 3/16:** Execute first day against plan; inherit anchor structure — Zephyr office anchor all day; RobotOS evening anchor (architecture outline 20:00–21:30)
 4. **Daily:** INTEGRATE_DAILY + PREPARE_NEXT_DAILY for each closed day
 5. **Wed 3/18:** Checkpoint — architecture materials progress (slide drafted? diagram complete?); contributor onboarding confirmed; Zephyr RAM tests started; Signee test sets in progress
 6. **Fri 3/20:** Final day; Signee blocker must reach decision
@@ -511,7 +521,7 @@ If all three progress as planned, W11 closes with RobotOS architecture clearly e
 1. **No vacation or major blocking meetings in W11** — standard 40-hour work week available
 2. **Test equipment blocker status resolves (one way or another) by Fri EOD** — cannot leave ambiguous into W12
 3. **Signee team notified of blocker resolution + next steps by Fri EOD** — communication required before W12 planning
-4. **RobotOS architecture clarification + contributor onboarding can be completed in the planned ~18h effort** — work spans office deep blocks + named Mon–Wed evening extensions; complexity risk is communication and design clarity, not build completion; if architecture explanation remains unclear by Wed checkpoint, escalate to professor feedback loop immediately
+4. **RobotOS architecture clarification + contributor onboarding can be partially completed in ~7h W11 personal capacity** — work runs exclusively in personal evening blocks (Mon–Wed 20:00–21:30) + optional Sat; W11 scope covers architecture framing, slides draft, and initial onboarding materials; full goal (~15h) continues in W12; complexity risk is communication and design clarity, not build completion; if architecture explanation remains unclear by Wed checkpoint, escalate to professor feedback loop immediately
 5. **Thursday dip pattern holds for W11** — W10 evidence was strong; W09 + W10 = 2 week confirmation
 
 ### Risk Assumptions
@@ -528,6 +538,7 @@ If all three progress as planned, W11 closes with RobotOS architecture clearly e
 |---|---|---|
 | 2026-03-15 | 1.0 | Initial W11 plan: 3 goals (RobotOS M1, Zephyr stability, Signee blocker resolution); 10-section structure; anchor hypothesis integrating W10 learnings; contingent third mission design |
 | 2026-03-16 | 1.1 | Corrected: goals realigned to actual W11 scope (architecture clarification, test infrastructure, testing spec); capacity model updated to TYPE A/B/C layers via CAPACITY_ENGINE; Signee effort corrected 5h → 9h baseline; stale M1/toolchain planning assumptions and risk language replaced; checkpoint wording updated; utilization assessment precision fix |
+| 2026-03-16 | 1.2 | Architecture correction (dual-pool model): applied ground-truth rule (office hours = Zephyr only; personal time = RobotOS + Signee). RobotOS allocation corrected 18h → ~7h W11 personal only (full goal spans W11–W12); Signee allocation corrected ~9h → ~3h W11 personal only; §3 utilization assessment rewritten; §4 Primary Mission focus updated; §5 Anchor Hypothesis fully restructured from primary/secondary project table to Office Anchor (Zephyr) / Personal Anchor (RobotOS/Signee) dual-pool format; deep block moved from "Wed afternoon" to "Wed evening personal block"; §9 Focus Summary updated; Appendix A assumption 4 corrected. |
 
 ---
 

@@ -71,7 +71,7 @@
 > 
 > - **Why:** Protects core work time for primary responsibility (Zephyr); prevents office-hours fragmentation.
 > - **Rationale:** Zephyr has external dependencies and team sync windows; personal projects have flexible timing and can absorb evening energy without cost.
-> - **Exception:** If a personal project has hard deadline, customer priority, or blocking dependency (e.g., "RobotOS STM32 environment blocks Zephyr integration Friday"), may be escalated to office hours. Requires explicit justification in Morning Setup.
+> - **No exceptions:** Personal projects do NOT enter office hours under any framing — not "hard deadline," not "escalation," not "remaining office capacity." Office = Zephyr. If a personal project conflict arises, escalate to the Decision Log and resolve at week-planning level; do not override office-hours boundary inline.
 
 **Default rule (no exception needed):**
 - Zephyr blocks → Office Hours section

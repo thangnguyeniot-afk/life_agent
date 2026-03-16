@@ -211,6 +211,7 @@ Nếu **Có**, ghi:
 > 3. No effort estimate may differ across sections (Goals, Capacity, Carry-over) without a documented explanation in a note or Version History row.
 > 4. No work item may be labeled contingent unless a named external trigger blocks execution start (TYPE E rule — see `CAPACITY_ENGINE.md`).
 > 5. Time-model constraints (TYPE A office-only / TYPE B flex+evening / TYPE C async) must be consistent across Capacity, Mission Structure, and Anchor sections.
+> 6. **Pool isolation (mandatory):** Office pool (Pool A) is exclusively Zephyr + TYPE D overhead. Personal pool (Pool B) is exclusively RobotOS + Signee + personal overhead. These pools do NOT share capacity. Any section that allocates personal projects against office hours, or uses "remaining office capacity" for TYPE B/C, must be corrected before committing. Weekly Anchor Map Office Hours rows must contain only Zephyr. Evening rows must contain only personal projects (RobotOS / Signee). See `CAPACITY_ENGINE.md` R9 and V11.
 
 ## 6.1 Big / Small / KTLO (bắt buộc để đúng OS)
 
