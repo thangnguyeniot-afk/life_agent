@@ -4,6 +4,7 @@
 > **Total time:** 45–60 phút  
 > **Vai trò:** Đánh giá xu hướng + điều chỉnh cấp chiến thuật (không phải tổng hợp tuần, quản lý task, hay nghiên cứu sâu).  
 > **Nguyên tắc:** Nhìn **xu hướng**, đánh giá **hệ**, không đánh giá bản thân. Thu hẹp/tinh chỉnh hệ thống, **không mở rộng thêm phức tạp**.
+> **Readability rule:** Keep paragraphs ≤3–4 lines. Use bullets for multi-part analysis. Format all outcomes/metrics/risks as labeled blocks or tables. See GENERATE_WEEKPLAN.md § Readability Guard.
 
 ---
 

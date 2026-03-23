@@ -4,6 +4,7 @@
 > **WeekPlan = commitment. WeeklyReview = judgment. These files must never be merged.**
 > **Inputs required:** WeekPlan + Daily files + artifacts produced during the week.
 > **Time:** 30–45 min at week close (Friday evening or Saturday morning).
+> **Readability rule:** Keep paragraphs ≤3–4 lines. Use bullets for multi-part analysis. Format times/metrics/signals as lists or tables. See GENERATE_WEEKPLAN.md § Readability Guard.
 
 ---
 

@@ -2,7 +2,7 @@
 
 > **Dùng để import vào AI agent.**  
 > Cập nhật file này mỗi đầu sprint hoặc khi có thay đổi lớn.  
-> **Last updated:** 2026-02-21
+> **Last updated:** 2026-03-22 (W12 planning, M3 status update)
 
 ---
 
@@ -31,14 +31,15 @@ Hệ thống thử quần áo ảo gồm 3 thành phần chính:
 
 | Field | Value |
 |---|---|
-| **% hoàn thành** | ~15% (Docs 100% ✅ · Android scaffold 15% · PWA 0% · CI/CD 10% · Backend external) |
-| **Sprint hiện tại** | Sprint 1 – Foundation |
+| **% hoàn thành** | ~18% (Docs 100% ✅ · Android scaffold 15% · PWA 0% · CI/CD 10% · Backend external · M3 polish optional W12) |
+| **Sprint hiện tại** | Sprint 1 – Foundation (W11 M3 polish complete; W12 optional extended polish if capacity)
 
 ### Trạng thái theo thành phần
 
 | Component | Status | Ghi chú |
 |---|---|---|
-| **Docs / Planning** | ✅ Done | Sprint 0 hoàn thành (Dec 2024 – Jan 2025) |
+| **Docs / Planning** | ✅ Done | Sprint 0 hoàn thành (Dec 2024 – Jan 2025); W11 complete |
+| **M3 Polish (Optional)** | ✅ Complete (W11) / ⏳ Enhanced polish if capacity (W12) | W11 M3 polish done; W12 optional extended polish defers if Zephyr/RobotOS consume capacity |
 | **Android App** | 🔄 In progress (scaffold) | Hilt DI ✅, Room DB ✅, Retrofit ✅, 3 Activities (Mirror/QR/Splash) shell với TODO – chưa có logic |
 | **PWA** | ❌ Not started | Directory hoàn toàn trống – chưa có code |
 | **Cloud Backend** | <!-- TODO --> | <!-- TODO --> |

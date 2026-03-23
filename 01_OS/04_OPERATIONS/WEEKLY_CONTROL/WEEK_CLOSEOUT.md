@@ -255,9 +255,10 @@ Closeout is evidence-based. Do not rely on vague memory or impressions. If execu
 
 **Standard for marking work completed:**
 - Must have artifact (code merged, doc filed, decision recorded)
-- OR explicit status closure in Daily file
+- OR explicit status closure in Daily file (including Exit Condition met)
 - OR referenced in another completed artifact
 - Absence of failure report ≠ success
+- **Note:** If executing work had an Exit Condition defined (from Weekly Execution anchor), validate that condition was reached; this is stronger evidence than vague completion status.
 
 **Standard for marking partial:**
 - Progress occurred (commits, drafts, partial docs)
@@ -372,6 +373,101 @@ Closeout is evidence-based. Do not rely on vague memory or impressions. If execu
 - Clear list of partial outcomes with progress notes
 - Clear list of incomplete/blocked outcomes with reasons
 - No inflated completion claims
+
+---
+
+### Step 3.5 — Execution Integrity Check (NEW — CRITICAL)
+
+**Purpose:** Ensure no completion claim survives without being validated against the actual execution plan (Exit Conditions, Weekly Goals).
+
+**Instructions:**
+
+1. **For each completed item**, verify THREE integrity checks:
+
+   a. **Goal Traceability Check:**
+      - Does this completed work map to a Weekly Goal stated in WeekPlan §2?
+      - If YES → mark ✓ (aligned with plan)
+      - If NO → classify as:
+        - Type A (drift): Work not planned, not justified as blocker response → note for escalation
+        - Type B (adaptation): Work was necessary blocker response → document reason
+        - Type C (hidden dependency): Work was discovered prerequisite for planned work → document finding
+
+   b. **Exit Condition Validation:**
+      - Does the completed artifact match the intended Exit Condition (from Weekly Execution anchor)?
+      - If EXACT MATCH → mark ✓ (complete)
+      - If WEAKER → mark ⚠ (downgrade to partial: e.g., "draft done, not yet merged")
+      - If DIFFERENT SCOPE → classify as Type B adaptation and note the difference
+
+   c. **Carry-over Loop Detection:**
+      - Has this same task (or predecessor) carried over from a previous week tied to the same Weekly Goal?
+      - If NO → normal progression
+      - If 1 repeat → flag for blocker review (is a dependency hiding?)
+      - If 2+ repeats → ⚠️ ESCALATE as hidden blocker (add explicit blocker entry for next week)
+
+2. **Produce Integrity Report:**
+
+```markdown
+## Execution Integrity Check — W##
+
+### Completed Within Spec (Plan ↔ Execution Aligned)
+
+- [Project]: [Goal] — ✓ Meets Exit Condition
+  - Planned artifact: [from Weekly Execution]
+  - Actual artifact: [from Daily evidence]
+  - % anchors completed exactly as defined: [N/total]
+
+### Completed With Deviation (Plan ↔ Execution Diverged)
+
+- [Project]: [Goal] — ⚠ Deviates from Exit Condition
+  - Expected: [Exit Condition]
+  - Actual: [what was delivered]
+  - Deviation reason: [Type B: blocker response / manual scope adjustment / other]
+  - % anchors deviated: [N/total]
+
+### Unplanned Work Executed (No Plan ← Execution Added)
+
+- [Project]: [Task — Drift Classification]
+  - Drift type: [Type A: unauthorized / Type B: necessary adaptation / Type C: hidden dependency]
+  - Justification: [why it was necessary, if captured]
+  - Impact: [enables / clarifies / adds complexity to next week]
+
+### Planned But NOT Executed (Plan → Execution Missed)
+
+- [Project]: [Goal — Status and Reason]
+  - Status: [Incomplete / Blocked / Dropped]
+  - Blocker: [if applicable; name it]
+  - Carry-over: [yes / no / conditional]
+  - % anchors not executed: [N/total]
+
+### Carry-over Loop Alert (Hidden Blocker Detection)
+
+- [Project]: [Task] carrying over [N weeks]
+  - Weeks in carry-over: [W##, W##, ...]
+  - Pattern: [Normal / Possible blocker / Effort underestimate]
+  - Action: [Monitor / Escalate as blocker / Adjust effort estimate]
+
+### Summary Statistics
+
+- Total planned anchors this week: [N]
+- % completed as planned: [X%]
+- % completed with deviation: [Y%]
+- % not executed: [Z%]
+- Planned anchors requiring completion validation: [count]
+- Exit Conditions auto-downgrading completion: [count]
+```
+
+3. **Mark any auto-downgrades:**
+   - If Exit Condition was NOT met, automatically mark work as "partial" or "incomplete" — do NOT accept vague "almost done" status
+   - Example: "Exit Condition: 3 tests passing + merged" → Actual: "2 tests passing, code in draft PR" → Mark: PARTIAL (not COMPLETE)
+
+4. **Do NOT proceed to Step 4 until integrity checks are done.**
+
+**Output of Step 3.5:**
+- Execution Integrity Report filled with all five sections
+- Drift classifications assigned to any unplanned work
+- Auto-downgrades applied where Exit Conditions not met
+- Carry-over loop alerts generated
+- Clarity on what actually succeeded vs. what diverged
 
 ---
 

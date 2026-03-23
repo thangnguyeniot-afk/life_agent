@@ -1,5 +1,112 @@
 # GENERATE_WEEKPLAN
 
+## System-Level Invariants (CRITICAL)
+
+### Invariant 1 — No Plan Survives Contact with Execution Without Being Updated
+
+> **No plan survives contact with execution without being updated.**
+> 
+> Weekly plans are hypotheses, not facts. Every week, actual execution produces evidence that either validates or invalidates planning assumptions. The system must respect this evidence unconditionally.
+> 
+> **Rule:** If execution diverges from plan (drift detected, Exit Conditions not met, carry-over loops found), the plan for NEXT week must be updated to reflect the divergence. Do NOT carry forward outdated assumptions into the next weekly frame.
+> 
+> **Responsibility:** WEEK_CLOSEOUT captures divergence through Execution Integrity Check. UPDATE_PROJECT_CONTEXT reclassifies and updates context. GENERATE_WEEKPLAN for the next cycle MUST read fresh, post-validated context. If you are building a weekly plan but suspect context is stale (>1 week old, no recent UPDATE_PROJECT_CONTEXT), flag it or re-validate.
+
+### Invariant 2 — Completeness Is Not Enough — Clarity and Executability Are Mandatory
+
+> **Completing required fields is not compliance. Fields must contain REAL, SPECIFIC content that enables independent execution.**
+> 
+> A weekly plan (or anchor, or goal) is only valid if:
+> 1. **All required fields are filled** (Linked Weekly Goal, First Strike, Exit Condition, Carry-over Rule) ← procedural requirement
+> 2. **All field content is specific and non-generic** (no "improve", "work on", "handle"; instead name concrete files and artifact states) ← semantic requirement
+> 3. **Exit Conditions are observable and binary, not subjective** (CI passing, not "looks good") ← clarity requirement
+> 4. **A third party could execute it without asking clarifying questions** (First Strike → artifact → Exit Condition is unambiguous) ← executability requirement
+>
+> **Failure on any of these means the plan is FAKE COMPLIANCE** — procedurally valid but semantically empty.
+>
+> **Prevention:** Use CHECKLIST_AntiCompliance.md at:
+> - GENERATE_WEEKPLAN finalization (test goal specificity)
+> - GENERATE_WEEKLY_EXECUTION finalization (test anchor metadata)
+> - INTEGRATE_DAILY closeout (test daily execution reality)
+> - UPDATE_PROJECT_CONTEXT (test context carries insight)
+>
+> **If artifact fails anti-fake compliance tests → DO NOT EXECUTE. Rewrite until all tests pass.**
+
+### Invariant 3 — If Context Changes, Execution Must Adapt Within 24 Hours
+
+> **Real-time context sync prevents blind continuation past discovered blockers or invalidated assumptions.**
+>
+> When daily execution detects a Context Signal (Type B: Necessary Adaptation or Type C: Hidden Dependency):
+> 1. Signal is logged in TEMPLATE_Daily.md same day (Context Signal Detection checklist)
+> 2. Signal is classified as WEAK or STRONG (only STRONG signals trigger context update/replan)
+> 3. STRONG signals checked against replan budget (max 2/week) and cooldown (24h)
+> 4. If allowed: Project context is updated same day or next morning (UPDATE_PROJECT_CONTEXT mid-week mode)
+> 5. If allowed: Weekly execution is replanned within 24h (GENERATE_WEEKLY_EXECUTION Adaptive Mode)
+> 6. Remaining anchors are reordered/rebalanced based on updated context before next execution cycle
+>
+> **Failure to adapt within 24h means:** Execution continues with invalid assumptions, leading to wasted cycles, compounding drift, and cascading failures.
+>
+> **Execution Priority Override:** If context reality conflicts with original plan, context ALWAYS wins (subject to budget/cooldown constraints).
+
+### Invariant 4 — Execution Commitment Rule (Anti-Panic-Switching)
+
+> **Once an anchor starts execution in a block, it cannot be replaced mid-session by replan.**
+>
+> This prevents context signals from causing disruptive mid-session anchor switching, which fragments focus and introduces context thrashing.
+>
+> **Rule:**
+> - Ongoing work in current execution block completes as planned (or fails/blocks naturally)
+> - Replan signals detected during a block do NOT interrupt the anchor
+> - Adaptive replan applies to: Remaining blocks/days AFTER current block closes
+> - Next anchor execution (or same anchor's next session) uses updated plan
+>
+> **Example:**
+> - Mon 8:00 AM: Start Zephyr test anchor (currently executing)
+> - Mon 9:30 AM: STRONG signal detected (hidden dependency discovered)
+> - 9:30 AM replan analysis runs, identifies this anchor is affected
+> - Action: Do NOT interrupt the anchor mid-execution
+> - Instead: Anchor completes (or naturally blocks); replan affects remaining blocks/Tue+
+>
+> **Rationale:** Protects execution focus; prevents thrashing from rapid context switches; allows signal analysis without disrupting ongoing work.
+
+### Invariant 5 — Partial Stability Protection (Anti-Chaos)
+
+> **During adaptive replan, protect execution stability by preserving unchanged anchors.**
+>
+> **Rule: Keep ≥ 50% of remaining uncompleted anchors unchanged during any adaptive replan.**
+>
+> This prevents full system reset and maintains execution predictability even when context changes.
+>
+> **How it works:**
+> - When Mode D (Adaptive Replan) runs, identify anchors directly affected by signal
+> - Reorder/replace ONLY those affected anchors
+> - Leave other anchors in their planned sequence unchanged
+> - If signal affects > 50% of remaining anchors → escalate rather than replanning (indicate scope of change too large)
+>
+> **Example:**
+> - Remaining week: Mon, Tue, Wed, Thu executing 4 anchors
+> - Wed signal affects Tue+Thu anchors (2 of 4)
+> - Replan keeps Mon anchor + 1 of the affected anchors stable = 50%+
+> - Rescopes only the Thu anchor to reflect new context
+>
+> **Rationale:** Reduces entropy and unpredictability; prevents sense of constant flux; maintains some continuity even with signal-driven changes.
+
+### Invariant 6 — Replan Budget + Cooldown (Anti-Thrashing)
+
+> **Limit adaptive replans to prevent system thrashing and force escalation when adaptation cycle becomes ineffective.**
+>
+> **Rules:**
+> - **Max 2 adaptive replans per week:** If 2 replans have already occurred, must escalate to project owner instead of replanning again
+> - **24h cooldown between replans:** No more than 1 replan per 24-hour window (exception: Type C critical blockers bypass cooldown)
+> - **Budget tracking:** Weekly file § Adaptive Replan Log tracks all replans with date, signal, and budget status
+> - **Escalation trigger:** If budget exhausted OR cooldown in effect AND new signal needs response → escalate to project owner
+>
+> **Rationale:** After 2 replans in a week, repeated signals suggest systemic issues that require higher-level intervention, not more micro-adaptations. Cooldown prevents thrashing from rapid-fire signal detection.
+> 
+> **Type C Exception:** Critical structural blockers (blockers that stop ALL remaining work) may bypass both budget and cooldown and trigger immediate escalation (not just adaptive replan).
+
+---
+
 ## Purpose
 
 Generate the weekly planning artifact (`W##_WeekPlan.md`) that translates current month context, project states, and previous-week carry-over into a coherent, executable weekly plan.
@@ -114,12 +221,18 @@ The LIFE_AGENT planning system uses a **dual-pool capacity model**. Single-pool 
 - Effective capacity: ~40h gross − 4h overhead = **~36h/week**
 - RobotOS and Signee **CANNOT borrow from this pool under any circumstance**
 
-**Pool B — Personal Time (19:30–21:30 evenings Mon–Fri + optional weekend daytime)**
+**Pool B — Personal Time (19:30–21:30 evenings Mon–Fri + Five Weekend Slots: Sat daytime + Sat evening + Sun morning + Sun afternoon + Sun evening)**
 - Allocated exclusively to TYPE B projects (RobotOS architecture + implementation)
 - Allocated exclusively to TYPE C projects (Signee specification + async coordination)
-- Weekday baseline: **10h/week** (5 evenings × 2h/evening)
-- Weekend daytime: **optional if explicitly planned** (Sat + Sun daytime); both daytime periods are substantial capacity if intentionally used
-- Weekend evenings: **OFF by default** (protected rest — Sat+Sun evenings are not allocatable)
+- **Gross weekday-evening baseline: 10h/week** (5 evenings × 2h/evening) — planning envelope, NOT guaranteed execution-ready hours
+- **Net planned evening capacity must be derived per week** from the anchor structure: subtract structural deductions (Thu S-only, Fri closure/none when planned that way); these recurring patterns are NOT rare calendar exceptions
+- **Weekend slots — MUST be declared individually per R11 (slot-based, not day-based):**
+  - **Slot 1 — Saturday daytime: full project execution capacity** — declare planned project hours; not optional; do not shrink to "mini-block" or label as "overflow only"
+  - **Slot 2 — Saturday evening: OUT OF PROJECT SCOPE** — either OFF (protected rest) or OPEN (if explicitly needed per R10); declare which one; do NOT leave implicit
+  - **Slot 3 — Sunday morning: review/closeout/planning** (~2–3h structural overhead); **NOT project execution capacity**; NOT interchangeable with Sat daytime or Sun afternoon; counted in total weekly load as overhead
+  - **Slot 4 — Sunday afternoon: full project execution capacity** — declare planned project hours or explicitly state "not used this week" as an instance decision; not optional
+  - **Slot 5 — Sunday evening: OUT OF PROJECT SCOPE** — either OFF (protected rest, required by R10) or OPEN (if explicitly needed); declare which one; do NOT leave implicit; exactly ONE of {Sat evening, Sun evening} must be OFF
+- **Forbidden: day-based weekend language.** Do NOT write "Sunday used/unused" or "weekend optional" — MUST use slot-level language with explicit values for each of the five slots
 - Zephyr and office projects **CANNOT borrow from this pool under any circumstance**
 
 **Cross-Pool Allocation is Prohibited.**
@@ -131,8 +244,35 @@ The LIFE_AGENT planning system uses a **dual-pool capacity model**. Single-pool 
 
 **When validating a week plan:**
 - Pool A validation: `Zephyr effort ≤ ~36h effective`
-- Pool B validation: `(RobotOS hours + Signee hours) ≤ 10h baseline + [optional weekend daytime hours]`
+- Pool B validation: `(RobotOS hours + Signee hours) ≤ net planned evening capacity + Saturday daytime planned hours + Sunday afternoon planned hours (if used)` — each component is independent; Saturday and Sunday afternoon are NOT optional buffers; check each source separately; total ≠ gross 10h evening alone
 - If either pool exceeds capacity: plan must be corrected before execution
+
+---
+
+## Readability Guard (Mandatory for All Generated Output)
+
+**Output Quality Standard:** All generated planning artifacts (weekly plans, daily execution, monthly reviews, project contexts, etc.) must conform to scan-friendly formatting rules to ensure clarity and executability.
+
+### Readability Rules (Mandatory for Compliance)
+1. **Paragraph length:** Body paragraphs ≤ 3–4 lines in normal markdown view
+2. **Idea separation:** If a paragraph contains multiple ideas (e.g., capacity + allocation + constraint), split into separate bullets or labeled sub-blocks
+3. **Numeric/structural content:** Any content with numbers, hour allocations, slot declarations, rules, or comparisons must be formatted as:
+   - Bullet list
+   - Compact table
+   - Short labeled sub-blocks (e.g., **Constraint:** ..., **Reason:** ...)
+   - NOT long narrative paragraphs
+4. **Structure pattern:** Short intro line (1 line if possible) → bullet breakdown of details → explicit labels ("Week Context", "Allocation", "Constraint", "Reason", "Impact")
+5. **Synthesis paragraphs:** If a summary paragraph is needed, break into 2–4 short bullets instead of one long explanation
+6. **Meaning preservation:** All refactoring maintains exact meaning; readability improvement only
+
+### Pre-Finalization Validation Checklist
+Before finalizing any artifact:
+- [ ] No body paragraph exceeds 4 lines
+- [ ] Multi-idea sections split into separate bullets/sub-blocks
+- [ ] All numbers, allocations, rules, comparisons are formatted as bullets/tables/labeled blocks
+- [ ] Scan-friendly structure present (short intro + bullet breakdown + labels)
+- [ ] No walls-of-text; synthesis broken into 2–4 short bullets if needed
+- [ ] All original meaning preserved
 
 ---
 
@@ -148,6 +288,33 @@ A structured weekly plan document containing:
    - What must be delivered by week-end
    - How goals align with month strategy
    - Priority order (if multiple)
+   - **Interface requirement:** Goal names must be clear and specific enough that Daily anchors can trace directly back to them (e.g., "RobotOS Architecture Clarification & Team Onboarding" not "work on RobotOS"). This clarity enables Daily files to validate anchor traceability without re-planning.
+   
+   **Semantic Quality Gate (MANDATORY):**
+   Each weekly goal must pass ALL of the following tests:
+   
+   **Test 1 — No Generic Language**
+   Goal name must NOT contain: "work on", "improve", "optimize", "handle", "continue", "fix stuff", "make progress", "do testing"
+   - ✗ BAD: "Work on RobotOS" / "Improve Zephyr integration"
+   - ✓ GOOD: "RobotOS adapter boundary definition + team onboarding" / "Zephyr RAM loading test scaffold"
+   - If ANY forbidden word detected → rewrite goal until clear
+   
+   **Test 2 — Concrete Artifact Requirement**
+   Goal MUST reference at least one specific artifact or measurable outcome:
+   - File name or document (e.g., "architecture.md", "design_doc")
+   - Component or feature (e.g., "adapter layer class", "test harness")
+   - Observable state (e.g., "CI passing", "documentation merged", "demo recorded")
+   - Can a third party name the artifact? If NO → rewrite
+   
+   **Test 3 — Traceability to Month Strategy**
+   Goal MUST explicitly answer: "How does this serve the month's strategic direction?"
+   - If answer is unclear or generic → rewrite or escalate goal priority
+   
+   **Test 4 — Exit Clarity**
+   Goal MUST have a clear, binary definition of completion:
+   - ✗ BAD: "Good progress", "Mostly done", "Looks solid"
+   - ✓ GOOD: "Design document reviewed + approved; merged to docs/; team acknowledges clarity on dependencies"
+   - If exit condition is vague → rewrite until binary
 
 2. **Capacity and Constraints**
    - Maximum hours available (accounting for vacation, external commitments)
@@ -159,6 +326,17 @@ A structured weekly plan document containing:
    - Secondary missions (supporting work)
    - Optional/stretch work (if capacity allows)
    - How missions relate to carry-over
+
+3.5. **Execution Phase Breakdown** ← REQUIRED for execution readiness
+   - For each active project, define 3–5 M-sized phases (1–2h scale each)
+   - Each phase must have a clear DONE condition (binary, observable)
+   - Phases must be sufficient to schedule blocks without re-decomposing scope
+   - Do NOT expand into task-level sub-steps; stay at M-level only
+   - Anti-overdetail: if a phase requires more than 2 sentences to describe, it is too detailed
+   - Template per project:
+     * M1: [Phase name] — DONE: [binary completion state]
+     * M2: [Phase name] — DONE: [binary completion state]
+     * (3–5 phases per project max)
 
 4. **Anchor Hypothesis**
    - Proposed daily anchor structure (which anchors will frame each day)
@@ -291,6 +469,29 @@ Review the previous 3–4 weeks of anchor adherence:
 - If an anchor structure has 50–80% adherence, modify edges (core is sound, details need adjustment)
 - If an anchor structure has <50% adherence, redesign (it is not compatible with actual execution)
 
+### Anchor → Phase Binding
+
+When the Execution Phase Breakdown is present, anchor entries should reference the corresponding phase ID:
+- Append `(M1)`, `(M2)`, etc. to anchor rows that map to a specific phase
+- Anchor rows remain strategic; phase IDs are binding labels, not task lists
+- This allows the Execution file to schedule blocks without redefining scope
+- Example: "Architecture outline — clarify layers, adapter model (M1)"
+
+### Spillover Handling (Local to Week — Slot-Based)
+
+Each weekly plan must define where likely spillover goes **within that week**, using slot-level specificity and distribution awareness:
+- Keep it concrete and pool-respecting (e.g., "Fri office block absorbs Zephyr spillover")
+- **For weekend slots** (apply R11-D distribution heuristic):
+  - If spillover is possible: consider Sunday afternoon (Slot 4) as primary spillover destination FIRST if available; use Saturday (Slot 1) as secondary only if Sunday is pre-allocated
+  - If Saturday daytime is pre-allocated to a primary milestone (e.g., M5 onboarding), state: "Saturday daytime fully allocated to RobotOS M5; no remaining capacity for spillover"
+  - If Saturday daytime has reserve capacity, state: "Saturday daytime has ~Xh allocated to primary content; ~Yh remains available for spillover if needed"
+  - If Sunday afternoon is available for spillover, explicitly state: "Sunday afternoon (Slot 4) available for RobotOS/Signee spillover if weekday evening or Saturday scope incomplete"
+  - If Sunday afternoon is pre-allocated, state: "Sunday afternoon already hosts [Z hours] of work; no additional spillover capacity"
+  - Do NOT use generic language like "Saturday optional" or "Sunday available" — must include slot and quantity
+  - **Do NOT treat Saturday as both primary block AND implicit overflow sink in the same week** (see R11-D anti-dual-role rule); make both roles explicit if both exist
+- Do NOT restate system-wide rebalancing doctrine here — only the week-local mapping using slot-based language
+- If no spillover path exists within the week for a particular project, flag it as a risk in §Known Risks
+
 ---
 
 ## Carry-over Integration
@@ -316,7 +517,7 @@ For each carry-over item from the previous week:
 Carry-over work must be absorbed **inside the same pool that owns the project**.
 
 - **Zephyr carry-over:** Allocate inside Pool A effective capacity (~36h). Carry-over should be ~5–10% of Pool A (not shared across pools).
-- **RobotOS/Signee carry-over:** Allocate inside Pool B personal capacity (~10h baseline). Carry-over should be ~10–20% of Pool B (not borrowed from Pool A).
+- **RobotOS/Signee carry-over:** Allocate inside Pool B personal capacity (net evening + Saturday daytime + Sunday afternoon execution envelope). Carry-over should be ~10–20% of Pool B net execution ceiling (not borrowed from Pool A).
 
 Do not inflate carry-over into the primary capacity plan. Treat it as a buffer **within the appropriate pool**.
 
@@ -331,7 +532,7 @@ Do not inflate carry-over into the primary capacity plan. Treat it as a buffer *
 1. **Project Deadlines** — If RobotOS demo is Friday, all prep work must fit before Friday
 2. **External Dependencies** — If Signee requires equipment from vendor, plan cannot proceed until equipment arrives
 3. **Scope Freeze** — If month decision is "freeze scope at 3 goals," do not add a 4th without month-level decision
-4. **Pool Capacity Ceilings** — Do NOT exceed Pool A (~36h effective) or Pool B (~10h baseline) without correcting scope. Never borrow capacity between pools.
+4. **Pool Capacity Ceilings** — Do NOT exceed Pool A (~36h effective) or Pool B execution ceiling (= net weekday evenings + Saturday daytime + Sunday afternoon if named; NOT gross 10h evenings) without correcting scope. Never borrow capacity between pools. Sunday morning review (~2–3h) is structural overhead — not Pool B execution — but IS included in total weekly load.
 
 ### Soft Constraints
 
@@ -350,13 +551,13 @@ See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.m
 
 Capacity is computed in **two separate, non-mixing pools:**
 - **Pool A — Office-Locked:** TYPE A (Zephyr, KTLO/maintenance) + TYPE D admin. 100% of office hours. RobotOS and Signee CANNOT draw from this pool.
-- **Pool B — Personal Flex:** TYPE B (RobotOS — personal evenings + weekend daytime) + TYPE C (Signee — personal evenings + weekend daytime). **Cannot use office hours. Weekend evenings are protected rest — not allocatable.**
+- **Pool B — Personal Flex:** TYPE B (RobotOS — personal evenings + Saturday daytime + opened weekend evening if declared) + TYPE C (Signee — personal evenings + Saturday daytime + opened weekend evening if declared). **Cannot use office hours. Exactly one weekend evening = protected rest (REQUIRED). Second weekend evening = default-rest; may be opened only if explicitly declared in the week plan (R10). Sunday morning = structural WEEK_CLOSEOUT overhead (~2–3h); NOT Pool B execution — but MUST appear in total weekly load.**
 - **TYPE E (conditional):** Work that cannot start without a named external trigger. Zero baseline allocation.
 
 Capacity layers within each pool:
 - **Pool A / Layer 1 (office-hours / fixed):** TYPE A pre-committed first. TYPE D admin deducted. ~36h effective Zephyr capacity.
-- **Pool B / Layer 2 (personal deep-work):** TYPE B projects (architecture, implementation). Personal evening blocks (19:30–21:30, Mon–Fri) + named weekend daytime. No office hours. No weekend evenings.
-- **Pool B / Layer 3 (personal async/spec):** TYPE C projects (specification, review, coordination). Personal evenings (19:30–21:30) + weekend daytime. No office hours. No weekend evenings.
+- **Pool B / Layer 2 (personal deep-work):** TYPE B projects (architecture, implementation). Personal evening blocks (19:30–21:30, Mon–Fri) + Saturday daytime + Sunday afternoon (if named). No office hours. No closed weekend evenings (only the explicitly opened evening per R10).
+- **Pool B / Layer 3 (personal async/spec):** TYPE C projects (specification, review, coordination). Personal evenings (19:30–21:30) + Saturday daytime + Sunday afternoon (if named). No office hours. No closed weekend evenings.
 
 Capacity summary is produced by running CAPACITY_ENGINE before Step 6. The engine output (validated allocation table + V-check status) is embedded in the WeekPlan `## Capacity & Constraints` section.
 
@@ -456,12 +657,12 @@ Before finalizing the WeekPlan, verify all of the following:
 
 ### Capacity Alignment
 - [ ] Pool A capacity validated: Zephyr effort ≤ ~36h effective (after admin deduction)
-- [ ] Pool B capacity validated: (RobotOS + Signee) effort ≤ 10h baseline (+ optional weekend daytime if named)
+- [ ] Pool B capacity validated: (RobotOS + Signee) effort ≤ net planned evening capacity + Saturday daytime + Sunday afternoon (if named); verified against anchor; NOT against 10h gross
 - [ ] No TYPE B/C project allocated against office hours (Pool A isolation enforced)
 - [ ] No TYPE A project allocated to evening/weekend (Pool A / Pool B separation maintained)
 - [ ] Carry-over allocated within the same pool as the project (no cross-pool carry-over)
 - [ ] Vacation, meetings, and external time accounted for in respective pools
-- [ ] Personal capacity does NOT use shorthand like "~6–8h/week"; uses explicit baseline of 10h baseline + named weekend daytime if extended
+- [ ] Personal capacity does NOT use shorthand like "~6–8h/week" or "10h baseline"; uses explicit net evening capacity + Saturday daytime (planned, not optional) + Sunday afternoon (if named)
 - [ ] No anchor is overallocated within its pool (Zephyr ≤ 70% of Pool A; RobotOS+Signee ≤ 70% of Pool B baseline)
 
 ### Constraint Honoring
@@ -544,6 +745,8 @@ A **good WeekPlan** demonstrates all of the following:
   - Known blockers or dependencies
   - Current status (on track, at risk, blocked, etc.)
   - Required effort (estimate from project deliverables)
+    - **TYPE A (Zephyr):** effort estimate = focused mission scope only (the scoped weekly deliverable). NOT the pool ownership number. Pool ownership (~36h) is always fixed and reported separately in the capacity table.
+    - **TYPE B / TYPE C (RobotOS, Signee):** effort estimate = consumed allocation from Pool B (standard)
 - Note any third-party dependencies (external APIs, vendor deliverables, etc.)
 - Document decision points or escalations needed at project level
 
@@ -609,18 +812,24 @@ See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.m
 5. Embed the engine's Capacity Summary block in the WeekPlan `## Capacity & Constraints` section
 6. Carry the pool assignments (Pool A / Pool B) and layer assignments (TYPE A/B/C) forward into Step 7 (Anchor Design)
 
-**Key rules (from CAPACITY_ENGINE §5, §9, and §10):**
+**Key rules (from CAPACITY_ENGINE §5, §9, §10, and R11 Slot-Based Weekend Policy):**
 - TYPE A projects (office-hours-only / KTLO) are pre-committed before flexible allocation begins
 - TYPE A work must NOT receive evening or weekend allocation
 - TYPE B and TYPE C projects (RobotOS, Signee) must draw capacity ONLY from personal time (Pool B) — office hours are FORBIDDEN for personal projects
-- **Personal evening baseline: Mon–Fri 19:30–21:30, 2h/evening = 10h/week** — use this as the starting model; adjust only if this week's calendar has genuine exceptions
-- **Weekend daytime:** explicitly decide whether Sat daytime and/or Sun daytime are being used this week; if yes, name the hours; if no, note that weekend daytime is not planned
-- **Weekend evenings: PROTECTED rest — Sat evening and Sun evening are OFF by default and must NOT be allocated**
-- **Anti-regression:** do NOT use "~6–8h/week personal" as a capacity shorthand unless that week truly has constrained availability; the default baseline is 10h/week evenings + potential weekend daytime
+- **Personal evening gross baseline: Mon–Fri 19:30–21:30, 2h/evening = 10h/week gross** — derive net planned evening capacity from the weekly anchor by subtracting structural deductions (Thu = S-only, Fri = closure/none when planned that way); these recurring patterns are NOT rare calendar exceptions — subtract them explicitly when building the plan
+- **Weekend slots (R11) — declare ALL FIVE slots explicitly and separately (not day-based language):**
+  - **Sat daytime:** [X hours planned execution] OR [0h] — full project execution capacity; declare planned hours; do NOT default to ~2h without scope decomposition
+  - **Sat evening:** [OFF] or [OPEN if explicitly needed] — weekend evening protection rule (exactly ONE of {Sat evening, Sun evening} is OFF)
+  - **Sun morning:** [~2–3h review/overhead]  (NOT project execution) — structural weekly overhead
+  - **Sun afternoon:** [Y hours planned execution] OR [0h not used this week with math proof] — full project execution capacity; if 0h, show arithmetic proving weekday evening + Sat daytime is sufficient
+  - **Sun evening:** [OFF] or [OPEN if explicitly needed] — exactly ONE of {Sat evening, Sun evening} must be OFF; second is default-rest
+- **Anti-conflation rule:** Sunday afternoon (execution slot) and Sunday evening (rest/open decision) are completely separate. Do NOT use vague language like "Sunday unused" or "Sunday open" — MUST specify which slot and its value. Same for Saturday: daytime and evening are separate.
+- **Anti-regression:** do NOT use "~6–8h/week personal" or "~10h baseline" as capacity ceilings; the gross envelope is 10h/week weekday evenings but the execution ceiling = net (after Thu/Fri deductions) + Saturday daytime + Sunday afternoon (if named); Saturday is regular planned capacity, NOT optional extension
 - Baseline work must NOT be labeled contingent (TYPE E requires a named external trigger)
-- Goal effort estimates must match capacity allocations — mismatches are V6 failures
+- **TYPE B/C goal effort estimates must match capacity allocations** — mismatches are V6 failures. For TYPE A (Zephyr): the capacity table shows Pool Ownership (~36h); focused mission effort in Goals is expected to be less — this is valid and NOT a V6 failure. See CAPACITY_ENGINE R4 for TYPE-aware rule.
 - If evening blocks are required to close personal project capacity, they must be named explicitly (V3 check)
 - If personal project scope exceeds Pool B capacity: reduce scope or span to next week; do NOT borrow from Pool A
+- **V12 validation: All five weekend slots must be declared before accepting the plan** — vague language or missing slots are automatic failures
 
 **Output:** Capacity Summary block (engine output) ready to embed in WeekPlan. Validation status: PASS / WARN / FAIL per check.
 
@@ -704,7 +913,9 @@ See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.m
   2. **Strategic Context:** 2–3 sentence summary of month strategy and why this week matters
   3. **Weekly Goals:** 3–5 goals with owner, effort estimate, completion criteria
   4. **Capacity Summary:** Available hours, planned hours, % utilization, buffer
-  5. **Anchor Hypothesis:** Daily anchor structure with rationale, re-entry pattern, deep blocks
+  4.5. **Execution Phase Breakdown:** 3–5 M-sized phases per active project, each with a binary DONE condition (see Outputs §3.5 for template)
+  5. **Anchor Hypothesis:** Daily anchor structure with rationale, re-entry pattern, deep blocks; anchor rows reference phase IDs where applicable
+  5.5. **Spillover Handling:** Local spillover mapping for this week only (e.g., Fri office absorbs Zephyr spillover; Sat daytime absorbs RobotOS spillover)
   6. **Carry-over Integration:** List of carry-over items (integrated/parked/escalated), total effort
   7. **Constraints:** Hard constraints, soft constraints, scope freeze decision
   8. **Definition of Done:** Per-goal DoD + week-level DoD
@@ -732,11 +943,13 @@ Before finalizing the WeekPlan, validate the following checklist:
 - [ ] Constraints are documented
 - [ ] DoD is specific (not generic)
 - [ ] Risks and blockers are listed
+- [ ] **Execution Phase Breakdown included:** 3–5 M-phases per active project, each with a binary DONE condition
+- [ ] **Phase anti-overdetail check:** No phase has sub-task checklists; no phase reproduces execution file content
 
 ### Goal Validation
 - [ ] Goals align with month strategy (not contradicting)
 - [ ] Zephyr goals fit within Pool A (~36h effective capacity)
-- [ ] RobotOS + Signee goals fit within Pool B (~10h baseline; weekend daytime optional if named)
+- [ ] RobotOS + Signee goals fit within Pool B execution ceiling (net evening + Saturday daytime planned + Sunday afternoon if named; NOT 10h gross)
 - [ ] Goals do not create cross-pool dependencies (no "borrow from office to cover personal")
 - [ ] Each goal has an owner (clarity on who executes)
 
@@ -753,14 +966,16 @@ Before finalizing the WeekPlan, validate the following checklist:
 - [ ] Re-entry pattern is clearly defined
 - [ ] Deep blocks (if any) are scheduled and protected
 - [ ] Office anchor (Zephyr) and personal anchor (RobotOS/Signee) are time-separated (no confusion about which pool owns which daily block)
+- [ ] Anchor rows reference phase IDs `(M1)`, `(M2)` etc. where an Execution Phase Breakdown exists
+- [ ] Spillover Handling section defines local pool-respecting spillover paths for this week
 
 ### Capacity Validation
 - [ ] Pool A capacity: Zephyr effort ≤ ~36h effective; all office-hours allocation accounted for
-- [ ] Pool B capacity: RobotOS + Signee ≤ 10h baseline (+ optional weekend hours if named)
+- [ ] Pool B capacity: RobotOS + Signee ≤ net evening + Saturday daytime + Sunday afternoon (if named); NOT gross 10h
 - [ ] No TYPE B/C project (RobotOS/Signee) has office-hour allocation (V11 check from CAPACITY_ENGINE)
 - [ ] No TYPE A project (Zephyr) has evening/weekend allocation
 - [ ] Carry-over effort remains within its pool; does not borrow across pools
-- [ ] Personal capacity uses 10h baseline + explicit weekend daytime decision (NOT "~6–8h shorthand")
+- [ ] Personal capacity uses net evening capacity + Saturday daytime (planned) + named Sunday afternoon — NOT "10h baseline" or "~6–8h shorthand"
 - [ ] All CAPACITY_ENGINE validation checks pass (V1–V11) before finalizing
 
 ### Constraint Validation
@@ -851,7 +1066,7 @@ Use this checklist before finalizing a WeekPlan:
 
 If goals were reframed at any point during planning, stale narrative from earlier iterations can survive in downstream sections. This check detects that class of error.
 
-- [ ] **Effort consistency:** Goal effort estimate = Capacity section allocation = Carry-over effort for the same item — all three match; no section holds a stale value
+- [ ] **Effort consistency:** For TYPE B/C: goal effort estimate = capacity section allocation = carry-over effort — all three match; no section holds a stale value. For TYPE A (Zephyr): capacity section shows Pool Ownership (~36h) + focused mission sub-row; Goals section shows focused mission effort only — these are expected to differ; verify focused mission ≤ pool ownership
 - [ ] **No old milestone language:** Search appendix assumptions, risk assumptions, Next Steps, Carry-over Integration, Focus Summary, and Version History for prior goal names, build targets, or milestone labels that no longer apply
 - [ ] **Risk assumptions match current goals:** Each risk is plausible against the final W## goal list, not a prior planning iteration
 - [ ] **Checkpoint wording matches current goals:** Mid-week and end-of-week checkpoints reference deliverables from the finalized goal list
@@ -1092,7 +1307,7 @@ GENERATE_WEEKPLAN is the **first step** of the weekly cycle. It produces the str
    - **Option D:** Defer Zephyr scope to next week (carry to W##+ 1)
 3. Recalculate until Zephyr ≤ 25h (~70% of Pool A).
 
-**If Pool B (RobotOS + Signee) is overloaded (>10h baseline):**
+**If Pool B (RobotOS + Signee) is overloaded (> net evening + Saturday daytime + named Sunday afternoon; i.e., exceeds execution ceiling):**
 1. Do not plan >70% of Pool B baseline (~7h floor; leaving 3h buffer).
 2. Choose:
    - **Option A:** Drop a personal goal (which is most flexible or least important?)
@@ -1271,7 +1486,7 @@ QUESTION 9: Dual-pool capacity check — does work fit each pool?
   **Pool A (Zephyr): Effort > 25h (~70% of 36h effective)?**
     YES → Reduce Zephyr scope or escalate to next week
     NO  → Proceed to Pool B check
-  **Pool B (RobotOS + Signee): Effort > 7h (~70% of 10h baseline)?**
+  **Pool B (RobotOS + Signee): Effort > 70% of net execution ceiling (net evening + Saturday + named Sunday afternoon)?**
     YES (baseline only) → Reduce personal scope or escalate to next week
     YES (+ weekend daytime named) → Acceptable; verify weekend daytime is explicitly planned
     NO  → Proceed to QUESTION 10

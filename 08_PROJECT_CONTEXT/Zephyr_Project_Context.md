@@ -71,20 +71,22 @@ Stable Delivery & Controlled Improvement
 
 ## Progress Status
 
--   DBUS2 testing document completed
--   Test environment nearly ready
--   Test methodology framework defined
+-   M4 (RAM test suite) 50% complete (W11): 6/12 test cases implemented + passing
+-   W12 Monday focal: Complete remaining 6 cases (50% → 100%)
+-   After RAM completion: Factory feature research entry point (W12 Tue-Fri)
+-   Test suite stability foundation established
 
 ## Immediate Next Milestones
 
-1.  Finalize test environment setup
-2.  Execute DBUS2 test cases
-3.  Validate release stability
+1.  **W12 Monday (FOCAL):** RAM test suite completion (12/12 cases passing, ready for integration)
+2.  **W12 Tue-Fri:** Factory feature research + sharing + first test POC entry
+3.  **W13 Q2 kickoff:** RAM tests integrated, factory feature deep-implementation foundation ready
 
-## Known Blockers
+## Known Blockers & W12 Status
 
--   Potential integration complexity
--   Unexpected regression bugs
+-   **W11 carry-over:** M4 RAM test work 50% complete (6 remaining cases) → **W12 Monday MUST-COMPLETE (focal day)**
+-   **Factory feature ambiguity:** High-ambiguity entry → research-first discipline (Tue deep-dive, Wed sharing, Thu-Fri POC)
+-   **Potential integration complexity:** Managed via focal-day discipline and quality gates
 
 ------------------------------------------------------------------------
 

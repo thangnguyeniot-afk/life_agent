@@ -1,6 +1,6 @@
 # RobotOS Inspire — Project Context
 
-> **Cập nhật lần cuối:** 2026-02-27  
+> **Cập nhật lần cuối:** 2026-03-22 (W12 planning baseline)  
 > **File này:** Ngữ cảnh dự án để import vào agent/AI assistant
 
 ---
@@ -44,12 +44,13 @@
 ## 2️⃣ Current State
 
 ### % Hoàn thành
-**[15%]** ━━━━━━━━━━━━━━━━━━━━
+**[18%]** ━━━━━━━━━━━━━━━━━━━━
 
 - ✅ Bootstrap spec hoàn thành
 - ✅ Build system architecture định nghĩa
-- ⏳ Kernel base setup
-- ⏳ Middleware framework
+- ✅ M1-M2 synthesis in progress (W11 evening + W12 evening synthesis ongoing)
+- ⏳ Kernel base setup (M1 targeting)
+- ⏳ Middleware framework (M2 targeting)
 - ⏳ Toolchain development
 - 📋 Trace system
 - 📋 Benchmark suite
@@ -75,12 +76,12 @@
    - GCode parser tối thiểu
    - Verify determinism & latency
 
-### Blockers
+### Blockers (W12 Status)
 
-| # | Blocker | Severity | Workaround |
-|---|---------|----------|------------|
-| 1 | [Cập nhật blocker nếu có] | - | - |
-| 2 | [Cập nhật blocker nếu có] | - | - |
+| # | Blocker | Severity | Status |
+|---|---------|----------|--------|
+| 1 | M1-M2 synthesis clarity (evening work ongoing) | 🟡 MEDIUM | In progress (W12 evening synthesis + Sat consolidation planned) |
+| 2 | Q2 contributor onboarding preparation (M5) | 🟡 MEDIUM | Scheduling: W12 Sat daytime ~4h consolidation + team narrative finalization |
 
 ---
 
@@ -132,7 +133,8 @@
 - ❌ **OUT OF SCOPE:** Network stack (defer to v0.2+)
 - ❌ **OUT OF SCOPE:** File system (defer to v0.2+)
 
-**Dự kiến freeze scope:** [Cập nhật ngày freeze]
+**Scope freeze status:** Q1 scope stable; Q2 readiness sequenced (M5 onboarding foundation W12, M1-M3 deep work W13+)  
+**Next scope decision point:** W13 kickoff (M1-M2 readiness assessment)
 
 ---
 

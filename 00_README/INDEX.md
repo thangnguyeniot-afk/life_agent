@@ -207,6 +207,19 @@ Includes:
 | Monthly narration | `06_MONTHS/` | long-term |
 | Knowledge artifacts | `knowledge/` | permanent |
 
+### Readability Guard (Mandatory System-Wide)
+
+All generated planning/review artifacts (weekly plans, daily execution, monthly reviews, project contexts, etc.) must follow scan-friendly formatting rules to ensure clarity and executability:
+
+**Core Rules:**
+- Body paragraphs max 3–4 lines in normal markdown view
+- Multi-idea sections split into bullets or labeled sub-blocks
+- All numbers, allocations, rules, and comparisons formatted as bullets/tables/labeled blocks (not prose)
+- Scan-friendly structure: short intro → bullet breakdown → explicit labels
+- No walls-of-text; synthesis broken into 2–4 short bullets
+
+**Enforcement:** Validation checklist required before finalizing any artifact (see GENERATE_WEEKPLAN.md § Readability Guard; GENERATE_WEEKLY_EXECUTION.md § Readability Guard; CHECKLIST_AntiCompliance.md § Test Block 3).
+
 ---
 
 ## 9) Cadence

@@ -160,7 +160,7 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 **What belongs here:**
 - Architecture, design, implementation work assigned to personal time (e.g., RobotOS builds)
 - Evening focus blocks (19:30–21:30 per OS daily schedule model — personal evening capacity)
-- Weekend blocks (optional, if explicitly planned)
+- Weekend blocks: Saturday daytime + Sunday afternoon = **full project execution capacity**; declare planned hours per week. Sunday morning = review overhead (structural, not execution).
 
 **What must NOT be placed here:**
 - KTLO/maintenance work (belongs in Layer 1)
@@ -169,13 +169,18 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 
 **Capacity ceiling:**
 - Evening blocks: 2h/evening (19:30–21:30), Mon–Fri
-- Baseline: 5 evenings × 2h = 10h/week
-- Thu: S-only due to energy dip (block exists but lower intensity; plan lighter personal work)
-- Fri: valid closure-work evening — not optional by default
-- Weekend daytime: Saturday daytime = substantial deep-work block; Sunday daytime = planning + execution; both are valid personal capacity if intentionally named
-- Weekend evenings: **Saturday evening = OFF (protected rest)**; **Sunday evening = OFF (protected rest)**; must not be allocated as execution capacity
+- **Gross weekday-evening baseline: 5 evenings × 2h = 10h/week** — this is a planning envelope, NOT guaranteed execution-ready capacity
+- **Net planned evening capacity** is derived per week from the actual anchor/calendar structure:
+  - Subtract **structural deductions** (recurring weekly patterns, not rare exceptions) — e.g., Thu = S-only energy dip; Fri = closure / S-only / none when planned that way
+  - Subtract **ad hoc exceptions** (travel, events, illness) when present
+  - The engine does NOT hard-code a net total; each weekly plan derives net evening capacity from its actual anchor table
+- **Weekend daytime — three distinct categories:**
+  - **Saturday daytime: full project execution capacity** — not optional in the sense of "only if needed"; always a real capacity source; declare planned project hours each week
+  - **Sunday morning: review / closeout / planning block** (~2–3h structural weekly function); NOT project execution; NOT interchangeable with Saturday daytime or Sunday afternoon; consumed by WEEK_CLOSEOUT + next-week seed; counted in total weekly load as overhead
+  - **Sunday afternoon: full project execution capacity** — always a real capacity source; declare planned project hours each week; if a given week does not use it, state that as a W## instance decision
+- **Weekend evenings:** exactly ONE weekend evening is OFF (protected rest); the other is default-rest and may be explicitly opened by the weekly plan; the week plan must declare which evening is OFF; do NOT encode both as default-OFF; do NOT encode both as freely allocatable
 - Morning architect block (06:30–07:15): PLANNING only — not execution capacity
-- **Total personal execution capacity: 10h/week baseline (Mon–Fri evenings 19:30–21:30) + substantial weekend daytime extension (if intentionally planned)**
+- **Total personal execution capacity:** net weekday evenings (derived from anchor) + Saturday daytime (full capacity; declare planned hours) + Sunday afternoon (full capacity; declare planned hours or state "not used this week") — do NOT derive backward from a fake total; each component is an independent source
 - **HARD RULE: This layer does NOT include any office hours. Office = Pool A / Layer 1 only.**
 
 **Rule for evening blocks:** If weekly goals require evening capacity, the plan **must name those blocks explicitly** (days + hours). Silent evening dependency is a validation error.
@@ -225,8 +230,8 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 | Type | Description | Layer | Allowed Time Slots | Disallowed | Scheduling Behavior |
 |---|---|---|---|---|---|
 | **TYPE A** | Fixed office-hours / KTLO / maintenance | Layer 1 | Office hours only | Evening, weekend | Pre-committed, allocated first; non-negotiable time slot |
-| **TYPE B** | Personal deep-work / architecture / design | Layer 2 | Personal evenings (19:30–21:30, Mon–Fri) + weekend daytime ONLY. **Weekend evenings and office hours: FORBIDDEN.** | Cannot use any office hours (all office = TYPE A Zephyr) | Block-model (1 block ≈ 1.5–3h focused work); evening slots; weekend daytime synthesis |
-| **TYPE C** | Async / spec / review / coordination | Layer 3 | Personal evenings (19:30–21:30, Mon–Fri) + weekend daytime ONLY. **Weekend evenings and office hours: FORBIDDEN.** | Must not crowd out TYPE B deep focus | Interruptible, async-compatible; fills personal time gaps (not office gaps) |
+| **TYPE B** | Personal deep-work / architecture / design | Layer 2 | Personal evenings (19:30–21:30, Mon–Fri) + Saturday daytime + Sunday afternoon (if named). Weekend evenings: the **explicitly opened** evening only (per R10 — one must remain protected rest); office hours: FORBIDDEN. | Cannot use any office hours (all office = TYPE A Zephyr); cannot use closed weekend evening | Block-model (1 block ≈ 1.5–3h focused work); evening slots; Sat daytime = regular work capacity |
+| **TYPE C** | Async / spec / review / coordination | Layer 3 | Personal evenings (19:30–21:30, Mon–Fri) + Saturday daytime + Sunday afternoon (if named). Weekend evenings: the **explicitly opened** evening only (per R10); office hours: FORBIDDEN. | Must not crowd out TYPE B deep focus; cannot use closed weekend evening | Interruptible, async-compatible; fills personal time gaps (not office gaps) |
 | **TYPE D** | Admin / comms / system overhead | Layer 4 | Office hours (prefer morning/EOD) | Must not use deep-work slots | Fixed deduction; not a flexible allocation |
 | **TYPE E** | Conditional / blocked work | Any layer at activation | Only when unblock trigger fires | Must not be pre-allocated as baseline if truly blocked | Parked until explicit unblock event; effort is NOT in baseline plan |
 
@@ -265,9 +270,26 @@ Any plan that assigns evening capacity to a TYPE A project violates the project'
 Work that must be completed regardless of external conditions is baseline. Labeling it "contingent" suppresses its effort estimate, creates fake optionality, and distorts capacity accounting.  
 Apply the TYPE E test: if work can start now, it is baseline (TYPE B or TYPE C). If it cannot start without a named external event, it is TYPE E.
 
-### R4 — Goal effort estimates must equal capacity allocations
+### R4 — Goal effort estimates and capacity allocation are TYPE-aware
 
-The effort estimate in the Goals section of a WeekPlan must match the hours allocated in the Capacity section. If they do not match, either the estimate or the allocation is wrong. Validate both before finalizing.
+**For TYPE B and TYPE C projects:**
+The effort estimate in the Goals section must equal the hours allocated in the Capacity section. If they do not match, either the estimate or the allocation is wrong. Validate both before finalizing.
+
+**For TYPE A projects (office-baseline, e.g., Zephyr):**
+TYPE A projects own the entire assigned pool (Pool A = ~36h effective). Two values must be tracked separately and must NOT be collapsed into one number:
+- **Pool Ownership Hours:** The full effective pool size (~36h). This is what goes in the capacity table Hours column.
+- **Focused Mission Effort:** The scoped weekly deliverable inside the pool (e.g., ~12h for RAM test extension + factory analysis). This is what appears in the Goals effort estimate.
+- **Reactive / KTLO / maintenance load:** The remainder (Pool Ownership − Focused Mission ≈ ~24h). Not a goal line; always present as structural baseline context.
+
+Setting the capacity table Hours column to the goal effort number for a TYPE A project is a model error — it implies TYPE A only has ~12h of context, which contradicts pool ownership.
+
+**TYPE A Truth Model Example:**
+- Pool A effective: ~36h
+- TYPE A owner: Zephyr (owns 100% of Pool A)
+- Focused mission this week: ~12h (e.g., RAM tests + factory analysis + docs)
+- Reactive / KTLO / maintenance: ~24h remainder (standups, code review, support, unplanned context)
+- Capacity table shows: Pool Ownership = ~36h + sub-row "Focused mission: ~12h" (see §7 template)
+- Goal effort estimate in Goals section = ~12h (focused mission only — not the pool size)
 
 ### R5 — Evening / flex capacity must be named explicitly if required
 
@@ -298,12 +320,16 @@ POOL A — Office-Locked (Layer 1 — Zephyr + overhead):
   This entire pool belongs to Zephyr. There is no "remaining" to share with personal projects.
 
 POOL B — Personal Flex (Layers 2+3 — RobotOS + Signee):
-  Realistic personal capacity = [named evening blocks] + [optional weekend]
-  = [2h × 5 weekday evenings (19:30–21:30 Mon–Fri)] + [weekend daytime if intentionally planned]
-  = 10h/week baseline evenings
-  + substantial weekend daytime extension (Sat+Sun daytime; must be named explicitly)
-  Note: Thu evening = S-only (energy dip); Fri evening = valid closure capacity
-  Note: Weekend EVENINGS (Sat+Sun eve) = protected rest; NOT part of Pool B
+  Realistic personal capacity = [net evening blocks] + [Sat daytime] + [Sun afternoon if planned]
+  Gross weekday-evening baseline = 10h (2h × 5 evenings, 19:30–21:30 Mon–Fri)
+  Net planned evening capacity = gross − structural deductions (derive per week from anchor table)
+    Structural deductions: Thu = S-only (energy dip); Fri = closure/none when planned that way
+    These are recurring patterns, NOT rare exceptions; most weeks net ≈ 6–8h from weekday evenings
+  Saturday daytime = full project execution capacity; declare planned hours in the week plan
+  Sunday morning = review/closeout/planning (~2–3h; NOT Pool B execution capacity; overhead)
+  Sunday afternoon = full project execution capacity; declare planned hours or state "not used"
+  Weekend evenings: exactly 1 is OFF (protected rest); 2nd = default-rest, may be opened by week plan
+    The week plan must declare which evening is OFF (Sat or Sun)
 
 If personal project goals require more than Pool B capacity:
   → Reduce scope, or span goal across multiple weeks
@@ -341,21 +367,153 @@ Pool A (office hours, weekdays 08:30–17:00) and Pool B (personal time: evening
 
 ---
 
-### R10 — Weekend Evening Protection and Sustainability
+### R10 — Weekend Calendar Pattern and Sustainability
 
-Weekend evenings (Saturday evening and Sunday evening) are protected recovery time. They must not be allocated as personal execution capacity under any framing.
+Weekend daytime and evening slots serve distinct functions and must be modeled explicitly.
 
-- Saturday daytime: valid personal deep-work capacity; must be explicitly named
-- Sunday daytime: valid personal planning and execution capacity; must be explicitly named
-- Saturday evening: OFF — rest protection; not plannable by default
-- Sunday evening: OFF — rest protection; not plannable by default
+**Weekend daytime:**
+- **Saturday daytime: full project execution capacity** — not optional; always a real capacity source; declare planned project hours in each week plan; do not shrink or label as "mini-block"
+- **Sunday morning: review / closeout / planning capacity** — structural weekly function (~2–3h); consumed by WEEK_CLOSEOUT + next-week seed; NOT project execution; counted as overhead in total weekly load; do NOT merge with Sunday afternoon execution
+- **Sunday afternoon: full project execution capacity** — not optional; always a real capacity source; declare planned project hours or explicitly state "not used this week" as a W## instance decision
 
-If a plan requires weekend evening work to close, it is a **scope problem, not a scheduling solution**. Resolve via scope reduction (§8 Resolution 3) — do NOT consume protected rest.
+**Weekend evenings:**
+- Exactly ONE weekend evening is OFF (protected rest); the week plan must name which one (Sat or Sun)
+- The other weekend evening is default-rest and may be explicitly opened by the weekly plan when genuinely needed
+- Do NOT treat both weekend evenings as always hard-OFF
+- Do NOT treat both weekend evenings as freely allocatable
+- If a weekend evening is opened, it must be named explicitly in the plan (not implied)
+
+If a plan requires weekend evening execution to close, first check whether scope reduction is a better option. If genuinely used, it must be named explicitly.
 
 **Sustainability balance principle:**
 - Do NOT model personal capacity so low (~6–8h) that the engine systematically underestimates achievable personal work and forces unnecessary multi-week spans
 - Do NOT model personal capacity so high (all evenings + all weekend day + all weekend evening) that burnout becomes the hidden cost of meeting weekly goals
-- Correct baseline: 10h/week evenings + intentional weekend daytime = sustainable and realistic
+- Correct gross baseline: 10h/week weekday evenings (Mon–Fri 19:30–21:30) + explicitly named weekend daytime + named Sunday review block
+- Net execution baseline: lower than gross most weeks; derive from anchor reality; do not plan personal work against 10h gross as if fully executable
+
+---
+
+### R11 — Weekend Usage Decision Policy (Slot-Based Modeling)
+
+**CRITICAL RULE: Weekend must be modeled by SLOT, not by day.**
+
+Weekend is not "Saturday" and "Sunday" as single units. It is **five distinct time slots**, each with a different function:
+
+1. **Saturday daytime** — project execution capacity (same as Sun afternoon)
+2. **Saturday evening** — weekend evening OFF/OPEN decision (Friday/Sat evening pair)
+3. **Sunday morning** — review/closeout/planning overhead (structural, ~2–3h)
+4. **Sunday afternoon** — project execution capacity (same as Sat daytime)
+5. **Sunday evening** — weekend evening OFF/OPEN decision (Sat/Sun evening pair)
+
+**Anti-Conflation Invariant (MUST BE ENFORCED):**
+- Sunday afternoon and Sunday evening are **completely separate slots with different functions**. They must never be conflated.
+  - "Sunday used" could mean either afternoon (execution) or evening (rest decision) — FORBIDDEN wording
+  - "Sunday unused" could mean either afternoon (execution) or evening (rest decision) — FORBIDDEN wording
+  - Always use slot-level language: "Sunday afternoon execution = Xh" and "Sunday evening = [OFF/OPEN]"
+- Saturday daytime and Saturday evening are **completely separate slots with different functions**. They must never be conflated.
+  - Same rule: always slot-level language "Saturday daytime = Xh" and "Saturday evening = [OFF/OPEN]"
+- Sunday morning is a separate **review/control slot** and must never be merged into execution or evening-rest logic.
+
+Weekend capacity is **not optional by default.** Saturday daytime and Sunday afternoon are full execution capacity classes and must be treated as primary execution surfaces, not overflow buffers.
+
+A week must explicitly choose **one of three modes** for how it uses available weekend capacity:
+
+#### MODE A — Full Utilization (All Day-Slots Active)
+- **Saturday daytime:** Fully used for planned project execution
+- **Sunday morning:** Review/closeout as scheduled
+- **Sunday afternoon:** Used for planned project execution
+- **Weekend evening decision:** One of {Sat evening, Sun evening} is OFF; the other may be OPEN or default-rest
+- **Use when:** Personal project portfolio is substantial (~10h+ allocation) and requires full system capacity
+- **Slot declaration:** Sat daytime = [X hours], Sun afternoon = [Y hours], evening OFF = [Sat or Sun]
+
+#### MODE B — Saturday-Primary (Common but NOT Default)
+- **Saturday daytime:** Fully used for planned project execution
+- **Sunday morning:** Review/closeout as scheduled
+- **Sunday afternoon:** Optional/reserve — used only if workload exceeds (net weekday evenings + Sat daytime) capacity
+- **Weekend evening decision:** One of {Sat evening, Sun evening} is OFF; the other is default-rest
+- **Use when:** Personal project allocation is moderate (~7–10h) and fits within net weekday evenings + Sat daytime
+- **Distribution evaluation (see R11-D heuristic):** Before selecting MODE B, planner should evaluate whether MODE A (Sat + Sun) provides better load balance when weekend execution is non-trivial (≥3h)
+- **Constraint:** If Sunday afternoon is stated as "0h" (not used), the math must prove that weekday evening + Saturday daytime is sufficient for stated allocation
+- **Slot declaration:** Sat daytime = [X hours], Sun afternoon = "not used this week" OR [Y hours], evening OFF = [Sat or Sun]
+
+#### MODE C — Reduced Weekend (EXPLICIT ONLY)
+- **Saturday daytime:** Reduced, partial use, or zero use
+- **Sunday afternoon:** Zero use OR partial
+- **Sunday morning:** Review/closeout, or reduced
+- **Weekend evening decision:** One of {Sat evening, Sun evening} is OFF; other is default-rest
+- **REQUIRED:** Explicit justification (scope constraint, sustainability break, blocker impact)
+- **REQUIRED:** Impact statement (e.g., "Saturday daytime not used this week because all RobotOS scope (~7h) fits within net evening capacity; Sunday afternoon not planned as reserve; total weekly load = ~48h vs. normal ~50–51h")
+- **Use when:** Conscious decision to reduce scope or take a lighter week (not default fallback)
+- **Slot declaration:** Sat daytime = "not used" OR [X hours], Sun afternoon = "not used" OR [Y hours], evening OFF = [Sat or Sun]
+
+**Forbidden Patterns (MUST BE ENFORCED):**
+- Do NOT default Saturday to partial use (~2h) without explicit scope decomposition linking the allocation to defined content (e.g., "M5 onboarding notes = ~2h")
+- Do NOT set Sunday afternoon to 0h by claiming "fits within Sat + evenings" unless the math is proven in the exact numbers (not rounded) and the proof is documented
+- Do NOT treat Saturday daytime as a "spillover destination" for unplanned overflow if it is already allocated as a primary execution block for defined content
+- Do NOT leave weekend mode implicit; explicitly declare Mode A / B / C and justify it
+- Do NOT use vague language like "Sunday unused" or "Sunday open" — must specify WHICH Sunday slot (afternoon or evening)
+- Do NOT conflate Saturday evening (OFF/OPEN decision) with Saturday daytime (execution capacity)
+- Do NOT conflate Sunday afternoon (execution capacity) with Sunday evening (OFF/OPEN decision)
+
+**Traceability Requirement (All Five Slots Must Be Declared):**
+
+Every weekly plan's weekend usage decision must include:
+1. **Selected mode** — one of: Full Utilization (A), Saturday-Primary (B), Reduced Weekend (C)
+2. **Slot 1 — Saturday daytime:** [X hours planned execution] OR [0h if not used]
+3. **Slot 2 — Saturday evening:** [OFF (protected rest)] OR [OPEN if explicitly needed]
+4. **Slot 3 — Sunday morning:** [Review/closeout ~2–3h overhead]
+5. **Slot 4 — Sunday afternoon:** [Y hours planned execution] OR [0h not used this week]
+6. **Slot 5 — Sunday evening:** [OFF (protected rest)] OR [OPEN if explicitly needed]
+7. **Justification** — link to project scope, milestones, or sustainability decision
+8. **Math closure** — if any execution slot (Sat daytime or Sun afternoon) = 0h, show the arithmetic proving remaining capacity is sufficient for that week's allocation
+9. **Link to totals** — reference the total weekly load calculation that depends on this decision
+
+**Generator Alignment Note:**
+
+`GENERATE_WEEKPLAN`, when creating a WeekPlan, must:
+- Force explicit slot-level declaration for all five weekend slots in Step 5 (Determine Weekly Goals) or Step 6 (Assess Capacity)
+- NOT assume reduced weekend usage or let a plan default to Mode B / Mode C without explicit rationale
+- Reject any generation that produces day-based language ("Sunday used/unused") instead of slot-based language
+- NOT allow mode selection without all five slot values populated
+
+The generator instruction in `GENERATE_WEEKPLAN` §[Spillover Handling] stating "Sat daytime absorbs RobotOS spillover" must be reframed:
+- If Sat daytime is already allocated to a primary milestone (e.g., M5), it is NOT available for spillover unless that milestone completes early
+- If Sat daytime is not pre-allocated to primary content, it remains available for spillover, but this must be declared explicitly in the mode selection (e.g., "Sat daytime available as reserve: [Yh capacity]")
+- Generators must state: "Saturday daytime is primary project capacity, not a spillover buffer" to prevent planners from defaulting to treating weekend as 'overflow only'
+- Generator must prioritize Sunday afternoon as spillover destination FIRST, then Saturday only if Sunday is pre-allocated or unavailable (see R11-D)
+- Generator must never produce mode declarations without explicit slot values for all five weekend slots
+
+---
+
+### R11-D — Weekend Distribution Heuristic (Non-Rigid Guidance)
+
+**Purpose:** Guide weekend execution distribution between Saturday daytime (Slot 1) and Sunday afternoon (Slot 4) to reduce single-day load clustering while maintaining flexibility.
+
+**Heuristic (guidance; not enforcement):**
+
+1. **If weekend execution is small (≤2h):** OK to allocate fully to Saturday (Sat 2h, Sun afternoon 0h). Single-day clustering acceptable.
+
+2. **If weekend execution is moderate (3–4h):** Planner should **consider** a Sat + Sun split to reduce single-day fatigue load. Saturday-only is permitted but SHOULDbe consciously evaluated and documented (not defaulted silently).
+
+3. **If weekend execution is high (≥5h):** Planner MUST actively evaluate Sat + Sun distribution. Saturday-only ≥5h requires explicit justification (e.g., "All 5h allocated to RobotOS high-complexity synthesis; MODE A acceptable given project priority; fatigue risk accepted").
+
+**Spillover Priority (NON-RIGID):**
+- If scope uncertainty exists and spillover is possible:
+  - **First consider:** Sunday afternoon (Slot 4) as spillover destination if available
+  - **Then consider:** Saturday daytime (Slot 1) remainder capacity if Sunday is pre-allocated
+  - **State explicitly:** Do not leave spillover path implicit; name which slot absorbs planned overflow
+
+**Anti-Dual-Role Rule (CRITICAL):**
+- Saturday daytime (Slot 1) MUST NOT simultaneously act as both:
+  - Primary execution block (e.g., "M5 onboarding = 3h") AND
+  - Implicit spillover buffer for unplanned work
+  - If spillover is expected, it must be explicitly assigned (either to Sunday afternoon or stated as "no spillover path exists")
+- Rationale: Conflating roles makes capacity math unclear and enables silent overload
+
+**When to Document Distribution Decision:**
+- If weekend execution ≥3h: note in Anchor Rationale or Soft Constraints whether Sat+Sun split was evaluated and why chosen distribution was selected
+- If Sat ≥3h and Sun afternoon 0h: document the intentionality (e.g., "Sunday afternoon not used; all scope fits within Sat + weekday allocation; math proof: [values]")
+- This documentation helps future weeks learn from this decision and prevents thoughtless repetition
 
 ---
 
@@ -370,12 +528,13 @@ Run all checks before accepting capacity model output.
 | Evening dependency hidden | V3 | If total planned effort > (36h threshold), named evening blocks exist | Evening blocks implied but not named |
 | No evening for TYPE A | V4 | TYPE A project has zero evening/weekend allocation | TYPE A assigned to evening or weekend slot |
 | Baseline vs. contingent | V5 | All TYPE E items have a named external trigger; TYPE B/C items are not labeled contingent | Baseline work labeled conditional without true block |
-| Goal-allocation match | V6 | Each goal's effort estimate equals the capacity allocated | |Goal effort| − |capacity allocated| > 1.5h per goal |
+| Goal-allocation match | V6 | **TYPE B/C:** each goal's effort estimate equals capacity allocated. **TYPE A:** pool ownership row = effective pool size (~36h); focused mission sub-row present AND ≤ pool ownership; focused mission ≠ pool ownership is expected and valid | **TYPE B/C:** \|goal effort\| − \|capacity allocated\| > 1.5h per goal. **TYPE A:** pool ownership row missing; OR focused mission sub-row absent; OR focused mission effort > pool ownership |
 | Anchor-layer consistency | V7 | Daily anchor time slots are consistent with project type assignments | TYPE A and TYPE B listed as equivalent daily anchors with no time-slot distinction |
 | Daily scope rule | V8 | Max 2 projects active per day can be verified given layer assignments | Ambiguous which 2 projects are active in which time slots |
 | Capacity sum | V9 | Total allocated hours ≤ realistic weekly capacity (office + named evening) | Total allocation exceeds modeled capacity |
 | Split-Signee rule | V10 | Signee sub-components with different types are allocated separately | All Signee work assigned one TYPE; blocks baseline allocation |
 | Pool isolation | V11 | Pool A (office) contains only TYPE A + TYPE D; Pool B (personal) contains only TYPE B + TYPE C; no cross-pool hours exist | Any personal project (TYPE B/C) has hours attributed to office hours; or Zephyr has hours attributed to personal blocks |
+| Weekend usage decision | V12 | All five weekend slots explicitly declared per R11: Mode selected (A/B/C); Sat daytime [value]; Sat evening [OFF/OPEN]; Sun morning [review]; Sun afternoon [value]; Sun evening [OFF/OPEN]; math proof if any execution slot = 0h | Weekend mode not declared; OR any slot declared vaguely or missing; OR day-based language used instead of slot-based (e.g., "Sunday unused" without specifying afternoon vs. evening); OR execution slot value not linked to project scope; OR math proof absent when execution slot = 0h |
 
 ---
 
@@ -392,7 +551,8 @@ The engine produces a **Capacity Summary block** that the weekly plan's `## Capa
 
 | Component | Type | Hours | Constraint |
 |---|---|---|---|
-| [TYPE A project — Zephyr] | TYPE A | ~[h effective] | **Office hours only. Gross 40h. Effective after D1 overhead: ~36h.** |
+| [TYPE A project — Zephyr] | TYPE A | ~36h (Pool A owner) | **Office hours only. Gross 40h. Effective after D1 overhead: ~36h. Zephyr owns this entire pool.** |
+| ↳ Focused mission (W## deliverable) | — | ~[focused h] | Scoped weekly deliverable inside Pool A. NOT the pool size. Matches Goals §[n] effort estimate. Remainder (~36h − focused h) = reactive / KTLO / maintenance. |
 | Admin / comms (D1 overhead) | TYPE D | [h/week] | Inside Pool A. Subtracted from gross. |
 | **Pool A total** | — | ~40h gross | **100% office hours. Zero remaining for personal projects.** |
 
@@ -403,20 +563,21 @@ The engine produces a **Capacity Summary block** that the weekly plan's `## Capa
 
 | Project | Type | Personal Blocks (Source) | Hours | Notes |
 |---|---|---|---|---|
-| [TYPE B project — RobotOS] | TYPE B | Evenings: [days] (19:30–21:30); weekend daytime if planned | [h] | Deep-work blocks; execution; no office hours; no weekend evenings |
-| [TYPE C project — Signee] | TYPE C | Evenings: [days] (19:30–21:30); weekend daytime async | [h] | Spec/coordination; async-compatible; no office hours; no weekend evenings |
+| [TYPE B project — RobotOS] | TYPE B | Evenings: [days] (19:30–21:30); Sat daytime; Sun afternoon (if named) | [h] | Deep-work blocks; execution; no office hours; closed weekend evening FORBIDDEN |
+| [TYPE C project — Signee] | TYPE C | Evenings: [days] (19:30–21:30); Sat daytime; Sun afternoon (if named) | [h] | Spec/coordination; async-compatible; no office hours; closed weekend evening FORBIDDEN |
 | [TYPE E items] | TYPE E | — | 0 (conditional) | Activates if: [trigger event] |
-| **Pool B total** | — | Weekday evenings (baseline 10h) + weekend daytime (if named) | [sum] | Against 10h/week baseline; weekend daytime is extension |
+| **Pool B execution total** | — | Net weekday evenings ([gross 10h − deductions]) + Sat daytime + Sun afternoon (if named) | [sum] | Ceiling = net evening + Sat + Sun (if planned — declare hrs or state not used); NOT gross 10h |
 
-> Pool B boundary: ALL personal project work must be sourced from named personal blocks only.
-> Cannot use office hours.
+> Pool B boundary: ALL personal project execution must be sourced from named personal blocks only. Cannot use office hours. Cannot use closed weekend evening.
+> Sunday morning review (~2–3h) is structural weekly overhead — separate from Pool B execution; included in total weekly load.
 
 ### Capacity Summary
 
-| Pool | Source | Available | Allocated | Utilization | Status |
-|---|---|---|---|---|---|
-| **Pool A — Office-Locked** | Office hours (weekdays) | ~40h gross / ~36h effective | Zephyr effective + D1 | ~100% | Zephyr only; no personal |
-| **Pool B — Personal Flex** | Weekday evenings (19:30–21:30) + weekend daytime | 10h/week baseline + [weekend daytime h] | TYPE B + TYPE C personal | [%] | PASS / WARN / FAIL |
+| Pool | Source | Gross | Structural deductions | Net execution available | Allocated | Utilization | Status |
+|---|---|---|---|---|---|---|---|
+| **Pool A — Office-Locked** | Office hours (weekdays) | ~40h | TYPE D overhead (~4h) | ~36h effective | Zephyr + D1 | ~100% | Zephyr only; no personal |
+| **Pool B — Personal Flex** | Weekday evenings + Sat daytime + Sun afternoon (if named) | 10h eve + [Sat h] + [Sun aft h] | Thu deduction + Fri deduction | Net: [h] + [Sat h] + [Sun aft if named] | TYPE B + TYPE C | [%] | PASS / WARN / FAIL |
+| **Sunday review overhead** | Sun morning (structural) | ~2–3h | — | N/A (not execution) | WEEK_CLOSEOUT + planning seed | — | Required each week |
 
 ### Validation Status
 
@@ -587,29 +748,27 @@ Total = 100% = 36h
 
 | Component | Type | Hours | Constraint |
 |---|---|---|---|
-| Zephyr (TYPE A — test extension + operational) | TYPE A | ~36h effective | Office hours only. No evening. Gross 40h − 4h D1 = 36h. Source: Zephyr_Project_Context §5, §7. |
+| Zephyr (TYPE A — test extension + operational) | TYPE A | ~36h (Pool A owner) | Office hours only. No evening. Gross 40h − 4h D1 = 36h. Source: Zephyr_Project_Context §5, §7. |
+| ↳ Focused mission (W11 deliverable) | — | ~12h | Test extension goal (RAM tests + factory analysis + docs). NOT the pool size. Remainder (~24h) = KTLO / ops / reactive. |
 | Admin / comms (D1) | TYPE D | 4h | Inside Pool A. Standard overhead. |
 | **Pool A total** | — | ~40h gross | **100% office hours. Zero allocated to personal projects.** |
-
-> Note: Zephyr's test extension goal (~12.5h estimated effort) sits inside Pool A's ~36h effective
-> capacity alongside other Zephyr operational work. The remaining ~23.5h stays as Zephyr ops time
-> (meetings, reviews, KTLO monitoring) — NOT available to personal projects.
 
 ### POOL B — Personal Flex Capacity (Layers 2+3)
 
 | Project | Type | Personal Blocks (Source) | Hours | Notes |
 |---|---|---|---|---|
-| RobotOS (architecture + onboarding) | TYPE B | Weekday evenings Mon–Fri (19:30–21:30); Sat daytime if planned | ~7h | W11 partial allocation (intentional scope decision); full goal (~15h) spans W11–W12; no office hours; no weekend evenings |
-| Signee (testing specification) | TYPE C | Evenings Wed–Fri (19:30–21:30); optional weekend daytime | ~3h | W11 partial allocation; no office hours; no weekend evenings |
+| RobotOS (architecture + onboarding) | TYPE B | Mon–Wed evenings (19:30–21:30, ~6h full exec); Sat 3/21 daytime (planned; W11 uses ~2h for M5/onboarding prep); Sun 3/22 afternoon (W11 instance decision: not used) | ~7h | W11 partial allocation; full goal (~15h) spans W11–W12; no office hours; closed weekend evening FORBIDDEN |
+| Signee (testing specification) | TYPE C | Fri 3/20 evening (~1h S-only or none); Sat daytime overlap with RobotOS if needed; Sun afternoon not planned W11 | ~3h | W11 partial allocation; no office hours; no closed weekend evenings |
 | Board testing (Signee) | TYPE E | — | 0 conditional | Activates when: hardware delivered |
-| **Pool B total** | — | Weekday evenings (10h baseline) + Sat daytime if planned | ~10h | W11: uses full weekday evening baseline; weekend daytime available as extension if goals require it |
+| **Pool B execution total** | — | Net weekday evenings (~6–7h, after Thu/Fri deductions) + Sat 3/21 daytime (~2h W11) + Sun 3/22 afternoon (0h W11 instance decision) | ~9h | Ceiling = net eve + Sat + Sun aft(if used); W11 does not use Sun afternoon execution — explicit instance decision; gross 10h eve is envelope, not ceiling; allocation ~7h+~3h within ceiling |
 
 ### Capacity Summary
 
-| Pool | Source | Available | Allocated | Utilization | Status |
-|---|---|---|---|---|---|
-| Pool A — Office | Office hours | ~40h gross | Zephyr + overhead | ~100% | Full; contains Zephyr only |
-| Pool B — Personal | Weekday evenings (19:30–21:30) + Sat daytime | ~10h (eve baseline) + [Sat daytime if named] | RobotOS ~7h + Signee ~3h | ~100% | PASS: within baseline; no ceiling breach |
+| Pool | Source | Gross | Structural deductions | Net execution available | Allocated | Utilization | Status |
+|---|---|---|---|---|---|---|---|
+| Pool A — Office | Office hours | ~40h | D1 overhead ~4h | ~36h effective | Zephyr + overhead | ~100% | Full; contains Zephyr only |
+| Pool B — Personal | Weekday evenings + Sat 3/21 daytime + Sun aft (not used W11) | 10h eve + [Sat h] + [Sun aft h] | Thu ~1h + Fri ~1h | Net eve ~6–7h + Sat ~2h + Sun aft 0h (W11) = ~8–9h exec cap | RobotOS ~7h + Signee ~3h | ~100% within ceiling | PASS |
+| Sunday review overhead | Sun 3/22 morning | ~2h | — | N/A (not execution) | WEEK_CLOSEOUT + W12 seed | — | Required |
 
 Validation status: V1 PASS | V2 PASS | V3 PASS (evening blocks named) | V4 PASS | V5 PASS | V6 PASS (goal estimates reflect W11 personal scope) | V7 requires anchor restructure | V8 WARN (document office vs evening clearly in anchor table) | V9 PASS | V10 PASS | **V11 PASS (pool isolation confirmed)**
 ```
