@@ -59,7 +59,7 @@
 | **Wednesday (SHARING)** | **Zephyr: Factory consolidation (share findings + record understanding)** | RobotOS M5 synthesis (eve) | ~2–4h office AM + ~0.5h eve | Morning: sharing (live or async) + consolidation of feedback; artifact: `factory_sharing_summary.md`; PM ready for Thu skeleton work | Must-Complete |
 | **Thursday (SKELETON)** | **Zephyr: Factory test entry point finalization + skeleton** | RobotOS M5 prep (eve) | ~6–8h office + ~0.5h eve | Entry point clarity + test skeleton structure + acceptance criteria definition; artifact: `factory_test_skeleton.ts` + notes | Must-Complete |
 | **Friday (IMPLEMENTATION)** | **Zephyr: Factory first test implementation + result recording** | Optional: Signee polish or recovery (eve) | ~6–8h office | Implement first test case + record result (pass/fail/blocked) + document blockers/assumptions; **do NOT force pass if blocked**; artifact: `factory_test_first.ts` + `factory_test_result_and_blockers.md` | Must-Complete |
-| **Saturday (CONSOLIDATION)** | Optional recovery (if needed) or Polish (if capacity) | **RobotOS: M5 onboarding consolidation (3–4h daytime)** | ~0–2h office + ~3–4h daytime personal | RobotOS M5: finalize onboarding narrative, team materials ready, contributor README complete; Saturday evening OFF | Should-Complete |
+| **Saturday (CONSOLIDATION)** | Optional recovery (if needed) or Polish (if capacity) | **RobotOS: M5 onboarding consolidation (3–4h daytime)** | ~0–2h office + ~3–4h daytime personal | RobotOS M5: finalize onboarding narrative, team materials ready, contributor README complete; Saturday evening OFF | ✅ COMPLETE (Thu 2026-03-26) |
 | **Sunday (CLOSURE)** | **W12 Closure + W13 Planning Seed (3h morning structured)** | Optional external task or recovery (afternoon); Sunday evening OFF | ~3h morning | Week recap + artifacts archive + W13 context seeding | Should-Complete |
 
 ---
@@ -307,8 +307,8 @@
 | **factory_test_skeleton_notes.md** | Thu | Apparatus design, skeleton completeness notes, Fri implementation scope | Important | Must-exist |
 | **factory_test_first.ts** | Fri | First factory test (implemented, result: pass/fail/blocked) | Critical | Must-exist |
 | **factory_test_result_and_blockers.md** | Fri | Result (PASS/FAIL/BLOCKED), root cause, assumptions, unknowns | Critical | Must-exist |
-| **CONTRIBUTING.md** | Sat | Contributor onboarding README (M5 scope, entry points, contribution flow) | Important | Must-exist |
-| **robotos_m5_onboarding_summary.md** | Sat | Architecture summary, team context, Monday entry points | Important | Must-exist |
+| **CONTRIBUTING.md** | Thu | Contributor onboarding README (M5 scope, entry points, contribution flow) | Important | ✅ DELIVERED (2026-03-26) |
+| **robotos_m5_onboarding_summary.md** | Thu | Architecture summary, team context, Monday entry points | Important | ✅ DELIVERED (2026-03-26) |
 
 **Total Artifacts:** 10 (8 critical for Zephyr + 2 important for RobotOS foundation)
 

@@ -1,6 +1,6 @@
 # RobotOS Inspire — Project Context
 
-> **Cập nhật lần cuối:** 2026-03-22 (W12 planning baseline)  
+> **Cập nhật lần cuối:** 2026-03-26 (W12 M5 onboarding completion)  
 > **File này:** Ngữ cảnh dự án để import vào agent/AI assistant
 
 ---
@@ -44,11 +44,12 @@
 ## 2️⃣ Current State
 
 ### % Hoàn thành
-**[18%]** ━━━━━━━━━━━━━━━━━━━━
+**[28%]** ━━━━━━━━━━━━━━━━━━━━
 
 - ✅ Bootstrap spec hoàn thành
 - ✅ Build system architecture định nghĩa
-- ✅ M1-M2 synthesis in progress (W11 evening + W12 evening synthesis ongoing)
+- ✅ M1-M2 synthesis complete (W11 evening + W12 evening synthesis + Sat consolidation done)
+- ✅ **M5 Contributor onboarding complete** (CONTRIBUTING.md + team materials delivered 2026-03-26)
 - ⏳ Kernel base setup (M1 targeting)
 - ⏳ Middleware framework (M2 targeting)
 - ⏳ Toolchain development
@@ -56,32 +57,37 @@
 - 📋 Benchmark suite
 - 📋 Example applications
 
-### 3 Milestone tiếp theo
+### 4 Milestone tiếp theo
 
-1. **M1: Kernel & Build System Foundation**
+1. **M1: Kernel & Build System Foundation** (Q2 W13+)
    - Setup Zephyr RTOS workspace (west init/update)
    - Cấu hình build system (West + CMake)
    - Tích hợp với toolchain (arm-none-eabi-gcc)
    - Target platform đầu tiên (STM32F4)
 
-2. **M2: Middleware Core**
+2. **M2: Middleware Core** (Q2 W13+)
    - Thiết kế pub/sub interface (zero-copy, no malloc in hot path)
    - Memory pool allocator
    - Timer/scheduler wrapper
    - Trace hooks cơ bản
 
-3. **M3: First Example (3D Printer Stepper)**
+3. **M3: First Example (3D Printer Stepper)** (Q2 W14+)
    - Stepper motor control
    - Motion planner đơn giản
    - GCode parser tối thiểu
    - Verify determinism & latency
 
-### Blockers (W12 Status)
+4. **M5: Contributor Onboarding** (✅ COMPLETE — 2026-03-26)
+   - CONTRIBUTING.md (contributor README, M5 entry points, contribution flow)
+   - robotos_m5_onboarding_summary.md (architecture summary, team context, Monday entry points)
+   - Team materials ready for Q2 Monday kickoff
+
+### Blockers (as of 2026-03-26)
 
 | # | Blocker | Severity | Status |
 |---|---------|----------|--------|
-| 1 | M1-M2 synthesis clarity (evening work ongoing) | 🟡 MEDIUM | In progress (W12 evening synthesis + Sat consolidation planned) |
-| 2 | Q2 contributor onboarding preparation (M5) | 🟡 MEDIUM | Scheduling: W12 Sat daytime ~4h consolidation + team narrative finalization |
+| 1 | M1-M2 synthesis clarity | 🟢 RESOLVED | Complete (W12 evening synthesis + Sat consolidation done; ready for team review) |
+| 2 | Q2 contributor onboarding (M5) | 🟢 COMPLETE | Delivered (CONTRIBUTING.md + team materials ready; Q2 Monday team-ready) |
 
 ---
 
