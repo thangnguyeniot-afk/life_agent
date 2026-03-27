@@ -211,8 +211,9 @@
 - **Net planned evening capacity: ~9h** (conservative, accounting for energy variation)
 
 *Saturday Slot 1 (daytime):*
-- Planned: ~3–4h for RobotOS M5
-- Role: Primary execution window for Sat work (NOT overflow)
+- Planned: ~2–3h for equipment sourcing (factory suite prep for W13)
+- Secondary: ~2–3h for Signee M3 extended polish (optional)
+- Role: Primary execution window for Sat work (NOT overflow) — **Freed from RobotOS M5 (completed Thu evening)**
 
 *Sunday (Morning + Optional Afternoon):*
 - Morning: ~3h (structured W12 closure + W13 seed planning, not available for project work)
@@ -221,12 +222,12 @@
 
 **Goal 4 (RobotOS M5) allocation:**
 - Evening blocks (Mon–Tue, Wed, Thu): ~6h (synthesis + onboarding prep)
-- Sat Slot 1: ~3–4h (consolidation + team narrative)
-- **Total: ~9–10h** (fits within Pool B envelope)
+- Sat Slot 1: ~~3–4h~~ COMPLETED EARLY (Thu evening — archived, freed Saturday)
+- **Total: ~9–10h** (fits within Pool B envelope) ✅ ACTUAL: EARLY COMPLETION
 
 **Goal 5 (Optional polish) allocation:**
-- If executed: ~3–5h from remaining evening capacity or deferred to next week
-- **Status:** ✅ Secondary; naturally defers if capacity strained
+- If executed: ~2–3h Saturday afternoon (Signee M3 polish) from freed capacity
+- **Status:** ☐ Optional Saturday afternoon activity; naturally defers if capacity strained
 
 ### Constraints (Hard + Soft)
 
@@ -410,7 +411,7 @@
 - **Tue–Wed research+sharing:** Factory feature research cycle (ambiguity reduction BEFORE prototyping)
 - **Thu–Fri implementation:** First factory test entry point + implementation (POC validation; NOT deep implementation)
 - **Evening consistency:** RobotOS M5 onboarding synthesis in parallel (independent track; doesn't conflict with office priorities)
-- **Saturday:** RobotOS M5 daytime consolidation (full mental space; team narrative finalization)
+- **Saturday:** Morning equipment sourcing for W13 factory suite; Afternoon Signee M3 extended polish (optional) — Freed from M5 work (completed Thu evening)
 - **Sunday:** W12 closure + W13 planning seed (structured review + plan seeding)
 
 ### Daily Anchor Map (Execution-Ready Inheritance)
@@ -422,7 +423,7 @@
 | **Wednesday (SHARING)** | Zephyr: Factory sharing/consolidation (live or async) + understanding capture (AM) | Morning focus; PM preparation for factory test skeleton | Mid-week transition; consolidate findings |
 | **Thursday (SKELETON)** | Zephyr: Factory test skeleton + entry point identification | RobotOS M5 prep (eve) | Test structure + decision clarity for Fri implementation |
 | **Friday (IMPLEMENTATION)** | Zephyr: Factory test implementation + result recording | Optional: Signee M3 polish or recovery (eve) | Week closure + first test result verified |
-| **Saturday** | RobotOS: M5 onboarding consolidation + team narrative (daytime) | Optional: Life Agent tier-2 (if prioritized) | Full day RobotOS; Sat evening OFF |
+| **Saturday** | Morning: Equipment sourcing for W13 factory suite | Afternoon: Signee M3 extended polish (optional) | Freed from M5 work (done Thu); Saturday evening OFF |
 | **Sunday** | W12 closure: Morning review + W13 seed planning (structured 3h) | Optional: external task or recovery (afternoon) | Afternoon optional; evening OFF |
 
 ### Re-entry Pattern
@@ -430,7 +431,7 @@
 **If Mon interrupted:** Switch to RobotOS evening synthesis (independent work; no blocker on RAM work)  
 **If Tue research blocked:** Escalate morning (10:00+) for decision; salvage Wed research if Tue lost; team sharing moves to async if sync not feasible  
 **If Wed–Thu factory work delayed:** Fri carries over; end-of-week push absorbs spillover (Fri full day factory test implementation)  
-**If Sat RobotOS delayed:** Sunday morning can absorb M5 wrap-up (within 3h closure window) if needed
+**If Sat equipment sourcing delayed:** Sunday morning can absorb equipment follow-up if needed (within 3h closure window)
 
 ### Deep Work Protection
 
