@@ -171,19 +171,25 @@
 
 ---
 
-### Goal 5 (OPTIONAL / POLISH) — Signee M3 Extended Polish + Optional System Fixes ☐ NICE-TO-HAVE
+### Goal 5 (OPTIONAL / POLISH) — Signee M3 Extended Polish + Optional System Fixes ⏸️ BLOCKED
 
 **Projects:** Signee + Life Agent | **Pool:** Pool B (personal) | **Effort:** ~3–5h if executed | **Criticality:** Nice-to-have; does not block W13
 
 **Scope:**
-- **Signee M3:** Additional polish on test sets if energy available (quality refinements, edge case handling)
+- **Signee M3:** Additional polish on test sets — **⏸️ BLOCKED (waiting for team test report submission)**
 - **Life Agent tier-2:** Fix path is documented; optional implementation if time and priority align
 
-**Exit Condition (binary, per subgoal):**
-- [ ] Signee M3 polish complete (if started) OR [ ] deferred to W13 without penalty
-- [ ] Life Agent tier-2 fixes complete (if prioritized) OR [ ] documented for W13 with clear path
+**Blocker Details (Saturday):**
+- Cannot proceed with quality refinement until team test reports uploaded
+- External dependency: Requires test report submission from team members
+- Decision: Defer to W13 when team feedback available
+- Status: Blocker documented; ready to resume when reports arrive
 
-**Why This Goal:** Secondary polish work; valuable for completeness but not blocking Q2. If Zephyr consumes more time than planned, this goal naturally defers.
+**Exit Condition (binary, per subgoal):**
+- [ ] Signee M3 polish deferred to W13 (awaiting team test reports) ✅ DOCUMENTED
+- [ ] Life Agent tier-2 fixes: documented for W13 with clear path ✅ NOT PRIORITIZED
+
+**Why This Goal (Previously):** Secondary polish work; valuable for completeness but not blocking Q2. **Now Blocked:** Dependency on external team input prevents execution.
 
 ---
 
@@ -527,11 +533,15 @@
 - [ ] Ready for team handoff (Q2 onboarding kickoff)
 - [ ] Artifact: Consolidated materials + ready-to-use checklist
 
-### Optional Work (Goal 5 — If Executed)
+### Optional Work (Goal 5 — Blocked / Deferred)
 
-**Goal 5 (if started):** ✅ DONE when:
-- [ ] Signee M3 polish complete (if started) OR deferred with boundary
-- [ ] Life Agent tier-2 fixes complete (if prioritized) OR deferred with path documented
+**Goal 5 Status:** ⏸️ **BLOCKED** (Signee M3 extended polish deferred, waiting for team test reports)
+
+**Goal 5 (if started):** ⏸️ **BLOCKED CONDITION**:
+- [ ] Signee M3 polish — **⏸️ BLOCKED** (external: team test reports needed)
+  - Decision: Defer to W13 when team feedback available
+  - Status: Blocker documented; ready to resume
+- [ ] Life Agent tier-2 fixes — Deferred to W13 (not prioritized; Path documented)
 - [ ] Clear hand-off for Q2 (what carries, what's optional)
 
 ### Week-Level DoD
