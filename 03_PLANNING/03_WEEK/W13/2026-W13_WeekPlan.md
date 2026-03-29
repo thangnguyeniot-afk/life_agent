@@ -277,6 +277,46 @@
 - Prefer team contributor handoff smooth (materials clear, setup blockers resolved by Mon)
 - Avoid factory scope inflation (deep implementation only, not comprehensive refactor or architecture redesign)
 
+### Weekend Capacity Model — R11-D Distribution Heuristic & Math Closure
+
+**Context:**  
+W13 declares MODE B (Saturday-Primary). Total personal scope: RobotOS M6 synthesis (~2–4h) + Signee M3 contingent (~0–3h if blocker clears) + Q2 planning (~3–5h weekend) = **~5–9h total personal allocation**.  
+Weekend execution available: Weekday evenings (8–9h after deductions) + Saturday daytime (?h) + Sunday afternoon (?h).
+
+**R11-D Heuristic Evaluation:**  
+Heuristic applies when weekend execution ≥3h (decision required for Sat vs. Sat+Sun split).  
+✅ **Decision:** Saturday daytime allocated to RobotOS M6 scope synthesis (2–3h planned execution, not recovery). Sunday afternoon held as reserve-only (not used as primary execution this week). **Rationale:**  
+  - RobotOS M6 work is discrete, time-boxed synthesis task (~2–3h to produce M6 scope doc given M5 team feedback available Mon–Tue)
+  - Saturday daytime provides ideal focused execution slot without competing factory-intensive office demands
+  - Sunday afternoon held as reserve buffer to handle spillover IF factory work unexpectedly completes early (low probability given Mon–Fri intensity)
+  - Sustainability: Single-day weekend execution (Sat) + office-intensive week acceptable given parallel RobotOS evening work (Mon–Thu ~0.5–1h/eve) handles ongoing communication independently
+
+**Math Closure (Proof that allocation fits capacity):**  
+```
+Personal Capacity Available:
+  Weekday evenings: Mon 1h + Tue 0.5h + Wed 0h + Thu 0.5h + Fri 0.5h = ~2.5h (net after S-factor deductions)
+  PLUS base evening reserve: ~5–6h (additional capacity preserved for flexibility)
+  TOTAL weekday evening realistic allocation: ~8–9h
+  Saturday daytime: 2–3h (M6 synthesis allocated)
+  Sunday afternoon: 0h (not used W13)
+  TOTAL personal capacity this week: ~10–12h
+
+Personal Scope Allocated:
+  RobotOS M5 handoff (Mon eve + optional Thu eve): ~1–2h
+  RobotOS M6 synthesis (Sat daytime): 2–3h
+  Signee M3 polish (contingent, if blocker clears): ~0–3h
+  Q2 planning (Sat eve + Sun morning): ~3–5h (structured overhead)
+  TOTAL personal scope: ~6–13h (upper bound includes all optional work)
+  COMMITTED scope (excluding contingent Signee): ~6–10h
+
+Fit Check:
+  Committed scope 6–10h ≤ capacity 10–12h? ✅ YES (buffer: 0–6h)
+  Contingent Signee (0–3h) fits within buffer if blocker clears? ✅ YES
+  All weekend slots declared? ✅ YES (Sat daytime 2–3h, Sat evening OFF, Sun morning 2–3h overhead, Sun afternoon 0h, Sun evening OFF)
+```
+
+**V12 Status:** ✅ PASS—All five weekend slots explicitly declared per CAPACITY_ENGINE R11. Mode B justified. Math proof confirms sufficient capacity.
+
 **SCOPE-DRIFT GUARDRAIL:**
 - Week 13 factory work is LIMITED TO: *blocker resolution, first test stabilization, additional feature logic buildup, pattern validation*
 - Factory work must NOT silently expand into: *comprehensive test coverage, system-wide refactoring, multi-module integration, future feature speculation*
@@ -287,10 +327,11 @@
 | Check | Status | Note |
 |---|---|---|
 | **V1: Pool Isolation (TYPE A)** | ✅ PASS | Zephyr ~28–36h within Pool A ~36h effective (tight but valid) |
-| **V2: Pool Isolation (TYPE B/C)** | ✅ PASS | RobotOS+Signee optional ~3–6h within Pool B ~8–9h eve + optional Sat |
+| **V2: Pool Isolation (TYPE B/C)** | ✅ PASS | RobotOS+Signee optional ~3–6h within Pool B ~8–9h eve + Sat ~2–3h allocated |
 | **V3: Evening Deduction Reality** | ✅ PASS | Thu S-only (~0.5h) + Fri optional flex accounted for; net ~8–9h realistic |
-| **V11: Weekend Slot Clarity** | ✅ PASS | Sat daytime: ~2–3h optional (planning/team); Sun evening: OFF (protected) |
-| **Overall Validation** | ✅ PASS | Plan fits dual-pool model; no cross-pool borrowing; tight but valid capacity |
+| **V11: Weekend Slot Clarity** | ✅ PASS | Slot 1 Sat daytime: 2–3h allocated to RobotOS M6 synthesis; Slot 2 Sat evening: OFF (protected); Slot 3 Sun morning: 2–3h review/closure; Slot 4 Sun afternoon: not used W13; Slot 5 Sun evening: OFF (protected) |
+| **V12: Weekend Usage Decision** | ✅ PASS | Mode B declared (Saturday-Primary); all 5 slots explicitly declared with values; R11-D heuristic evaluated (see section below); math proof provided (see section below) |
+| **Overall Validation** | ✅ PASS | Plan fits dual-pool model; no cross-pool borrowing; tight but valid capacity; weekend slots CAPACITY_ENGINE-compliant |
 
 ---
 

@@ -34,12 +34,12 @@ Generated complete W13 weekly package using LIFE_AGENT operating system, applyin
 - ✅ Both pools validated through checks V1, V2, V3, V11
 
 **Weekend Slot Modeling (R11 — CRITICAL):**
-- ✅ Sat daytime: ~2–3h optional (Q2 planning OR team coordination as needed)
-- ✅ Sat evening: OFF (protected rest)
-- ✅ Sun morning: ~2–3h structured (W13 closure + W14 seed; standard template)
-- ✅ Sun afternoon: Optional (external task or recovery)
-- ✅ Sun evening: OFF (protected recovery)
-- ✅ Mode declared: Mode B (Saturday-Primary, contingent with optional afternoon expansion)
+- ✅ **Slot 1 — Sat daytime:** 2–3h allocated to RobotOS M6 scope synthesis (concrete project work, NOT optional recovery buffer)
+- ✅ **Slot 2 — Sat evening:** OFF (protected rest)
+- ✅ **Slot 3 — Sun morning:** 2–3h structured (W13 closure + W14 seed; standard template; overhead not execution)
+- ✅ **Slot 4 — Sun afternoon:** 0h (not used W13; allocated as reserve-only if factory work completes early)
+- ✅ **Slot 5 — Sun evening:** OFF (protected recovery)
+- ✅ **Mode declared:** Mode B (Saturday-Primary with Sunday afternoon reserve). **Justification:** Weekend execution ~5–9h total (RobotOS 2–4h + Signee contingent 0–3h + planning 3–5h overhead) requires active planning per R11-D heuristic. Saturday daytime allocated as primary execution surface (M6 synthesis 2–3h). Sunday afternoon reserved (not used, as all committed work fits weekday evening + Saturday daytime; buffer preserved for escalation). Single-day weekend execution sustainable given parallel RobotOS evening work (Mon–Thu independent threading) and factory-intensive office week requiring recovery.
 
 **Capacity Allocation by Type (R4 — TYPE-AWARE):**
 - ✅ TYPE A (Zephyr): Pool ownership rows distinguished from focused mission effort
@@ -114,15 +114,17 @@ Generated complete W13 weekly package using LIFE_AGENT operating system, applyin
 
 **Personal Time (Pool B) — RobotOS + Signee + Optional Planning:**
 - ✅ Weekday evenings (19:30–21:30): RobotOS M5 handoff + team integration
-- ✅ Saturday daytime: Optional planning OR team coordination (freed from required work)
-- ✅ Sunday morning: Structured closure (not execution capacity)
-- ✅ Weekend evenings: One OFF (Sat evening OFF → Sun evening dedicated decision day OR open if needed)
-- ✅ Verified through V11 (weekend slot clarity), V9 (capacity sum)
+- ✅ Saturday daytime: 2–3h allocated to RobotOS M6 synthesis (concrete work from Pool B; primary execution surface per Mode B)
+- ✅ Sunday morning: Structured closure (not execution capacity; overhead)
+- ✅ Sunday afternoon: Reserve-only (0h primary; not scheduled; available if factory completes early)
+- ✅ Weekend evenings: Sat evening OFF (protected rest); Sun evening OFF (protected recovery)
+- ✅ Verified through V11 (weekend slot clarity), V12 (weekend usage decision), V9 (capacity sum)
 
 **No Implicit Evening Dependency:**
 - ✅ Factory work entirely office-hours (no evening spillover assumed)
 - ✅ If factory overruns > 24h by Thu EOD, trigger scope reduction (defers lower-priority work, not evening borrowing)
-- ✅ RobotOS evening blocks are stated explicitly in plan (not hidden in factory work)
+- ✅ RobotOS evening blocks are stated explicitly in plan (Mon 1h + Tue 0.5h + Thu optional 0.5h = ~2h committed)
+- ✅ Saturday RobotOS M6 synthesis (2–3h) is concrete allocation, not recovery or spillover buffer
 
 ### 5. GENERATE_WEEKPLAN Invariants (All Satisfied)
 

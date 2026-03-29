@@ -92,13 +92,13 @@
 
 | Day | Primary Anchor (Pool A) | Secondary / Evening Anchor (Pool B) | Effort | Execution Pattern | Status |
 |---|---|---|---|---|---|
-| **Monday (RESEARCH)** | **Factory: Deep-dive scope investigation** | RobotOS M6: Team feedback processing (eve) | ~8–10h office + ~1h eve | Research continuation: scope boundaries, architecture surface, phased rollout strategy; begin implementation plan | Execution-ready |
-| **Tuesday (CONSOLIDATION)** | **Factory: Scope framing + architecture decisions** | RobotOS M6: Synthesis (eve) | ~8–10h office + ~0.5h eve | Consolidate Monday findings; frame architecture; finalize implementation plan + test strategy; artifact: scope + architecture docs | Execution-ready |
-| **Wednesday (IMPLEMENTATION)** | **Factory: Implementation Sprint (Phase 1)** | RobotOS M6: Optional (eve off or light) | ~8–10h office | Deep focus: factory core implementation; build abstractions, test harness setup, Phase 1 components | Intensive |
-| **Thursday (INTEGRATION)** | **Factory: Implementation Sprint (Phase 2) + Debug** | RobotOS M6: Optional (eve) | ~8–10h office | Continue implementation; edge cases, test expansion, integration exploration; begin Fri closure prep | Intensive |
-| **Friday (CLOSURE)** | **Factory: Integration + Learnings Capture** | Optional: Recovery or RobotOS continuation (eve optional) | ~4–6h office | Integrate factory feature with codebase, regression validation, learnings documented, week closure | Standard |
-| **Saturday (OPTIONAL)** | Optional recovery (if needed) | **RobotOS: M6 Optional Planning (opt daytime)** | ~0–2h office + ~0–2h personal | RobotOS optional deep planning if M6 scope clear from Tue and energy available; Saturday evening OFF | Optional |
-| **Sunday (CLOSURE)** | **W13 Closure + W14 Planning Seed (3h morning)** | Optional external task or recovery (afternoon); Sunday evening OFF | ~3h morning | Week recap + artifacts archive + W14 context seeding | Should-Complete |
+| **Monday (RESEARCH)** | **Factory: Deep-dive scope investigation** | RobotOS M6 eve: Team feedback processing | ~8–10h office + ~1h eve | Research continuation: scope boundaries, architecture surface, phased rollout strategy; begin implementation plan | Execution-ready |
+| **Tuesday (CONSOLIDATION)** | **Factory: Scope framing + architecture decisions** | RobotOS M6 eve: Synthesis (from Mon feedback) | ~8–10h office + ~0.5h eve | Consolidate Monday findings; frame architecture; finalize implementation plan + test strategy; artifact: scope + architecture docs | Execution-ready |
+| **Wednesday (IMPLEMENTATION)** | **Factory: Implementation Sprint (Phase 1)** | RobotOS M6 eve: Off (recovery) | ~8–10h office + 0h eve | Deep focus: factory core implementation; build abstractions, test harness setup, Phase 1 components | Intensive |
+| **Thursday (INTEGRATION)** | **Factory: Implementation Sprint (Phase 2) + Debug** | RobotOS M6 eve: Optional check-in | ~8–10h office + 0–0.5h eve optional | Continue implementation; edge cases, test expansion, integration exploration; begin Fri closure prep | Intensive |
+| **Friday (CLOSURE)** | **Factory: Integration + Learnings Capture** | RobotOS weekly wrap-up (optional eve) | ~4–6h office + 0–0.5h eve optional | Integrate factory feature with codebase, regression validation, learnings documented, week closure | Standard |
+| **Saturday (Sat daytime allocated)** | Optional recovery (if factory ahead of schedule) | **RobotOS M6 synthesis: 2–3h daytime** (allocated from pool B — not optional) | 0–1h office + 2–3h personal | RobotOS M6 scope documentation + synthesis work (concrete allocation from pool B, not recovery buffer). Saturday evening OFF (protected rest). | Allocated execution |
+| **Sunday (CLOSURE)** | **W13 Closure + W14 seed (morning)** | Sunday afternoon: reserve or recovery (not scheduled) | ~3h morning structured | Week recap + artifacts archive + W14 context seeding. Sunday evening OFF (protected rest). | Should-Complete |
 
 ---
 
@@ -244,16 +244,17 @@
 
 ## Capacity Allocation by Day
 
-| Day | Pool A (Office) | Pool B (Personal) | Total Week | Cumulative | Buffer |
+| Day | Pool A (Office) | Pool B (Personal) | Total Day | Cumulative | Notes |
 |---|---|---|---|---|---|
-| **Monday** | 8–10h (Factory) | 1h (RobotOS eve) | 9–11h | 9–11h | At capacity |
-| **Tuesday** | 8–10h (Factory) | 0.5h (RobotOS eve) | 8.5–10.5h | 17.5–21.5h | At capacity |
-| **Wednesday** | 8–10h (Factory) | 0h (eve off for recovery) | 8–10h | 25.5–31.5h | ⚠️ SQUEEZED |
-| **Thursday** | 8–10h (Factory) | 0.5h (RobotOS optional) | 8.5–10.5h | 34–42h | ⚠️ SQUEEZED |
-| **Friday** | 4–6h (Factory closure) | 0.5h (optional) | 4.5–6.5h | 38.5–48.5h | Buffer eases |
-| **Saturday** | 0–2h (optional) | 0–2h (RobotOS optional) | 0–4h | 38.5–52.5h | Optional only |
-| **Sunday** | 0h | 3h (W13 closure) | 3h | 41.5–55.5h | Structured |
-| **TOTAL** | ~36–40h (office) | ~5–7h + 3h closure | ~41–50h | | Factory intensive |
+| **Monday** | 8–10h (Factory: research) | 1h (RobotOS M6: team feedback processing) | 9–11h | 9–11h | Factory research-heavy; RobotOS intake |
+| **Tuesday** | 8–10h (Factory: scope framing) | 0.5h (RobotOS M6: synthesis from Mon data) | 8.5–10.5h | 17.5–21.5h | Factory architecture locked; RobotOS M6 scope emerging |
+| **Wednesday** | 8–10h (Factory impl phase 1) | 0h (RobotOS eve off for recovery) | 8–10h | 25.5–31.5h | Factory implementation push; no evening work |
+| **Thursday** | 8–10h (Factory impl phase 2) | 0–0.5h (RobotOS optional check-in) | 8–10.5h | 33.5–41.5h | Factory implementation continues; RobotOS optional |
+| **Friday** | 4–6h (Factory closure + integration) | 0–0.5h (RobotOS optional wrap-up) | 4.5–6.5h | 38–48h | Factory work concludes; RobotOS optional |
+| **Saturday (allocated)** | 0–1h (recovery if needed; not scheduled) | 2–3h (RobotOS M6 synthesis — ALLOCATED from Pool B) | 2–4h | 40–52h | Saturday daytime = RobotOS M6 work (not buffer); Sat evening OFF |
+| **Sunday** | 0h | 0–3h (W13 closure morning 2–3h + afternoon reserve/recovery 0h) | 0–3h | 40–55h | Sunday morning structured closure; afternoon reserve (not scheduled); evening OFF |
+| **TOTAL** | ~36–40h office | ~4–7h eve + 2–3h Sat + 2–3h Sun morning | ~44–53h | | Realistic sustainable load |
+
 
 ---
 
