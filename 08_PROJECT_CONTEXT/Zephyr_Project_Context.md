@@ -69,24 +69,25 @@ Stable Delivery & Controlled Improvement
 
 # 4. Current State Snapshot
 
-## Progress Status
+## Progress Status (W12-W13 Transition Complete)
 
--   M4 (RAM test suite) 50% complete (W11): 6/12 test cases implemented + passing
--   W12 Monday focal: Complete remaining 6 cases (50% → 100%)
--   After RAM completion: Factory feature research entry point (W12 Tue-Fri)
--   Test suite stability foundation established
+-   ✅ **M4 (RAM test suite) 100% COMPLETE (W12 Mon):** 12/12 test cases implemented + passing + zero regressions
+-   ✅ **Factory feature POC COMPLETE (W12 Tue-Fri):** Research consolidated, sharing completed, skeleton + first test delivered (pending review)
+-   ✅ **Q2 Readiness:** All W11 carry-over resolved; factory blockers documented; equipment sourced
+-   📋 **W13 Entry State:** Factory deep-implementation phase ready; all prerequisites met; Q1→Q2 transition clean
 
-## Immediate Next Milestones
+## W13 Next Milestones (Q2 Start)
 
-1.  **W12 Monday (FOCAL):** RAM test suite completion (12/12 cases passing, ready for integration)
-2.  **W12 Tue-Fri:** Factory feature research + sharing + first test POC entry
-3.  **W13 Q2 kickoff:** RAM tests integrated, factory feature deep-implementation foundation ready
+1.  **W13 Mon-Fri (PRIMARY):** Factory feature deep implementation (iterate on W12 POC; address documented blockers)
+2.  **W13 (SECONDARY):** Zephyr quarterly stability maintenance per release schedule
+3.  **W13 Equipment:** Test infrastructure online; ready for factory validation
 
-## Known Blockers & W12 Status
+## W12 Completion Status (Final)
 
--   **W11 carry-over:** M4 RAM test work 50% complete (6 remaining cases) → **W12 Monday MUST-COMPLETE (focal day)**
--   **Factory feature ambiguity:** High-ambiguity entry → research-first discipline (Tue deep-dive, Wed sharing, Thu-Fri POC)
--   **Potential integration complexity:** Managed via focal-day discipline and quality gates
+-   ✅ **W11 RAM carry-over:** RESOLVED early (Mon vs planned)
+-   ✅ **Factory ambiguity:** RESOLVED via research-first; team alignment achieved  
+-   ✅ **First POC:** VALIDATED; blockers clearly documented for W13
+-   ⏳ **Factory test review:** Normal gate (code review in progress; not blocking W13 execution)
 
 ------------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 # RobotOS Inspire — Project Context
 
-> **Cập nhật lần cuối:** 2026-03-26 (W12 M5 onboarding completion)  
+> **Cập nhật lần cuối:** 2026-03-29 (W12 M5 onboarding early completion; Q2 team readiness achieved)  
 > **File này:** Ngữ cảnh dự án để import vào agent/AI assistant
 
 ---
@@ -77,17 +77,26 @@
    - GCode parser tối thiểu
    - Verify determinism & latency
 
-4. **M5: Contributor Onboarding** (✅ COMPLETE — 2026-03-26)
-   - CONTRIBUTING.md (contributor README, M5 entry points, contribution flow)
-   - robotos_m5_onboarding_summary.md (architecture summary, team context, Monday entry points)
-   - Team materials ready for Q2 Monday kickoff
+4. **M5: Contributor Onboarding** (✅ **COMPLETE — 2026-03-26 EARLY** <u>Q1 W12 Thu</u>)
+   - ✅ CONTRIBUTING.md (contributor README, M5 entry points, contribution flow)
+   - ✅ robotos_m5_onboarding_summary.md (architecture summary, team context, Monday entry points)
+   - ✅ **Q2 Team readiness:** Materials ready for Monday Q2 kickoff
 
-### Blockers (as of 2026-03-26)
+### W12-W13 Transition Status (Final)
+
+| Item | Status | Notes |
+|---|---|---|
+| **Q1 M5 (Onboarding)** | ✅ COMPLETE (2 days early) | Thu 2026-03-26; Delivered Thu evening; Q2 team-ready |
+| **Q2 M1–M3 Readiness** | ✅ READY | Architecture + design ready for Monday deep-dive |
+| **W13 Entry Point** | 📋 **M1 Kernel Setup** | Start with Zephyr workspace config + build system |
+
+### Blockers (as of W12 Final / W13 Entry)
 
 | # | Blocker | Severity | Status |
 |---|---------|----------|--------|
-| 1 | M1-M2 synthesis clarity | 🟢 RESOLVED | Complete (W12 evening synthesis + Sat consolidation done; ready for team review) |
-| 2 | Q2 contributor onboarding (M5) | 🟢 COMPLETE | Delivered (CONTRIBUTING.md + team materials ready; Q2 Monday team-ready) |
+| 1 | M1–M3 synthesis clarity | 🟢 RESOLVED | Complete (W12 evening synthesis + Sat consolidation done; ready for deep implementation) |
+| 2 | Q2 contributor readiness (M5) | 🟢 COMPLETE | Delivered early (CONTRIBUTING.md + team materials ready; Q2 Monday team-ready) |
+| 3 | W13 Execution | ✅ READY | All predecessor work complete; can start M1 Monday morning |
 
 ---
 

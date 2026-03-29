@@ -2,7 +2,7 @@
 
 > **Dùng để import vào AI agent.**  
 > Cập nhật file này mỗi đầu sprint hoặc khi có thay đổi lớn.  
-> **Last updated:** 2026-03-22 (W12 planning, M3 status update)
+> **Last updated:** 2026-03-29 (W12 final: M3 polish blocked, team test reports dependency documented)
 
 ---
 
@@ -31,20 +31,21 @@ Hệ thống thử quần áo ảo gồm 3 thành phần chính:
 
 | Field | Value |
 |---|---|
-| **% hoàn thành** | ~18% (Docs 100% ✅ · Android scaffold 15% · PWA 0% · CI/CD 10% · Backend external · M3 polish optional W12) |
-| **Sprint hiện tại** | Sprint 1 – Foundation (W11 M3 polish complete; W12 optional extended polish if capacity)
+| **% hoàn thành** | ~18% (Docs 100% ✅ · Android scaffold 15% · PWA 0% · CI/CD 10% · Backend external · M3 polish 100% ✅ W11, extended polish ⏸️ blocked) |
+| **Sprint hiện tại** | Sprint 1 – Foundation (W12 M3 extended polish ⏸️ blocked awaiting team test reports; W13 continue when reports available)
 
 ### Trạng thái theo thành phần
 
 | Component | Status | Ghi chú |
 |---|---|---|
 | **Docs / Planning** | ✅ Done | Sprint 0 hoàn thành (Dec 2024 – Jan 2025); W11 complete |
-| **M3 Polish (Optional)** | ✅ Complete (W11) / ⏳ Enhanced polish if capacity (W12) | W11 M3 polish done; W12 optional extended polish defers if Zephyr/RobotOS consume capacity |
-| **Android App** | 🔄 In progress (scaffold) | Hilt DI ✅, Room DB ✅, Retrofit ✅, 3 Activities (Mirror/QR/Splash) shell với TODO – chưa có logic |
-| **PWA** | ❌ Not started | Directory hoàn toàn trống – chưa có code |
+| **M3 Polish (Baseline)** | ✅ Complete (W11) | W11 M3 polish done ✅ (baseline quality); all acceptance criteria met |
+| **M3 Extended Polish** | ⏸️ BLOCKED (W12) | Waiting for team test report submission; cannot proceed with quality refinement until reports uploaded; defer to W13 when available |
+| **Android App** | 🔄 In progress (scaffold) | Hilt DI ✅, Room DB ✅, Retrofit ✅, 3 Activities (Mirror/QR/Splash) shell with TODO – logic pending |
+| **PWA** | ❌ Not started | Directory empty – no code; Sprint 2 dependency |
 | **Cloud Backend** | <!-- TODO --> | <!-- TODO --> |
 | **AI Fitting Service** | <!-- TODO --> | <!-- TODO --> |
-| **CI/CD Pipeline** | ⚠️ Not implemented | Docs & plan xong ✅, nhưng GitHub Actions / Firebase chưa setup (tasks 4.1–4.6 còn ⏳) |
+| **CI/CD Pipeline** | ⚠️ Not implemented | Docs & plan complete ✅; GitHub Actions / Firebase setup pending |
 
 ### 3 Milestone tiếp theo
 
@@ -56,6 +57,7 @@ Hệ thống thử quần áo ảo gồm 3 thành phần chính:
 
 ### Blockers
 
+- **M3 Extended Polish (W12)** ⏸️ **BLOCKED** – Waiting for team test reports; cannot proceed with quality refinement until reports uploaded; **Action:** Resume W13 when team reports available
 - **PWA chưa bắt đầu** – directory rỗng, chưa assign dev, blocking toàn bộ Sprint 3
 - **CI/CD chưa có pipeline thực tế** – GitHub Actions chưa được setup dù docs đã viết xong (tasks 4.1–4.6 còn ⏳)
 - **Android activities chỉ là shell** – MirrorActivity, QRCodeActivity đều là `// TODO`, chưa có camera/WebSocket logic
