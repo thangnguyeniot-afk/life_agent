@@ -2,6 +2,55 @@
 
 **Week:** March 30 – April 5, 2026 (W13 / Q2 Week 1)  
 **Status:** Execution-ready (compiled from W13_WeekPlan.md on 2026-03-29)  
+**Theme:** Factory feature deep implementation launch + Q2 system baseline + RobotOS team handoff + Signee blocker watch  
+**Capacity Model:** Dual-pool (Zephyr Pool A office ~36h effective + RobotOS/Personal Pool B ~8–9h eve + optional weekend)  
+**Rhythm:** Factory work intensive Mon-Fri (blocker triage Mon-Tue → implementation Wed-Fri); RobotOS evening threading independent; Signee blocker-contingent; Sunday structured closure
+
+---
+
+## Weekly Execution Intent
+
+### Strategy Statement
+
+**Week 13 kicks off Q2 with factory feature deep implementation as primary delivery path:**
+
+1. **Factory Feature Deep Implementation (Mon–Fri office intensive, ~20–24h allocated)**
+   - Monday-Tuesday (8–10h): Blocker triage + first test stabilization + scope framing
+   - Wednesday-Friday (12–14h): Implementation sprint + integration validation + learnings capture
+   - Scope enforcement: Deep implementation (not POC), integration-ready, zero regressions
+   - Scope guardrail: Blocker resolution + pattern iteration only (not comprehensive refactor or scope inflation)
+
+2. **Zephyr System Baseline (Daily threading, ~8–12h side-car)**
+   - Daily: 15–30 min health check (any regressions from factory work?)
+   - Wednesday: Release + quarterly planning sync (30 min to 1h)
+   - Friday: Integration validation + ecosystem confirmation
+   - Role: Health gate preventing silent system degradation during intensive factory work
+
+3. **RobotOS Q2 Team Integration (Evening independent, ~2–4h)**
+   - Monday evening: M5 contributor walkthrough + team readiness confirmation (30–45 min)
+   - Optional Thu evening: Ramp check-in (if team member actively ramping, 30 min)
+   - Role: Smooth handoff of M5 materials; team ready for Monday Q2 contributor work
+
+4. **Signee M3 Blocker Watch (Contingent, ~0–3h if unblocked)**
+   - Passive watch mon-Fri for team test report arrival
+   - Execute immediately when blocker clears (same-day 2–3h polish)
+   - If no reports by Fri EOW: Document blocker status + escalation
+
+5. **Q2 Planning & W14 Seeding (Optional, ~3–5h weekend)**
+   - Saturday eve (opt): Q2 milestone validation (45 min to 1h)
+   - Sunday morning: W13 closure + W14 context seed (2–3h structured)
+   - Role: Ensure W14 launch preparation + no strategic misalignment
+
+### Execution Principles
+
+- **Factory front-loaded ambiguity-reduction:** Mon-Tue blocker triage + scope framing unlocks Wed-Fri implementation push (no surprises mid-code)
+- **Research-first carries forward:** Mon-Tue factory work is triage + planning heavy (not code-heavy); validates feasibility before Wed intensity
+- **Pool separation enforced:** Factory stays in office hours (100% Pool A); RobotOS stays in personal time (100% Pool B evening); no cross-pool borrowing
+- **System health gates:** Daily health check prevents factory intensity from silently breaking platform; regression validation Friday
+- **Parallel independence:** RobotOS evening work does NOT conflict with office intensive week (independent time slots, independent blockers)
+
+**Week:** March 30 – April 5, 2026 (W13 / Q2 Week 1)  
+**Status:** Execution-ready (compiled from W13_WeekPlan.md on 2026-03-29)  
 **Theme:** Factory deep implementation launch + RobotOS M6 planning + Q2 team readiness  
 **Capacity Model:** Dual-pool (Zephyr Pool A office ~36h + RobotOS/Personal Pool B ~10h eve + optional Sat)  
 
