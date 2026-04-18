@@ -48,176 +48,230 @@
 
 ## Goals (Priority-Sequenced)
 
-### Goal 1 (PRIMARY) — Factory Feature Deep Implementation ✅ MUST
+### Goal 1a (PRIMARY — PRIORITY 1) — Zephyr Project Migration Completion ✅ MUST
 
-**Project:** Zephyr / Factory Feature | **Pool:** Pool A (office hours) | **Effort:** ~20–24h (split across week) | **Criticality:** Q2 foundation delivery; unblock deeper factory work
+**Project:** Zephyr | **Pool:** Pool A (office hours) | **Effort:** ~4–5h | **Criticality:** Foundation requirement; unblocks all subsequent work
 
-**Scope (Building on W12 POC):**
+**Scope (Migrate codebase + preserve work):**
 
-**Phase 1a (Monday–Tuesday): Blocker Resolution & First Test Stabilization**
-- **Input:** factory_test_result_and_blockers.md from W12 (explicit blocker list)
-- **Review blockers:** Identify which blockers are:
-  - Implementation-level (missing factory logic, need to build X)
-  - Design-level (scope unclear, need decision Y)
-  - Integration-level (test harness issues, need setup Z)
-- **Triage decision:** Hard blockers (stop progress) vs. soft blockers (work around, iterate)
-- **First test iteration:** If W12 POC failed or blocked, attempt stabilization:
-  - Identify root cause from W12 result (why did test fail?)
-  - Implement minimal fix (make first test pass OR accept blocked + document why + plan workaround)
-  - If passing: verify against W12 assumptions (is it a real pass or false positive?)
-- **Artifact:** `factory_blocker_resolution.md` (blocker triage + decisions + first test status update)
-- **Execution window:** Deep focus (Mon-Tue morning; 6–8h minimum focus before afternoon)
-- **Rationale:** Start week with clarity on what's truly blocking vs. what's solvable. Unblock faster iteration.
-
-**Phase 1b (Wednesday–Friday): Factory Feature Expansion & Stabilization**
-- **Build on stable first test:** Assuming first test from W12/Mon-Tue is stable (passing or documented blocker with workaround)
-- **Expand factory feature scope:** Add next test case or implement additional factory logic based on W12 research
-  - Approach 1 (if blockers low): Implement more factory feature logic; add 2nd/3rd test cases to validate pattern
-  - Approach 2 (if high-ambiguity remains): Reduce scope to "factory entry layer only" (minimal facade); defer deeper logic to W14
-- **Integration boundary:** Confirm factory feature integrates with existing codebase (zero regressions on related test suites)
-- **Documentation:** Record scope decisions (what factory features are in/out for W13 vs. W14+)
-- **Artifact:** `factory_feature_w13_deliverables.md` (what was built, integration status, next-week entry points)
-- **Execution window:** Wed-Fri (12–16h focused implementation; Fri afternoon polish + artifact closure)
-- **Rationale:** Establish factory feature iteration pattern; move from POC to usable feature state. Lock scope for W14 planning.
+**Phase 1a (Monday–Tuesday): Migration in Small Chunks**
+- **Chunk model (NOT monolithic):**
+  - XS chunk: Core source structure migration (30–45 min, Mon morning)
+  - S chunk: Identify + preserve unmerged PRs (1–1.5h, Mon afternoon)
+  - S chunk: Code migration + integration (1–1.5h, Tue morning)
+  - S chunk: Dependency + config resolution (1h, Tue afternoon)
+  - S/M chunk: Verification + smoke test (1–1.5h, Tue EOD)
+- **Artifact:** `migration_completion_checklist.md` (all PRs preserved, code verified, no regressions)
+- **Rationale:** Small chunks reduce risk. Allows escape if blockers emerge. Delivery order: MUST complete before factory work.
 
 **Expected Artifacts:**
-- `factory_blocker_resolution.md` (Mon-Tue: blocker triage + first test status + decisions)
-- Updated test suite (factory test cases + passing/documented status)
-- `factory_feature_w13_deliverables.md` (Wed-Fri: scope delivered + integration status + W14 entry points)
-- Zero regression validation on related test suites
-- Artifact: Factory feature tested + documented + ready for deeper work in W14
+- Migration checklist (✓ all source transferred, ✓ PRs preserved, ✓ dependencies resolved, ✓ CI passing)
+- Project moved to new repo (verified)
 
 **Exit Condition (binary):**
-- [ ] W12 POC blocker(s) identified and triaged (hard vs. soft)
-- [ ] First factory test stable (passing OR blocked with documented workaround)
-- [ ] At least one additional factory logic implemented or one additional test case added (proof of iteration pattern)
-- [ ] Integration validated (zero regressions)
-- [ ] W13 factory deliverables documented (scope boundaries + next-week entry points clear)
-- [ ] Factory feature moves from POC to usable state (not comprehensive, but not prototype-only)
+- [ ] All source code transferred to new repo
+- [ ] Unmerged PRs identified + preserved
+- [ ] CI passing (zero regressions)
+- [ ] Team notified of new repo
 
-**Why This Goal:** W12 established entry; W13 proves factory feature works at scale (multiple tests, multiple logic pieces). Establishes foundation for Q2 factory work acceleration. Core delivery of Q2 Week 1.
+**Why This Goal:** Migration is atomic hard prerequisite. Delivery order priority. Tight chunks prevent blocked situations.
 
 ---
 
-### Goal 2 (SECONDARY) — Zephyr System Stabilization & Quarterly Baseline ✅ SHOULD
+### Goal 1b (PRIMARY — PRIORITY 2) — Factory Feature Deep Research & Sharing ✅ MUST
 
-**Project:** Zephyr / KTLO | **Pool:** Pool A (office hours) | **Effort:** ~8–12h (side-car work during factory week) | **Criticality:** Medium; maintains system health, enables factory work execution
+**Project:** Zephyr / Factory Feature | **Pool:** Pool A (office hours) | **Effort:** ~8–10h | **Criticality:** High-ambiguity deep work; research-first before implementation
 
-**Scope (Ongoing KTLO + Q2 Setup):**
+**Scope (Research + structured knowledge sharing):**
 
-**Phase 2a (Morning Check-in, Daily): System Health Baseline**
-- **Daily:** Review test suite status after factory work (no regressions introduced?)
-- **Daily:** Check for any environment issues or dependencies that impact factory work
-- **Standing meetings:** Standups, email, decision log updates (baseline admin ~1–2h/day included in pool A as TYPE D overhead)
-- **Any escalations:** Surface and decide same-day (do NOT let blockers fester)
+**Phase 1b-i (Wednesday 09:00–12:30): Deep Research Block 1**
+- **Investigate factory patterns** in existing codebase exhaustively
+- **Document pattern options:** Inheritance vs. composition; singleton vs. manager; factory method vs. builder
+- **Identify architectural boundaries:** What factory must handle vs. caller owns
+- **Artifact start:** `factory_research_patterns.md` (patterns analyzed, trade-offs documented)
+- **Rationale:** High-ambiguity requires uninterrupted deep thinking. Wed = fresh after migration complete.
 
-**Phase 2b (Mid-week, Wednesday): Release & Quarterly Planning Sync**
-- **Release status check:** Are we on track for planned deliverables?
-- **Q2 quarterly baseline:** Confirm capacity model is still valid (office-hours allocation realistic, no scope creep signals)
-- **Planning review:** Any context signals requiring mid-week replan (per GENERATE_WEEKPLAN invariants)?
-- **Artifacts:** Quick status note in Decision Log (tracking for month review)
+**Phase 1b-ii (Wednesday 13:30–17:00 + Thursday 09:00–12:30): Deep Research Block 2**
+- **Consolidate findings:** Make architecture decision (pattern + rationale)
+- **Define scope boundaries:** IN vs. OUT for W13
+- **Write implementation strategy:** Roadmap
+- **Artifact:** `factory_research_summary.md` (recommended pattern, scope, strategy)
+- **Rationale:** Continuation from Block 1; momentum. Two blocks avoid fatigue.
+
+**Phase 1b-iii (Thursday 13:30–17:00): Knowledge Sharing Prep**
+- **Synthesize for team:** What surprised? What's risky?
+- **Document handoff:** Structured notes for PR review
+- **Artifact:** `factory_research_team_share.md` (summary + decision points)
 
 **Expected Artifacts:**
-- Stable daily execution (tests passing, no new blockers introduced)
-- Zephyr quarterly baseline confirmed or flagged for replan
-- Decision log updated (any releases or config decisions)
+- `factory_research_patterns.md`, `factory_research_summary.md`, `factory_research_team_share.md`
 
 **Exit Condition (binary):**
-- [ ] Factory work does not introduce system regressions (daily validation)
-- [ ] Release schedule confirmed on-track OR escalated
-- [ ] No system-level blockers inhibiting factory iteration
-- [ ] Q2 baseline assumptions remain valid (capacity model holds)
+- [ ] ≥3 factory patterns thoroughly researched + analyzed
+- [ ] Architecture decision made + documented (why chosen)
+- [ ] Scope boundaries clear (IN vs. OUT)
+- [ ] Implementation strategy outlined
+- [ ] Team handoff ready (knowledge artifacts shared)
 
-**Why This Goal:** Factory work is creative + high-focus; easy to break existing system in rush. Goal 2 is the health check that prevents Goal 1 from silently degrading system stability. Secondary but non-negotiable.
+**Why This Goal:** High-ambiguity research must precede implementation. Ambiguity-aware scheduling: research-first prevents late-week surprises.
 
 ---
 
-### Goal 3 (OPTIONAL) — Signee M3 Extended Polish + Team Coordination ⏸️ BLOCKED (Resume if Team Reports Arrive)
+### Goal 1c (PRIMARY — PRIORITY 3) — Factory Test Case Implementation ✅ SHOULD
 
-**Project:** Signee | **Pool:** Pool B (personal) | **Effort:** ~3–5h if executed | **Criticality:** Nice-to-have; does not block Q2 primary
+**Project:** Zephyr / Factory Feature | **Pool:** Pool A (office hours) | **Effort:** ~4–6h | **Criticality:** Validates research; foundation for W14 deeper work
 
-**Scope (Contingent on Team Input):**
+**Scope (Implement first test case as proof):**
 
-**Phase 3a: If Team Test Reports Arrive by Wed EOD**
-- **Resume M3 quality refinement** on test sets (based on team report feedback)
-- **Consolidate findings** into improved quality baseline (update test coverage, integration notes)
-- **Artifact:** Refined M3 test coverage (updated based on team feedback)
-- **Execution:** Thu-Fri evening blocks or Saturday (if factory work complete + capacity available)
+**Phase 1c-i (Friday 09:00–12:00): Implementation Start**
+- **Implement factory structure** (based on Wed-Thu strategy)
+- **Write first test case** (validates pattern)
+- **Get test passing**
+- **Checkpoint:** Pattern works or clear failure point identified
 
-**Blocker Status:** Awaiting team test report submission. Cannot proceed until reports available. **Decision: DEFER to W13 Wed 17:00 gate. If reports not arrived by Wed EOD, defer polish to W14.**
+**Phase 1c-ii (Friday 13:00–16:00): Integration + Closure**
+- **Integrate factory into codebase** (no regressions)
+- **Document learnings:** Validated or needs iteration?
+- **Archive artifacts**
+- **Artifact:** `factory_implementation_v1_checkpoint.md` (built, tested, W14 path)
 
-**Exit Condition (binary, IF executed):**
-- [ ] Team test reports received and reviewed
-- [ ] M3 polish completed (refinement applied)
-- [ ] Updated M3 artifacts documented
+**Expected Artifacts:**
+- Factory implementation (working first test case)
+- Integration validation (zero regressions)
+- Learnings captured
 
-**Why This Goal:** Signee M3 team collaboration requires external input. Goal 3 frames the external dependency clearly; makes visible that we're waiting, not avoiding. If reports never arrive, deferral is explicit (not silent).
+**Exit Condition (binary):**
+- [ ] Factory structure implemented per strategy
+- [ ] First test case passing
+- [ ] Integration validated
+- [ ] W14 path clear
+
+**Why This Goal:** Validates research. Proves pattern works. Friday optimal (fresh, not rushed).
+
+---
+
+### Goal 2 (SECONDARY) — Zephyr System Stabilization & Daily Health ✅ SHOULD
+
+**Project:** Zephyr / KTLO | **Pool:** Pool A (office hours) | **Effort:** ~2–3h (daily-threaded) | **Criticality:** Medium; maintains platform stability
+
+**Scope (KTLO threading):**
+
+**Phase 2a (Daily: 15–30 min health check)**
+- Check system test suite (any regressions?)
+- Check environment/dependencies
+- Escalate blockers same-day
+
+**Phase 2b (Friday EOD + Monday seed: 30 min each)**
+- Friday: Integration validation (new code + existing tests coexist)
+- Monday: System ready for W14
+
+**Expected Artifacts:**
+- Daily execution stable
+- Health check log (blockers + decisions)
+
+**Exit Condition (binary):**
+- [ ] No new regressions (daily validated)
+- [ ] System ready for W14
+
+**Why This Goal:** Migration + factory work intensive. Health threads prevent silent degradation. Low effort but critical gate.
+
+---
+
+### Goal 3 (SECONDARY — URGENT) — Signee Team Test Report Processing ✅ MUST
+
+**Project:** Signee | **Pool:** Pool B (personal evening) | **Effort:** ~2–3h | **Criticality:** HARD DEADLINE Tue/Wed
+
+**Scope (Team coordination deadline):**
+
+**Phase 3a (Monday Evening → Wednesday EOD): Report Processing**
+- **Watch for team test report** (Mon-Wed evening windows)
+- **Upon arrival:** Review immediately (same-day evening, 1–1.5h)
+- **Define new test plan** (1–1.5h planning)
+- **Artifact:** `signee_test_report_summary.md` + `signee_new_test_plan.md`
+
+**Gate Decision:** If NOT arrived by Wed 17:00 → defer to W14; escalate
+
+**Expected Artifacts:**
+- Test report reviewed + captured
+- New test plan written
+- Team notified
+
+**Exit Condition (binary):**
+- [ ] Team test report received AND reviewed
+- [ ] Findings captured
+- [ ] New test plan written (clear next steps)
+- [ ] OR: Wed 17:00 gate — escalate if not arrived
+
+**Why This Goal:** HARD deadline. Drives M3 continuation. No ambiguity acceptable.
 
 ---
 
 ### Goal 4 (SECONDARY) — RobotOS Q2 Team Contributor Integration ReadyMission D: RobotOS Q2 Team Contributor Integration ✅ SHOULD
 
-**Project:** RobotOS | **Pool:** Pool B (personal evening + optional Sat) | **Effort:** ~2–4h | **Criticality:** Medium; enables Q2 team execution; threading work (non-blocking for factory)
+---
 
-**Scope (Building on W12 M5 Onboarding Material):**
+### Goal 4 (SECONDARY) — RobotOS Setup + Development Foundation ✅ SHOULD
 
-**Phase 4a (Monday Evening): Contributor Onboarding Walkthrough**
-- **Context:** M5 materials (CONTRIBUTING.md + team summary) delivered in W12; now enable team to start Monday morning
-- **Monday evening:** Final walkthrough of contributor setup (quick validation that team materials are clear enough for Monday launch)
-- **Resolve last-minute setup questions** (if team has pre-Monday clarifications)
-- **Artifact:** Finalized team entry checklist (Monday 09:00 handoff ready)
-- **Execution:** 30–45 min evening call (if team available) or async confirmation
+**Project:** RobotOS | **Pool:** Pool B (personal evening + optional weekend) | **Effort:** ~3–5h | **Criticality:** Medium; enables Q2 team execution + architecture work
 
-**Phase 4b (Optional, If Team Member Integrating): Ramp-Up Mentoring (Thu Evening)**
-- **If team member starts architecture deep-dive Mon-Tue:** Provide Thu evening check-in
-- **Ramp feedback:** How's the contributor onboarding working? Any setup blockers?
-- **Adjust materials:** Quick refinement if walkthrough revealed gaps
-- **Execution:** 30 min check-in (async Q&A acceptable)
+**Scope (Front-load setup; enable Q2 depth):**
+
+**Phase 4a (Monday Evening): VSCode Workspace + Tools Setup**
+- **Setup VSCode environment** (extensions, debugger, project structure)
+- **Configure dev tools** (build system, test runner, linter)
+- **Time-consuming but LOW ambiguity** — est. 1.5–2h
+- **Artifact:** Functional VSCode workspace (ready for architecture work)
+- **Rationale:** Front-load. Foundation ready early. No blocker risk.
+
+**Phase 4b (Wednesday Evening): Schematic Review + Dev Kit Test**
+- **Read schematic documentation** (understand hardware boundaries)
+- **Test dev kit setup** (verify operational)
+- **Time: ~1.5h**
+- **Artifact:** Schematic understood; dev kit working; integration pts clear
+- **Rationale:** After factory research (Wed days); evening threading independent
+
+**Phase 4c (Friday Evening OR Saturday Daytime): Training Check + M6 Synthesis**
+- **Check team training progress**
+- **M6 scope synthesis** (consolidate findings into architecture doc)
+- **Time: 1h check + 2–3h synthesis**
+- **Artifact:** M6 scope document (Q2 team execution ready)
+- **Rationale:** Flexible; can move to weekend if Fri compressed
 
 **Expected Artifacts:**
-- Final contributor onboarding checklist
-- Team ready for Monday Q2 contributor sprint
-- Ramp-up feedback documented (for future contributor onboarding refinement)
+- VSCode workspace (Mon)
+- Schematic reviewed + dev kit functional (Wed)
+- M6 scope synthesis document (Fri/Sat)
 
 **Exit Condition (binary):**
-- [ ] Contributor setup materials confirmed accessible and clear by Mon 09:00
-- [ ] Team has no setup blockers before Monday start
-- [ ] Optional: Thu check-in completed (if contributor began Mon work)
+- [ ] VSCode workspace configured (no blockers)
+- [ ] Schematic reviewed (boundaries understood)
+- [ ] Dev kit functional
+- [ ] M6 scope document complete
 
-**Why This Goal:** W12 delivered the materials; W13 ensures handoff happens smoothly. Threading goal; independent from factory work; ensures Q2 team readiness.
+**Why This Goal:** Front-loaded setup unblocks Q2. M6 synthesis threads independent. Realistic staging.
 
 ---
 
-### Goal 5 (OPTIONAL / PLANNING) — Q2 Month Planning & Milestone Validation ✅ SHOULD
+### Goal 5 (OPTIONAL) — Signee Android Board Testing ✅ IF CAPACITY
 
-**Project:** Life Agent / System | **Pool:** Pool B (personal) + Optional Pool A (Sunday AM optional) | **Effort:** ~3–5h | **Criticality:** Important for Q2 clarity; not blocking this week's execution
+**Project:** Signee | **Pool:** Pool B (personal weekend) | **Effort:** ~2–3h | **Criticality:** Nice-to-have; validates hardware
 
-**Scope (Quarter Planning Alignment):**
+**Scope (Board validation, IF time allows):**
 
-**Phase 5a (Saturday Evening): Q2 Milestone Map Review**
-- **Review Q2 milestones:** Are W13 factory goals aligned with Q2 finish goals?
-- **Check RobotOS M1–M3 timeline:** Is April 30 v0.1 Alpha deadline realistic with current pace?
-- **Check Signee scope:** What's the path to Alpha with team test reports pending?
-- **Artifact:** Q2 realignment note (if adjustments needed) or confirmation of W12 planning (if still valid)
-- **Execution:** Saturday evening personal time (45 min to 1h)
-
-**Phase 5b (Sunday Morning, Optional): W13 Closure + W14 Seed**
-- **W13 closure:** Artifacts archived, W13 DDL confirm, carry-over identified
-- **W14 seed:** Preliminary view of what W14 should focus on (factory continuation? RobotOS M1 continuation? Signee team sync?)
-- **Artifact:** W13 final closure checklist + W14 preliminary context note
-- **Execution:** Sunday 2–3h structured closure (standard template)
+**Phase 5a (Saturday daytime OR Sunday afternoon): Board Testing**
+- **Test board functionality** (basic bringup)
+- **Document findings**
+- **Artifact:** `signee_board_validation.md`
+- **Contingency:** If factory/RobotOS overrun → defer to W14
 
 **Expected Artifacts:**
-- Q2 milestone validation (confirmed or adjusted)
-- W13 artifacts archived + W14 context seeded
-- No surprises Monday Q2 Week 2
+- Board tested (or deferred with reason)
+- Findings documented
 
 **Exit Condition (binary):**
-- [ ] Q2 milestones reviewed and confirmed (no misalignment)
-- [ ] W13 closure complete (artifacts documented + W14 seed prepared)
-- [ ] Team ready for Monday W14 continuation
+- [ ] Board tested OR explicitly deferred
 
-**Why This Goal:** Q2 is a full quarter; week 1 sets pace. Goals 5 ensures we're not drifting off course by week 2. Planning-level quality assurance.
+**Why This Goal:** Nice-to-have. Optional; triggers if capacity available.
 
 ---
 
@@ -229,53 +283,99 @@
 - Gross available: ~40h (Mon–Fri, 08:30–17:00; standard office week)
 - Admin deduction: ~4h (standing meetings, email, KTLO overhead)
 - **Net Zephyr capacity: ~36h effective**
-- **Goal 1 allocation (Factory deep implementation): ~20–24h** (Mon-Fri distributed work)
-- **Goal 2 allocation (System baseline + daily health check): ~8–12h** (side-car + Wed planning sync)
-- **Total Zephyr committed: ~28–36h** (within capacity; buffer: ~0–8h for unknowns)
-- **Status:** ✅ Within capacity (headroom tight but available for factory escalations)
+- **Goal 1a allocation (Migration): ~4–5h** (Mon-Tue, XS/S/M chunks)
+- **Goal 1b allocation (Factory research): ~8–10h** (Wed-Thu, 2 deep blocks)
+- **Goal 1c allocation (Factory test): ~4–6h** (Fri, implementation + integration)
+- **Goal 2 allocation (System health): ~2–3h** (daily threading, not bulk)
+- **Total Zephyr committed: ~18–24h** (within ~36h; buffer: ~12–18h for unknowns)
+- **Status:** ✅ Within capacity (healthy buffer preserved)
 
-**Pool B (Personal evening + weekend, TYPE B + TYPE C + optional):**
+**Pool B (Personal evening + weekend, TYPE B + TYPE C):**
 
 *Weekday evenings (Mon–Fri, 19:30–21:30):*
 - Gross: 2h × 5 days = 10h/week
-- Deductions: Thu evening S-only (~0.5h), Fri optional flex
-- **Net planned evening capacity: ~8–9h** (conservative, accounting for energy variation)
+- Deductions: Thu evening S-only (~0.5h), Fri flex
+- **Net planned evening capacity: ~8–9h**
 
-*Saturday Slot 1 (daytime):*
-- Planned: ~2–3h (optional Q2 planning refresh OR team coordination if needed)
-- Optional: May be freed depending on Friday factory work completeness
-- Role: Reserve capacity or planning/team time
+*Weekend slots (R11 explicit):*
+- **Sat daytime (Slot 1):** 2–3h (RobotOS M6 synthesis, allocated)
+- **Sat evening (Slot 2):** OFF (protected rest)
+- **Sun morning (Slot 3):** 2–3h (structured closure overhead, not execution)
+- **Sun afternoon (Slot 4):** 1–2h (optional spillover if needed; Signee board test)
+- **Sun evening (Slot 5):** OFF (protected rest)
 
-*Sunday (Morning + Optional Afternoon):*
-- Morning: ~2–3h (structured W13 closure + W14 seed planning, standard template)
-- Afternoon: Optional (external task or recovery; not counted as baseline)
-- Evening: OFF (protected recovery)
+**Pool B allocation:**
+- **Goal 3 (Signee report + plan): ~2–3h** (evening Mon-Wed, URGENT)
+- **Goal 4a (RobotOS VSCode setup): ~1.5–2h** (evening Mon)
+- **Goal 4b (Schematic review): ~1.5h** (evening Wed)
+- **Goal 4c (M6 synthesis): ~3h** (Fri evening OR Sat daytime, flexible)
+- **Goal 5 (Signee Android board): ~2–3h** (Sat/Sun afternoon OR defer)
+- **Total personal committed: ~10–14h** (evening + weekend combined)
 
-**Goal 4 (RobotOS integration) allocation:**
-- Evening Monday + optional Thu: ~1–2h total (contributor onboarding walkthrough + optional ramp check-in)
-- **Fits within Pool B evening capacity** (independent threading; non-blocking)
+**Capacity check:**
+- Evening capacity: ~8–9h
+- Can allocate: Signee 2–3h + RobotOS setup 1.5–2h + schematic 1.5h + training 0–1h = ~6–8h ✓
+- Remaining for M6: ~3h (must move to weekend OR compress evening)
+- Weekend: M6 3h (Sat daytime allocated directly)
+- Signee board: 2–3h (Sun afternoon OR defer if overrun)
 
-**Goal 3 (Signee optional) allocation:**
-- If reports arrive: ~2–4h Thu-Fri evening or Saturday (contingent work; naturally defers if reports late)
-- **Optional; may consume Saturday if Goal 1 complete**
+**Status:** ✅ Capacity TIGHT but achievable. M6 on Sat daytime. Signee board optional (Sun afternoon if capacity).
 
-**Goal 5 (Planning) allocation:**
-- Saturday eve + Sunday morning: ~3–5h (contained within personal + Sunday morning standard)
-- **Fits within structured weekend overhead**
+---
 
 ### Constraints (Hard + Soft)
 
 **Hard Constraints:**
-- [ ] Zephyr must not borrow from personal time (Pool A isolation / R9 enforced)
-- [ ] RobotOS + Signee must not borrow from office time (Pool B isolation / R9 enforced)
-- [ ] Factory feature iteration must maintain zero regression baseline (stability non-negotiable)
-- [ ] Weekend slots: Exactly ONE of {Sat evening, Sun evening} must be OFF (R10 enforced) → **Sun evening = OFF**
+- [ ] Zephyr must NOT borrow from personal time (Pool A isolation / R9)
+- [ ] RobotOS + Signee must NOT borrow from office time (Pool B isolation / R9)
+- [ ] Migration MUST complete delivery order (before factory research)
+- [ ] Factory research (HIGH ambiguity) MUST have 2 uninterrupted deep blocks (Wed-Thu)
+- [ ] Signee report processing is HARD deadline (Tue/Wed gate)
+- [ ] Weekend: Exactly ONE of {Sat evening, Sun evening} must be OFF (R10) → **Both OFF (protected rest)**
 
-**Soft Constraints (preferences):**
-- Prefer Mon-Tue factory blocker triage + first test stabilization (clear path before Wed-Fri expansion)
-- Prefer Wed-Fri factory implementation focused (uninterrupted deep work)
-- Prefer team contributor handoff smooth (materials clear, setup blockers resolved by Mon)
-- Avoid factory scope inflation (deep implementation only, not comprehensive refactor or architecture redesign)
+**Soft Constraints (if capacity allows):**
+- Prefer RobotOS setup front-loaded (Mon early week)
+- Prefer factory test after research (Fri immediate follow-up)
+- Prefer M6 synthesis on Sat (dedicated focus)
+- Prefer Signee board check (Sun afternoon) if time available
+
+### Weekend Capacity Model — R11 Compliance & Mode Decision
+
+**Context:**
+W13 declares **MODE A (Weekday-Primary + Saturday-Planned)**. Total personal scope:
+- **Committed evening:** Signee report (2–3h) + RobotOS setup (1.5–2h) + schematic (1.5h) = ~5–7h
+- **Additional:** RobotOS M6 synthesis (2–3h) = allocated Sat daytime (not evening)
+- **Optional:** Signee board (2–3h) = Sun afternoon if capacity remains
+
+**R11 Explicit Slot Declaration:**
+- **Sat daytime (Slot 1):** 2–3h ALLOCATED (RobotOS M6 synthesis — concrete scope, not buffer)
+- **Sat evening (Slot 2):** OFF (protected rest — mandatory per R10)
+- **Sun morning (Slot 3):** 2–3h OVERHEAD (W13 closure + W14 seed, structural)
+- **Sun afternoon (Slot 4):** 0–2h OPTIONAL (Signee board test if capacity exists)
+- **Sun evening (Slot 5):** OFF (protected rest — mandatory per R10)
+
+**Math Closure (capacity verification):**
+```
+Personal Execution Capacity:
+  Weekday evening net: ~8–9h
+  Saturday daytime: 2–3h (M6 allocated)
+  Sunday afternoon: 0–2h (optional)
+  TOTAL capacity: ~10–14h max
+
+Personal Scope Committed:
+  Signee report + plan: 2–3h (evening)
+  RobotOS setup: 1.5–2h (evening Mon)
+  Schematic review: 1.5h (evening Wed)
+  RobotOS M6 synthesis: 3h (Sat daytime allocated)
+  TOTAL committed: ~8–10h
+
+Fit check:
+  Committed 8–10h ≤ capacity 10–14h? ✅ YES (buffer: 0–6h)
+  Optional Signee board (2–3h) fits in buffer? ✅ YES (or defer to W14)
+  All 5 weekend slots declared? ✅ YES (with mode + rationale)
+```
+
+**V12 Status:** ✅ PASS—All five slots explicitly declared per R11. Mode A justified (weekday-heavy, Sat allocated, Sun recovered). Math closure confirms capacity fit.
 
 ### Weekend Capacity Model — R11-D Distribution Heuristic & Math Closure
 
@@ -326,98 +426,161 @@ Fit Check:
 
 | Check | Status | Note |
 |---|---|---|
-| **V1: Pool Isolation (TYPE A)** | ✅ PASS | Zephyr ~28–36h within Pool A ~36h effective (tight but valid) |
-| **V2: Pool Isolation (TYPE B/C)** | ✅ PASS | RobotOS+Signee optional ~3–6h within Pool B ~8–9h eve + Sat ~2–3h allocated |
-| **V3: Evening Deduction Reality** | ✅ PASS | Thu S-only (~0.5h) + Fri optional flex accounted for; net ~8–9h realistic |
-| **V11: Weekend Slot Clarity** | ✅ PASS | Slot 1 Sat daytime: 2–3h allocated to RobotOS M6 synthesis; Slot 2 Sat evening: OFF (protected); Slot 3 Sun morning: 2–3h review/closure; Slot 4 Sun afternoon: not used W13; Slot 5 Sun evening: OFF (protected) |
-| **V12: Weekend Usage Decision** | ✅ PASS | Mode B declared (Saturday-Primary); all 5 slots explicitly declared with values; R11-D heuristic evaluated (see section below); math proof provided (see section below) |
-| **Overall Validation** | ✅ PASS | Plan fits dual-pool model; no cross-pool borrowing; tight but valid capacity; weekend slots CAPACITY_ENGINE-compliant |
+| **V1: Pool Isolation (TYPE A)** | ✅ PASS | Zephyr ~18–24h committed within Pool A ~36h effective (healthy buffer for unknowns) |
+| **V2: Pool Isolation (TYPE B/C)** | ✅ PASS | RobotOS setup + M6 synthesis ~3–5h + Signee report ~2–3h = ~5–8h committed within Pool B ~8–9h evening + ~2–3h weekend allocated |
+| **V3: Evening Deduction Reality** | ✅ PASS | Thu evening constraint (~0.5h) + Fri flexibility accounted for; net weekday realistic ~8–9h; plus Sat daytime 2–3h |
+| **V9: Ambiguity Scheduling** | ✅ PASS | High-ambiguity factory research (Wed–Thu) scheduled AFTER migration gate clear (Mon–Tue) + before implementation (Fri); not after fatigue |
+| **V10: Delivery Order** | ✅ PASS | Factory sequencing locked: Migration → Research → Test (atomic, non-parallel); no scope creep allowed mid-week |
+| **V11: Weekend Slot Clarity** | ✅ PASS | All 5 slots explicitly declared: Sat daytime 2–3h (M6 synthesis), Sat evening OFF, Sun morning 2–3h (closure/seeding), Sun afternoon 0h (optional), Sun evening OFF |
+| **V12: Weekend Usage Decision** | ✅ PASS | Mode A declared (weekday-primary + Saturday-allocated); R11-D heuristic: Sat daytime dedicated to M6 synthesis (discrete task); math closure confirms fit |
+| **V13: Weekend Effort Realism** | ✅ PASS | M6 synthesis 2–3h is realistic (consolidate M5 feedback into doc, not architecture deep-dive); math decomposition proves achievable |
+| **V14: Personal Capacity Ceiling** | ✅ PASS | Pool B committed 5–8h ≤ capacity 8–9h evening net true; optional Mission E defers if tight |
+| **Overall Validation** | ✅ PASS | Plan fits dual-pool model; no cross-pool borrowing; delivery-order locked; weekend CAPACITY_ENGINE-compliant; R-rules honored (R9, R10, R11, R11-D) |
 
 ---
 
-## Mission Structure (Phased Goals → Daily Coherence)
+## Mission Structure (Delivery-Ordered Zephyr + Concurrent Personal Threads)
 
-### Mission A: Factory Feature Deep Implementation (Primary, Mon-Fri Focus)
+### Mission A: Zephyr Factory — Delivery-Ordered Phases (Mon–Fri, Pool A)
 
-**Objective:** Iterate on W12 POC. Resolve documented blockers. Expand factory feature from working entry point to usable scope. Establish iteration pattern for Q2 deeper work.
+**Objective:** Execute factory feature implementation according to real codebase tasks: Migration → Factory Research → Factory Test (atomic sequencing, no parallelization).
 
-**Phasing:**
-- **Phase A1 (Mon-Tue): Blocker Triage & First Test Stabilization**
-  - Access factory_test_result_and_blockers.md from W12 (explicit list of what's blocking)
-  - Triage each blocker: implementation (fix-able) vs. design (needs decision) vs. environmental (infrastructure)
-  - If W12 POC failed: Debug root cause; attempt minimal fix
-  - If W12 POC passed: Validate it's real + not false positive
-  - Daily anchor: Deep focus (09:00–12:30 triage, 13:30–16:30 implementation attempt)
-  - Outcome gate: First factory test stable (passing or documented workaround). Blocker action list clear.
+#### Phase A-1: Migration Blockers (Mon–Tue, ~4–5h)
+- **Purpose:** Unblock factory research by completing prerequisite migration work
+- **Scope:** Resolve migration dependencies, verify state, prepare factory research path
+- **Effort breakdown:**
+  - **Mon 09:00–10:00**: Verify migration checklist completeness (XS, 0.5–1h)
+  - **Mon 10:00–12:00**: Resolve top migration dependency (S, 1–1.5h)
+  - **Mon 13:00–16:00**: Full migration dry-run validation (M, 2–2.5h)
+  - **Tue 09:00–12:00**: Stakeholder confirmation + final migration gate (S/M, 1–2h)
+- **Exit condition (binary):** Migration checkpoint PASS ✓ (all dependencies verified, gate clear for Wed research start)
+- **Artifact:** `migration_checkpoint_W13.md` (checklist ✓, blockers resolved ✓, factory research path clear ✓, stakeholder sign-off ✓)
+- **Rationale:** Small chunks reduce risk of one blocker cascading. Front-loaded gate prevents wasted Wed/Fri research time.
 
-- **Phase A2 (Wed-Fri): Factory Feature Expansion & Stabilization**
-  - Build on stabilized first test
-  - Implement next layer of factory feature logic OR additional test cases (pattern validation)
-  - Confirm integration (zero regressions on platform)
-  - Document scope decision: what's in W13, what defers to W14+
-  - Daily anchor: Implementation push (09:00–12:00 focused coding, 13:00–16:00 testing + artifact), Fri afternoon polish
-  - Outcome gate: Factory feature moves to usable state (multiple tests, integrated, pattern proven)
+#### Phase A-2: Factory Research (Wed–Thu, ~8–10h)
+- **Purpose:** High-ambiguity investigation of factory patterns (scheduled Wed–Thu post-migration to preserve energy + context)
+- **Scope:** Deep technical research into multi-agent factory scope; design trade-off analysis
+- **Effort breakdown:**
+  - **Wed 09:00–12:30**: Research Block 1 — Pattern investigation (XL problem space, 3.5h)
+    - Investigate shared-state factory patterns (agent coordination, state access)
+    - Document ≥3 candidate approaches (trade-offs, implementation feasibility)
+    - Output: Pattern summary with pros/cons per approach
+  - **Wed 13:30–17:00 + Thu 09:00–12:00**: Research Block 2 — Architecture & testing strategy (M/L, 4–5h)
+    - Consolidate findings from Block 1; make pattern recommendation
+    - Identify testing strategy + performance concerns (block-level reasoning)
+    - Output: Architecture decision + risk matrix + testing strategy doc
+  - **Thu 13:30–17:00**: Knowledge synthesis (S, 1h)
+    - Prepare team handoff (shared notes, decision rationale, W14 implications)
+- **Exit condition (binary):** Research investigation complete ✓ (patterns analyzed ✓, architecture decision made + documented ✓, testing strategy clear ✓, team ready for implementation ✓)
+- **Artifact:** `factory_research_summary_W13.md` (patterns analyzed, recommendation, risk matrix, testing strategy, W14 roadmap)
+- **Rationale:** High-ambiguity work demands uninterrupted deep blocks + peak energy. Wed–Thu scheduling (post-migration) avoids fatigue/context loss.
 
-**Success Metric:** Week 13 Fri EOD = Factory feature out of POC state. At least 2–3 test cases passing. Integration validated. W14 entry points clear.
+#### Phase A-3: Factory Test Case Implementation (Fri, ~4–6h)
+- **Purpose:** Implement single end-to-end test case (proof that research-recommended pattern works)
+- **Scope:** Factory implementation (minimal scope) + integration + validation
+- **Effort breakdown:**
+  - **Fri 09:00–10:30**: Test design scaffolding (S, 1–1.5h)
+    - Create test case from Wed–Thu strategy doc
+    - Set up factory structure skeleton
+  - **Fri 10:30–13:30**: Implementation (M, 2–3h)
+    - Implement factory + test case logic
+    - Get E2E test passing
+  - **Fri 13:30–16:30**: Integration + documentation (S, 1–1.5h)
+    - Verify zero regressions (platform tests still pass)
+    - Document learnings (pattern validated? ready for deeper scope?)
+    - W14 entry point clear (what's next?)
+- **Exit condition (binary):** E2E test PASS ✓ (pattern works ✓, integration validated ✓, regressions zero ✓, W14 scope clear ✓)
+- **Artifact:** `factory_test_implementation_W13.md` (test code + results, pattern validation, W14 roadmap)
+- **Rationale:** Friday optimal for implementation (fresh, not rushed). Validates multi-day research effort. Proves pattern correctness.
 
 ---
 
-### Mission B: System Stabilization & Q2 Baseline (Secondary, Daily Threading)
+### Mission B: Zephyr System Health — Daily Threading (Mon–Fri, ~2–3h total, Pool A)
 
-**Objective:** Maintain system health while doing intensive factory work. Confirm release schedule. Validate capacity model still holds.
-
-**Phasing:**
-- **Daily:** 15–30 min health check (any regressions from factory work? new blockers? environment issues?)
-- **Wednesday mid-week:** Release planning sync + quarterly baseline review (30 min to 1h)
-- **Friday EOD:** Factory work integration validation (zero regressions confirmed)
-
-**Success Metric:** System stable through week. No new regressions introduced. Quarterly baseline holds.
+- **Daily standup (0.5h):** Triage + regression check each morning
+- **Daily closure (0.5h):** Health validation + end-of-day log each evening  
+- **Wed planning sync (1h):** Full system review + Q2/W14 risk assessment
+- **Friday integration validation (0.5h):** Confirm zero new regressions from factory work
+- **Exit condition (binary):** Daily logs complete ✓, zero uncaught regressions ✓, W14 risk visibility clear ✓
+- **Artifact:** `W13_system_health_log.md` (daily stand + closure notes)
 
 ---
 
-### Mission C: RobotOS Team Contributor Integration (Secondary, Evening Threading)
+### Mission C: Signee — Task Report Processing (Tue–Wed, ~2–3h, Pool B personal evening)
 
-**Objective:** Hand off M5 materials to team. Enable Monday Q2 contributor sprint. Ensure setup clarity.
-
-**Phasing:**
-- **Monday evening:** Contributor setup walkthrough + finalize entry checklist
-- **Optional Thursday evening:** Ramp check-in (if contributor started Mon work)
-
-**Success Metric:** Team ready for Monday. No setup blockers. M5 materials accessible + clear.
+- **Scope:** Process team test report (hard deadline Tue/Wed EOD); extract findings + update roadmap
+- **Phase C-1 (Mon–Wed evening watch):** Wait for team test report; process upon arrival same-day evening
+  - **Parse report:** Extract test results, findings, blockers
+  - **Roadmap update:** Incorporate findings into project roadmap + W14 plan
+  - **Artifact:** `signee_report_summary_W13.md` (report extract, blockers, W14 implications)
+- **Exit condition (binary):** Report received + processed ✓, W14 roadmap updated ✓, team notified of next steps ✓ | OR **Escalation gate:** If NOT arrived by Wed 17:00, defer to W14 + escalate
+- **Rationale:** HARD deadline (team coordination synchronization point). Must process immediately upon arrival.
 
 ---
 
-### Mission D: Optional Planning & Team-Facing Work (Contingent)
+### Mission D: RobotOS Setup + M6 Synthesis (Mon–Fri + Sat, ~3–5h, Pool B personal)
 
-**Objective:** Q2 planning validation + W14 seeding (if capacity). Signee team sync (if reports arrive).
+- **Phase D-1 (Mon evening, ~1.5–2h):**
+  - VSCode workspace configuration (extensions, debugger, project structure)
+  - Dev kit initialization + basic connectivity test
+  - Artifact: Functional VSCode workspace (ready for architecture work)
+  
+- **Phase D-2 (Wed evening, ~1–1.5h):**
+  - Schematic review (understand hardware boundaries + integration points)
+  - Dev kit operational validation
+  - Artifact: Schematic understood; dev kit functional; integration points clear
+  
+- **Phase D-3 (Fri evening OR Sat daytime, ~2–3h):**
+  - M6 scope synthesis (consolidate M5 team feedback + training materials into architecture doc)
+  - Training framework validation
+  - Artifact: `robotos_m6_scope_synthesis_W13.md` (team execution ready for Q2)
 
-**Phasing:**
-- **Saturday eve:** Q2 milestone validation review
-- **Sunday morning:** W13 closure + W14 seed
-- **Thursday-Sat (if reports arrive, contingent):** Signee M3 polish resume
+- **Exit condition (binary):** VSCode setup complete ✓, schematic reviewed ✓, dev kit functional ✓, M6 scope documented ✓
+- **Rationale:** Front-loaded setup (Mon) unblocks Q2 depth. Schematic + M6 synthesis midweek + weekend preserves weekday office focus.
 
-**Success Metric:** Q2 planning validated. W13 properly closed. W14 ready.
+---
+
+### Mission E: Signee Android Board Testing (Optional, Sat/Sun, ~2–3h, Pool B personal)
+
+- **Conditional trigger:** Only if Missions A–D within budget + energy available
+- **Scope:** Board-level bringup testing + validation (if capacity remains)
+- **Alternative:** Defer to W14 if time constrained
+- **Artifact:** `signee_board_validation_W13.md` (if executed) OR DEFERRED marker
+- **Rationale:** Nice-to-have validation work. Optional if capacity exists after core missions.
 
 ---
 
 ## Carry-over Integration
 
+### W12→W13 Transition Summary
+
+**Previous Week Outcomes (W12):**
+- ✅ RAM tests complete (Q1 closure, W12 Mon)
+- ✅ Factory POC codebase + first test delivered (W12 Fri; pending integration review)
+- ✅ Factory blockers documented (reference document available)
+- ✅ RobotOS M5 team materials finalized (W12 Thu; team ready for Q2 ramp)
+- ⏸️ Signee M3 task reports — waiting for team submission (contingent; may arrive W13 Tue–Wed)
+- ✅ System baseline stable (no carry-over debt from W12)
+
 ### Classified Carry-over Items
 
-| Item | Source | Classification | Integration | Effort | Fate |
+| Item | Source | Classification | Integration | Effort | W13 Fate |
 |---|---|---|---|---|---|
-| **Factory POC + blockers (from W12)** | W12 Fri delivered | Meaningful + Priority 1 | Integrate into Goal 1 (Mon-Tue blocker triage) | ~2–4h Mon-Tue | **COMMITTED** — must process immediately |
-| **Factory feature expansion roadmap** | W12 research + sharing (implicit next steps) | Meaningful + Priority 1 | Integrate into Goal 1 (Wed-Fri implementation plan) | ~16–20h Wed-Fri | **COMMITTED** — builds on POC |
-| **RobotOS M5 materials (finalized W12 Thu)** | W12 Thu delivered | Meaningful + Important | Integrate into Goal 4 (Mon evening handoff) | ~1–2h Mon | **COMMITTED** — team entry point |
-| **Signee M3 extended polish dependency** | W12 Sat blocked (team reports) | Nice-to-have | Goal 3 (contingent, resume if Wed report arrives) | ~3–5h if triggered | **OPTIONAL** — defer if no reports |
-| **System baseline confirmation** | W12 Fri all-green | Routine | Goal 2 (daily health check) | 0h (routine) | **BASELINE** — built into daily overhead |
-| **Q2 first-week planning refresh** | From month strategy + quarterly context | Routine | Goal 5 (Sat eve + Sun morning, optional) | ~3–5h | **OPTIONAL** — refines week if executed |
+| **Factory POC + blockers document** | W12 Fri POC deliver | Meaningful + Priority 1 | Mission A-1 (Mon–Tue migration triage) | ~2–4h Mon–Tue | **COMMITTED** — critical prerequisite |
+| **Factory research strategy + roadmap** | W12 research insights | Meaningful + Priority 1 | Mission A-2 (Wed–Thu deep investigation) | ~8–10h Wed–Thu | **COMMITTED** — builds on POC foundation |
+| **Factory test implementation path** | Implicit from POC | Meaningful + Priority 1 | Mission A-3 (Fri test case) | ~4–6h Fri | **COMMITTED** — validates strategy |
+| **RobotOS M5 team materials** | W12 Thu finalized | Meaningful + Important | Mission D-1 (Mon eve handoff) | ~1–2h Mon eve | **COMMITTED** — team entry point |
+| **Signee M3 team test reports** | Expected W13 Tue–Wed | Nice-to-have | Mission C (contingent watch + process) | ~1–2h if triggered | **OPTIONAL** — defer if not arrived by Wed 17:00 |
+| **System baseline health** | W12 Fri all-green | Routine | Mission B (daily threading) | 0h (routine overhead) | **BASELINE** — built into KTLO |
+| **Q2 planning context + milestones** | Month strategy + quarterly alignment | Routine | Optional (Sun morning seed planning) | ~0–2h | **INFORMATIONAL** — refreshes W14 seed |
 
 **Carry-over Budget:**
-- Committed: ~20–26h (Factory triage + expansion)
-- Optional: ~3–6h (Signee + Planning)
-- **Total in-scope: ~23–32h over 2 pools**
-- **Status:** ✅ Fits within dual-pool capacity (tight but valid)
+- **Committed:** ~14–24h (Factories A-1 + A-2 + A-3)  
+- **Optional:** ~1–2h (Signee C if triggered)  
+- **Total in-scope:** ~15–26h (Zephyr Pool A committed; personal optional contingent)  
+- **Status:** ✅ Fits within dual-pool model (healthy buffer in Pool A; tight in Pool B if all optional executed)
+
+**Zero W11 Debt:** No carry-over from W11 (RAM tests completed Mon W12). W13 enters clean.
 
 ---
 
@@ -426,154 +589,250 @@ Fit Check:
 ### Design Rationale
 
 **Why this structure:**
-- **Mon-Tue focused:** Factory blocker triage (clear what's solvable immediately)
-- **Wed-Fri expansion:** Build on stabilized foundation (reduce risk of cascading failures)
-- **Daily health check:** Maintain system stability through intensive work
-- **Evening threading:** RobotOS integration + optional planning (independent, non-blocking)
-- **Scope guardrail:** Factory work explicitly limited to iteration + pattern validation (not comprehensive refactor)
+- **Mon–Tue focused (Migration):** Clear prerequisite delivery gate. Unblock factory research; establish confidence for Wed–Thu ambiguity work.
+- **Wed–Thu deep (Factory Research):** High-ambiguity investigation scheduled when energy peak (post-migration completion). Two full blocks preserve context + prevent fatigue.
+- **Friday (Factory Test):** Proof-of-concept implementation validates research. Fresh execution slot (not rushed end-of-week).
+- **Sat daytime (M6 Synthesis):** Dedicated focus window for RobotOS architecture work (independent of weekday office intensity).
+- **Daily health threading:** Maintain system stability without bulk work (0.5h standup + 0.5h closure).
+- **Evening/weekend personal:** RobotOS setup (Mon, Wed) + M6 synthesis (Sat) + report processing (Tue–Wed watch). Non-blocking, independent threading.
+- **Scope guardrail:** Factory work LIMITED to: migration completion → research investigation → test implementation. NO comprehensive refactor; NO scope inflation mid-week.
 
 ### Daily Anchor Map (Execution-Ready Inheritance)
 
-| Day | Primary Anchor | Secondary / Evening Anchor | Energy/Notes |
+| Day | Office Anchor (Pool A) | Evening Anchor (Pool B) | Energy Level / Context |
 |---|---|---|---|
-| **Monday (TRIAGE)** | Zephyr: Factory blocker diagnosis + first test stabilization (target: stable state by EOD) | RobotOS M5 handoff (eve, 30-45 min) | Focal day for blocker clarity; establish foundation for Wed expand |
-| **Tuesday (STABILIZE)** | Zephyr: Factory blocker resolution + first test implementation attempt | Optional RobotOS team sync (eve, if needed) | Follow-through from Mon triage; aim for pattern clarity by EOD |
-| **Wednesday (EXPAND)** | Zephyr: Factory feature logic expansion + additional test validation | Optional Signee context (eve, if reports arriving) | Mid-week transition + option resolution day; confirm integration baseline |
-| **Thursday (ITERATE)** | Zephyr: Factory feature iteration + pattern validation test cases | RobotOS optional ramp check-in (eve, 30 min if contributor actively ramping) | Implementation momentum; no mid-project context switching |
-| **Friday (CONSOLIDATE)** | Zephyr: Factory feature final polish + integration validation + W13 artifact closure | Optional: Signee polish or recovery (eve) | Week closure; confirm all artifacts delivered + W14 entry clear |
-| **Saturday** | Optional: Q2 planning refresh (2–3h) OR team coordination as needed | Optional: Signee M3 polish (if reports arrived + capacity) OR recovery | Optional day; structured reserve or planning time |
-| **Sunday** | Structured closure: W13 recap + W14 seed planning (2–3h morning) | Optional: external task or recovery (afternoon) | Standard template; evening OFF |
+| **Monday (MIGRATE)** | Migration blocker triage (XS/S/M chunks, 09:00–17:00, ~3–4h active). Verify codebase state. Confirm gate PASS. | RobotOS VSCode setup (19:30–21:00, ~1.5h). Workspace init + dev kit test. | Front-loaded gate day. Migration clarity essential before Wed research. Evening independent threading. |
+| **Tuesday (MIGRATE)** | Migration dry-run validation + stakeholder gate (S/M chunks, 09:00–17:00, ~1–2h active). Final confirmation PASS. System ready. | Signee watch (if report arriving, process eve). RobotOS optional team sync. | Follow-through from Mon. Migration CLOSING by EOD. Factory research path confirmed clear. |
+| **Wednesday (RESEARCH)** | Factory Research Block 1 deep investigation (XL problem space, 09:00–12:30, 13:30–17:00, ~4–5h focused). Pattern analysis complete. | Schematic review + dev kit test (19:30–21:00, ~1–1.5h). Integration points clarified. | Mid-week energy peak. Uninterrupted deep thinking. Wed–Thu back-to-back blocks = research momentum. |
+| **Thursday (RESEARCH)** | Factory Research Block 2 continuation + synthesis (M/L, 09:00–12:30, 13:30–16:00, ~4–5h focused). Architecture decision finalized. Knowledge synthesis prep. | Optional team sync or recovery (flexible). | Research continuation. Consolidate Block 1 findings. Output: architecture decision + testing strategy. |
+| **Friday (TEST)** | Factory test implementation (E2E scaffold + integration, 09:00–17:00, ~4–6h distributed). Pattern validation. Zero-regression confirmation. W14 roadmap. | Optional: Signee polish or recovery. | Fresh implementation day (not rushed). Validates multi-day research effort. Closes factory POC → usable feature transition. |
+| **Saturday** | **OFF** | M6 synthesis (09:00–12:00, ~2–3h focused). RobotOS architecture doc consolidation. Q2 team execution readiness. | Weekend daytime slot (allocated to M6). Sat evening = protected rest (R10). |
+| **Sunday (CLOSURE)** | **OFF** | Morning (09:00–11:30, ~2–3h): W13 recap + W14 seed planning (structured template). Afternoon (optional 0–2h): recovery OR Signee board test if capacity. Evening = OFF (protected rest). | Standard structured closure (no execution pressure). W14 seeding ensures continuity. Evening rest mandatory (R10). |
 
-### Re-entry Pattern
+### Re-entry Decision Tree
 
-**If Monday blocked (factory POC irretrievable):** Escalate by 10:00 AM; decision: deep debug vs. defer to W14; RobotOS M5 handoff moves to Tue evening (does not block factory decision)  
-**If Tue stabilization incomplete:** Extend Tue evening (30 min focused work); Wed-Fri expand still on plan (soft blocker)  
-**If Wed integration issues detected:** Resolve Wed-Thu AM before continuing expansion; Fri becomes polish + documentation (may reduce iteration scope)  
-**If Thu-Fri factory work high-design:** Escalate decision (defer lower-priority implementation to W14; focus W13 on core foundation only)  
-**If Sat weekend optional needed:** Activate Saturday for factory continuation OR team planning refresh; Sunday morning still required for closure
+**If Monday blocker (migration complex, >4h):**
+- Escalate by 10:00 AM (decision: debug blocker vs. defer migration to W14)
+- If DEFER: Factory research moves to W14; W13 becomes KTLO focus + RobotOS setup only
 
-### Deep Work Protection
+**If Tuesday migration incomplete:**
+- Extend Tue evening (1–2h focused blocker work)
+- Wed research starts on-time (soft delay acceptable if gate clears by Tue 17:00)
 
-- **Monday office time (09:00–17:00):** Protected for factory blocker diagnosis (focal day; minimal context switching)
-- **Tue office time (09:00–17:00):** Protected for factory stabilization attempt (follow-through focus, not interrupt)
-- **Wed-Fri office time (09:00–17:00):** Protected for factory implementation (deep focus blocks; no mid-project replan unless critical)
+**If Wed Research Block 1 reveals massive scope:**
+- DEC
+
+ISION point: Escalate Wed PM (proceed with full Block 2 vs. compress to lite research + defer deep work to W14)
+
+**If integration regression detected Wed–Thu:**
+- Resolve SAME DAY before continuing research (do NOT carry risk into Fri implementation)
+
+**If Friday test fails repeatedly:**
+- Escalate decision (accept research-but-blocked status + test-in-W14 vs. debug Fri into Saturday)
+
+**If Sat M6 work overruns:**
+- Sunday AM can absorb up to 1h (adjust closure planning timing)
+
+### Deep Work Protection Rules
+
+- **Mon office (09:00–17:00):** Protected for migration delivery gate. Minimal interrupts; team context clear before 10:00 AM.
+- **Wed office (09:00–17:00) + Thu office (09:00–17:00):** Protected for factory research (two full deep blocks). NO mid-project replans unless critical. Research momentum preserved.
+- **Friday office (09:00–17:00):** Protected for test implementation. Clock running once test scaffolding starts (avoid lingering design changes mid-implementation).
 
 ---
 
 ## Known Risks & Escalation Triggers
 
-### Risk Matrix
+### Risk Matrix (Mission-Specific)
 
-| Risk | Impact | Probability | Mitigation | Escalation |
-|---|---|---|---|---|
-| **W12 POC not actually passing (false positive)** | Factory iteration stalls immediately; wasted Tue time | MEDIUM | Validate W12 result first thing Monday (run test locally); if FAIL/BLOCKED, triage immediately | If POC is BLOCKED with root cause unknown: Escalate Mon 11:00 (decision: debug the blocker vs. pivot scope) |
-| **Blocker complexity > 4h to resolve** | Mon-Tue time consumed; Wed expansion delayed | MEDIUM | Triage Mon (hard vs. soft blockers); prioritize soft blockers for early resolution | If hard blocker found Mon PM: Escalate decision (debug Wed/Thu vs. accept blocker + test as BLOCKED state) |
-| **Factory expansion scope inflation mid-week** | Wed-Fri work becomes refactoring; loses focus on POC iteration | MEDIUM | Enforce explicit scope freeze: "2–3 additional tests OR one logic module, not both"; flag scope creep patterns | If scope inflation detected Wed PM: Escalate immediately (accept current scope OR reduce Wed-Fri back to POC-polish only) |
-| **Team contributor setup blockers** | RobotOS onboarding fails Monday; team blocked | LOW | Finalize M5 materials Mon evening; resolve last-minute setup questions same day | If setup blocker surfaces Mon PM: Escalate (handle emergency Mon night OR defer contributor start to Tue with workaround) |
-| **Integration regressions appear mid-week** | Factory feature good but breaks platform tests | MEDIUM | Daily health check (5–10 min regression sweep); catch issues early | If regressions appear Wed: Resolve same day before expanding further (do NOT carry regression into Thu-Fri) |
-| **System-level blocker surfaces** | Zephyr environment or dependency failure | LOW | Baseline system health established W12; unlikely unless new dependency introduced | If system blocker: Escalate immediately (determines whether factory work can continue) |
-| **Q2 planning reveals misalignment** | W13 factory goals don't align with Q2 finish deadlines | LOW | Planning scope check Wed (refresh Q2 deadline view); catch misalignment before Fri | If misalignment detected Wed: Escalate decision (reprioritize W13 scope vs. stay course) |
+| Risk | Mission | Impact | Probability | Mitigation | Escalation Trigger |
+|---|---|---|---|---|---|
+| **Migration blockers unresolved Mon–Tue** | A-1 | Factory research stalls Wed; wasted Wed–Thu research slots | MEDIUM | Triage blockers Mon (soft vs. hard); prioritize soft for early resolution. Enforce explicit gate check Tue EOD. | If migration NOT PASS by Tue 17:00: Escalate (decision: extend Wed research OR defer factory deeper work to W14) |
+| **Factory research discovers massive architectural scope** | A-2 | Wed–Thu deep blocks won't have time to consolidate decision + strategy | MEDIUM | Timebox Block 1 (Wed) to pattern analysis only. If architectural complexity appears, escalate Wed PM (proceed vs. compress). | If architecture scope > 2–3 major patterns: Escalate Wed PM (accept scope + reduce test phase OR defer to W14) |
+| **Research findings conflict with existing codebase** | A-2 | Strategy from Wed–Thu not implementable Fri; test phase fails | MEDIUM | Document assumptions clearly (what existing code enables our strategy?). Test strategy from Thu must include feasibility check. | If Fri test implementation reveals strategy infeasible: Escalate (quick pivot OR accept blocked state for W14 rework) |
+| **Test implementation (Fri) fails repeatedly** | A-3 | Pattern not validated; factory feature credibility questioned; W14 direction unclear | MEDIUM | Keep implementation scope tight (single E2E test, not comprehensive). If fails Mon attempt, escalate for decision (debug Fri-Sat vs. accept blocked). | If test BLOCKED without clear root cause by Fri 14:00: Escalate (decide: continue debug OR accept blocked state) |
+| **Integration regression caught Fri** | A-3 / B | Factory feature works but breaks platform; context switch late-week | MEDIUM | Daily health check (5–10 min sweep) Fri morning BEFORE starting test implementation. Catch regressions before test phase conflicts. | If regressions appear Fri: Resolve SAME DAY (do NOT carry into W14) |
+| **Signee report arrives Fri (not Tue–Wed)** | C | Report processing not in Tue–Wed window; shifted to Fri/Sat; competes with factory test + weekend closure | MEDIUM | Watch Mon–Tue eve (escalate by Wed if no signal). If Fri arrival inevitable, shift board testing to W14 (report processing takes Fri eve). | If report NOT arrived by Wed 17:00: Escalate timely notice (confirm W14 deferral with team) |
+| **RobotOS setup blockers (Mon eve)** | D | VSCode or dev kit setup fails; M6 synthesis delayed to Tue; conflicts with factory Mon-Tue intensity | LOW | Finalize setup procedure Mon AM (test locally). Resolve any blockers Mon evening immediately (don't defer). | If setup BLOCKED Mon: Escalate (handle emergency Mon night OR defer M6 to Wed eve as fallback) |
+| **M6 synthesis scope inflation (Sat)** | D | 2–3h slot consumed entirely; Sunday closure compressed; W14 seeding rushed | LOW | Scope-freeze M6 to: consolidate M5 feedback + document architecture doc. Nothing more. Flag creep patterns mid-Sat. | If M6 work overruns >2h into Sun: Accept overflow (reduce Sun closure planning, adjust W14 seed timing) |
+| **System-level regression from factory work** | B | Factory feature good but platform tests start failing; unclear which change broke it | MEDIUM | Daily health check traces regression source immediately (5–10 min). If unclear origin, investigate before proceeding. | If regression source unclear: Escalate Wed (determine if factory work can continue or must pause) |
+| **Pool B capacity overrun (evening + weekend tight)** | D / E | Signee + RobotOS commitments exceed ~8–9h evening capacity; M6 pushed to Wednesday eve (conflicts with research) | MEDIUM | Track evening allocation daily (RobotOS setup 1.5h Wed, Signee report watch 0.5–1h). If overrun signals, defer board testing (Goal E) to W14. | If evening capacity exceeded by Wed: Escalate (defer optional E or compress evening tasks) |
+| **Q2 misalignment (unlikely but possible)** | All | W13 factory goals don't align with Q2 finish line assumptions; whole week becomes misprioritized | LOW | Wed planning sync: spot-check Q2 deadline assumptions. If misalignment appears, escalate for decision. | If Q2 finish deadline incompatible with W13 scope: Escalate (adjust W13 priority vs. Q2 timeline) |
 
 ### Escalation Decision Points
 
-**Escalation to month/project level if ANY of:**
-1. **Factory POC is genuinely BLOCKED by Mon 11:00** → escalate; request decision (debug the blocker? accept blocked? defer to W14?)
-2. **Blocker complexity suggests factory implementation should be deferred to W14** → escalate; request scope/timeline decision
-3. **Factory scope inflation detected mid-week (Tue-Wed)** → escalate; request scope freeze decision (accept new scope OR reduce back to core)
-4. **Integration regressions cannot be resolved same-day** → escalate; determines whether factory work continues or pauses
-5. **RobotOS contributor setup failure** → escalate; determines Monday team start viability
-6. **Q2 planning reveals W13 goals misaligned with quarterly finish deadlines** → escalate; request priority adjustment
+**IMMEDIATE escalation if ANY of:**
+
+1. **Migration gate NOT PASS by Tue 17:00** → Escalate by 17:30 (decision: extend Wed OR defer factory deeper work to W14)
+2. **Factory research Wed discovers scope > 3 major patterns** → Escalate Wed PM (proceed with Block 2 vs. compress research + reduce test scope)
+3. **Test implementation repeatedly BLOCKED (Fri 14:00+)** → Escalate (continue debug Fri-Sat vs. accept blocked state)
+4. **Integration regression appears + source unclear** → Escalate Wed (pause factory work OR continue with regression noted)
+5. **Signee report NOT arrived by Wed 17:00** → Escalate with timely notice (confirm W14 deferral with team)
+6. **RobotOS Mon eve setup BLOCKED** → Escalate (handle emergency Mon night OR defer M6 architecture to Wed eve)
+7. **Pool B evening capacity overrun detected** → Escalate (defer optional Mission E OR compress evening scope)
 
 **No escalation needed if:**
-- Factory POC blocker is soft (fixable minor issue; resolved Mon-Tue)
-- Factory expansion proceeds as planned (implementation + testing on schedule)
-- Team contributor setup is smooth (materials clear, no blockers)
-- Integration baseline holds (zero regressions through week)
-- Q2 planning confirms W13 goals aligned with quarterly finish
+- Migration completes Mon–Tue as planned (gate PASS by Tue 17:00)
+- Factory research finds 2–3 patterns + clear strategy (normal complexity)
+- Test implementation PASS by Fri 16:00
+- Daily health checks clear (zero new regressions)
+- Signee report arrives on-time (Tue–Wed eve processing window)
+- RobotOS setup smooth (no blockers Mon)
+- Evening allocations track within ~8–9h/week capacity
+- Q2 planning confirms W13 alignment
 
 ---
 
-## Definition of Done (Phase-Level)
+## Definition of Done (Phase-Level Completion Criteria)
 
-### Factory Feature Deep Implementation
+### Mission A: Factory Feature — Delivery-Ordered Phases
 
-**Goal 1a (Factory blocker triage + first test stabilization):** ✅ DONE when:
-- [ ] W12 factory_test_result_and_blockers.md reviewed + understood
-- [ ] Each blocker classified (implementation / design / environmental)
-- [ ] First factory test status confirmed (PASS / FAIL / BLOCKED + reason clear)
-- [ ] If FAIL/BLOCKED: Root cause identified + mitigation plan documented
-- [ ] Artifacts: `factory_blocker_resolution.md` (triage + decisions + test status update)
+**Phase A-1 (Migration) ✅ DONE when:**
+- [ ] W12 migration prerequisites verified
+- [ ] Dependency blocker resolved + tested
+- [ ] Migration dry-run PASS ✓ (codebase migrated, no regressions)
+- [ ] Stakeholder gate clearance obtained (sign-off on ready state)
+- [ ] Artifact: `migration_checkpoint_W13.md` archived + documented
+- **Binary gate:** Migration complete ✓ OR escalated with decision
 
-**Goal 1b (Factory feature expansion + stabilization):** ✅ DONE when:
-- [ ] At least one additional factory logic piece implemented (OR 2+ test cases added)
-- [ ] Additional test(s) passing + integrated (zero regressions on platform)
-- [ ] Scope decision documented (what's in W13 vs. W14)
-- [ ] W14 entry points clear (next implementation phase ready)
-- [ ] Artifacts: `factory_feature_w13_deliverables.md` + updated test suite + integration validation
+**Phase A-2 (Factory Research) ✅ DONE when:**
+- [ ] ≥3 factory patterns thoroughly analyzed (trade-offs documented)
+- [ ] Architecture decision made + documented (why this pattern vs. others)
+- [ ] Scope boundaries clear (IN vs. OUT for W13)
+- [ ] Testing strategy defined (test approach outline for Phase A-3)
+- [ ] Team knowledge handoff ready (synthesis notes, decision justification)
+- [ ] Artifact: `factory_research_summary_W13.md` archived + documented
+- **Binary gate:** Research investigation complete ✓ OR escalated with high-risk discovery
 
-### System Stabilization & Quarterly Baseline
+**Phase A-3 (Factory Test Implementation) ✅ DONE when:**
+- [ ] End-to-end test case implemented + passing (proof-of-concept)
+- [ ] Factory feature integrated into codebase (zero regressions)
+- [ ] Architecture pattern validated (recommended pattern works)
+- [ ] W14 implementation path clear (what gets deeper work in W14)
+- [ ] Artifact: `factory_test_implementation_W13.md` archived + documented
+- **Binary gate:** Test PASS + integration validated ✓ OR test BLOCKED + blocker documented
 
-**Goal 2:** ✅ DONE when:
-- [ ] Daily health checks completed (no new regressions from factory work)
-- [ ] Release schedule confirmed on-track OR escalated (decision captured)
-- [ ] Q2 baseline assumptions remain valid (no scope creep signals)
-- [ ] Decision log updated (any config/release decisions)
+### Mission B: System Health ✅ DONE when:
+- [ ] Daily health checks completed (all days Mon–Fri)
+- [ ] Zero uncaught regressions (regression check log complete)
+- [ ] W14 risk visibility clear (baseline assumptions + known issues documented)
+- [ ] Artifact: `W13_system_health_log.md` complete
 
-### RobotOS Team Contributor Integration
+### Mission C: Signee Report Processing ✅ DONE when:
+- [ ] Team report received + processed (if arrived by Wed 17:00) 
+- [ ] Findings captured in project roadmap
+- [ ] W14 implications documented
+- [ ] Team notified of next steps
+- **Escalation gate:** If NOT arrived by Wed 17:00 → defer to W14 + escalate timely notice
 
-**Goal 4:** ✅ DONE when:
-- [ ] M5 materials reviewed + final entry checklist confirmed
-- [ ] Team has clear setup path (no blockers for Monday start)
-- [ ] Optional: Thu ramp check-in completed (if contributor started)
+### Mission D: RobotOS Setup + M6 Synthesis ✅ DONE when:
+- [ ] VSCode workspace fully configured (extensions, debugger, structure)
+- [ ] Dev kit operational + tested
+- [ ] Schematic reviewed + integration points documented
+- [ ] M6 scope synthesis document complete (`robotos_m6_scope_synthesis_W13.md`)
+- [ ] Q2 team execution architecture ready
+- **Binary gate:** Setup complete ✓ OR blockers documented + escalated
 
-### Optional Planning & Closure
+### Mission E: Signee Board Testing ✅ DONE when:
+- [ ] Board testing completed + validated (if capacity available) 
+- **OR** explicitly deferred to W14 with CAPACITY reason documented
+- **Binary gate:** Test PASS ✓ OR deferred with marker
 
-**Goal 5 (if executed):** ✅ DONE when:
-- [ ] Q2 milestones reviewed + confirmed (or realignment note created)
-- [ ] W13 artifacts archived + properly documented
-- [ ] W14 seed plan created (no ambiguity for next week)
+### Week-Level Definition of Done (W13 COMPLETE)
 
-### Week-Level DoD
+✅ **ALL of the following MUST be true:**
 
-✅ **W13 is DONE when:**
-- [ ] Factory POC blockers resolved & first test stable (or clearly BLOCKED with workaround)
-- [ ] Factory feature expanded (additional logic/tests added) & integrated (zero regressions)
-- [ ] Team contributor onboarding handed off smoothly
-- [ ] System baseline maintained (no unexpected regressions from factory work)
-- [ ] W13 artifacts archived + documented (W14 ready)
-- [ ] Q2 planning confirmed or escalation decision documented
-- [ ] All escalations (if any) documented in Decision Log
-- [ ] **CRITICAL:** Factory work stayed within scope (blocker resolution + pattern iteration; no comprehensive refactor or scope inflation)
+1. **Factory feature delivery complete:**
+   - [ ] Migration gate PASS ✓
+   - [ ] Research investigation complete + archived
+   - [ ] Test implementation PASS ✓ (or blocked with clear root cause + documented)
+   - [ ] Integration validated (zero regressions)
+   - [ ] W14 roadmap clarity established
+
+2. **System health maintained:**
+   - [ ] No unexpected regressions from factory work
+   - [ ] Daily health checks complete (all 5 days)
+   - [ ] W14 risk visibility clear
+
+3. **Team enablement ready:**
+   - [ ] RobotOS setup complete + M6 synthesis documented
+   - [ ] Signee report processed (if arrived; or escalated)
+   - [ ] All team handoffs clear (next week team ready to execute)
+
+4. **Scope discipline enforced:**
+   - [ ] **CRITICAL:** Factory work stayed WITHIN scope (migration + research + test implementation; NO comprehensive refactor; NO scope inflation)
+   - [ ] Any mid-week scope creep flagged + escalated (decision documented)
+
+5. **All artifacts archived:**
+   - [ ] Migration checkpoint archived
+   - [ ] Factory research summary archived
+   - [ ] Factory test implementation archived
+   - [ ] System health log complete
+   - [ ] All decision logs + escalations documented
+
+6. **No unchecked carry-over:**
+   - [ ] All W12 carry-over items processed (factory POC → W13 research; RobotOS M5 → setup; Signee contingent → processed or deferred)
+   - [ ] W14 seeding prepared (no ambiguity for next week start)
 
 ---
 
 ## Weekly Focus Summary
 
-**Headline:** W13 Q2 Week 1 executes factory feature deep implementation (iterate on W12 POC, resolve blockers, expand to usable state) while maintaining system health and enabling team contributor integration.
+**Headline:** W13 Q2 Week 1 sequentially executes Zephyr factory development (Migration → Research → Test) while threading RobotOS setup, system health, and Signee report processing. Delivery-order enforcement ensures research quality + test credibility.
 
-**One-sentence coherence:** Factory blocker triage & stabilization Mon-Tue clears path; Wed-Fri factory feature expansion validates iteration pattern; system health threaded daily; RobotOS M5 handoff enables team Monday; Q2 baseline prepared for deeper work in W14+.
+**One-sentence coherence:** Migration Mon–Tue unblocks Wed–Thu deep research; Thu research findings enable Fri test implementation; daily health checks prevent silent regressions; RobotOS setup + M6 synthesis independent evening + weekend threading; Signee deadline gate Tue–Wed.
 
-**Three strategic threads:**
+**Five concurrent missions:**
 
-1. **Thread 1 — Factory Feature Iteration (Pool A, PRIMARY):**
-   Mon-Tue: Resolve W12 blockers + stabilize first test. Wed-Fri: Expand factory feature scope (additional logic/tests) + validate integration. POC moves to usable state; W14 can pursue deeper implementation.
+1. **Mission A: Factory Feature (Mon–Fri, Pool A, PRIMARY):**
+   - **A-1 (Mon–Tue, ~4–5h):** Migration blockers → gate PASS (prerequisite for research).
+   - **A-2 (Wed–Thu, ~8–10h):** Deep research investigation (2 full blocks, high ambiguity) → architecture decision + strategy.
+   - **A-3 (Fri, ~4–6h):** Test implementation (single E2E case) → validates pattern, integration zero-regression.
 
-2. **Thread 2 — System Stability (Pool A, SECONDARY):**
-   Daily health check prevents factory work from silently breaking platform. Wed planning sync confirms release track + quarterly baseline. Friday integration validation closes week with confidence.
+2. **Mission B: System Health (Daily, Pool A, SECONDARY):**
+   - Daily standup (0.5h) + closure (0.5h) = ~2–3h total threaded.
+   - Catch regressions fast; W14 risk visibility; baseline confidence.
 
-3. **Thread 3 — Team Enablement (Pool B, SECONDARY):**
-   RobotOS M5 handoff Mon evening enables Q2 contributor workflow. Optional Q2 planning Sat-Sun ensures W14 entry is aligned. Team ready for next execution cycle.
+3. **Mission C: Signee Deadline (Tue–Wed watch, Pool B, URGENT):**
+   - Hard gate: Team report Tue–Wed eve (watch window).
+   - Process immediately upon arrival + update W14 roadmap.
+   - Escalate if NOT arrived by Wed 17:00.
 
-**Energy Curve:** Zephyr front-loaded Mon-Tue (blocker clarity essential), mid-week expansion Wed-Fri (implementation push on solid foundation). RobotOS threading independently (evening + optional Sat). Sunday structured closure + W14 seeding.
+4. **Mission D: RobotOS Setup + M6 (Mon + Wed eve + Sat, Pool B, SECONDARY):**
+   - **Mon eve (~1.5–2h):** VSCode setup + dev kit init.
+   - **Wed eve (~1–1.5h):** Schematic review + validation.
+   - **Sat daytime (~2–3h):** M6 scope synthesis (team Q2 readiness).
 
-**Q2 Foundation:** By Sunday EOD, W13 establishes factory feature iteration pattern, confirms system stability, enables team contributor Q2, and validates Q2 milestones are on track. No POC debt; factory feature moves toward deliverable state.
+5. **Mission E: Signee Board Testing (Optional, Sat/Sun, Pool B, NICE-TO-HAVE):**
+   - IF capacity available after A–D (low probability given tightness).
+   - Otherwise defer to W14.
+
+**Energy Distribution:**
+- **Mon–Tue:** Front-loaded gate work (migration clarity essential before research).
+- **Wed–Thu:** Peak research focus (uninterrupted deep blocks, no context switching).
+- **Fri:** Fresh implementation push (pattern validation, integration proof).
+- **Sat:** M6 architecture work (dedicated focus, independent of factory intensity).
+- **Sun:** Structured closure (W13 recap + W14 seeding).
+
+**Pool A Allocation:** ~18–24h committed of ~36h ✓ (healthy buffer for unknowns).  
+**Pool B Allocation:** ~5–8h committed of ~8–9h evening TIGHT (optional Mission E defers if needed).
+
+**Q2 Foundation:** By Sunday EOD, W13 moves factory from POC state → initial implementation (one validated test case, architecture proven). System health confirmed. RobotOS team architecturally ready. Signee report processed. W14 enters with clear factory roadmap + team enabled.
 
 ---
 
 ## Maintenance Notes
 
-- **Generated:** 2026-03-29 (Sunday, W12 transition)
-- **Status:** Execution-stable; ready for daily inheritance (blocker triage focus; scope guardrail enforced)
-- **Source:** W12 POC + factory_test_result_and_blockers.md + RobotOS M5 materials + project contexts + month alignment
-- **Next step:** GENERATE_WEEKLY_EXECUTION consumes this plan → produces daily anchor map + dependency graph
-- **Adjustment trigger:** If W12 POC is BLOCKED rather than PASSED, escalate Mon 10:00 (alters Wed-Fri expansion plan)
+**Generated:** 2026-03-29 (refined from original W13 plan; re-planned based on real codebase input)  
+**Status:** Execution-ready; delivery-order-locked (Migration → Research → Test); scope guardrails enforced; escalation gates defined  
+**Source:** Repository files (migration task, factory research/test split, Signee deadline, RobotOS setup) + capacity model + OS rules (R9, R10, R11, R11-D)  
+**Next Steps:**
+- W13_Execution.md consumes this plan → daily anchor map  
+- GENERATE_WEEKPLAN checks V1–V14 validation gates  
+- W13 Mon 09:00 — Migration gate checkpoint + daily health standup  
+
+**Adjustment Triggers:**
+- Migration NOT PASS by Tue 17:00 → escalate (defer factory research to W14)  
+- Signee report NOT arrived by Wed 17:00 → escalate timely notice  
+- Pool B capacity exceeded → defer optional Mission E  
+- Factory research scope inflation detected → escalate (accept new OR compress back to core)

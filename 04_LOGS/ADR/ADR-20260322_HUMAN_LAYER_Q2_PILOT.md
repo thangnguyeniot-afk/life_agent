@@ -129,7 +129,30 @@ Monthly Reflection → Capacity Adjustment Discussion → Next Month Anchor Map
 - **≤2 criteria met:** Sunset Human Layer integration; reflection becomes optional personal practice (not system obligation)
 
 ---
+## See Also (Canonical References)
 
+- **TEMPLATE_Month_Final.md** — Monthly Review template with finding classification schema + intake gate (§0.5 Scope Declaration, §3.5 Advisory Signals, §Intake Gate)
+- **TEMPLATE_Month_Human_Final.md** — Human Reflection template with governance note  
+- **TEMPLATE_Daily.md** — Daily template with strengthened governance note on reflection scope
+- **MONTHLY_REVIEW_PROCESS_GOVERNANCE.md** — Canonical process documentation (finding classification, promotion paths, exit/intake gates)
+
+## Boundary Leak Prevention
+
+This ADR prevents these failure modes:
+- ❌ Presenting advisory signals as binding execution decisions
+- ❌ Presenting pilot prompts as integrated system features  
+- ❌ Extracting raw advisory content directly into monthly plan assumptions without transformation
+- ❌ Assuming human signals persist automatically across months without re-confirmation
+- ❌ Using emotional readiness to override weekly scope lock or delivery commitments
+
+Prevention mechanisms:
+- ✅ All human reflection is tagged [ADVISORY] in Monthly Review
+- ✅ Separate section (§3.5) for advisory signals (not mixed with exec facts)
+- ✅ System Change Review explicitly marks pilot experiments with Type field + re-eval gate
+- ✅ Monthly Plan Intake Gate blocks direct extraction of ADVISORY (must transform first)
+- ✅ Monthly Review Exit Gate requires boundary safety verification before lock
+
+---
 ## Rationale (Short Form)
 
 **Why partial, not full integration:**

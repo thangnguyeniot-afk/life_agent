@@ -804,12 +804,29 @@ See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.m
    - Pool B (personal-flex): TYPE B + TYPE C only → e.g., RobotOS (evenings), Signee (evenings + weekend)
    - Verify: no personal project (TYPE B/C) is assigned office hours; no TYPE A project is assigned personal blocks
    - If any cross-pool allocation exists: resolve before proceeding (R9 violation)
-3. Run CAPACITY_ENGINE — validate V1–V11 (including V11 pool isolation)
+2.5. **Prepare Weekend Effort Decomposition (NEW — NEW V13/V14 Input)**
+   - For any project with planned weekend allocation (Sat daytime or Sun afternoon):
+     - Use [`TEMPLATE_Weekend_Decomposition.md`](../../../05_TEMPLATES/TEMPLATE_Weekend_Decomposition.md) to decompose M-level tasks
+     - List each mission/task to be executed on each weekend day
+     - State effort hours per task (should total ≈ declared slot hours)  
+     - Identify spillover scenario: if work +10%, where does it go? (other weekend slot, named evening, or W##+ deferral)
+     - Complete math closure proof showing all tasks fit within slot boundaries
+     - Feed this decomposition into CAPACITY_ENGINE as input for V13 validation
+   - If no projects use weekend capacity, note that and proceed
+3. Run CAPACITY_ENGINE — validate V1–V14 (including V11 pool isolation, **NEW V13 weekend realism, NEW V14 personal ceiling**)
 4. Review engine output:
    - If any V-check is **FAIL**: resolve before proceeding (see CAPACITY_ENGINE §8 — Decision Logic)
    - If any V-check is **WARN**: document the assumption and proceed with caution
+   - **NEW (V13, V14):** After running capacity engine:
+     - **V13 (Weekend effort realism):** If WARN, verify task breakdown documented in decomposition template; If FAIL, reduce weekend scope or reallocate tasks to different days
+     - **V14 (Personal capacity ceiling):** If WARN, document assumption (why week is stretched: deadline, project phase, etc.); check trend (compare to W-1/W-2/W-3; if trending +2h/week × 3 weeks, escalate); If FAIL, cannot proceed — must escalate scope-reduction decision to month context before finalizing
    - If all checks are **PASS**: proceed
-5. Embed the engine's Capacity Summary block in the WeekPlan `## Capacity & Constraints` section
+5. Embed the engine's Capacity Summary block in the WeekPlan `## Capacity & Constraints` section, including:
+   - V13 validation result (weekend effort realism: PASS / WARN / FAIL)
+   - V14 validation result (personal capacity ceiling: PASS / WARN / FAIL)
+   - **If V13 WARN:** spillover path documented and why buffer is acceptable
+   - **If V14 WARN:** assumption about stretched week; trend status (flat / increasing / escalation decision made); if trend >3 weeks, must be escalated
+   - **If V13 or V14 FAIL:** remediation action taken (scope reduction / reallocation / escalation with reason)
 6. Carry the pool assignments (Pool A / Pool B) and layer assignments (TYPE A/B/C) forward into Step 7 (Anchor Design)
 
 **Key rules (from CAPACITY_ENGINE §5, §9, §10, and R11 Slot-Based Weekend Policy):**
@@ -830,6 +847,8 @@ See: [`01_OS/04_OPERATIONS/WEEKLY_CONTROL/CAPACITY_ENGINE.md`](CAPACITY_ENGINE.m
 - If evening blocks are required to close personal project capacity, they must be named explicitly (V3 check)
 - If personal project scope exceeds Pool B capacity: reduce scope or span to next week; do NOT borrow from Pool A
 - **V12 validation: All five weekend slots must be declared before accepting the plan** — vague language or missing slots are automatic failures
+- **V13 validation: Weekend effort realism** — declared weekend hours must have M-level task breakdown; each task must fit in declared slot boundary; spillover scenarios must have explicit paths. Cosmetic weekend allocation (sized for capacity math, not project scope) triggers FAIL
+- **V14 validation: Personal capacity ceiling** — total personal execution (net weekday evening + weekend daytime) must stay ≤18h/week (normal sustainable range); 18–20h requires documented assumption; >20h unsustainable and requires escalation. Personal load trending upward >2h/week for 3+ consecutive weeks without escalation decision triggers FAIL
 
 **Output:** Capacity Summary block (engine output) ready to embed in WeekPlan. Validation status: PASS / WARN / FAIL per check.
 
@@ -1056,7 +1075,9 @@ Use this checklist before finalizing a WeekPlan:
 - [ ] Project alignment ✅ (blockers documented, no missing dependencies)
 - [ ] Carry-over alignment ✅ (all items classified, integrated items scheduled)
 - [ ] Anchor alignment ✅ (historical adherence >60%, supports goals)
-- [ ] Capacity alignment ✅ (CAPACITY_ENGINE V-checks pass; work fits modeled layers; no hidden evening dependency)
+- [ ] Capacity alignment ✅ (CAPACITY_ENGINE V-checks V1–V14 pass; work fits modeled layers; no hidden evening dependency)
+- [ ] **V13 (Weekend effort realism) ✅** (weekend scope decomposed into realistic M-blocks; each task fits declared slot; spillover path exists or not needed)
+- [ ] **V14 (Personal capacity ceiling) ✅** (total personal execution ≤18h/week or documented assumption; trend not escalating >2h × 3 weeks; if WARN/FAIL resolved with decision)
 - [ ] Constraint honoring ✅ (hard constraints listed and achievable)
 - [ ] Month alignment ✅ (goals serve month strategy)
 

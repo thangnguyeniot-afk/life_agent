@@ -271,6 +271,8 @@ When information sources conflict, resolve in this rank order:
 
 Weekly execution must enforce strict pool separation inherited from CAPACITY_ENGINE. These rules are not optional.
 
+> **Engine Migration Rule:** This section must reflect the **current** capacity model from CAPACITY_ENGINE.md. Do NOT preserve superseded rules from earlier model versions (W09–W13). If CAPACITY_ENGINE.md introduces a new concept (delegation model, Pool B semantics update, R9-DEL guardrails), §8 must be updated synchronously. Stale §8 language that overrides the live engine = anti-regression failure. Weekly generation that reproduces outdated wording such as "ALL office hours = Zephyr exclusive without exception" or "evening = invalid by default" must be corrected before finalizing.
+
 ### Pool A — Office Hours (Fixed)
 
 **What belongs in Pool A:**
@@ -283,9 +285,16 @@ Weekly execution must enforce strict pool separation inherited from CAPACITY_ENG
 - Do NOT place RobotOS or Signee work in office-hour blocks
 - If Zephyr office hours are unavailable (vacation, meeting override), reduce Zephyr allocation; do NOT substitute with RobotOS/Signee in office hours
 
-**Validation rule for daily anchor map:**
-- Every office-hours slot must have **Zephyr only** in the Primary or Secondary anchor column
-- If a day shows office hours anchored to RobotOS or Signee, it is an error. Fix before finalizing.
+**INDEPENDENCE PRINCIPLE (Critical):**
+- Zephyr's allocation % (e.g., 5% vs 10%) does NOT determine whether Zephyr is office-hours-only
+- Office-hours constraint applies regardless of allocation level
+- Do NOT infer causality: "Zephyr has low hours because it is office-hours-only"
+- Correct causality: "Zephyr is office-hours-only (time domain rule) AND happens to have 5% this week (allocation rebalance for separate reason)"
+
+**Validation rule for daily anchor map — TWO-CASE rule:**
+- **Case A — Direct allocation (ERROR):** If RobotOS or Signee are directly *allocated* against office hours in the planning model (no delegation marker), this is an error. Fix before finalizing — personal projects may not appear as planning-level anchor owners in office-hour slots.
+- **Case B — Approved delegation (VALID):** If Zephyr has delegated a bounded office-hour slice to Project Accountant (or other approved work) on a given day, and the daily plan contains an explicit `DEL: [project] borrowed [Xh] office time on [date]` marker with all R9-DEL guardrails satisfied (KTLO floor cleared; ≤2h; per-day approval), then the execution anchor reflects approved borrowing — this is NOT a pool violation.
+- **Delegation framing guard:** If a day's anchor shows non-Zephyr work in office hours, verify: (a) explicit `DEL:` marker exists for that day, AND (b) CAPACITY_ENGINE.md R9-DEL conditions are satisfied. If either condition fails → treat as Case A error.
 
 ### Pool B — Personal Deep-Work (Evenings + Five Weekend Slots)
 

@@ -281,6 +281,11 @@ If answer were: "Did some things" → ✗ VAGUE → rewrite anchors
 **Carry-over Rule:**  
 *(if incomplete, what spills to next day and how it re-enters)*
 
+**Next Step (REQUIRED — Choose One):**
+- [ ] **Continue:** Define next action for tomorrow (e.g., "Resume at test case 10; implement remaining cases")
+- [ ] **Transfer:** Pass to (person/role/system); define hand-off criteria
+- [ ] **None:** Explicitly no follow-up; anchor is complete and closed
+
 **Purpose / Scheduling Rationale:**  
 *(why this anchor today — 1 line; downstream enablement belongs here, not in anchor identity)*
 
@@ -309,6 +314,11 @@ If answer were: "Did some things" → ✗ VAGUE → rewrite anchors
 
 **Carry-over Rule:**  
 *(if incomplete, what spills to next day and how it re-enters)*
+
+**Next Step (REQUIRED — Choose One):**
+- [ ] **Continue:** Define next action (e.g., "Complete remaining 3 test cases; resuming Wed afternoon")
+- [ ] **Transfer:** Pass to (person/role); hand-off criteria
+- [ ] **None:** Complete; no follow-up required
 
 **Purpose / Scheduling Rationale:**  
 *(why this anchor today — 1 line)*
@@ -714,7 +724,47 @@ Once an anchor **starts execution in a block**, it CANNOT be replaced mid-sessio
 
 ---
 
+## CLOSURE CHECK (MANDATORY for Daily Completion)
+
+**Purpose:** Ensure no cognitive load carries over into evening; achieve explicit mental closure.
+
+**Task Completion Confirmation:**
+- [ ] **All tasks have DONE criteria:**
+  - [ ] Artifact defined (yes/no)
+  - [ ] Exit condition verifiable (yes/no)
+  - [ ] Next Step defined (yes/no)
+- [ ] **No vague "continue later"** without explicit next-step definition
+
+**Cognitive Closure:**
+- [ ] **I have NO remaining open loops** regarding today's anchors  
+  (Example open loop: "Did I finish the test cases?" DO NOT leave day without knowing answer)
+- [ ] **Nothing I need to think about tonight**  
+  (If something lingers mentally, capture it + add to tomorrow's schedule, then check again)
+
+**If EITHER cognitive closure item is NOT checked:**
+- ❌ Do NOT close the day
+- ❌ Task is NOT considered DONE
+- ✅ Fix by: (a) completing task, (b) creating explicit next-step + re-entry package, or (c) explicitly deferring to specific future day with written rationale
+- ✅ Then return and re-check closure
+
+**Day may NOT end until BOTH closure items are checked ✓**
+
+---
+
+---
+
 ## Human Reflection (Optional)
+
+**Governance note (ADR-20260322 — Q2 PILOT):**
+Human Reflection sections are optional Q2 pilot elements (advisory-only, not binding).
+- Primary integration point: Monthly Human Reflection template → Monthly Review (not daily execution, not weekly planning)
+- This section will NOT affect task admission, priority decisions, or scheduling
+- All reflection data is tagged [ADVISORY] and re-confirmed monthly; do not assume patterns persist
+- Q2 pilot re-evaluation: 2026-06-30 per 5 success criteria in ADR-20260322
+- Usage: If this reflection genuinely helps your daily review, use it. If not, skip it.
+- Monthly extraction rule: Reflection informs capacity *adjustments*, not binding decisions
+
+Related: TEMPLATE_Month_Human_Final.md | ADR-20260322_HUMAN_LAYER_Q2_PILOT.md | MONTHLY_REVIEW_PROCESS_GOVERNANCE.md
 
 > **Not a task log. Not planning.** A few lines to capture the human side of today.
 > 

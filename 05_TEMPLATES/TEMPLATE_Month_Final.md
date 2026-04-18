@@ -154,7 +154,84 @@ Expected progress:
 
 ---
 
+## MONTHLY PLAN INTAKE GATE
+
+**Rule:** This plan extracts content only from classified findings in previous month's review, organized through the Month-End Intelligence Transfer artifact.
+
+**Process note:** Before applying intake gate, verify that Month-End Intelligence Transfer was created (containing forward-looking context from previous month review). Use Intelligence Transfer as reference when extracting findings.
+
+**Rule:** This plan extracts content only from classified findings in previous month's review.
+
+### ✅ DIRECTLY EXTRACT (binding basis for plan):
+- **EXEC findings** — execution reality, measured capacity, performance data
+- **RULE findings** — approved system changes, ADR decisions, decision-log entries  
+- **UNRESOLVED findings** — open risks affecting next month; pending decisions needing closure
+
+### 🔄 CONDITIONAL EXTRACT (pilot-guarded):
+- **PILOT findings** — Extract ONLY if:
+  - ADR/decision gate permits (e.g., ADR-20260322 allows Q2 pilots)
+  - Success criteria evaluated this month
+  - Explicit decision made (continue/rollback/adjust)
+  - Tag explicitly: "[pilot name] — PILOT PHASE — re-eval [date]"
+
+### ❌ TRANSFORM, DON'T EXTRACT:
+- **ADVISORY findings** — Do NOT extract as planning assumptions
+  - Instead: Use to *inform* capacity adjustments, then plan the adjustment as EXEC-level decision
+  - BAD: "Based on human reflection, prioritize single-threaded work"
+  - GOOD: "Capacity: 1 primary anchor/week (informed by March energy observation; validating in Q2)"
+
+### Intake audit trail
+**Every major plan decision must trace to one intake source above.**
+- Use notation: `(from March EXEC measurement)` or `(from March RULE decision)` or `(considering March advisory observation — testing)`
+- If 3+ decisions lack source attribution → Monthly Plan cannot be locked
+
+---
+
 # B) Monthly Review (cuối tháng) — 45–60 phút
+
+---
+
+## **Month-End Process Flow**
+
+After this Monthly Review is complete and passes the Exit Gate, the month-end sequence continues:
+
+```
+Monthly Review (this artifact)
+         ↓
+  [Review Exit Gate Check]
+         ↓
+Month-End Intelligence Transfer ← organizes forward-looking planning context
+  (TEMPLATE_Month_End_Intelligence_Transfer.md)
+         ↓
+  [Monthly Plan Intake Gate Check]
+         ↓
+Monthly Plan (next month created using context from Intelligence Transfer)
+```
+
+Review owns **what happened** (backward-looking).  
+Intelligence Transfer owns **what should shape planning** (forward-looking).  
+Plan owns **what we commit to** (decisions & execution).
+
+---
+
+## 0.5) REVIEW SCOPE DECLARATION
+
+**This review covers:**
+- **EXEC findings:** Execution facts, measured capacity, observed outcomes (⚠️ binding)
+- **RULE findings:** Approved system changes that modify how we work (⚠️ binding)
+- **PILOT findings:** Approved experiments subject to re-evaluation gates (🔄 controlled)
+- **ADVISORY findings:** Human well-being signals, subjective observations (ℹ️ input to planning, not deterministic)
+- **UNRESOLVED findings:** Open questions requiring decisions in future cycles (❓ pending)
+
+**This review does NOT cover:**
+- Individual task-level performance audits
+- Strategic re-planning outside monthly lane (that's quarterly)
+- Proposal testing without governance approval
+
+**Data quality note:**
+All findings are tagged [TAG: …]. Human advisory signals are valuable inputs to capacity planning. They are NOT system constraints unless explicitly approved.
+
+---
 
 ## 0) DoD (Definition of Done) cho Monthly Review
 Monthly Review được coi là **HOÀN THÀNH** khi:
@@ -164,8 +241,12 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 - **Portfolio Balance** đã được kiểm tra → không có bị lệch quá mức một vùng
 - Bất kỳ **scope expansion** nào trong tháng đều có visible trade-off
 - Trọng tâm tháng tới được **thu gọn & rõ ràng** (1–2 điểm), dựa trên thực tế năng lực thật
-- Không mang cảm giác “phải làm nhiều hơn”, mà là “làm đúng hơn”
-
+- Không mang cảm giác “phải làm nhiều hơn”, mà là “làm đúng hơn”- [ ] All findings tagged with [EXEC/RULE/PILOT/ADVISORY/UNRESOLVED]
+- [ ] Human Advisory Signals separated from Execution Reality (§3.5)
+- [ ] System Change Review includes Type + Control Layer + Gate columns
+- [ ] Pilot experiments reference their ADR/gate + re-evaluation date
+- [ ] No ADVISORY finding appears as binding system decision
+- [ ] Monthly Plan intake rules applied correctly
 ---
 
 ## 1) Executive Summary of the Month (5 phút)
@@ -181,11 +262,20 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 
 ### 📦 Output đáng chú ý
 - **Những output quan trọng đã hoàn thành:**
-  - …
-  - …
+  - [TAG: …] …
+  - [TAG: …] …
 - **Output quan trọng chưa đạt / bị trì hoãn:**
-  - …
-  - …
+  - [TAG: …] …
+  - [TAG: …] …
+
+::: TIP - Finding Tag Format :::
+Every output bullet should begin with a classification tag:
+- **[EXEC]** = execution fact (measured, binding)
+- **[RULE]** = approved system rule change
+- **[PILOT]** = experiment observation (per ADR gate)
+- **[ADVISORY]** = human/well-being signal (non-binding input)
+- **[UNRESOLVED]** = open question, decision pending
+:::
 
 ### 🎯 Outcome thực tế
 - **Điều gì thực sự tạo ra giá trị trong tháng này?**
@@ -215,15 +305,50 @@ Monthly Review được coi là **HOÀN THÀNH** khi:
 ## 3) System Change Review (10–15 phút)
 > Đánh giá các “System Change” đã triển khai trong tháng (thói quen/cơ chế/công cụ/quy tắc).
 
-| System Change | Mục tiêu | Kết quả (Effective/Partial/Ineffective) | Quyết định (Giữ/Điều chỉnh/Rollback) |
-|---|---|---|---|
-| … | … | … | … |
-| … | … | … | … |
-| … | … | … | … |
+### Table Schema (Enhanced)
+
+| System Change | Type | Mục tiêu | Kết quả | Control Layer | Gate | Quyết định |
+|---|---|---|---|---|---|---|
+| … | RULE/PILOT/ADVISORY | … | Effective/Partial/Ineffective | Execution/Capacity/Advisory | N/A or ADR gate | Giữ/Điều chỉnh/Rollback |
+| … | … | … | … | … | … | … |
+
+### Change Type & Gate Clarification
+- **RULE:** Binding approved change. Gate = N/A (already approved) or reference to decision.
+- **PILOT:** Controlled experiment. Gate = Link to ADR + success criteria + re-evaluation date.
+- **ADVISORY:** Observation (not rule). Gate = N/A (advisory doesn't promote without explicit decision).
+- **UNRESOLVED:** Pending decision. Gate = Decision deadline or review checkpoint.
 
 **Rule (cứng):**
 - Mỗi System Change **phải có kết luận** trong tháng.
 - Không để System Change trôi sang tháng sau mà **không đánh giá**.
+- Mỗi PILOT phải link tới ADR hoặc decision gate.
+- Mỗi ADVISORY phải rõ là non-binding.
+
+---
+
+## 3.5) Human Advisory Signals & Well-Being Patterns
+
+[Separate from Execution Reality. Tagged [ADVISORY] — these inform capacity planning, not deterministic decisions.]
+
+### Signals observed this month
+*(Extract from Monthly Human Reflection template if completed; select 2–3 most relevant)*
+
+- **Signal 1:**
+  - Pattern observed: …
+  - Capacity implication: …
+  - Caveat / alternate scenario: …
+  - Decision for next month: [ ] Apply adjustment | [ ] Hold steady | [ ] Test
+
+- **Signal 2:**
+  - Pattern observed: …
+  - Capacity implication: …
+  - Caveat / alternate scenario: …
+  - Decision for next month: [ ] Apply adjustment | [ ] Hold steady | [ ] Test
+
+### Re-confirmation required
+**ADVISORY signals must be re-confirmed in next month's review.** Do not assume persistence.
+- If pattern repeats 3+ months → can be promoted to EXEC capacity fact (requires governance decision)
+- If pattern breaks → update Anti-Anchor rules and document learning
 
 ---
 

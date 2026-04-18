@@ -2,6 +2,19 @@
 
 ---
 
+## GOVERNANCE NOTE (ADR-20260322)
+
+This template is for **OPTIONAL Q2 pilot reflection only** (April 1 – June 30, 2026).
+
+**Important:** Content from this template is tagged [ADVISORY] when extracted to Monthly Review. 
+Human advisory signals inform capacity planning but do NOT determine binding decisions.
+
+All human reflection data will be re-evaluated at Q2 end (2026-06-30) per ADR-20260322 success criteria.
+
+**Usage note:** If no strong signal emerged this month, keep sections minimal; do not force meaning.
+
+---
+
 ## Table of Contents
 
 - [Month Identity](#month-identity)

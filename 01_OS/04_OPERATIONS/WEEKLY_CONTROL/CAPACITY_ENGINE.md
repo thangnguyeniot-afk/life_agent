@@ -149,7 +149,10 @@ The LIFE_AGENT capacity model is **tiered, not flat.** Projects belong to specif
 - Standard: 5 days × 8 hours = 40 hours gross
 - Minus: KTLO-fixed project allocation (pre-committed, first-before-flex)
 - Minus: Admin/comms overhead (standard 4h; adjust for exceptions)
-- Hard boundary: **ALL remaining office-hours capacity belongs exclusively to TYPE A project operation (Zephyr).** No personal projects (RobotOS, Signee) may be allocated against any part of the office pool — not "remaining capacity," not "support hours," not any other framing.
+- Hard boundary — **two-tier rule (planning allocation ≠ execution delegation):**
+  - **Planning allocation rule:** Pool A belongs exclusively to TYPE A (Zephyr) + TYPE D overhead. No personal project (RobotOS, Signee, Project Accountant) may be *allocated* against office hours in the planning model — not "remaining capacity," not "support hours," not any other framing. This is the canonical pool ownership rule. It does NOT change mid-week or mid-month.
+  - **Execution-level delegation exception:** At daily execution level, Zephyr may *delegate* a bounded portion of office time to Project Accountant (or other approved work) when ALL R9-DEL guardrails are met. This is borrowing, NOT allocation. It does NOT change the planning-level pool ownership. Execution delegation must be recorded in the daily log as "DEL:" and must never back-propagate into the planning model.
+  - **Allocation, ownership, and time-domain execution are distinct concepts and must not be conflated.**
 
 **Rule:** If a project is "office hours only," its allocation is computed **against Layer 1 gross capacity**, not against a shared pool. It is **fixed and pre-committed**.
 
@@ -355,10 +358,29 @@ Pool A (office hours, weekdays 08:30–17:00) and Pool B (personal time: evening
 
 **Pool isolation applies in both directions:**
 - TYPE B (RobotOS) and TYPE C (Signee) must draw capacity **only from Pool B** (personal evenings + weekends)
-- Pool A office hours must be allocated **only to TYPE A (Zephyr)** and TYPE D overhead
-- Framing like "using remaining office capacity for RobotOS" violates this rule
-- Framing like "Zephyr evening work to free up office time" violates this rule
-- If Pool B capacity is insufficient for personal project goals: reduce scope or span goal to next week
+- **Planning allocation:** Pool A office hours must be allocated **only to TYPE A (Zephyr)** and TYPE D overhead. Personal project planning allocation (RobotOS, Signee) against office hours violates this rule regardless of framing — "remaining capacity," "support hours," or any other label.
+- **Execution delegation (exception — not a contradiction to the above):** At daily execution level, Zephyr may delegate a bounded slice of office hours to Project Accountant under R9-DEL guardrails. This borrowing is tracked daily and does NOT constitute planning-level allocation for Project Accountant. Correct framing after delegation: "Project Accountant is Pool B; daily delegation occurred" — NOT "Project Accountant now has office hours."
+- Framing like "Project Accountant borrows office time regularly → it now has office allocation" is a back-propagation violation.
+- Framing like "Zephyr evening work to free up office time" violates this rule (Pool A is office-only; Pool B is personal-only in both directions).
+- If Pool B capacity is insufficient for personal project goals: reduce scope or span goal to next week.
+
+---
+
+### R9-DEL — Delegation Guardrails (Execution Level Only)
+
+Delegation is the mechanism by which Zephyr allows Project Accountant to borrow a bounded slice of office time on a given day. It is an execution-level action, not a planning-level re-allocation.
+
+**Delegation conditions (ALL must be satisfied):**
+- Delegation is approved on a per-day basis during morning daily planning — never as a weekly or monthly pre-commitment
+- Zephyr KTLO floor is verified first: if Zephyr has an unresolved critical blocker for today, delegation is suspended
+- Delegation window is bounded: ≤2h per day maximum
+- Delegation is recorded in the daily log entry as: `DEL: [project] borrowed [Xh] office time on [date]`
+- Delegation does NOT appear in weekly capacity totals as office allocation for the borrowed project
+
+**Back-propagation guard:**
+- Weekly review must not accumulate delegation totals into planning-level allocation (e.g., "Project Accountant used 8h office over W14 → it now gets 8h office in W15" = violation)
+- Delegation history informs scope judgment but does NOT alter pool ownership
+- CAPACITY_ENGINE planning model remains: Project Accountant = Pool B; delegation = execution-level event
 
 **Sources confirming pool separation:**
 - OS daily schedule: Job 1 (08:30–17:00) = Zephyr; Personal evening (19:30–21:30) = RobotOS/Signee
@@ -535,6 +557,98 @@ Run all checks before accepting capacity model output.
 | Split-Signee rule | V10 | Signee sub-components with different types are allocated separately | All Signee work assigned one TYPE; blocks baseline allocation |
 | Pool isolation | V11 | Pool A (office) contains only TYPE A + TYPE D; Pool B (personal) contains only TYPE B + TYPE C; no cross-pool hours exist | Any personal project (TYPE B/C) has hours attributed to office hours; or Zephyr has hours attributed to personal blocks |
 | Weekend usage decision | V12 | All five weekend slots explicitly declared per R11: Mode selected (A/B/C); Sat daytime [value]; Sat evening [OFF/OPEN]; Sun morning [review]; Sun afternoon [value]; Sun evening [OFF/OPEN]; math proof if any execution slot = 0h | Weekend mode not declared; OR any slot declared vaguely or missing; OR day-based language used instead of slot-based (e.g., "Sunday unused" without specifying afternoon vs. evening); OR execution slot value not linked to project scope; OR math proof absent when execution slot = 0h |
+| Weekend effort realism | V13 | Weekend-allocated work has M-level task breakdown; each task fits in declared slot capacity (Sat daytime ≤1–2 M-blocks, Sun afternoon ≤1 M-block); spillover path exists (other weekend slot or deferral documented) | Weekend scope cannot be decomposed into realistic focus-blocks; OR declared slot hours insufficient for identified scope +10% spillover scenario; OR spillover has no named path (implicit overflow) |
+| Personal capacity ceiling | V14 | Total personal execution (net weekday evening + weekend day hours) ≤ 18h/week (sustainable); if >18h, assumption documented; trend analysis shows personal load not increasing >2h × 3 consecutive weeks | Personal execution >20h/week (unsustainable); OR personal load trending upward >2h/week for 3+ weeks without escalation |
+| No hidden office allocation | V15 | Any non-Zephyr project appearing in office-hour blocks has an explicit `DEL:` delegation marker in the daily plan; no framing ("remaining capacity", "support hours") disguises personal project office use; R9-DEL guardrails satisfied for all flagged entries | Non-Zephyr work in office-hour block without `DEL:` marker; OR marker present but R9-DEL guardrails not satisfied |
+| Delegation recorded as borrowing | V16 | All approved delegation events logged as `DEL: [project] borrowed [Xh] on [date]`; delegation totals NOT accumulated into planning-level allocation; no "Project Accountant now has Xh office" framing in weekly review | Delegation events unlogged; OR weekly review attributes delegation totals to planning allocation (back-propagation violation) |
+| Pool B serialization enforced | V17 | Max 1 personal project active per evening; no dual-project stacking in weekday evenings; all Pool B evening work ≥0.5h recorded in Evening Check; evening not normalized to 2h+ as standard planned mode | Two personal projects active same evening; OR Pool B work not tracked in Evening Check; OR 2h+ evening occurring on 3+ nights/week as standard planned pattern (normalization overload) |
+| Zephyr KTLO floor protected | V18 | Before any delegation is approved on a given day, Zephyr KTLO floor is satisfied (no unresolved critical Zephyr blockers today); delegation suspended if KTLO floor check fails | Delegation approved with unresolved Zephyr KTLO critical work; OR daily log shows delegation without KTLO floor verification |
+| Drift trigger | V19 | CAPACITY_ENGINE.md model rules align with current month plan's capacity model; no superseded rules remain in generator documents (GENERATE_WEEKLY_EXECUTION.md §8, etc.) without explicit deprecation; delegation-exception-aware wording present in all engine boundary statements | Generator document contains superseded rules (model drift); OR "ALL remaining office hours = Zephyr exclusive" language appears without delegation exception; OR delegation model introduced in month plan not reflected in engine |
+
+---
+
+## 6.1 Validation Check Details: V13 — Weekend Effort Realism
+
+**Purpose:** Ensure declared weekend hours can realistically accommodate project scope without silent spillover or artificial compression.
+
+**Validation Steps:**
+
+1. **Task Decomposition**
+   - For each project allocated to weekend (TYPE B or TYPE C):
+     - List all M-sized missions or execution phases assigned to Sat daytime and Sun afternoon
+     - For each mission, state effort (hours) and focus type (architectural, implementation, specification, etc.)
+   - Check: Does sum of listed tasks ≈ declared slot hours? (within ±1h margin)
+   - Failure: Scope cannot be accounted for in declared slots ("8h declared but only 5h of identified work")
+
+2. **Slot Fit Analysis**
+   - Saturday daytime (5–6h available):
+     - Can hold ≤1 deep M-block (3–4h execution + setup/breaks) with margin
+     - Can hold 2 small independent tasks (1.5–2h each)
+     - Overfull if: single 4h+ mission + another 3h+ mission = back-to-back execution (unrealistic)
+   - Sunday afternoon (3–4h available, after morning review):
+     - Can hold ≤1 M-block (2–3h execution given post-weekend fatigue)
+     - Large second tasks should use Sat daytime, not Sun
+   - Failure: Declared Sat 8h with scope list showing 2×4h tasks (impossible to execute start-to-finish Sat without spillover)
+
+3. **Spillover Scenario (Assume +10–15% Overrun)**
+   - If project work exceeds declared slot by 10% (realistic overrun margin):
+     - ✓ Path exists: spillover fits in other weekend slot (Sat→Sun or vice versa)
+     - ✓ Path exists: spillover fits in declared weekday evening block with identified capacity
+     - ✓ Path exists: spillover deferred to next week with explicit decision + impact noted
+     - ✗ Failure: "Spillover will just happen" (implicit absorption, no named path)
+
+**When Applied:**
+- After V12 (slot declaration) validates slots are named
+- After V6 (goal-allocation match) validates effort estimates
+- Before accepting weekend mode and slot allocation
+
+**Output:** PASS / WARN / FAIL
+- **PASS:** Weekend hours fully decomposed; spillover path exists or margin is safe
+- **WARN:** Declared hours moderately exceed identified scope (+20–30%); proceed if cleanup explicitly named
+- **FAIL:** Scope cannot be decomposed into realistic blocks; or spillover has no path
+
+---
+
+## 6.2 Validation Check Details: V14 — Personal Capacity Ceiling
+
+**Purpose:** Ensure total personal execution (weekday evening net + weekend daytime) remains sustainable and does not exhibit unsustainable trending.
+
+**Validation Steps:**
+
+1. **Personal Capacity Calculation**
+   - Start with gross weekday evening: 10h/week (2h × 5 evenings, 19:30–21:30 Mon–Fri)
+   - Subtract structural deductions (from this week's anchor):
+     - Thu = S-only energy dip (typically 0–1h available)
+     - Fri = closure or S-only (typically 0–1h available)
+     - Result: net weekday evening capacity (typically 5–8h/week realistically executable)
+   - Add weekend daytime:
+     - Sat daytime: declared hours (full execution capacity)
+     - Sun morning: ~2–3h (review/overhead, NOT execution capacity; separate)
+     - Sun afternoon: declared hours (if used; 0h if not planned)
+   - Total personal execution: [net evening] + [Sat] + [Sun afternoon] = X h/week
+
+2. **Sustainability Bands**
+   - **11–18h/week:** PASS — normal sustainable range
+   - **18–20h/week:** WARN — stretched week; requires explicit decision + assumption documentation; if pattern continues 3+ weeks, escalate
+   - **>20h/week:** FAIL — unsustainable; scope reduction required OR explicit strategic decision to accept sprint (must escalate to month context)
+
+3. **Trend Analysis (Multi-Week Pattern)**
+   - Compare this week's personal execution to W-1, W-2, W-3
+   - Calculate trend:
+     - Flat (Δ <1h): no trend concern ✓
+     - Mild increase (Δ 1–2h/week): monitor ⚠️
+     - Steep increase (Δ >2h/week × 3 consecutive weeks): escalate ❌
+   - If personal load increases >2h/week for 3+ consecutive weeks without escalation decision, V14 fails
+
+**When Applied:**
+- After V13 (weekend effort realism) confirms weekend hours are decomposable
+- After V9 (capacity sum) validates total allocation
+- Before finalizing capacity model
+
+**Output:** PASS / WARN / FAIL
+- **PASS:** Personal execution 11–18h/week; trend flat or mild (Δ <2h/week); sustainable
+- **WARN:** Personal execution 18–20h (stretched) requiring assumption documentation; OR personal load trending +2h × 2 weeks (monitor for escalation trigger)
+- **FAIL:** Personal execution >20h/week (unsustainable sprint); OR personal load trending >2h × 3+ consecutive weeks without escalation
 
 ---
 
@@ -594,6 +708,9 @@ The engine produces a **Capacity Summary block** that the weekly plan's `## Capa
 | Capacity sum | V9 | PASS / FAIL | |
 | Split-Signee rule | V10 | PASS / N/A | |
 | Pool isolation | V11 | PASS / FAIL | |
+| Weekend usage decision | V12 | PASS / FAIL | |
+| Weekend effort realism | V13 | PASS / WARN / FAIL | |
+| Personal capacity ceiling | V14 | PASS / WARN / FAIL | |
 
 ### Warnings & Reconciliation Notes
 
