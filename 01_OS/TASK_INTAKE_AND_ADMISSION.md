@@ -217,6 +217,136 @@ If the task spans multiple sessions, re-entry sensitivity must be indicated.
 
 ---
 
+## 7.5 Ambiguity Gate — Pre-Admission Filter
+
+> *Absorbed from `99_ARCHIVE/02_SYSTEM_REVIEWS/AMBIGUITY_GATE_RULE_P0_5_PHASE_2.md` (Phase 2 publication record, 2026-04-05). Original file preserved for historical trace.*
+
+**Purpose:** Prevent vague or unclear tasks from entering the execution schedule. This filter runs before the Level 3 admission decision (§6).
+
+**Relationship to §7 Rule 2:** Rule 2 defines the scheduling threshold (ambiguity ≥ 4 → not schedulable). This section defines the observable filter that detects ambiguity before the task reaches that gate, and the required response when the filter fails.
+
+---
+
+### 3-Question Pre-Schedule Filter
+
+Before any task enters the schedule, answer these three questions:
+
+```
+1. Can DONE be written clearly?
+   → Artifact clearly named
+   → Exit condition binary + verifiable
+   → Next step explicit
+
+2. Can the work be started immediately?
+   → First action is ≤ 60 min AND concrete
+   → OR blockers are identified + planned separately
+
+3. If this task stalls, will I know why?
+   → Exit condition clear enough that failure = obvious
+   → Clear vs unclear = verifiable
+```
+
+**Decision rule:**
+- **ALL THREE → YES:** Task may proceed to Level 3 admission ✅
+- **ANY → NO:** Task may NOT enter direct scheduling. Convert to an UNBLOCK TASK first ❌
+
+---
+
+### UNBLOCK TASK
+
+**Definition:** A small, clarity-producing task whose only purpose is to remove ambiguity from a blocked task.
+
+**Characteristics:**
+
+- Size: S or small-M only (≤ 90 min total)
+- Output: Clarity, decision, or bounded input — not full implementation
+- End state: Either a clear DONE definition for the original task, or an explicit blocked status
+
+**Examples:**
+
+```
+VAGUE: "Improve database performance"
+↓ CONVERT TO UNBLOCK TASK:
+"Identify current bottleneck: profile queries on production dataset (30 min);
+document slow queries + suspect indices; write next-step options (improve, add index, redesign)"
+
+VAGUE: "Research factory implementation patterns"
+↓ CONVERT TO UNBLOCK TASK:
+"Code review: find 2 existing factory patterns in codebase; document structure + trade-offs (45 min)"
+
+VAGUE: "Handle test failures"
+↓ CONVERT TO UNBLOCK TASK:
+"Run test suite; capture failure output; categorize by type; list top 3 failures + root causes (20 min)"
+
+VAGUE: "Continue working on adapter layer"
+↓ CONVERT TO UNBLOCK TASK:
+"Review Monday's closure notes; inspect current code state; identify where work stopped;
+write 3-step continuation plan (15 min)"
+```
+
+---
+
+### Banned Vague Language
+
+The following task names or descriptions must NOT enter the schedule as-is:
+
+- ❌ "improve X"
+- ❌ "continue working on X"
+- ❌ "research more"
+- ❌ "handle X"
+- ❌ "fix things / fix X"
+- ❌ "check X"
+- ❌ "polish X"
+- ❌ "work on X"
+- ❌ "do testing"
+- ❌ "make progress on X"
+
+**Exception:** Vague language is permitted only if the task statement also includes ALL of:
+
+- An explicit artifact name (e.g., "improve query performance on `test_db`: target <100ms, measured by profiler output")
+- A binary DONE state (e.g., "3 edge cases handled; all tests passing; zero regressions")
+- A concrete first step (e.g., "first step: profile current query performance; identify top bottleneck")
+
+If any of the three is missing, convert to an UNBLOCK TASK first.
+
+---
+
+### High-Ambiguity Rule
+
+**A task is HIGH-AMBIGUITY if any of the following apply:**
+
+- Multiple unknowns exist (5+ open questions)
+- Entry point is unclear (no concrete first action)
+- Success criteria is subjective ("good enough" / "looks okay")
+- Scope is elastic (could expand indefinitely)
+
+**Gate:** If a task is HIGH-AMBIGUITY:
+
+- It must START with an UNBLOCK TASK (to discover unknowns first), OR
+- It must have an explicit first step that fits in ≤ 60 min and produces a concrete artifact
+
+**Note:** HIGH-AMBIGUITY tasks typically score ambiguity ≥ 4 and trigger §7 Rule 2. Rule 2 defines the scheduling consequence; this rule defines the observable conditions and prescribed response.
+
+**Example:**
+
+```
+HIGH-AMBIGUITY TASK: "Factory feature implementation"
+- 5+ open questions (What is factory? Where does it integrate? What's the API? Edge cases? Testing?)
+- Entry point: Unclear
+- Decision: Cannot enter execution schedule yet
+
+FIX → Schedule UNBLOCK TASK first:
+"Factory Feature Research Sprint (60 min):
+- What is factory pattern in this codebase?
+- Where do factories integrate? What API is expected?
+- Write entry-point candidates (2–3 options)
+- Exit: Research note with scope + unknowns clarified"
+
+THEN → After research complete, re-admit original task through Level 1 / Level 2
+```
+
+---
+
 ## 8. Project-Aware Defaults
 
 Use these defaults to reduce manual judgment when shaping tasks.
@@ -294,6 +424,58 @@ Before scheduling any non-trivial task, confirm:
 - [ ] Capacity fit is valid (Evening Capacity Guard respected if evening slot, OS §12.9)
 
 If any item fails → do not schedule. Apply the appropriate pre-step (split / spike / clarify).
+
+---
+
+## 10.5 Task Status Labeling
+
+Minimal status labeling for planning visibility. Labels reflect scheduling eligibility as determined by the §7.5 ambiguity gate — not effort, priority, or confidence.
+
+### Status Labels
+
+```
+Task Name | Status
+----------|--------
+Task A    | 🟢 Executable
+Task B    | 🟡 Needs Clarification
+Task C    | 🔴 Blocked
+```
+
+**Label definitions:**
+
+- **🟢 Executable** — passes the 3-question filter (§7.5); may enter the execution schedule directly
+- **🟡 Needs Clarification** — fails one or more filter questions; an UNBLOCK TASK must be completed before the original task may be scheduled
+- **🔴 Blocked** — a hard external dependency, decision, or resource is missing; no scheduling action until the blocker resolves (create a watchpoint instead)
+
+### Operational Rule
+
+The label determines scheduling eligibility:
+
+- 🟢 → may enter execution schedule directly
+- 🟡 → UNBLOCK TASK must be scheduled first; original task held until clarity is achieved
+- 🔴 → no scheduling action; create a watchpoint or dependency note
+
+**🟡 and 🔴 tasks must not be silently converted into execution blocks.** If a task carries one of these labels, the label must be resolved before the task enters any daily or weekly execution plan.
+
+### Enforcement Points
+
+**Weekly planning (WeekPlan creation):**
+
+- [ ] §7.5 ambiguity gate applied to all anchors before acceptance
+- [ ] High-ambiguity anchors have UNBLOCK TASKS scheduled as prerequisites
+- [ ] No banned vague language in anchor names (§7.5 Banned Vague Language)
+
+**Daily planning (Daily file creation):**
+
+- [ ] All blocks have explicit DONE criteria (artifact + exit condition + next step)
+- [ ] All blocks have a concrete first step (≤ 60 min, or clear continuation with re-entry pack)
+- [ ] No 🟡 or 🔴 tasks silently entered as execution blocks
+
+**Ad-hoc scheduling (new task arises mid-week):**
+
+- [ ] §7.5 3-question filter applied before adding to daily plan
+- [ ] If unclear → create UNBLOCK TASK instead of scheduling directly
+- [ ] If hard blocker identified → add watchpoint; escalate if needed
 
 ---
 

@@ -1,5 +1,7 @@
 # AMBIGUITY GATE RULE — PHASE 2 P0.5
 
+> **Promotion note:** The live operational rule content from this file was absorbed into `01_OS/TASK_INTAKE_AND_ADMISSION.md` §7.5 and §10.5 on 2026-04-27. This file remains the original Phase 2 publication record and should not be deleted.
+
 **Purpose:** Prevent vague/unclear tasks from entering the execution schedule. Clean input, not more process.
 
 **Status:** System rule (effective immediately)  

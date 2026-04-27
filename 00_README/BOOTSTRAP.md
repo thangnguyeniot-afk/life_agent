@@ -98,8 +98,9 @@ Depending on your task, read:
 
 Check the knowledge system:
 - `knowledge/research/` — existing research notes
-- `knowledge/adr/` — architecture decisions (learn before deciding)
+- `04_LOGS/ADR/` — architecture decisions (canonical ADR location)
 - `knowledge/design/` — system designs (reference for patterns)
+- `knowledge/summaries/` — reusable execution patterns and models
 
 ---
 
@@ -209,8 +210,8 @@ Use these; don't create variants:
 - **Entry point:** `00_README/INDEX.md`
 - **Main OS manual:** `01_OS/operating_system_thang_nguyen_v1_1.md`
 - **General context:** `02_GENERAL_CONTEXT/00_CONTEXT.md`
-- **Current week plan:** `03_PLANNING/03_WEEK/2026-W10_WeekPlan.md`
-- **Current month plan:** `03_PLANNING/02_MONTH/2026-03_March_Planning.md`
+- **Current week plan:** `03_PLANNING/03_WEEK/W14/2026-W14_WeekPlan.md`
+- **Current month plan:** `03_PLANNING/02_MONTH/2026-04_April_Plan.md`
 - **Decision log:** `04_LOGS/Decision_Log.md`
 - **Knowledge base:** `knowledge/`
 - **Command quick reference:** `05_TEMPLATES/TEMPLATE_Command_Pack.md`
