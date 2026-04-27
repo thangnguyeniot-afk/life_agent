@@ -166,6 +166,15 @@ These 4 commands support the core loop. Use when needed; do not require cadence.
 | `drift check` | Surface current execution drift | None (Agent reads recent plans + actuals) | Drift summary + 1–2 adjustment options | Full (human confirms action) |
 | `prepare artifact` | Create knowledge artifact stub | Type (ADR/Research/Summary/Design), topic | Artifact file created in `knowledge/` | Light |
 
+### TickTick Bridge Commands — NOT IMPLEMENTED
+
+These 2 commands bridge Life Agent plans to TickTick for phone-level execution. They are defined here as stubs. Implementation requires Phase 2 exporter code and TickTick API credentials. See [TICKTICK_BRIDGE_SPEC.md](TICKTICK_BRIDGE_SPEC.md) for the full specification.
+
+| Command | Purpose | Minimal Input | Expected Output | Confirmation | Status |
+|---|---|---|---|---|---|
+| `export week {week_id}` | Export or re-export all approved tasks for a week to TickTick | week_id | PEC summary: created/updated/skipped/cancelled counts + warnings + mapping file path | Full (plan must be approved before export) | **NOT IMPLEMENTED** |
+| `export day {date}` | Export or re-export approved tasks for a single day to TickTick | date (YYYY-MM-DD) | PEC summary for that day: counts + warnings + mapping file path | Light (daily plan must be finalized) | **NOT IMPLEMENTED** |
+
 ---
 
 ## 6. Input Schemas
@@ -323,6 +332,42 @@ drift check
 
 ---
 
+### `export week` — NOT IMPLEMENTED
+
+> *TickTick Bridge command. Requires Phase 2 exporter. See [TICKTICK_BRIDGE_SPEC.md](TICKTICK_BRIDGE_SPEC.md).*
+
+```
+export week
+week_id: [YYYY-Www — e.g. 2026-W14]
+mode: [B — default; A = export-only, no update]
+dry_run: [true / false — default true; set false to write to TickTick]
+cancel_policy: [archive — default; delete = destructive, use with caution]
+```
+
+*Planning agent* reads the approved week plan and daily files, produces the Plan Execution Contract (PEC), and presents a summary for approval.
+*Export adapter* performs TickTick API operations only after plan is confirmed ready for export.
+`dry_run: true` produces the PEC and counts without calling the TickTick API. Use for verification before first live export.
+
+---
+
+### `export day` — NOT IMPLEMENTED
+
+> *TickTick Bridge command. Requires Phase 2 exporter. See [TICKTICK_BRIDGE_SPEC.md](TICKTICK_BRIDGE_SPEC.md).*
+
+```
+export day
+date: [YYYY-MM-DD — e.g. 2026-04-09]
+mode: [B — default]
+dry_run: [true / false — default true]
+cancel_policy: [archive — default]
+```
+
+*Planning agent* reads the approved daily plan file for the specified date, produces the day-scoped PEC, and presents a summary.
+*Export adapter* performs TickTick API operations only after the daily plan is finalized.
+Idempotent: re-running for the same date updates changed tasks and skips unchanged ones.
+
+---
+
 ## 7. Output Contracts
 
 Each command must produce the outputs listed below. No extra files unless needed.
@@ -341,6 +386,8 @@ Each command must produce the outputs listed below. No extra files unless needed
 | `triage inbox` | Categorized item list (not a file) | Proposed actions per item | None |
 | `drift check` | Drift summary (not a file) | 1–2 adjustment options | None |
 | `prepare artifact` | Knowledge artifact stub created | None | None |
+| `export week` *(NOT IMPLEMENTED)* | PEC summary: created/updated/skipped/cancelled counts + warnings | `.ticktick/{year}-W{week}_map.json` updated | None |
+| `export day` *(NOT IMPLEMENTED)* | PEC summary for that day: counts + warnings | `.ticktick/{year}-W{week}_map.json` updated | None |
 
 ---
 

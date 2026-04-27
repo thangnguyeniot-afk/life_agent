@@ -1,0 +1,14 @@
+# TickTick Bridge local runtime files
+# These files contain secrets, tokens, or local state.
+# None of them should ever be committed.
+
+.env
+.ticktick/
+ticktick_token*.json
+ticktick_map*.json
+*.local.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo

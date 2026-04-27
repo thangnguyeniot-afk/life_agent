@@ -1,0 +1,156 @@
+{
+  "export_meta": {
+    "week_id": "2026-W18",
+    "week_start": "2026-04-27",
+    "week_end": "2026-05-01",
+    "exported_at": "2026-04-27T07:00:00",
+    "mode": "B",
+    "dry_run": true,
+    "mapping_file": ".ticktick/2026-W18_map.json",
+    "note": "Sample PEC for Phase 2B-1 validator development. Non-sensitive dummy data only."
+  },
+  "days": {
+    "2026-04-28": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260428-BLOCK-ROBOTOS-001",
+          "title": "RobotOS: motor control loop integration",
+          "date": "2026-04-28",
+          "start_time": "19:00",
+          "end_time": "20:30",
+          "all_day": false,
+          "project_scope": "robotos",
+          "task_type": "deep_work_block",
+          "priority": "normal",
+          "tags": ["robotos", "pool-b"],
+          "reminder_policy": "15min_before",
+          "recurrence": null,
+          "notes": "Artifact: motor loop test harness stub. <!-- la:source_id=LA-CW2026-W18-D20260428-BLOCK-ROBOTOS-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": null,
+          "ticktick_task_id": null
+        },
+        {
+          "source_id": "LA-CW2026-W18-D20260428-BLOCKER-SIGNEE-001",
+          "title": "Signee: unblock demo auth flow",
+          "date": "2026-04-28",
+          "start_time": "20:45",
+          "end_time": "21:15",
+          "all_day": false,
+          "project_scope": "signee",
+          "task_type": "blocker_item",
+          "priority": "high",
+          "tags": ["signee", "pool-b", "blocker"],
+          "reminder_policy": "at_start",
+          "recurrence": null,
+          "notes": "Artifact: auth flow decision or workaround. <!-- la:source_id=LA-CW2026-W18-D20260428-BLOCKER-SIGNEE-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": null,
+          "ticktick_task_id": null
+        }
+      ]
+    },
+    "2026-04-29": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260429-BLOCK-SIGNEE-001",
+          "title": "Signee: demo flow end-to-end test",
+          "date": "2026-04-29",
+          "start_time": "19:00",
+          "end_time": "20:30",
+          "all_day": false,
+          "project_scope": "signee",
+          "task_type": "deep_work_block",
+          "priority": "normal",
+          "tags": ["signee", "pool-b"],
+          "reminder_policy": "15min_before",
+          "recurrence": null,
+          "notes": "Artifact: test run notes + pass/fail report. <!-- la:source_id=LA-CW2026-W18-D20260429-BLOCK-SIGNEE-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": null,
+          "ticktick_task_id": null
+        },
+        {
+          "source_id": "LA-CW2026-W18-D20260429-TASK-GENERAL-001",
+          "title": "Triage inbox and update idea log",
+          "date": "2026-04-29",
+          "start_time": "21:00",
+          "end_time": "21:20",
+          "all_day": false,
+          "project_scope": "general",
+          "task_type": "shallow_task",
+          "priority": "low",
+          "tags": ["general"],
+          "reminder_policy": "none",
+          "recurrence": null,
+          "notes": "<!-- la:source_id=LA-CW2026-W18-D20260429-TASK-GENERAL-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": null,
+          "ticktick_task_id": null
+        }
+      ]
+    },
+    "2026-04-30": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260430-RECOVERY-GENERAL-001",
+          "title": "Buffer: review week progress and adjust plan",
+          "date": "2026-04-30",
+          "start_time": "19:30",
+          "end_time": "20:00",
+          "all_day": false,
+          "project_scope": "general",
+          "task_type": "recovery_block",
+          "priority": "low",
+          "tags": ["general", "buffer"],
+          "reminder_policy": "none",
+          "recurrence": null,
+          "notes": "<!-- la:source_id=LA-CW2026-W18-D20260430-RECOVERY-GENERAL-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": null,
+          "ticktick_task_id": null
+        }
+      ]
+    },
+    "2026-05-01": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260501-REVIEW-LIFEAGENT-001",
+          "title": "Life Agent: weekly review and close W18",
+          "date": "2026-05-01",
+          "start_time": "20:00",
+          "end_time": "20:30",
+          "all_day": false,
+          "project_scope": "lifeagent",
+          "task_type": "review_task",
+          "priority": "normal",
+          "tags": ["lifeagent", "review"],
+          "reminder_policy": "15min_before",
+          "recurrence": null,
+          "notes": "Run close week command. Capture metrics. <!-- la:source_id=LA-CW2026-W18-D20260501-REVIEW-LIFEAGENT-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": null,
+          "ticktick_task_id": null
+        },
+        {
+          "source_id": "LA-CW2026-W18-D20260501-REMIND-GENERAL-001",
+          "title": "Capture weekly metrics",
+          "date": "2026-05-01",
+          "start_time": "20:30",
+          "end_time": null,
+          "all_day": false,
+          "project_scope": "general",
+          "task_type": "reminder",
+          "priority": "low",
+          "tags": ["general", "metrics"],
+          "reminder_policy": "at_start",
+          "recurrence": null,
+          "notes": "<!-- la:source_id=LA-CW2026-W18-D20260501-REMIND-GENERAL-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": null,
+          "ticktick_task_id": null
+        }
+      ]
+    }
+  }
+}

@@ -81,8 +81,16 @@ LIFE_AGENT has 6 conceptual layers, each with a different role:
 ┌─────────────────────────────────────────────────────────────┐
 │                    PROJECTS LAYER                           │
 │         (Signee Demo | RobotOS Prototype | Zephyr KTLO)     │
+└──────────────────────┬──────────────────────────────────────┘
+                       ↓ (optional — export adapter)
+┌─────────────────────────────────────────────────────────────┐
+│            TICKTICK EXECUTION BRIDGE  [optional]            │
+│   Plan Execution Contract → TickTick tasks → phone view     │
+│   Life Agent remains source of truth. TickTick = UI only.  │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+**TickTick Bridge note:** Life Agent plans are exported to TickTick as an operational execution surface for phone-level task management. Life Agent markdown and git remain the authoritative source of truth for all planning decisions, priorities, capacity rules, and review conclusions. TickTick completion status may later be read back as evidence for weekly review (Mode D), but it cannot automatically rewrite planning truth. See [TICKTICK_BRIDGE_SPEC.md](TICKTICK_BRIDGE_SPEC.md) for the full architecture.
 
 ---
 
@@ -123,6 +131,7 @@ Repeat
 | **Plan Instances** | Actual quarterly/monthly/daily plans | Q1_Review_Q2Planning.md, 2026-03_March_Planning.md |
 | **Metrics** | Execution reality tracking + adjustment signals | METRICS_ENGINE.md, TEMPLATE_Weekly/Monthly_Metrics.md |
 | **Automation** | Command interface + readiness spec + command pack | LIFE_AGENT_AUTOMATION_INTERFACE.md, TEMPLATE_Command_Pack.md |
+| **TickTick Bridge** | Execution bridge spec + security rules | TICKTICK_BRIDGE_SPEC.md, TICKTICK_BRIDGE_SECURITY.md |
 | **Project Context** | Snapshot of each project's state | Signee/RobotOS/Zephyr_CONTEXT.md |
 | **Review Docs** | Analysis + learning at month/quarter end | Part B of plan instances |
 | **Logs** | Decision/Spike/Idea records | Decision_Log.md, Spike_Log.md |
@@ -163,6 +172,7 @@ Repeat
 - **Execution:** [TEMPLATE_Daily.md](05_TEMPLATES/TEMPLATE_Daily.md) or today's plan
 - **Metrics:** [METRICS_ENGINE.md](metrics/METRICS_ENGINE.md)
 - **Automation:** [LIFE_AGENT_AUTOMATION_INTERFACE.md](LIFE_AGENT_AUTOMATION_INTERFACE.md) or [Command Pack](05_TEMPLATES/TEMPLATE_Command_Pack.md)
+- **TickTick Bridge:** [TICKTICK_BRIDGE_SPEC.md](TICKTICK_BRIDGE_SPEC.md) + [TICKTICK_BRIDGE_SECURITY.md](TICKTICK_BRIDGE_SECURITY.md)
 - **Projects:** [Project Contexts](08_PROJECT_CONTEXT/) (Signee/RobotOS/Zephyr)
 
 ---
