@@ -24,8 +24,9 @@ Life Agent markdown and git remain the source of truth for all planning decision
 | Phase 2B-1 | PEC validator + dry-run renderer | ✅ Complete — `tools/validate_pec.py` |
 | Phase 2B-2 | OAuth / token flow | ✅ Complete — `tools/auth_ticktick.py` |
 | Phase 2B-3 | TickTick project lookup and create | ✅ Complete — `tools/lookup_ticktick_project.py` |
-| Phase 2B-4 | Batch export with `dry_run: true` default | Not started |
-| Phase 2B-5 | First live export with non-sensitive test tasks | Not started |
+| Phase 2B-4 | Task API smoke test (single disposable task) | ✅ Complete — `tools/smoke_ticktick_task.py` |
+| Phase 2B-5 | Batch export with `dry_run: true` default | Not started |
+| Phase 2B-6 | First live export with non-sensitive test tasks | Not started |
 
 Automation commands `export week` and `export day` are declared in [LIFE_AGENT_AUTOMATION_INTERFACE.md](../LIFE_AGENT_AUTOMATION_INTERFACE.md) but remain **NOT IMPLEMENTED** until Phase 2B-4 is complete and tested.
 
@@ -82,7 +83,27 @@ Store the resolved `projectId` for use in the exporter.
 
 ---
 
-### Phase 2B-4 — Batch export with `dry_run: true` default
+### Phase 2B-4 — Task API smoke test
+
+Before building any batch exporter, validate that task create/read/update/delete
+behaves as expected against the real TickTick API using ONE disposable test task.
+
+**Steps run by `smoke_ticktick_task.py`:**
+1. `POST /task` — create a labeled smoke test task
+2. `GET /project/{id}/task/{id}` — read it back and verify title
+3. `POST /task/{id}` — update the task (title + content)
+4. `POST /task/{id}` — apply `[CANCELLED]` prefix (cancel-policy pre-test)
+5. `DELETE /project/{id}/task/{id}` — only with `--delete` flag
+
+**Preconditions:**
+- `python tools/auth_ticktick.py status` shows valid token
+- A test project/list exists: `python tools/lookup_ticktick_project.py ensure "Life Agent - API Test" --create`
+
+**API calls:** task endpoints only — `POST /task`, `GET /project/*/task/*`, `DELETE /project/*/task/*`
+
+---
+
+### Phase 2B-5 — Batch export with `dry_run: true` default
 
 Implements the full idempotency loop:
 
@@ -98,9 +119,9 @@ See [TICKTICK_BRIDGE_SPEC.md §7](../TICKTICK_BRIDGE_SPEC.md) for full idempoten
 
 ---
 
-### Phase 2B-5 — First live export
+### Phase 2B-6 — First live export
 
-After Phase 2B-4 is validated on dry-run:
+After Phase 2B-5 batch export is validated on dry-run:
 
 1. Create a throwaway test list in TickTick.
 2. Run `export day` on a non-sensitive sample PEC with `dry_run: false`.
@@ -145,4 +166,4 @@ If TickTick data and Life Agent plans conflict, Life Agent plans take precedence
 
 ---
 
-**Last updated:** 2026-04-27 | **Phase:** 2B-3 Complete
+**Last updated:** 2026-04-27 | **Phase:** 2B-4 Complete
