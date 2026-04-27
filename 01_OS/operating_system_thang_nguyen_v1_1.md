@@ -433,6 +433,7 @@ Range: **0 → 9**
 - Ambiguity cao có thể làm giảm readiness dù score cao
 - KTLO có thể bypass score khi thực sự bắt buộc
 - Không tốn quá 2 phút để score một item
+- **Unblock override (judgment-required):** Nếu một blocker đang chặn 2+ tasks hoặc một critical handoff downstream, việc unblock nó có thể có giá trị tổng thể cao hơn raw score của nó — ưu tiên remove blocker thay vì optimize local item. Áp dụng với judgment; không tự động hóa.
 
 ---
 
@@ -541,6 +542,7 @@ Một ngày bình thường:
 - Heavy office fatigue (intense meetings, incident, deep problem-solving day)
 - Heavy workout day
 - Late meal / post-dinner energy drop
+- Dinner and rest mixed into a single unstructured block (≥1.5h, no clear transition): known painkiller pattern — reduces short-term stress but does not restore capacity; evening session quality will likely be degraded
 - Unusually high ambiguity task planned for the evening
 - Emotional friction or overload signals
 
@@ -670,6 +672,21 @@ Execution → Signals / Artifacts
 - Hard OS rules always override learned heuristics
 
 See `01_OS/KNOWLEDGE_EXTRACTION_ENGINE.md` for full specification, output categories, and update rules.
+
+---
+
+### 12.13 Project Phase Batching Rule
+
+> **Planning rule.** Based on observed execution pattern: allocating only 1–2 days to a personal project phase is typically too short for meaningful completion. A minimum batching window of 3–4 consecutive or near-consecutive day-equivalents is required to push a phase to handoff-ready state.
+
+**Rule:**
+- A meaningful project phase (demo prep, architecture spike, integration, feature completion) should receive **at least 3–4 day-equivalents of focused time** before being paused or handed off.
+- Allocating 1–2 days is acceptable only for S/XS tasks or continuation anchors — not for phase-level completion.
+- When planning a week with two active Pool B projects, do not split the week evenly by default. Prefer concentrating 3–4 day-equivalents on the higher-priority project, then 1–2 day-equivalents on support or admin tasks for the other.
+
+**Intent:** Reduces context-switching overhead. Enables a phase to reach a collaborator-handoff-ready state before switching. Prevents the repeated "1–2 day incomplete push" pattern where neither project advances meaningfully.
+
+> Note: This rule applies primarily to Pool B (weekend/personal project scheduling). It does not affect Zephyr KTLO weekday dominance.
 
 ---
 
