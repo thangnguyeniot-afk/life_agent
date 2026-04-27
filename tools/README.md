@@ -25,10 +25,11 @@ Life Agent markdown and git remain the source of truth for all planning decision
 | Phase 2B-2 | OAuth / token flow | ✅ Complete — `tools/auth_ticktick.py` |
 | Phase 2B-3 | TickTick project lookup and create | ✅ Complete — `tools/lookup_ticktick_project.py` |
 | Phase 2B-4 | Task API smoke test (single disposable task) | ✅ Complete — `tools/smoke_ticktick_task.py` |
-| Phase 2B-5 | Batch export with `dry_run: true` default | Not started |
-| Phase 2B-6 | First live export with non-sensitive test tasks | Not started |
+| Phase 2B-5 | Field capability test (startDate/dueDate/tags/reminders/priority) | ✅ Complete — `tools/test_ticktick_task_fields.py` |
+| Phase 2B-6 | PEC-to-TickTick batch exporter skeleton (dry-run default) | ✅ Complete — `tools/export_ticktick_batch.py` |
+| Phase 2B-7 | First live export with non-sensitive test tasks | Not started |
 
-Automation commands `export week` and `export day` are declared in [LIFE_AGENT_AUTOMATION_INTERFACE.md](../LIFE_AGENT_AUTOMATION_INTERFACE.md) but remain **NOT IMPLEMENTED** until Phase 2B-4 is complete and tested.
+Automation commands `export week` and `export day` are declared in [LIFE_AGENT_AUTOMATION_INTERFACE.md](../LIFE_AGENT_AUTOMATION_INTERFACE.md) and remain **NOT IMPLEMENTED** as automation commands. `tools/export_ticktick_batch.py` (Phase 2B-6) is a manual batch exporter script — it is not the automation command.
 
 ---
 
@@ -103,25 +104,89 @@ behaves as expected against the real TickTick API using ONE disposable test task
 
 ---
 
-### Phase 2B-5 — Batch export with `dry_run: true` default
+### Phase 2B-5 — Field capability test
 
-Implements the full idempotency loop:
+Before building any batch exporter, validate that TickTick API accepts and returns
+all required task fields using ONE disposable test task.
 
-- Load PEC
-- Check mapping file for existing source_ids
-- Compute content_hash for each task
-- Determine: create / update / skip / cancel
-- `dry_run: true` (default): print the plan, no API write
-- `dry_run: false`: execute via `POST /batch/task` or `PUT /batch/task`
+**NOT a batch exporter. Does NOT read PEC files. Creates exactly ONE test task.**
 
-**Cancel policy default:** Prepend `[CANCELLED]` to title (non-destructive).
-See [TICKTICK_BRIDGE_SPEC.md §7](../TICKTICK_BRIDGE_SPEC.md) for full idempotency design.
+**Steps run by `test_ticktick_task_fields.py`:**
+1. `POST /task` — create task with full field payload: title, content, priority, startDate, dueDate, isAllDay, reminders, tags
+2. `GET /project/{id}/task/{id}` — read back and verify each field was accepted and returned
+3. `POST /task/{id}` — update title, content, priority; verify update applies
+4. `DELETE /project/{id}/task/{id}` — only with `--delete` flag
+
+**Flags:**
+- `--delete` — delete after test (default: leave visible for UI inspection)
+- `--no-tags` — skip tags field (use if tags cause API errors)
+- `--no-reminder` — skip reminders field (use if reminders cause API errors)
+- `--delete-only --task-id TASK_ID` — cleanup a task left from a prior run
+
+**Capability matrix output:** `create_task`, `read_task`, `content_source_id_survives`,
+`priority_create_supported`, `priority_update_supported`, `startDate_create_supported`,
+`startDate_readback`, `dueDate_create_supported`, `dueDate_readback`,
+`reminder_create_supported`, `reminder_readback`, `tags_create_supported`,
+`tags_readback`, `update_task`, `delete_cleanup`
+
+**Fallback behavior:** If full payload is rejected (HTTP 400/422), retries without tags,
+then without reminders, then with a minimal payload. Records which fields failed.
+
+**API calls:** task endpoints only — `POST /task`, `GET /project/*/task/*`,
+`POST /task/*`, `DELETE /project/*/task/*`
 
 ---
 
-### Phase 2B-6 — First live export
+### Phase 2B-6 — Batch export skeleton (dry-run default)
 
-After Phase 2B-5 batch export is validated on dry-run:
+Reads a PEC JSON file, validates it, computes create/update/skip/cancel actions
+against a local mapping file, and prints the export plan. Live writes only with `--apply`.
+
+**Default mode: dry-run. No API writes without `--apply`.**
+
+**NOT a `export week` / `export day` automation command.** Those remain NOT IMPLEMENTED.
+
+**Usage:**
+```
+python tools/export_ticktick_batch.py <pec_file> --project-id PROJECT_ID
+python tools/export_ticktick_batch.py <pec_file> --project-id PROJECT_ID --apply
+python tools/export_ticktick_batch.py <pec_file> --project-id PROJECT_ID --apply --limit 2
+```
+
+**Flags:**
+- `--apply` — required to write to TickTick (default: dry-run)
+- `--limit N` — max number of create/update/cancel ops applied per run
+- `--yes` — skip interactive confirmation
+- `--mapping-file PATH` — override default mapping file path
+- `--cancel-policy prefix` — prepend `[CANCELLED]` to removed tasks (default)
+- `--no-cancel` — do not cancel tasks absent from PEC
+
+**Field constraints (from Phase 2B-5 live test):**
+- Tags: NOT sent (causes HTTP 500)
+- Reminders: NOT sent (causes HTTP 500)
+- Recurrence: NOT sent (out of scope for MVP)
+- Supported: `title`, `content` (with embedded source_id comment), `priority`, `startDate`, `dueDate`, `isAllDay`
+
+**Priority mapping:**
+- `low` → 1, `normal` → 0, `high` → 5
+
+**Idempotency:**
+- Mapping file: `.ticktick/{week_id}_map.json` (gitignored)
+- Hash includes: title, content, priority, startDate, dueDate, isAllDay, projectId
+- create: source_id absent from mapping
+- update: source_id present + hash changed
+- skip: source_id present + hash same
+- cancel: source_id in mapping but absent from PEC
+
+**Mapping file saved only after each successful API operation** (partial-failure safe).
+
+**API calls (only when `--apply`):** `POST /task`, `POST /task/{id}` (update/cancel prefix)
+
+---
+
+### Phase 2B-7 — First live export
+
+After Phase 2B-6 batch export is validated on dry-run:
 
 1. Create a throwaway test list in TickTick.
 2. Run `export day` on a non-sensitive sample PEC with `dry_run: false`.
@@ -166,4 +231,4 @@ If TickTick data and Life Agent plans conflict, Life Agent plans take precedence
 
 ---
 
-**Last updated:** 2026-04-27 | **Phase:** 2B-4 Complete
+**Last updated:** 2026-04-27 | **Phase:** 2B-6 Complete
