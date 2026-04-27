@@ -18,6 +18,7 @@
 - [9. Export Trigger Points](#9-export-trigger-points)
 - [10. Read-back Audit Policy](#10-read-back-audit-policy)
 - [11. Open Questions](#11-open-questions)
+- [12. Plan-to-PEC Generation Contract](#12-plan-to-pec-generation-contract)
 
 ---
 
@@ -129,13 +130,17 @@ Current Life Agent plans are structured markdown prose — bilingual, narrative-
 
 ### Two valid generation routes
 
-**Route 1 — Agent-normalized PEC:**
-A planning agent (e.g., during `plan week` or `export week`) reads the approved plan and produces a PEC JSON directly. No markdown parser required. The agent interprets anchor assignments, block schedules, and project context to fill PEC fields.
+**Route 1 — Agent-normalized PEC (active path):**
+A planning agent reads the approved week plan and available daily plan files and produces a PEC JSON directly. No markdown parser required. The agent interprets anchor assignments, block schedules, and project context to fill PEC fields.
 
-**Route 2 — Markdown parser → PEC:**
-A local script parses daily plan markdown files and extracts structured data into PEC format. Viable only when daily plan files have consistent block structure.
+This is the active generation route for Phase 2C. Real Life Agent weekly and daily plan files diverge from the canonical templates in structure and language — they contain bilingual content, evolving table schemas, and natural-language block labels. A script-based parser cannot reliably handle this variability. Agent-normalized PEC is therefore the only viable route for the current plan corpus.
 
-Route 1 is preferred for reliability. Route 2 may be useful for batch export of already-authored daily files. The spec supports both.
+**Route 2 — Markdown parser → PEC (deferred):**
+A local script parses daily plan markdown files and extracts structured data into PEC format. Viable only when daily plan files have consistent, machine-readable block structure.
+
+Route 2 is deferred until the plan corpus has accumulated at least 2–3 months of strict template adherence. It is not implemented in Phase 2C and must not be added speculatively. The spec retains the option for future phases.
+
+For the Phase 2C prompt template used to drive Route 1, see `05_TEMPLATES/GENERATE_PEC.prompt.md`.
 
 ### PEC field definitions
 
@@ -371,7 +376,7 @@ The choice among these is an implementation decision for Phase 2. The spec manda
 | TickTick task manually deleted | Mapping holds stale ticktick_task_id; update call returns 404 | Adapter catches 404, removes stale entry, re-creates task, updates mapping |
 | source_id collision | Two tasks share one ID | Prevented by construction rules in §5. If detected, stop export and report error. |
 | Network failure mid-export | Partial export | Mapping file updated only on confirmed API success. Retry is safe because existing tasks are skipped (hash match). |
-| TickTick API field not supported | start_time or tags rejected | Phase 2 must verify API support before coding. See §11 Open Questions. |
+| TickTick API field not supported | tags/reminders cause HTTP 500 | Permanent fix: `_build_payload()` never sends tags or reminders. See §11 Q2/Q3 for resolution. |
 
 ---
 
@@ -468,21 +473,153 @@ This section defines the future Mode D behavior. It is not implemented in Phase 
 
 ## 11. Open Questions
 
-These require resolution before Phase 2 implementation begins.
+Status updated after Phase 2B-5 field capability test and Phase 2B-6 live export (commit `1d34df6`, 2026-04-27).
 
-| # | Question | Decision Impact |
-|---|---|---|
-| Q1 | Does TickTick Open API support task creation with `start_time` and `end_time` fields? | Determines whether time-blocked tasks are supported in first version |
-| Q2 | Does TickTick Open API support tags on task creation/update? | Determines project scope tagging strategy |
-| Q3 | Does TickTick Open API support per-task reminders? | Determines reminder_policy field usability |
-| Q4 | What is the TickTick rate limit for task create/update calls? | Affects batch export design for large weeks |
-| Q5 | Python or Node.js for the Phase 2 local exporter? | Determines script dependency requirements |
-| Q6 | Should routines be exported as a recurring parent task or omitted entirely? | Affects phone clutter vs. execution completeness |
-| Q7 | Should notes be omitted entirely for sensitive project tasks (e.g., Zephyr KTLO)? | Affects notes sanitization policy |
-| Q8 | Should the completion read-back (Mode D) belong to Phase 3 or Phase 2? | Scoping decision |
-| Q9 | Should the mapping file be committed to git under a `.ticktick/` directory, or kept purely local? | Affects traceability vs. privacy |
-| Q10 | One TickTick list per week, or one persistent list with week tags? | Affects list management overhead |
+| # | Question | Status | Resolution |
+|---|---|---|---|
+| Q1 | Does TickTick Open API support task creation with `start_time` and `end_time` fields? | ✅ Resolved | `startDate` and `dueDate` (ISO 8601 datetime) are accepted and render correctly in the local TickTick UI. Used for block start and end respectively. True time-range rendering depends on TickTick client/premium — confirmed sufficient for MVP. |
+| Q2 | Does TickTick Open API support tags on task creation/update? | ✅ Resolved — **DO NOT USE** | Tags cause HTTP 500. Must never be sent. `_build_payload()` in `export_ticktick_batch.py` permanently omits tags. PEC `tags` field is vestigial for schema compatibility; `export_ticktick_batch.py` never reads it. |
+| Q3 | Does TickTick Open API support per-task reminders? | ✅ Resolved — **DO NOT USE** | Reminders cause HTTP 500. Must never be sent. PEC `reminder_policy` field is retained as logical metadata only; `export_ticktick_batch.py` permanently omits reminders from API payloads. |
+| Q4 | What is the TickTick rate limit for task create/update calls? | ⏳ Not yet measured | Sequential apply with no artificial delay worked for 7 tasks. Assumed safe for typical week sizes (≤20 tasks). Measure if batch size grows. |
+| Q5 | Python or Node.js for the Phase 2 local exporter? | ✅ Resolved | Python 3.10+, stdlib + `requests`. Direct REST route. No Node.js. |
+| Q6 | Should routines be exported as a recurring parent task or omitted entirely? | ⏳ Deferred | Routine checklist export adds phone clutter for minimal value. Not exported in MVP. Revisit if user finds phone checklist useful. |
+| Q7 | Batch endpoint available? | ✅ Resolved — **Not used** | No documented batch endpoint. Sequential per-task apply chosen for MVP safety and partial-failure handling. |
+| Q8 | Should notes be omitted entirely for sensitive project tasks (e.g., Zephyr KTLO)? | ⏳ Deferred | Sanitize notes at generation time: omit or use placeholder for Zephyr-internal detail. Export sanitized title + project tag for sensitive tasks. Revisit if leakage observed. |
+| Q9 | Should the mapping file be committed to git? | ✅ Resolved | Mapping files remain gitignored under `.ticktick/` (runtime artifacts). PEC files under `03_PLANNING/` are committed (planning artifacts). See §12.2. |
+| Q10 | One TickTick list per week, or one persistent list with week tags? | ✅ Resolved | One list per week: `Life Agent - YYYY-W{n}`. Tags not viable (HTTP 500). See §12.5. |
 
 ---
 
-**Last updated:** 2026-04-27 | **Version:** 1.0 | **Phase:** Architecture/Spec only — Phase 1
+**Last updated:** 2026-04-27 | **Version:** 1.1 | **Phase:** 2C — Plan-to-PEC Generation Contract
+
+---
+
+## 12. Plan-to-PEC Generation Contract
+
+This section defines the Phase 2C contract for generating a PEC JSON from an approved Life Agent week plan. It formalizes the manual agent-normalized workflow that bridges planning documents and the `export_ticktick_batch.py` exporter.
+
+---
+
+### 12.1 Scope
+
+This contract covers **manual agent-driven PEC generation only**. It does not implement the `export week` or `export day` automation commands — those remain NOT IMPLEMENTED in `LIFE_AGENT_AUTOMATION_INTERFACE.md`.
+
+The Phase 2C pipeline is:
+
+```
+Approved WeekPlan + Daily files (if available)
+        ↓
+[Agent generates PEC JSON]
+— reads existing PEC if replan (for source_id preservation)
+— reads §7 Anchor Map + Goals from WeekPlan
+— reads Canonical Daily Anchors if daily files exist
+— applies derivation rules in §12.4
+— produces YYYY-W{n}_pec.json
+        ↓
+[validate_pec.py] — human reviews PASS/FAIL
+        ↓
+[git commit PEC file]
+        ↓
+[export_ticktick_batch.py dry-run] — human reviews plan
+        ↓
+[export_ticktick_batch.py --apply] — user-approved only
+        ↓
+TickTick tasks created/updated
+```
+
+---
+
+### 12.2 PEC Storage Convention
+
+| Aspect | Rule |
+|---|---|
+| **Location** | `03_PLANNING/03_WEEK/W{n}/YYYY-W{n}_pec.json` |
+| **Example** | `03_PLANNING/03_WEEK/W15/2026-W15_pec.json` |
+| **Commit policy** | PEC is a planning artifact. Commit to git **before** live apply. This locks source_ids into version control. |
+| **Gitignore** | PEC files under `03_PLANNING/` are **not** gitignored. Mapping files under `.ticktick/` are gitignored (runtime artifacts). |
+| **Replan** | Re-generate PEC → preserve source_ids for unchanged tasks → re-commit → dry-run → apply. |
+
+---
+
+### 12.3 Source ID Stability Rules
+
+Source IDs are the idempotency key for Mode B. Stability rules:
+
+| Scenario | source_id policy | TickTick effect |
+|---|---|---|
+| Same logical anchor, same day, content unchanged | Preserve source_id | SKIP (no API call) |
+| Same logical anchor, same day, title/time/priority changed | Preserve source_id; content hash changes | UPDATE |
+| Anchor moved to a different day | New source_id (D{date} segment changes); old source_id → `export_status: cancelled` | CANCEL old, CREATE new |
+| Anchor removed from plan | Set `export_status: cancelled` in PEC | CANCEL (apply cancel_policy) |
+| New anchor added to plan | New source_id with next sequence number | CREATE |
+| Title changed, logical anchor identity unchanged | Preserve source_id | UPDATE |
+
+**Agent replan discipline:** When regenerating a PEC for a replanned week, the agent **must** read the existing committed PEC file first and preserve all source_ids for anchors that remain on the same day. Never regenerate source_ids for unchanged tasks.
+
+---
+
+### 12.4 PEC Field Derivation Rules
+
+| Field | Source | Default if absent |
+|---|---|---|
+| `source_id` | Agent generates using §5 convention. Preserved from existing PEC for unchanged tasks. | None — required |
+| `title` | Anchor name from WeekPlan §7 or Daily Canonical Anchors. Max 60 chars. | None — required |
+| `date` | Day row in WeekPlan §7 or daily file header. | None — required |
+| `start_time` | Execution Window / Block label in daily file. | Pool A (office): `09:00`; Pool B (evening): `19:30` |
+| `end_time` | Execution Window / Block label in daily file. | `deep_work_block`: start + 90 min; `shallow_task` / `recovery_block`: start + 30 min |
+| `all_day` | `false` when start_time present; `true` for all-day flags. | `false` |
+| `project_scope` | Project prefix of anchor name. Map: Zephyr→`zephyr`, RobotOS→`robotos`, Signee→`signee`, Project Accountant/Accountant→`accountant`, General→`general`. | `general` |
+| `task_type` | Work type + block size + criticality. Heavy Engineering/Ambiguity Discovery + M/L → `deep_work_block`; blocker → `blocker_item`; review → `review_task`; recovery → `recovery_block`; short non-artifact → `shallow_task`. | `shallow_task` |
+| `priority` | Blocker / Goal PRIORITY 1 → `high`; `recovery_block` → `low`; others → `normal`. | `normal` |
+| `tags` | **Always `[]`** — tags cause HTTP 500 and must not be sent. | `[]` |
+| `reminder_policy` | Not present in markdown. Defaults: `deep_work_block` → `15min_before`; `blocker_item` → `at_start`; others → `none`. | `none` |
+| `recurrence` | Always `null` for week/day export. | `null` |
+| `notes` | Short artifact description (≤1 sentence) + `<!-- la:source_id=... -->` comment. No sensitive content. | `<!-- la:source_id=... -->` only |
+| `export_status` | Always `pending` at generation. Exporter manages subsequent states. | `pending` |
+| `ticktick_project_id` | Always `null` at generation. Exporter populates after CREATE. | `null` |
+| `ticktick_task_id` | Always `null` at generation. Exporter populates after CREATE. | `null` |
+
+**Timing defaults must be visible in the generated PEC for human review.** If start_time was defaulted rather than derived from a daily file, the agent should note this in a generation summary or commit message.
+
+---
+
+### 12.5 TickTick List Naming Convention
+
+One TickTick list per Life Agent week:
+
+```
+Life Agent - 2026-W{n}
+```
+
+Example: `Life Agent - 2026-W15`
+
+Use `tools/lookup_ticktick_project.py ensure "Life Agent - 2026-W15" --create` to create the list if it does not exist. Resolve the `projectId` before running the exporter.
+
+**Do not rely on TickTick tags** for project scope encoding — tags cause HTTP 500. The `project_scope` field in PEC is Life Agent metadata only; it does not reach TickTick.
+
+---
+
+### 12.6 Prompt Template
+
+The canonical prompt for agent-driven PEC generation is:
+
+```
+05_TEMPLATES/GENERATE_PEC.prompt.md
+```
+
+Use this prompt when generating a PEC from an approved week plan. Do not improvise the generation prompt — the template encodes source_id stability rules, field derivation defaults, and the human review checklist.
+
+---
+
+### 12.7 First Real Export Protocol
+
+1. **Select week.** Choose an approved upcoming week plan (not a draft).
+2. **Create TickTick list.** `python tools/lookup_ticktick_project.py ensure "Life Agent - YYYY-W{n}" --create`
+3. **Generate PEC.** Use `05_TEMPLATES/GENERATE_PEC.prompt.md` prompt with the agent.
+4. **Save PEC.** Write to `03_PLANNING/03_WEEK/W{n}/YYYY-W{n}_pec.json`.
+5. **Validate.** `python tools/validate_pec.py 03_PLANNING/03_WEEK/W{n}/YYYY-W{n}_pec.json`
+6. **Human review.** Check task count, titles, times, priorities, notes for sensitive content.
+7. **Commit PEC.** `git add 03_PLANNING/03_WEEK/W{n}/YYYY-W{n}_pec.json && git commit -m "feat: add PEC for YYYY-W{n}"`
+8. **Dry-run.** `python tools/export_ticktick_batch.py 03_PLANNING/03_WEEK/W{n}/YYYY-W{n}_pec.json --project-id <PROJECT_ID>`
+9. **Live apply.** `python tools/export_ticktick_batch.py ... --apply` (after dry-run review passes)
+10. **Verify in TickTick.** Confirm tasks appear with correct dates, priorities, and titles.

@@ -214,6 +214,7 @@ Use these; don't create variants:
 - **Decision log:** `04_LOGS/Decision_Log.md`
 - **Knowledge base:** `knowledge/`
 - **Command quick reference:** `05_TEMPLATES/TEMPLATE_Command_Pack.md`
+- **PEC generation prompt (TickTick export):** `05_TEMPLATES/GENERATE_PEC.prompt.md`
 
 ---
 

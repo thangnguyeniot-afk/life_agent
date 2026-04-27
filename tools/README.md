@@ -27,7 +27,8 @@ Life Agent markdown and git remain the source of truth for all planning decision
 | Phase 2B-4 | Task API smoke test (single disposable task) | ✅ Complete — `tools/smoke_ticktick_task.py` |
 | Phase 2B-5 | Field capability test (startDate/dueDate/tags/reminders/priority) | ✅ Complete — `tools/test_ticktick_task_fields.py` |
 | Phase 2B-6 | PEC-to-TickTick batch exporter skeleton (dry-run default) | ✅ Complete — `tools/export_ticktick_batch.py` |
-| Phase 2B-7 | First live export with non-sensitive test tasks | Not started |
+| Phase 2B-7 | First live export with non-sensitive test tasks | ✅ Complete — W18 sample PEC, 7 tasks created in `Life Agent - API Test` |
+| Phase 2C | Plan-to-PEC generation contract + prompt template | ✅ Complete — `05_TEMPLATES/GENERATE_PEC.prompt.md`, `TICKTICK_BRIDGE_SPEC.md §12` |
 
 Automation commands `export week` and `export day` are declared in [LIFE_AGENT_AUTOMATION_INTERFACE.md](../LIFE_AGENT_AUTOMATION_INTERFACE.md) and remain **NOT IMPLEMENTED** as automation commands. `tools/export_ticktick_batch.py` (Phase 2B-6) is a manual batch exporter script — it is not the automation command.
 
@@ -184,7 +185,98 @@ python tools/export_ticktick_batch.py <pec_file> --project-id PROJECT_ID --apply
 
 ---
 
-### Phase 2B-7 — First live export
+## Phase 2C — Plan-to-PEC Generation Contract
+
+### What Phase 2C defines
+
+Phase 2C formalizes the bridge between approved Life Agent planning documents (week plans, daily plans) and the PEC JSON that the exporter consumes.
+
+The full pipeline is:
+
+```
+Approved WeekPlan + Daily files
+        ↓
+[Agent generates PEC JSON using 05_TEMPLATES/GENERATE_PEC.prompt.md]
+        ↓
+[python tools/validate_pec.py <pec_path>]  ← MUST PASS before commit
+        ↓
+[git commit PEC file]                      ← Locks source_ids
+        ↓
+[export_ticktick_batch.py dry-run]          ← Human reviews planned actions
+        ↓
+[export_ticktick_batch.py --apply]          ← Only after explicit user approval
+```
+
+### PEC files vs. mapping files
+
+| Artifact | Type | Location | Committed? |
+|---|---|---|---|
+| PEC JSON | Planning artifact | `03_PLANNING/03_WEEK/W{n}/YYYY-W{n}_pec.json` | **Yes — commit before apply** |
+| Mapping file | Runtime artifact | `.ticktick/YYYY-W{n}_map.json` | **No — gitignored** |
+
+### export week / export day status
+
+`export week` and `export day` remain **NOT IMPLEMENTED** as automation commands.
+`tools/export_ticktick_batch.py` is a manual batch exporter script. It is not the automation command. The automation commands will be implemented in a future phase.
+
+### API field constraints (permanent)
+
+| Field | Status |
+|---|---|
+| `title`, `content`, `priority`, `startDate`, `dueDate`, `isAllDay` | ✅ Works |
+| `tags` | ❌ HTTP 500 — never send |
+| `reminders` | ❌ HTTP 500 — never send |
+| `recurrence` | ⏳ Deferred — null in MVP |
+
+### Example commands for a real week export
+
+**Step 1 — Create the TickTick list for the week (if it does not exist):**
+```
+python tools/lookup_ticktick_project.py ensure "Life Agent - 2026-W15" --create
+```
+
+**Step 2 — Validate the PEC:**
+```
+python tools/validate_pec.py 03_PLANNING/03_WEEK/W15/2026-W15_pec.json
+```
+
+**Step 3 — Dry-run (review planned actions, no writes):**
+```
+python tools/export_ticktick_batch.py 03_PLANNING/03_WEEK/W15/2026-W15_pec.json --project-id <PROJECT_ID>
+```
+
+**Step 4 — Live apply (after dry-run review):**
+```
+python tools/export_ticktick_batch.py 03_PLANNING/03_WEEK/W15/2026-W15_pec.json --project-id <PROJECT_ID> --apply
+```
+
+**Step 5 — Incremental apply (first 2 tasks only):**
+```
+python tools/export_ticktick_batch.py 03_PLANNING/03_WEEK/W15/2026-W15_pec.json --project-id <PROJECT_ID> --apply --limit 2
+```
+
+### Prompt template
+
+To generate a PEC from an approved week plan, use the canonical prompt at:
+
+```
+05_TEMPLATES/GENERATE_PEC.prompt.md
+```
+
+Fill in the bracketed placeholders (week plan path, daily plan folder, existing PEC if replan, TickTick project ID), then send to your agent of choice. The agent returns PEC JSON only.
+
+Full spec: `TICKTICK_BRIDGE_SPEC.md §12`.
+
+---
+
+### Phase 2B-7 — First live export (complete)
+
+The first live export used `tools/samples/pec_week_sample.json` (W18, 7 tasks) against the `Life Agent - API Test` list. All 7 tasks created successfully. Re-run confirmed idempotency (7 SKIP, 0 CREATE).
+
+**Confirmed working fields:** title, content (source_id comment survives), priority, startDate, dueDate, isAllDay
+**Confirmed broken fields:** tags (HTTP 500), reminders (HTTP 500) — permanently excluded from `_build_payload()`
+
+---
 
 After Phase 2B-6 batch export is validated on dry-run:
 
@@ -231,4 +323,4 @@ If TickTick data and Life Agent plans conflict, Life Agent plans take precedence
 
 ---
 
-**Last updated:** 2026-04-27 | **Phase:** 2B-6 Complete
+**Last updated:** 2026-04-27 | **Phase:** 2C Complete
