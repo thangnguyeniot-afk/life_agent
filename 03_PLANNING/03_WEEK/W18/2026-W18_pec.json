@@ -1,0 +1,199 @@
+{
+  "export_meta": {
+    "week_id": "2026-W18",
+    "week_start": "2026-05-04",
+    "week_end": "2026-05-10",
+    "exported_at": "2026-05-03T17:30:00",
+    "mode": "B",
+    "dry_run": true,
+    "mapping_file": ".ticktick/2026-W18_map.json"
+  },
+  "days": {
+    "2026-05-04": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260504-BLOCK-ROBOTOS-001",
+          "title": "RobotOS: devkit core dev Phase A (Mon)",
+          "date": "2026-05-04",
+          "start_time": "19:30",
+          "end_time": "21:30",
+          "all_day": false,
+          "project_scope": "robotos",
+          "task_type": "deep_work_block",
+          "priority": "high",
+          "tags": [],
+          "reminder_policy": "15min_before",
+          "recurrence": null,
+          "notes": "Phase A core development continuation; artifacts committed to repo. <!-- la:source_id=LA-CW2026-W18-D20260504-BLOCK-ROBOTOS-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": "69ef06ed8f08711a62591f0c",
+          "ticktick_task_id": null
+        }
+      ]
+    },
+    "2026-05-05": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260505-BLOCK-ROBOTOS-001",
+          "title": "RobotOS: devkit core dev Phase A (Tue)",
+          "date": "2026-05-05",
+          "start_time": "19:30",
+          "end_time": "21:30",
+          "all_day": false,
+          "project_scope": "robotos",
+          "task_type": "deep_work_block",
+          "priority": "high",
+          "tags": [],
+          "reminder_policy": "15min_before",
+          "recurrence": null,
+          "notes": "Phase A core development completion; artifacts committed to repo. <!-- la:source_id=LA-CW2026-W18-D20260505-BLOCK-ROBOTOS-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": "69ef06ed8f08711a62591f0c",
+          "ticktick_task_id": null
+        }
+      ]
+    },
+    "2026-05-06": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260506-TASK-ROBOTOS-001",
+          "title": "RobotOS: board/circuit fix coordination",
+          "date": "2026-05-06",
+          "start_time": "19:30",
+          "end_time": "20:00",
+          "all_day": false,
+          "project_scope": "robotos",
+          "task_type": "shallow_task",
+          "priority": "normal",
+          "tags": [],
+          "reminder_policy": "none",
+          "recurrence": null,
+          "notes": "Team coordination on board/circuit issues; status confirmed. <!-- la:source_id=LA-CW2026-W18-D20260506-TASK-ROBOTOS-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": "69ef06ed8f08711a62591f0c",
+          "ticktick_task_id": null
+        },
+        {
+          "source_id": "LA-CW2026-W18-D20260506-TASK-SIGNEE-001",
+          "title": "Signee: customer meeting + scope clarification",
+          "date": "2026-05-06",
+          "start_time": "19:30",
+          "end_time": "21:30",
+          "all_day": false,
+          "project_scope": "signee",
+          "task_type": "shallow_task",
+          "priority": "high",
+          "tags": [],
+          "reminder_policy": "none",
+          "recurrence": null,
+          "notes": "Customer meeting to clarify feature scope; scope questions documented. <!-- la:source_id=LA-CW2026-W18-D20260506-TASK-SIGNEE-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": "69ef06ed8f08711a62591f0c",
+          "ticktick_task_id": null
+        },
+        {
+          "source_id": "LA-CW2026-W18-D20260506-TASK-SIGNEE-002",
+          "title": "Signee: cost accounting (company creation)",
+          "date": "2026-05-06",
+          "start_time": "20:00",
+          "end_time": "20:30",
+          "all_day": false,
+          "project_scope": "signee",
+          "task_type": "shallow_task",
+          "priority": "normal",
+          "tags": [],
+          "reminder_policy": "none",
+          "recurrence": null,
+          "notes": "Admin task; documents submitted or next steps documented. <!-- la:source_id=LA-CW2026-W18-D20260506-TASK-SIGNEE-002 -->",
+          "export_status": "pending",
+          "ticktick_project_id": "69ef06ed8f08711a62591f0c",
+          "ticktick_task_id": null
+        }
+      ]
+    },
+    "2026-05-07": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260507-TASK-ACCOUNTANT-001",
+          "title": "Accountant: bugfix triage UNBLOCK",
+          "date": "2026-05-07",
+          "start_time": "19:30",
+          "end_time": "20:30",
+          "all_day": false,
+          "project_scope": "accountant",
+          "task_type": "shallow_task",
+          "priority": "normal",
+          "tags": [],
+          "reminder_policy": "none",
+          "recurrence": null,
+          "notes": "Review bug list; categorize by severity; identify top 1-2 fixes for W18 (30 min). <!-- la:source_id=LA-CW2026-W18-D20260507-TASK-ACCOUNTANT-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": "69ef06ed8f08711a62591f0c",
+          "ticktick_task_id": null
+        }
+      ]
+    },
+    "2026-05-09": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260509-BLOCK-ROBOTOS-001",
+          "title": "RobotOS: devkit core dev Phase B + init validation",
+          "date": "2026-05-09",
+          "start_time": "10:00",
+          "end_time": "14:00",
+          "all_day": false,
+          "project_scope": "robotos",
+          "task_type": "deep_work_block",
+          "priority": "high",
+          "tags": [],
+          "reminder_policy": "15min_before",
+          "recurrence": null,
+          "notes": "Phase B core development; initial validation if testable; artifacts committed. <!-- la:source_id=LA-CW2026-W18-D20260509-BLOCK-ROBOTOS-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": "69ef06ed8f08711a62591f0c",
+          "ticktick_task_id": null
+        }
+      ]
+    },
+    "2026-05-10": {
+      "tasks": [
+        {
+          "source_id": "LA-CW2026-W18-D20260510-TASK-ACCOUNTANT-001",
+          "title": "Accountant: acceptance/sign-off request",
+          "date": "2026-05-10",
+          "start_time": "14:00",
+          "end_time": "14:30",
+          "all_day": false,
+          "project_scope": "accountant",
+          "task_type": "shallow_task",
+          "priority": "normal",
+          "tags": [],
+          "reminder_policy": "none",
+          "recurrence": null,
+          "notes": "Send acceptance/nghiệm thu request to customer. <!-- la:source_id=LA-CW2026-W18-D20260510-TASK-ACCOUNTANT-001 -->",
+          "export_status": "pending",
+          "ticktick_project_id": "69ef06ed8f08711a62591f0c",
+          "ticktick_task_id": null
+        },
+        {
+          "source_id": "LA-CW2026-W18-D20260510-TASK-ACCOUNTANT-002",
+          "title": "Accountant: production planning seed (planning only)",
+          "date": "2026-05-10",
+          "start_time": "14:30",
+          "end_time": "15:15",
+          "all_day": false,
+          "project_scope": "accountant",
+          "task_type": "shallow_task",
+          "priority": "normal",
+          "tags": [],
+          "reminder_policy": "none",
+          "recurrence": null,
+          "notes": "1-page production planning note; implementation deferred to later. <!-- la:source_id=LA-CW2026-W18-D20260510-TASK-ACCOUNTANT-002 -->",
+          "export_status": "pending",
+          "ticktick_project_id": "69ef06ed8f08711a62591f0c",
+          "ticktick_task_id": null
+        }
+      ]
+    }
+  }
+}
