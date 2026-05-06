@@ -25,6 +25,9 @@ Therefore, treat this repo as a **system of operating rules and execution artifa
 - **GPT** = system thinker, boundary controller, dependency/impact analyst, and audit authority
 - **Copilot** = repo-native implementer
 - **Claude (you)** = long-form implementer, rewriter, synthesizer, and secondary implementation partner
+- **GLM** = independent bounded execution agent; operates under explicit task contracts for bounded work
+
+For routing policy, GLM task contract, escalation rules, and risk controls, see `01_OS/AGENT_OPERATING_MODEL.md`. Do not duplicate or override canonical policy defined there.
 
 Your primary role is to help carry substantial implementation and documentation work without breaking approved boundaries.
 

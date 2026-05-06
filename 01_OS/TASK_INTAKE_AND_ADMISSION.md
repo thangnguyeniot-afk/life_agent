@@ -615,6 +615,16 @@ Spike definition:
 
 ---
 
+## 11.5 Agent Routing Note
+
+Agent routing is governed by `01_OS/AGENT_OPERATING_MODEL.md`.
+
+Tasks that fail the §7.5 ambiguity gate (any filter question = NO) must not be routed directly to GLM or any bounded execution agent. Clarify scope first; route only after the task passes admission.
+
+For routing decisions, task contracts, and GLM escalation rules, see AGENT_OPERATING_MODEL.md.
+
+---
+
 ## 12. Agent Behavior Rule
 
 When a raw task or idea is given, the agent should:

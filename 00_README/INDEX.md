@@ -17,6 +17,7 @@
 - [6b) Metrics Engine](#6b-metrics-engine)
 - [6c) Automation Layer](#6c-automation-layer)
 - [6d) Operations Layer](#6d-operations-layer)
+- [6e) Agent Operating Model](#6e-agent-operating-model)
 - [7) Reviews & Monthly Journal](#7-reviews--monthly-journal)
 - [8) Writing Rules](#8-writing-rules)
 - [9) Cadence](#9-cadence)
@@ -189,6 +190,25 @@ Includes:
 
 ---
 
+## 6e) Agent Operating Model
+
+**File:** `01_OS/AGENT_OPERATING_MODEL.md`
+
+Canonical governance document for multi-agent operation in Life Agent.
+
+Defines:
+
+- Working Triangle: User / GPT / Copilot / Claude roles and responsibilities
+- GLM: independent bounded execution agent (Haiku-equivalent reliability target for well-scoped tasks)
+- Routing policy: which agent handles which task type
+- GLM task contract: required fields for bounded execution
+- GLM escalation rules, report format, and risk controls
+- First-use rule and future agent expansion protocol
+
+**Read this when:** routing a task to an agent, defining a GLM contract, or adding a new agent to the operating model.
+
+---
+
 ## 7) Reviews & Monthly Journal
 
 **Reviews (keep permanently):**
@@ -287,7 +307,7 @@ Read in this order:
 
 **Quick links (update as you work):**
 
-- Current Week Plan: `03_PLANNING/03_WEEK/W14/2026-W14_WeekPlan.md`
-- Current Month Plan: `03_PLANNING/02_MONTH/2026-04_April_Plan.md`
+- Current Week Plan: `03_PLANNING/03_WEEK/` — open the latest `W##/` folder
+- Current Month Plan: `03_PLANNING/02_MONTH/` — open the latest `YYYY-MM_*Plan.md`
 - Latest Quarterly Plan: `03_PLANNING/01_QUARTER/Q1_Review_Q2Planning.md`
 - Command Quick Reference: `05_TEMPLATES/TEMPLATE_Command_Pack.md`

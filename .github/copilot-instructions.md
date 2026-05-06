@@ -21,6 +21,9 @@ Treat semantic consistency as part of repo correctness.
 - **GPT** = system thinker, boundary controller, dependency/impact analyst, and audit authority
 - **Claude** = long-form implementer, rewriter, and secondary implementation partner
 - **Copilot (you)** = repo-native implementer
+- **GLM** = independent bounded execution agent; operates under explicit task contracts for bounded work
+
+For routing policy, GLM task contract, escalation rules, and risk controls, see `01_OS/AGENT_OPERATING_MODEL.md`. Do not duplicate or override canonical policy defined there.
 
 Your primary role is to turn approved intent into correct, bounded, mergeable repository change.
 

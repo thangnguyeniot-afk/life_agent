@@ -57,6 +57,9 @@ This is not full automation. It is **decision-supported, command-driven operatio
 
 ## 3. Team Role Model
 
+> **Note:** The "Agent 1 / Agent 2" naming in this section is **legacy automation terminology** from the original command-model design. It describes functional roles within the command execution loop, not the current multi-agent governance model.
+> For current agent roles (User / GPT / Copilot / Claude / GLM), routing policy, and task contracts, see `01_OS/AGENT_OPERATING_MODEL.md`.
+
 ### Human
 
 **Responsibilities:**

@@ -113,6 +113,14 @@ Read project contexts:
 
 ---
 
+## Agent Operating Model
+
+**File:** `01_OS/AGENT_OPERATING_MODEL.md`
+
+Defines agent roles (User / GPT / Copilot / Claude / GLM), routing policy, GLM task contract, escalation rules, and risk controls. Read this when routing a task to an agent or defining a bounded execution contract.
+
+---
+
 ## Core Mental Model
 
 The system consists of:
@@ -210,8 +218,8 @@ Use these; don't create variants:
 - **Entry point:** `00_README/INDEX.md`
 - **Main OS manual:** `01_OS/operating_system_thang_nguyen_v1_1.md`
 - **General context:** `02_GENERAL_CONTEXT/00_CONTEXT.md`
-- **Current week plan:** `03_PLANNING/03_WEEK/W14/2026-W14_WeekPlan.md`
-- **Current month plan:** `03_PLANNING/02_MONTH/2026-04_April_Plan.md`
+- **Current week plan:** `03_PLANNING/03_WEEK/` — open the latest `W##/` folder
+- **Current month plan:** `03_PLANNING/02_MONTH/` — open the latest `YYYY-MM_*Plan.md`
 - **Decision log:** `04_LOGS/Decision_Log.md`
 - **Knowledge base:** `knowledge/`
 - **Command quick reference:** `05_TEMPLATES/TEMPLATE_Command_Pack.md`
