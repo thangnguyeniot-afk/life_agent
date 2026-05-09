@@ -5,7 +5,7 @@
 > **Scope:** Monthly direction + execution reality → Weekly Execution file  
 > **Prerequisite:** WeekPlan must exist and be accessible (created by GENERATE_WEEKPLAN)  
 > **Reuse:** Run once per week, typically at week start, OR on-demand for reconstruction/rebalance  
-> **Maintained by:** Agent 2 (file reads/writes + data collection) + Agent 1 (escalation decisions only)  
+> **Maintained by:** Repo-grounded execution agent, normally Copilot (GPT or Claude for escalation decisions). See `01_OS/AGENT_OPERATING_MODEL.md`.
 > **Related:** [`GENERATE_WEEKPLAN.md`](GENERATE_WEEKPLAN.md) (weekly planning) | [`WEEKLY_REBALANCE.md`](WEEKLY_REBALANCE.md) (mid-week correction) | [`WEEK_CLOSEOUT.md`](WEEK_CLOSEOUT.md) (week-end closure) | [`INTEGRATE_DAILY.md`](../DAILY_INTEGRATION/INTEGRATE_DAILY.md) | [`PREPARE_NEXT_DAILY.md`](../DAILY_INTEGRATION/PREPARE_NEXT_DAILY.md)
 
 ---
@@ -1182,8 +1182,8 @@ For each major daily anchor, define detectable drift signals. These are checked 
 |---|---|---|---|---|
 | **GREEN** | On track; all signals normal | Started on time + artifact produced + ambiguity reduced (or fallback executing normally) | Continue execution as planned | Relax vigilance; skip EOD checks; ignore upstream deps |
 | **YELLOW** | Slipping but recoverable | 1–2 signals off (e.g., blocker found, ambiguity unchanged) but anchor still workable | Use fallback + adjust daily plan + flag for EOD review + check cascade deps | Ignore signal; assume recovery magic; hide blocker |
-| **ORANGE** | Critical path threatened | 3+ signals off OR upstream prerequisite for hard gate slipped OR contingent absorbed into committed | De-escalate non-critical work + protect hard gate + escalate to Agent 1 by EOD + prepare replan | Pretend hard gate still safe; continue business-as-usual; ignore upstream slip |
-| **RED** | Intent no longer valid | Hard gate failed OR mandatory commitment failed OR week cannot be recovered with current plan | Full replan required; escalate to Agent 1 immediately; trigger WEEKLY_REBALANCE | Continue executing old plan; blame external factors; hide failure |
+| **ORANGE** | Critical path threatened | 3+ signals off OR upstream prerequisite for hard gate slipped OR contingent absorbed into committed | De-escalate non-critical work + protect hard gate + escalate to GPT by EOD + prepare replan | Pretend hard gate still safe; continue business-as-usual; ignore upstream slip |
+| **RED** | Intent no longer valid | Hard gate failed OR mandatory commitment failed OR week cannot be recovered with current plan | Full replan required; escalate to GPT immediately; trigger WEEKLY_REBALANCE | Continue executing old plan; blame external factors; hide failure |
 
 ### Drift Response Rules (By Type & Trigger)
 
@@ -1222,7 +1222,7 @@ For each major daily anchor, define detectable drift signals. These are checked 
 **If Hard Gate Day Threatened (Wed dline, critical Mon, etc.):**
 - **Immediately prioritize hard-gate artifact**; all other work becomes secondary
 - Drop support/contingent work first
-- Activate escalation: flag to Agent 1 by Tue EOD if hard gate artifact at risk
+- Activate escalation: flag to GPT or User by Tue EOD if hard gate artifact at risk
 - State change: any → ORANGE
 
 ### Daily Integration & Inheritance

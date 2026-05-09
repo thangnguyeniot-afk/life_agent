@@ -21,8 +21,9 @@
 - [7. Output Contract](#7-output-contract)
 - [8. Decision Logic When Capacity Does Not Close](#8-decision-logic-when-capacity-does-not-close)
 - [9. Integration Points](#9-integration-points)
-- [10. Minimal Correction Principle](#10-minimal-correction-principle)
-- [11. Example — W11-style mismatch and corrected model](#11-example--w11-style-mismatch-and-corrected-model)
+- [10. Weak-Health Mode — Physical Runtime Capacity Override](#10-weak-health-mode--physical-runtime-capacity-override)
+- [11. Minimal Correction Principle](#11-minimal-correction-principle)
+- [12. Example — W11-style mismatch and corrected model](#12-example--w11-style-mismatch-and-corrected-model)
 
 ---
 
@@ -812,7 +813,184 @@ If scope cannot be reduced without violating a project commitment, or if two pro
 
 ---
 
-## 10. Minimal Correction Principle
+## 10. Weak-Health Mode — Physical Runtime Capacity Override
+
+### Purpose
+
+Weak-Health Mode protects the user's physical runtime (sleep, nutrition, energy, stress resilience) when health metrics fall below baseline.
+
+**Weak-Health Mode exists because:**
+
+- A clean Capacity Engine PASS assumes normal physical health
+- When sleep is poor, energy is low, or body stress is high, the same capacity math produces overload even if hours appear sustainable
+- Health protection is a P0 operating constraint, not an optional habit task
+- Daily Health Telemetry signals must influence next-day planning, not be ignored in favor of plan aesthetics
+
+### Trigger Conditions
+
+Weak-Health Mode is activated when ONE or more of the following occurs:
+
+| Signal | Trigger | Action |
+| --- | --- | --- |
+| Sleep duration | < 6.5h | Mark next day Weak-Health candidate; consider reduction |
+| Sleep quality | = Poor | Mark next day reduced-load / S-only evening |
+| Energy actual | = Low | Downgrade heavy work; avoid adding new tasks |
+| Energy actual | = Depleted | No deep work unless P0 emergency; strong candidate for Weak-Health Mode |
+| Body state | = Fatigue / Pain / Sick | Add recovery/movement; reduce evening load; Weak-Health candidate |
+| Body state | = high Tension | Add decompression; reduce evening load; monitor next day |
+| Movement | = None (2+ consecutive days) | Add light movement before scheduling more work; caution mode |
+| Nutrition | = Skipped meal / Poor timing | Protect meal window before evening work; flag for next-day planning |
+| Stress / activation | = High or Activated | Add decompression; avoid stacking meetings + deep work; caution mode |
+| 2+ warning signals | (same day) | **Weak-Health candidate next day; apply Mode rules** |
+| Explicit user report | (health weaker than baseline) | Accept user judgment; Weak-Health Mode active; user final authority |
+
+**Activation guidance:**
+
+- **1 mild signal** (e.g., single Poor sleep night): warning. Consider reduction; monitor.
+- **2+ signals in one day** (e.g., Poor sleep + Low energy + high Stress): **Weak-Health candidate next day.** Plan conservatively; apply Weak-Health rules below.
+- **Energy = Depleted OR Body state = Sick/Pain OR very poor sleep (≤5h)**: Weak-Health Mode default-ON unless user explicitly overrides for P0 emergency.
+- **Persistent signals for 2+ days** (e.g., Poor sleep both Mon and Tue): Continue Weak-Health Mode until one full-recovery day occurs.
+- **User explicit override**: If user explicitly reports health weaker than baseline, accept that judgment. Weak-Health Mode is active. User retains final decision authority, but override must be recorded.
+
+### Capacity Effects
+
+When Weak-Health Mode is active, the following constraints apply:
+
+| Area | Normal Mode | Weak-Health Mode |
+| --- | --- | --- |
+| **Evening capacity** | M or 2×S (per daily template) | S-only by default; no M blocks unless explicitly approved |
+| **Deep work** | Allowed if capacity passes | Limited to shallow/review work; no new high-ambiguity deep work unless P0 |
+| **New task admission** | Allowed through TASK_INTAKE | Defer/delegate non-critical tasks; P0 emergency only |
+| **Meeting days** | May include light extra work | Meeting + capture only; no add-on heavy work |
+| **Weekend execution** | Full planned capacity per MODE | Cap at reduced load (MODE C); protect recovery windows |
+| **TickTick sync** | Normal (by project sync rules) | Sync only mission-critical; HOLD non-critical and opportunistic tasks |
+| **Movement / meal / sleep floors** | Recommended | **Protected floor** — prioritize before scheduling more work |
+| **Multi-day pattern** | Monitor for trend | If 2+ days, continue Weak-Health Mode until 1 full-recovery day |
+
+**Core rule:** In Weak-Health Mode, physical recovery takes priority over plan optimization.
+
+### Planning Rules (WH Rules)
+
+These rules apply when Weak-Health Mode is active:
+
+**WH-1 — Evening capacity downgrade**
+
+- If Weak-Health Mode is active, downgrade next-day evening work to S-only (light tasks, capture, light async work) unless user explicitly approves.
+- Rationale: No M-sized (3h+) deep-work blocks when body/energy signal is weak.
+
+**WH-2 — No new deep work**
+
+- No new M-sized or high-ambiguity deep-work task may be admitted during Weak-Health Mode unless it is P0.
+- Rationale: Weak-health state cannot absorb new cognitive load safely; focus on existing commitments only.
+
+**WH-3 — Meeting-day protection**
+
+- If meeting day occurs during Weak-Health Mode, meeting + capture block only. No additional heavy work on same day.
+- Rationale: Meeting load + body stress are compounding; do not stack.
+
+**WH-4 — Movement floor**
+
+- If movement has been None for 2+ consecutive days, add light movement/recovery before scheduling new work.
+- Do not schedule new heavy work if movement debt is accumulating; address movement deficit first.
+- Rationale: Sedentary + weak health compound physiologically.
+
+**WH-5 — Nutrition floor**
+
+- If nutrition is poor/delayed (Skipped meal, Poor timing), protect meal window before evening execution.
+- Reschedule evening work if it conflicts with a meal window.
+- Rationale: Weak-health state + poor nutrition → rapid energy collapse during execution.
+
+**WH-6 — Decompression before load**
+
+- If stress / activation = High or Activated, add decompression block (light walk, breathing, low-stim activity) before meetings or deep work.
+- If decompression cannot be scheduled, defer heavy work to later day.
+- Rationale: High stress state + high load = cascade failure mode; decompression is protective.
+
+**WH-7 — Weak-Health overrides activated mode**
+
+- If activated-mode productivity assumptions (elevated output from FindingCapacity Modes §1 in EXEC_PATTERNS_CAPACITY_ENERGY) were present in prior weeks, Weak-Health Mode suspends them.
+- Do not assume same capacity as prior high-output weeks; plan conservatively.
+- Rationale: Health bottleneck is below normal baseline; prior performance is not achievable in this state.
+
+**WH-8 — User final decision + recording**
+
+- User retains final decision authority over Weak-Health Mode application.
+- **However:** If user overrides Weak-Health Mode (e.g., "approve heavy work despite Poor sleep"), the override must be explicitly stated and recorded.
+- The record creates a decision audit trail and informs personal health trend analysis later.
+- Rationale: Transparency about overrides prevents silent accumulation of health debt.
+
+### Relationship to Capacity Bands
+
+**Normal sustainable baseline capacity** still applies when health is normal.
+
+**In Weak-Health Mode:**
+
+- Personal execution band (Pool B) should be **reduced to 5–8h/week** (temporary, not permanent baseline)
+- Office hours capacity (Pool A) may continue at normal levels if health signal is evening-only
+- **Pool B becomes conservative:** No scope expansion, no extra sync tasks, no "compensation" for prior week gaps
+- **Office work may continue**, but personal project load must be reduced first (personal projects are Pool B; personal time is where health protection matters most)
+
+**Suggested temporary cap during Weak-Health Mode:**
+
+- If Weak-Health Mode persists 2+ consecutive days: cap personal execution at 5–8h/week
+- If isolated 1-day signal: conservative planning acceptable, but do not trigger full-week cap
+- If 3+ consecutive days: escalate to project owner; full-week replan may be needed
+
+### Daily-to-Weekly Flow
+
+This is how Daily Health Telemetry connects to capacity decisions:
+
+1. **EOD:** User fills Daily Health Telemetry (in `TEMPLATE_Daily.md` Health Telemetry section)
+2. **EOD evaluation:** If 2+ warning signals, mark next day as Weak-Health candidate
+3. **Next-morning planning (Morning Setup):** Apply WH rules to tomorrow's capacity mode and task admission
+4. **Daily execution:** Record Evening Check; note any health-related decisions or deviations
+5. **Weekly scope-lock:** Summarize daily health trend (how many Weak-Health days occurred? pattern?)
+6. **Weekly Capacity Review:** If 2+ Weak-Health days in a week, note pattern; adjust next week if trend continues
+7. **PEC / TickTick sync:** Before syncing new tasks, check Weak-Health status; hold non-critical tasks if mode is active
+
+### Interaction with TASK_INTAKE §7.5 (Ambiguity Gate)
+
+The Ambiguity Gate in TASK_INTAKE checks whether a task is sufficiently clear to execute.
+
+**Weak-Health Mode adds a second gate:**
+
+| Gate | Checks | Example |
+| --- | --- | --- |
+| **Ambiguity Gate** | Is the task sufficiently clear? | "Write spec" = clear. "Improve architecture" = unclear. |
+| **Health Capacity Gate** | Can the user's body state safely execute this task? | Clear task + weak-health state = task is admissible for HOLD but not for EXECUTE. |
+
+**Combined logic:**
+
+- Task is **clear and non-critical** + Weak-Health Mode active → **HOLD** (not EXECUTE)
+- Task is **clear and critical (P0)** + Weak-Health Mode active → **EXECUTE** (accept short-term health cost for P0 blocker)
+- Task is **unclear** + Weak-Health Mode active → **UNBLOCK** (do not execute until clarity improves AND health recovers)
+- Task is **clear and non-critical** + normal health → **EXECUTE** (no health gate)
+
+Rationale: Weak-Health Mode protects against admission of non-critical tasks that would compound physical load when body state is marginal.
+
+### Non-Goals
+
+What Weak-Health Mode is **NOT:**
+
+- **Not medical diagnosis.** This is operational telemetry (self-reported signals). If health is of concern, consult a medical professional.
+- **Not productivity optimization.** Do not use health tracking to squeeze more output. Use it to prevent output collapse.
+- **Not task inflation.** Do not create many "health tasks" in TickTick. Health decisions happen in Daily Telemetry and Morning Setup, not in ticket system.
+- **Not activated-mode justification.** Do not use "health is baseline now" as excuse to skip Weak-Health Mode when signals appear.
+- **Not permanent.** Weak-Health Mode is a temporary response to a signal. It expires when health stabilizes.
+- **Not silent.** Health signals must be recorded in Daily Health Telemetry. Untracked health decisions create blind spots.
+
+### Future Integration (Do Not Patch Now)
+
+This section seeds future capacity work:
+
+1. **Weak-Health Mode in WEEKLY SCOPE-LOCK template** — future patch should add a health summary row to weekly scope-lock, capturing how many days were Weak-Health candidate and any patterns observed
+2. **BODY_LOAD_GATE in weekly schedule distribution** — future patch may add logic to prevent clustering all personal work in one weekend day when Weak-Health Mode is active (distribute lighter)
+3. **Phase 3 sustainability evidence** — May 15 checkpoint can reference accumulated daily health telemetry as proof of sustainable execution if available
+4. **Integration with EXEC_PATTERNS_CAPACITY_ENERGY findings** — future updates to capacity KB should note how Weak-Health Mode interacts with activated-mode findings (mode override rule)
+
+---
+
+## 11. Minimal Correction Principle
 
 CAPACITY_ENGINE must not force a full redesign of a working weekly plan.
 
@@ -834,7 +1012,7 @@ The engine is not a trigger for perfectionism. It is a guard against structural 
 
 ---
 
-## 11. Example — W11-Style Mismatch and Corrected Model
+## 12. Example — W11-Style Mismatch and Corrected Model
 
 ### What the broken model looked like
 
@@ -906,3 +1084,4 @@ Validation status: V1 PASS | V2 PASS | V3 PASS (evening blocks named) | V4 PASS 
 | 2026-03-16 | 1.0 | Initial creation: capacity modeling engine for LIFE_AGENT weekly planning system. Created in response to W11 capacity audit findings. Defines TYPE A–E classification, 4 capacity layers, 10 validation checks, output contract, and integration points. |
 | 2026-03-16 | 1.1 | Architecture correction: dual-pool model. Ground-truth rule applied: office hours (08:30–17:00) are exclusively Zephyr (Pool A); personal projects (RobotOS, Signee) must use personal time only (Pool B: evenings + weekends). Layer 2 renamed to "Personal Deep-Work Pool"; TYPE B/C definitions updated to forbid office hours; R9 pool isolation rule added; V11 pool isolation check added; output contract rewritten to show Pool A and Pool B separately; §11 example corrected to remove "office support" rows for personal projects. |
 | 2026-03-16 | 1.2 | Personal-capacity schedule correction. Ground-truth evening schedule applied: 19:30–21:30 (not 20:00–21:30); Mon–Fri 5 evenings × 2h = 10h/week baseline (not 4 evenings × 1.5h = ~6h). Weekend model corrected: Sat+Sun daytime = substantial intentional capacity; Sat+Sun evening = OFF (protected rest). Layer 2 capacity ceiling rewritten; TYPE B/C allowed columns updated; R7 Pool B formula updated; R9 source footnote corrected; R10 (weekend evening protection + sustainability balance) added; output contract template updated; §11 example corrected to reflect 10h baseline. |
+| 2026-05-06 | 1.3 | Weak-Health Mode integration. New section 10 added: Weak-Health Mode as physical runtime capacity override. Defines trigger conditions (sleep, energy, body state, movement, nutrition, stress, 2+ warning signals); capacity effects table; 8 planning rules (WH-1 to WH-8); relationship to capacity bands; daily-to-weekly flow; interaction with TASK_INTAKE ambiguity gate; non-goals; future integration notes. Connects Daily Health Telemetry (in TEMPLATE_Daily.md) to capacity decisions. Health protection is P0 operating constraint; Weak-Health Mode can override a clean Capacity Engine PASS. |

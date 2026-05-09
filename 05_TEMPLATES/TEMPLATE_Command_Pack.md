@@ -1,8 +1,8 @@
 # TEMPLATE_Command_Pack.md — LIFE_AGENT Command Quick Reference
 
 > **Purpose:** Copy-paste commands for daily LIFE_AGENT operation.
-> Send to Agent 2 (Copilot) directly. Fill in the fields in `[brackets]`.
-> For reasoning or decision support, route to Agent 1 (ChatGPT) first.
+> Send to Copilot directly. Fill in the fields in `[brackets]`.
+> For reasoning or decision support, route to GPT or Claude first. Routing: `01_OS/AGENT_OPERATING_MODEL.md`.
 
 ---
 
@@ -10,9 +10,9 @@
 
 1. Copy the relevant command block below.
 2. Fill in the fields marked `[...]`.
-3. Send to Agent 2 (Copilot). It will read the repo and generate output.
-4. For commands marked **CONFIRM**, Agent 2 will present output first. Reply "ok" or adjust.
-5. For commands marked **APPEND**, Agent 2 writes immediately without preview.
+3. Send to Copilot. It will read the repo and generate output.
+4. For commands marked **CONFIRM**, Copilot will present output first. Reply "ok" or adjust.
+5. For commands marked **APPEND**, Copilot writes immediately without preview.
 
 ---
 
@@ -203,12 +203,12 @@ context: [1–2 sentences on why this artifact is needed]
 
 | Situation | Route to |
 |---|---|
-| Routine template operation (open/close day, log, spike) | Agent 2 directly |
-| Ambiguous signals, multiple possible root causes | Agent 1 first, then Agent 2 |
-| Weekly/monthly planning (if priorities are clear) | Agent 2 directly |
-| Weekly/monthly planning (if priorities are unclear) | Agent 1 first to frame, then Agent 2 |
-| Strategic decision (scope, direction, tradeoff) | Agent 1 to present options → Human decides → Agent 2 writes |
-| Drift check or system review | Agent 1 for interpretation → Human confirms → Agent 2 if file change needed |
+| Routine template operation (open/close day, log, spike) | Copilot directly |
+| Ambiguous signals, multiple possible root causes | GPT or Claude first, then Copilot |
+| Weekly/monthly planning (if priorities are clear) | Copilot directly |
+| Weekly/monthly planning (if priorities are unclear) | GPT first to frame, then Copilot |
+| Strategic decision (scope, direction, tradeoff) | GPT to present options → Human decides → Copilot writes |
+| Drift check or system review | GPT or Claude for interpretation → Human confirms → Copilot if file change needed |
 
 ---
 

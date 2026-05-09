@@ -27,8 +27,8 @@ This file defines how the human owner of LIFE_AGENT interacts with the system th
 The goal is to replace the current model — where the human manually fills templates and coordinates between files — with a lighter model where:
 
 - The human provides a short command and a few key fields.
-- Agent 2 (Copilot + MCP) reads the repo, generates the structured output, and writes the files.
-- Agent 1 (ChatGPT) handles reasoning, framing, and interpretation when needed.
+- A repo-grounded implementation agent (normally Copilot) reads the repo, generates the structured output, and writes the files.
+- A reasoning/audit agent (GPT, or Claude for long-form work) handles framing and interpretation when needed.
 - The human only confirms direction or approves decisions.
 
 This is not full automation. It is **decision-supported, command-driven operation** — the human stays in control of direction; the agents handle structure.
@@ -49,7 +49,7 @@ This is not full automation. It is **decision-supported, command-driven operatio
 
 6. **Human confirms direction; agents handle structure.** Strategic decisions (what to prioritize, what to drop) are always human. Structural decisions (how to format, where to write, which template to use) are always agent.
 
-7. **Read before writing.** Agent 2 must always read the current repo state before creating or updating any file. Never act on assumed state.
+7. **Read before writing.** The implementation agent must always read the current repo state before creating or updating any file. Never act on assumed state.
 
 8. **Prefer reversible actions.** All file creation is additive. No deletion without explicit instruction.
 
@@ -76,38 +76,18 @@ This is not full automation. It is **decision-supported, command-driven operatio
 
 ---
 
-### Agent 1 — ChatGPT
+### Current multi-agent model
 
-**Responsibilities:**
-- Reasoning, triage, and framing for non-trivial questions
-- Decision support: "here are 2–3 options with tradeoffs"
-- Interpretation of ambiguous signals from weekly/monthly reviews
-- Translation of raw human input into structured task/outcome proposals
-- Intermediate step between human intent and Agent 2 file writes
+> Legacy terms "Agent 1 (ChatGPT)" and "Agent 2 (Copilot)" are deprecated. Current canonical routing is defined in `01_OS/AGENT_OPERATING_MODEL.md`.
 
-**Does NOT do:**
-- Direct file writes or repo modifications
-- Final decisions on scope or priority
-- Replacement of human judgment on strategic direction
+| Role | Function in the command loop |
+|---|---|
+| **GPT** | Reasoning, audit, synthesis, output shaping; frames non-trivial decisions before implementation agent writes |
+| **Copilot** | Repo-grounded implementation; reads current repo state before any write; proposes options when ambiguous |
+| **Claude** | Long-form synthesis, complex multi-doc work, high-context rewriting |
+| **GLM** | Bounded execution under explicit task contract and validation gates only |
 
-**When to use:** Before sending a complex `plan week`, `close month`, or `drift check` command — if the human has rough notes or ambiguity about direction, Agent 1 helps clarify before Agent 2 acts.
-
----
-
-### Agent 2 — Copilot + MCP
-
-**Responsibilities:**
-- Reading the full repo state before any operation
-- Instantiating templates with correct fields filled
-- Creating and updating plan instances, metrics files, logs, and artifact stubs
-- Computing structurally inferrable data (completion rate, carry-over list, signal flags)
-- Maintaining naming convention and folder placement
-
-**Does NOT do:**
-- Interpret ambiguous signals without presenting options
-- Make scope or priority decisions
-- Change strategic content in quarter/month plans without explicit instruction
-- Guess when input is missing — asks for the minimum needed field
+For command routing, see the routing table in `01_OS/AGENT_OPERATING_MODEL.md §4`.
 
 ---
 
@@ -120,7 +100,7 @@ Human sends:
   [command]
   [minimal structured input — 2–5 fields at most]
 
-Agent 2 process:
+Implementation agent process (normally Copilot):
   1. Read LIFE_AGENT_ARCHITECTURE.md (orientation)
   2. Read relevant files for this command (see §6 for what each command reads)
   3. Generate output according to Output Contract (§7)
@@ -413,7 +393,7 @@ Each command must produce the outputs listed below. No extra files unless needed
 - Warning signal interpretation beyond threshold comparison
 - Drift check recommendations before adjusting plans
 
-### Agent 1 Should Interpret First (Before Agent 2 Writes)
+### Reasoning/Audit Agent Should Interpret First (Before Implementation Agent Writes)
 
 - Ambiguous drift signals (multiple possible root causes)
 - Monthly executive summary narrative

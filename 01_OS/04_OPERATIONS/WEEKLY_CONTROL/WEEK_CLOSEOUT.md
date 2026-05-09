@@ -81,7 +81,7 @@ After closeout, the week is formally closed with clear completion/carry-over sta
 - Mon morning before new week generation, or
 - Wed PM if week is being formally ended early (escalation scenario)
 
-**Runner:** Agent 2 (autonomous data collection and synthesis) or Agent 1 (if escalation or decision on carry-over priority required).
+**Runner:** Repo-grounded execution agent, normally Copilot. GPT or Claude if escalation or strategic carry-over decision required. See `01_OS/AGENT_OPERATING_MODEL.md`.
 
 ---
 
@@ -637,7 +637,16 @@ Verify all of the following before considering closeout complete:
    - **Evidence gaps:** (list any undocumented work or uncertainty)
    - **Suggested next week mode:** (normal / careful / recovery / other)
    - **Suggested primary anchor:** (hint for next week planner)
-   - **Report produced by:** Agent 2 | Agent 1
+   - **Weekly health / recovery summary** *(per CAPACITY_ENGINE §10 Weak-Health Mode)*:
+     - Weak-Health days this week: N
+     - Dominant signals: sleep / energy / soreness / overload / other
+     - Pattern vs prior week: none / emerging / persistent
+     - Recovery carry-over into next week:
+   - **User bottleneck reflection** *(see `04_LOGS/Decision_Memo_2026-05_Life_Agent_Restructure.md` §3)*:
+     - What did the user do this week that should not have required the user?
+     - What was delegated, drafted by AI, templated, batched, or outsourced?
+     - What absorbed capacity that should be reduced next week?
+   - **Report produced by:** Copilot (repo patch) | GPT (reasoning/audit) | User
    - **Report timestamp:** `<date/time>`
 
 2. Make the report concise (1–2 pages max)
@@ -811,6 +820,8 @@ A week closeout is successful when:
 - [ ] Closeout report produced and copy-rable?
 - [ ] No inflated completion claims?
 - [ ] Historical records preserved unchanged?
+- [ ] Weekly health / recovery summary filled (Weak-Health days, pattern, recovery carry-over)?
+- [ ] User bottleneck reflection completed (over-absorbed work identified, candidate reduction noted)?
 
 ### Ready for Next Week
 
@@ -824,7 +835,7 @@ A week closeout is successful when:
 
 ## 15. Reusable Execution Template
 
-Use this template for future week closeout runs. Copy, replace placeholders, and paste into Copilot or Agent 2 command:
+Use this template for future week closeout runs. Copy, replace placeholders, and paste into Copilot command:
 
 ```
 TASK: Perform WEEK_CLOSEOUT for <WEEK_NAME>

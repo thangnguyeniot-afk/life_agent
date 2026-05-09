@@ -1,6 +1,6 @@
 # BOOTSTRAP.md – Agent Reading Sequence
 
-> If you are an agent (ChatGPT / Copilot / Claude) entering this repo, read in this order.
+> If you are an AI agent (any model) entering this repo, read in this order.
 
 ---
 
@@ -207,8 +207,8 @@ Use these; don't create variants:
 ### "I want to run a routine operation without filling templates manually"
 1. Use command-based operation — see `05_TEMPLATES/TEMPLATE_Command_Pack.md`
 2. Send a short command with minimal fields (e.g., `open day`, `close day`, `plan week`)
-3. Agent 2 (Copilot) reads the repo and generates the output
-4. For non-trivial decisions, route to Agent 1 (ChatGPT) first, then Agent 2
+3. The repo-grounded implementation agent (normally Copilot) reads the repo and generates the output
+4. For non-trivial decisions or reasoning, route to GPT or Claude first, then the implementation agent
 5. Full spec: `LIFE_AGENT_AUTOMATION_INTERFACE.md`
 
 ---

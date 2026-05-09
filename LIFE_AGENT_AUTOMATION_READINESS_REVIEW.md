@@ -37,10 +37,14 @@ This review answers that question and defines the first automation targets.
 **New target operating model:**
 
 ```
-Human            → provides minimal input, confirms decisions, approves direction
-Agent 1 (ChatGPT) → reasoning, triage, framing, interpretation, decision support
-Agent 2 (Copilot) → repo reading, file creation, template instantiation, structured writes
+Human    → provides minimal input, confirms decisions, approves direction
+GPT      → reasoning, triage, framing, interpretation, decision support
+Copilot  → repo reading, file creation, template instantiation, structured writes
+Claude   → long-form synthesis, complex multi-doc work (when needed)
+GLM      → bounded execution under explicit task contract only
 ```
+
+> **Note (LA-R1 Patch 5):** Legacy terms "Agent 1 / Agent 2" in this document map to the canonical routing model in `01_OS/AGENT_OPERATING_MODEL.md`.
 
 ---
 
@@ -168,7 +172,7 @@ These areas require human judgment, strategic context, or qualitative interpreta
 - The weekly review requires judgment: "Is this signal noise or a pattern?"
 - Signals like "task repeated 3x" may mean SPOF risk OR legitimate ongoing work.
 - Anti-Anchor assessment (Dopamine Leaks, Sleep Killers) is qualitative.
-- **Why not automate:** Context-dependent. Agent 1 (ChatGPT) can assist with framing, but human must confirm.
+- **Why not automate:** Context-dependent. GPT or Claude can assist with framing, but human must confirm.
 
 ### 4.3 Project Context Updates
 
@@ -180,7 +184,7 @@ These areas require human judgment, strategic context, or qualitative interpreta
 
 - Executive Summary of the Month, System Change Review, Capacity Reality Review — all require qualitative synthesis.
 - Week-by-week trend interpretation requires memory of what actually happened.
-- **Why not automate:** A wrong narrative is worse than no narrative. Agent 1 can draft; human must confirm.
+- **Why not automate:** A wrong narrative is worse than no narrative. GPT or Claude can draft; human must confirm.
 
 ### 4.5 Backlog Selection and Priority Scoring
 
@@ -227,10 +231,10 @@ Listed in priority order (highest frequency + lowest risk first):
 
 ### 6.2 Agent Boundary Rules
 
-- Agent 2 (Copilot) must NOT make strategic content decisions.
-- Agent 2 reads existing repo state before acting — no assumptions about current state.
-- If input is ambiguous, Agent 2 proposes options; it does NOT choose silently.
-- Agent 1 (ChatGPT) should frame decisions before Agent 2 writes files.
+- Copilot must NOT make strategic content decisions.
+- Copilot reads existing repo state before acting — no assumptions about current state.
+- If input is ambiguous, Copilot proposes options; it does NOT choose silently.
+- GPT or Claude should frame decisions before Copilot writes files.
 - All file creation must be reversible (never delete without explicit instruction).
 
 ### 6.3 Pilot Mode Risk

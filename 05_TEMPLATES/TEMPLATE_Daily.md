@@ -13,6 +13,7 @@
 - [Daily Project Scope Rule (Critical)](#daily-project-scope-rule-critical)
 - [Work Time Domain (Critical)](#work-time-domain-critical)
 - [Morning Setup (5 min)](#morning-setup-5-min)
+- [Health Telemetry — EOD / Next-Day Planning Signal](#health-telemetry--eod--next-day-planning-signal)
 - [Canonical Daily Anchors](#canonical-daily-anchors)
 - [Office Hours – Deep Work](#office-hours--deep-work-mon--fri-900--1730)
 - [Evening – Personal Projects](#evening--personal-projects-1730-or-weekend)
@@ -32,7 +33,7 @@
 
 **Week:** YYYY-Www
 
-**Energy level:** [ ] Low [ ] Normal [ ] High
+**Energy level:** [ ] Low [ ] Normal [ ] High *(planning hypothesis; for actual EOD energy/body signal → see Health Telemetry below)*
 
 **Focus theme:** (optional; 1–2 words if needed)
 
@@ -119,6 +120,75 @@ If a task cannot be traced to a weekly goal, do not execute it. Escalate or defe
 
 **Reason for tonight's capacity mode:**  
 (e.g.: normal office day / poor sleep / heavy workout / heavy meetings / recovery evening)
+
+---
+
+## Health Telemetry — EOD / Next-Day Planning Signal
+
+> **Purpose:** Operational telemetry for next-day planning adjustment. This is NOT medical diagnosis.
+> **Fill time:** ≤3 minutes (fill EOD or next morning before setup).
+> **TickTick sync:** NOT synced to TickTick by default.
+> **Override rule:** A weak health signal can override a clean Capacity Engine PASS — do not inherit a full-load plan unchanged when 2+ warning signals are present.
+
+### Daily Health Snapshot
+
+| Field | Value |
+| --- | --- |
+| Sleep duration | |
+| Sleep quality | Good / Fair / Poor |
+| Energy actual | High / Normal / Low / Depleted |
+| Body state | OK / Tension / Fatigue / Pain / Sick / Other |
+| Movement | None / Light / Moderate / Intense |
+| Nutrition | Regular / Delayed / Skipped meal / Poor timing |
+| Stress / activation | Low / Moderate / High / Activated |
+| Overall health status | Stable / Weak / At-risk / Recovery-needed |
+| Tomorrow planning decision | Keep / Reduce / S-only / Recovery-first |
+
+### Quick Fill (copy-ready)
+
+```text
+Health:
+- Sleep:
+- Energy:
+- Body:
+- Movement:
+- Nutrition:
+- Stress:
+- Overall:
+- Tomorrow planning decision:
+```
+
+### Daily-to-Planning Rules
+
+Apply before tomorrow's Morning Setup:
+
+- **Sleep < 6.5h or Sleep quality = Poor** → next day: reduced-load / S-only evening
+- **Energy = Low** → downgrade heavy work; avoid adding new tasks
+- **Energy = Depleted** → no deep work unless P0 emergency
+- **Body state = Pain / Sick / Fatigue / Tension** → add recovery / movement / decompression block; reduce evening load
+- **Movement = None (2+ consecutive days)** → recommend light movement before scheduling more work
+- **Nutrition = Skipped meal / Poor timing** → protect meal window before evening work
+- **Stress = High / Activated** → add decompression slot; avoid meeting + deep-work stacking same day
+- **2+ warning signals in one day** → flag next day as Weak-Health candidate; apply reduced-load mode
+- **Health signal can override a clean Capacity Engine PASS** — if 2+ warning signals appear, do not inherit full-load plan unchanged
+
+### Tomorrow Adjustment
+
+| Planning Question | Decision |
+| --- | --- |
+| Can tomorrow keep planned load? | Keep / Reduce / No |
+| Deep work allowed tomorrow? | Yes / Limited / No |
+| Evening work allowed tomorrow? | Yes / S-only / No |
+| Need recovery block? | Yes / No |
+| Need movement block? | Yes / No |
+| Need meal / sleep protection? | Yes / No |
+| Tasks to defer / delegate | |
+
+### Future Integration (do not patch now)
+
+- **Weak-Health Mode** definition → `CAPACITY_ENGINE.md`
+- **Weekly scope-lock** health summary → Weekly Scope-Lock template
+- **Phase 3 / May 15** sustainability evidence → can draw from health telemetry if available
 
 ---
 
@@ -476,6 +546,12 @@ If answer were: "Did some things" → ✗ VAGUE → rewrite anchors
 **Evening spillover created?**
 - [ ] No
 - [ ] Yes → deferred: (note what was moved and where)
+
+**Health Telemetry Review:**
+> Review Health Telemetry before planning tomorrow. If 2+ warning signals appear, mark next-day plan as reduced-load / Weak-Health candidate.
+
+- [ ] Health Telemetry reviewed
+- [ ] Tomorrow planning decision set (Keep / Reduce / S-only / Recovery-first)
 
 ---
 

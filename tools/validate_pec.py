@@ -201,6 +201,74 @@ def _check_source_id(sid: str, task_type: str, date_val: str) -> list[Issue]:
     return issues
 
 
+def _hhmm_to_minutes(value: Any) -> int | None:
+    """Return minutes-since-midnight for an HH:MM string, or None if invalid."""
+    if not isinstance(value, str) or not _TIME_RE.match(value):
+        return None
+    hh, mm = value.split(":", 1)
+    return int(hh) * 60 + int(mm)
+
+
+def _check_interval_overlaps(day_tasks: list[dict[str, Any]], day: str) -> list[Issue]:
+    """Detect interval collisions between timed tasks on the same date.
+
+    Overlap rule: A overlaps B iff A.start < B.end AND B.start < A.end (strict).
+    Touching intervals (A.end == B.start) are not overlaps.
+
+    Skipped:
+      - all_day == True
+      - export_status == "cancelled"
+      - tasks without both a valid HH:MM start_time and end_time
+
+    One error is emitted per overlapping pair, attached at the day level.
+    """
+    issues: list[Issue] = []
+
+    timed: list[tuple[str, int, int]] = []  # (source_id, start_min, end_min)
+    for raw in day_tasks:
+        if not isinstance(raw, dict):
+            continue
+        if raw.get("all_day") is True:
+            continue
+        if raw.get("export_status") == "cancelled":
+            continue
+
+        start = _hhmm_to_minutes(raw.get("start_time"))
+        end = _hhmm_to_minutes(raw.get("end_time"))
+        if start is None or end is None:
+            continue
+        if end <= start:
+            # Degenerate or reversed interval — not this validator's job to flag here;
+            # the per-task format check covers HH:MM. Skip from overlap math.
+            continue
+
+        sid = str(raw.get("source_id") or "<missing>")
+        timed.append((sid, start, end))
+
+    # Sort by start to make the pair walk readable; still compare all pairs (n is small).
+    timed.sort(key=lambda t: (t[1], t[2]))
+
+    for i in range(len(timed)):
+        sid_a, a_start, a_end = timed[i]
+        for j in range(i + 1, len(timed)):
+            sid_b, b_start, b_end = timed[j]
+            if a_start < b_end and b_start < a_end:
+                issues.append(Issue(
+                    "error",
+                    f"days.{day}.overlap",
+                    (
+                        f"Schedule overlap: '{sid_a}' "
+                        f"({a_start // 60:02d}:{a_start % 60:02d}-"
+                        f"{a_end // 60:02d}:{a_end % 60:02d}) "
+                        f"overlaps '{sid_b}' "
+                        f"({b_start // 60:02d}:{b_start % 60:02d}-"
+                        f"{b_end // 60:02d}:{b_end % 60:02d})"
+                    ),
+                ))
+
+    return issues
+
+
 def _validate_task(raw: dict[str, Any], day: str) -> TaskSummary:
     sid = str(raw.get("source_id") or "") or "<missing>"
     loc = f"task[{sid}]"
@@ -385,6 +453,11 @@ def validate_pec(filepath: str) -> PECReport:
                     seen[sid] = day
 
             tasks.append(result)
+
+        # Same-day interval overlap check (LA-R1 Patch 4A).
+        # Catches the W18 RC4 class of failure (multiple timed tasks sharing a window)
+        # at validate-time rather than after TickTick apply.
+        meta_issues.extend(_check_interval_overlaps(day_tasks, day))
 
     return PECReport(filepath=str(path), meta=meta, tasks=tasks, meta_issues=meta_issues)
 

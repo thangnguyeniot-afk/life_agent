@@ -621,6 +621,25 @@ Nếu **Có**, ghi:
 ---
 
 
+## Weekly Health + Bottleneck Summary
+
+> Fill at week closeout / Weekly Review. Feeds WEEK_CLOSEOUT.md Step 10 and Phase 3 / May 15 evidence. Not a planning block — a capture surface only.
+
+**Health / Recovery Summary** *(per CAPACITY_ENGINE §10 Weak-Health Mode)*:
+
+- Weak-Health days:
+- Dominant signals:
+- Pattern:
+- Recovery carry-over:
+
+**User Bottleneck Summary** *(see `04_LOGS/Decision_Memo_2026-05_Life_Agent_Restructure.md` §3)*:
+
+- User-only work that was legitimate (intentional gate):
+- User-absorbed work that should be reduced (overhead candidate):
+- Candidate delegation / template / automation action for next week:
+
+---
+
 - **Daily sinh tín hiệu**  
 - **Weekly ra quyết định**  
 - **Không quyết định hệ thống ngoài Weekly Review**

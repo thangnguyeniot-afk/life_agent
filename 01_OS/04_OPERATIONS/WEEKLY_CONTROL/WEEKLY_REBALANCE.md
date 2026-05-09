@@ -81,7 +81,7 @@ After rebalance, the Weekly Execution file reflects coherent, believable remaini
 
 > **Capacity drift re-check:** If actual capacity has materially drifted from the plan (TYPE A work overran office hours, evening blocks were unavailable, a project took >2x estimated effort), re-check against CAPACITY_ENGINE before rebalancing the anchor hypothesis. Do not rebalance without a grounded capacity model — see [`CAPACITY_ENGINE.md`](CAPACITY_ENGINE.md) §8 (Decision Logic When Capacity Does Not Close).
 
-**Runner:** Agent 2 (autonomous operational procedure) or Agent 1 (strategic decision if escalation needed).
+**Runner:** Repo-grounded execution agent, normally Copilot. GPT or Claude for strategic decisions when escalation required. See `01_OS/AGENT_OPERATING_MODEL.md`.
 
 ---
 
@@ -502,7 +502,7 @@ Verify the following before considering rebalance complete:
    - Dependencies affecting rebalance: <list of blockers or changed dependencies>
    - Escalation notes: <if Level 3, state clearly>
    - Unresolved uncertainties: <list anything still unknown>
-   - Report produced by: <Agent 2 | Agent 1 | explicit decision maker>
+   - Report produced by: <Copilot (repo patch) | GPT (reasoning/audit) | User | explicit decision maker>
    - Report timestamp: <date/time>
 
 2. Make the report copy-able; it may be logged or included in next Daily file
@@ -551,7 +551,7 @@ Verify the following before considering rebalance complete:
 **Add escalation note when:**
 - Structural Break (Level 3) detected
 - Critical dependency failed
-- Explicit priority override received (from Agent 1, user, or external requirement)
+- Explicit priority override received (from GPT, User, or external requirement)
 - Monthly objective at risk
 - Emergency response required
 
@@ -562,7 +562,7 @@ Verify the following before considering rebalance complete:
 - **Month Review layer:** If monthly objective threatened
 - **Emergency control:** If urgent context switch required
 - **Explicit decision maker:** If priority override needed from outside normal ops flow
-- **Agent 1 review:** If Level 3 involves strategic decision (not just execution correction)
+- **GPT review:** If Level 3 involves strategic decision (not just execution correction)
 
 ---
 
@@ -639,7 +639,7 @@ A rebalance is successful when:
 
 ## 15. Reusable Execution Template
 
-Use this template for future weekly rebalance runs. Copy, replace placeholders, and paste into Copilot or Agent 2 command:
+Use this template for future weekly rebalance runs. Copy, replace placeholders, and paste into Copilot command:
 
 ```
 TASK: Perform WEEKLY_REBALANCE for <WEEK_NAME>

@@ -509,7 +509,7 @@ _______________________________________________
 
 If an artifact **FAILS** anti-fake compliance and you cannot specify the fix:
 
-1. **Escalate to:** Agent 1 or Project Owner
+1. **Escalate to:** GPT, Claude, or Project Owner
 2. **Provide:** This completed checklist + examples of what is generic
 3. **Request:** Rewrite guidance or strategic decision (is this goal/anchor core to weekly success, or can it be deferred?)
 4. **Decision:** Rewrite + re-validate before execution, OR defer to following week

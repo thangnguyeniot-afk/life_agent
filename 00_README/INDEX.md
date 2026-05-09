@@ -85,6 +85,7 @@ Includes:
 
 **Logs (keep permanently):**
 - `04_LOGS/Decision_Log.md` — decisions with rationale
+- `04_LOGS/Decision_Memo_2026-05_Life_Agent_Restructure.md` — May 2026 restructure: user bottleneck reduction, delegation map, business setup, recovery commitment (LA-R1 Patch 1)
 - `04_LOGS/Idea_Parking_Lot.md` — ideas waiting to be processed
 - `04_LOGS/Spike_Log.md` — research spikes & learning outcomes
 - `04_LOGS/Intelligence/` — weekly intelligence transfer records (context handoff between weeks)
@@ -143,7 +144,7 @@ Includes:
 - `05_TEMPLATES/GENERATE_PEC.prompt.md` — Prompt template for generating PEC JSON from approved week plans (TickTick bridge Phase 2C).
 - `tools/README.md` — TickTick bridge script inventory, phase status, usage instructions, and security rules. Entry point for all local tooling in `tools/`.
 
-**Model:** Human → minimal input → Agent 2 (repo read + file write), with Agent 1 (reasoning) for non-trivial decisions.
+**Model:** Human → minimal input → implementation agent (normally Copilot for repo patching; GPT or Claude for reasoning/audit on non-trivial decisions). Routing: `01_OS/AGENT_OPERATING_MODEL.md`.
 
 ---
 
@@ -186,7 +187,7 @@ Includes:
 - Produces closure summary, carry-over extraction, next-week hints
 - Prepares ground for next GENERATE_WEEKPLAN (carry-over becomes input to planning)
 
-**Model:** Run by Agent 2 (OS procedures). Agent 1 only when escalation, strategic decision, or rebalance justification required.
+**Model:** Run by repo-grounded execution agent (normally Copilot). GPT or Claude for reasoning/audit when escalation required. Routing: `01_OS/AGENT_OPERATING_MODEL.md`.
 
 ---
 

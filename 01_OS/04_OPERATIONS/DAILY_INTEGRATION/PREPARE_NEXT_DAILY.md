@@ -5,7 +5,7 @@
 > **Scope:** Current system state → next Daily execution file  
 > **Prerequisite:** `INTEGRATE_DAILY.md` must have completed first  
 > **Reuse:** Run once per day after daily integration. Safe to re-run before next day starts.  
-> **Maintained by:** Agent 2 (file reads/writes) + Agent 1 (decisions only when escalation required)  
+> **Maintained by:** Repo-grounded execution agent, normally Copilot (GPT or Claude for reasoning/audit when escalation required). See `01_OS/AGENT_OPERATING_MODEL.md`.
 > **Sequence:** Run after [`INTEGRATE_DAILY.md`](INTEGRATE_DAILY.md) completes  
 > **Weekly framing:** Generated/updated by [`GENERATE_WEEKLY_EXECUTION.md`](../WEEKLY_CONTROL/GENERATE_WEEKLY_EXECUTION.md) (baseline from [`GENERATE_WEEKPLAN.md`](../WEEKLY_CONTROL/GENERATE_WEEKPLAN.md)); may be rebalanced by [`WEEKLY_REBALANCE.md`](../WEEKLY_CONTROL/WEEKLY_REBALANCE.md) if mid-week drift detected; closed by [`WEEK_CLOSEOUT.md`](../WEEKLY_CONTROL/WEEK_CLOSEOUT.md) at week end
 

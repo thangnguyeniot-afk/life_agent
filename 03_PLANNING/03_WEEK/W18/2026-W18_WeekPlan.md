@@ -270,7 +270,7 @@ Demo and handover completed in April. ~5 small bugs reported. W18 role is bounde
 
 | Slot | Decision | Hours |
 |---|---|---|
-| **Saturday daytime** (2026-05-09) | ACTIVE — RobotOS core Phase B + initial validation | 4h |
+| **Saturday daytime** (2026-05-09) | ACTIVE — Team rollout meeting 09:00–11:00 + RobotOS core Phase B 13:30–17:30 (moved from 10:00–14:00; overlap repair 2026-05-05) | 4h RobotOS + 2h meeting |
 | **Saturday evening** (2026-05-09) | **OFF — protected rest** | 0h |
 | **Sunday morning** (2026-05-10) | Review/closeout overhead + W19 seed (~2h) | ~2h (overhead) |
 | **Sunday afternoon** (2026-05-10) | ACTIVE — Accountant bounded support (1.5h) | 1.5h |
@@ -324,12 +324,12 @@ Demo and handover completed in April. ~5 small bugs reported. W18 role is bounde
 | Candidate Task | Area | Status | Reason | DONE Condition | Slot | TickTick Sync |
 |---|---|---|---|---|---|---|
 | **RobotOS: devkit core dev Phase A** | RobotOS | 🟢 Executable | Bounded continuation; first step clear; artifact defined | Core Phase A artifacts implemented and committed | Mon 19:30–21:30 + Tue 19:30–21:30 | **SYNC** |
-| **RobotOS: devkit core dev Phase B + initial validation** | RobotOS | 🟢 Executable | Saturday block; clear scope; artifact defined (core complete + first validation run) | Core dev complete or clearly at testable state; Phase B implementation committed | Sat daytime 4h | **SYNC** |
-| **RobotOS: board/circuit fix coordination** | RobotOS | 🟢 Executable | S coordination task; first step clear (send status check to team) | Team status confirmed; board/circuit coordination documented | Wed 2026-05-06 (S, async) | **SYNC** |
+| **RobotOS: devkit core dev Phase B + initial validation** | RobotOS | 🟢 Executable | Saturday block; clear scope; artifact defined (core complete + first validation run) | Core dev complete or clearly at testable state; Phase B implementation committed | Sat 2026-05-09 13:30–17:30 (moved from 10:00–14:00 — overlap repair 2026-05-05; team meeting is 09:00–11:00) | **SYNC** |
+| **RobotOS: board/circuit fix coordination** | RobotOS | 🟢 Executable | S coordination task; first step clear (send status check to team) | Send/receive board-fix coordination update or confirm next repair owner/status; timebox 10–20 min; not an evening block. | Thu 2026-05-07 (all_day async; moved from Wed to reduce Wed attention load — 2026-05-05) | **SYNC** |
 | **RobotOS: initial validation run** | RobotOS | 🟡 Needs clarification | Conditional on core reaching testable state by Sat | Validation results documented; issues listed | Sat afternoon (if core completes) | **HOLD** — activate only if core complete |
 | **RobotOS: teacher reporting trigger** | RobotOS | 🟡 Needs clarification | Conditional on core testing beginning | Report sent; status documented | When testing begins | **DO_NOT_SYNC** — conditional trigger; fires when testing begins, not scheduled |
 | **Signee: W18 customer meeting** | Signee | 🟢 Executable | Coordination meeting; bounded; first action = schedule/confirm | Meeting held or firmly scheduled; scope questions documented | Wed eve or as customer availability allows | **SYNC** |
-| **Signee: cost accounting (company creation)** | Signee | 🟢 Executable | Administrative task; first step clear (gather documents) | Documents submitted or next steps documented | Wed eve | **SYNC** |
+| **Signee: cost accounting (company creation)** | Signee | 🟢 Executable | Administrative task; first step clear (gather documents) | Cost/accounting assumptions or input package prepared for May-June / SECC / company setup. | Folded into Fri 2026-05-08 Life Agent May-June scope-lock / reclean block (19:30–22:30); removed as standalone Wednesday task — Wed attention load repair 2026-05-05. | **CANCELLED in PEC** — folded into Fri prep block |
 | **Signee: task/feature clarification design** | Signee | 🟡 Needs clarification | Depends on customer meeting outcome; output undefined until meeting | Clarified task list drafted with DONE conditions | Post-meeting (if meeting happens early enough in week) | **HOLD** — only after meeting output available |
 | **Accountant: bugfix triage UNBLOCK** | Accountant | 🟢 Executable | S UNBLOCK task: review bug list, categorize, identify 1-2 fixes for W18 | Bug list reviewed; severity classified; W18 scope decision documented (30 min max) | Thu 19:30–20:00 (S-only) | **SYNC** (triage task, not full bugfix) |
 | **Accountant: fix W18-scoped bugs** | Accountant | 🟡 Needs clarification | Depends on triage UNBLOCK output; scope not concrete yet | Top 1-2 bugs fixed; test confirmed | Thu post-triage window (if trivial, ≤30 min) OR slip to W19 if non-trivial | **HOLD** — activate after triage |
@@ -474,9 +474,24 @@ At week-end (2026-05-09/10), W18 is successful if:
 
 ---
 
+## W18 Ad-hoc Schedule Addendum — Team Rollout Preparation
+
+> **Added:** 2026-05-05 (W18 Day 2)
+> **Authorization:** User authorized TickTick sync for both tasks.
+> **Note:** These tasks were added after the initial W18 PEC export (9 tasks already in TickTick). They require PEC append + idempotent export. They must not change the original 9 task IDs.
+
+| Candidate | Area | Status | Priority | Date / Window | DONE Condition | TickTick Sync | Reason |
+|---|---|---|---|---|---|---|---|
+| Life Agent: reclean, collect progress, lock May-June scope | Life Agent / Planning | 🟢 executable | P0/P1 | Friday 2026-05-08, 19:30–22:30 | All current project progress collected; May/June rollout notes prepared; scope lock decisions and unresolved questions listed for Saturday team meeting | SYNC | Full evening preparation block required before team rollout |
+| Life Agent: team rollout meeting for May & June plan | Life Agent / Team Coordination | 🟢 executable | P0/P1 | Saturday 2026-05-09, 09:00–11:00 | May/June plan communicated to team; ownership/delegation clarified; next actions and blockers recorded | SYNC | Saturday morning team meeting to align team execution |
+
+---
+
 **File created:** 2026-05-03 (after W17-End gate; W18 authorized)
 **File status:** ACTIVE — first full May execution week
 **Monthly anchor:** `03_PLANNING/02_MONTH/2026-05_May_Plan.md` — FINAL_WITH_CAUTION
 **Phase 3:** Active through 2026-05-15; checkpoint decision in W19
 **TickTick:** Sync-ready; PEC generation authorized post-user-review; no export tools run in this patch
-**Next step:** User reviews this WeekPlan → authorize PEC generation → create W18 Execution file at week start
+**Addendum:** 2026-05-05 — 2 additional tasks added (Friday prep block + Saturday team meeting); PEC appended; idempotent export run.
+**Repair addendum:** 2026-05-05 — Schedule overlap repair applied (root cause RC4: PEC generator time-window collisions). Three tasks updated in PEC: (1) RobotOS board coordination reclassified as all_day async on Wed — no hard time block; (2) Signee cost accounting reclassified as all_day async on Wed with Friday prep block as work target; (3) RobotOS Phase B moved to Sat 13:30–17:30 (was 10:00–14:00) to clear overlap with team rollout meeting 09:00–11:00. See `2026-W18_Execution.md §Schedule Repair` for full record.
+**Attention load addendum:** 2026-05-05 — Wednesday attention load repair. Reason: Wednesday customer meeting is a high-attention block; extra tasks moved to Thu/Fri to reduce attention overload. Decision: (1) RobotOS board coordination moved from Wed all_day → Thu 2026-05-07 all_day async (timebox 10–20 min, not an evening block); (2) Signee cost accounting cancelled as standalone Wed task and folded into Fri 2026-05-08 Life Agent May-June scope-lock / reclean block — cost/accounting input for SECC / company setup is included in that block. Wed hard evening focus is now exclusively: Signee customer meeting 19:30–21:30.
